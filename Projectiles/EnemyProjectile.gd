@@ -18,3 +18,11 @@ func _process(delta):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+func _projectile_destruction():
+	queue_free()
+
+func _on_EnemyProjectile_body_entered(body):
+	if (body is CWall):
+		body.hit()
+		_projectile_destruction()

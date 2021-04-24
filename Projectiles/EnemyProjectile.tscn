@@ -23,4 +23,5 @@ texture = ExtResource( 1 )
 position = Vector2( 0.078043, -0.156075 )
 scale = Vector2( 3.16162, 3.16942 )
 
+[connection signal="body_entered" from="." to="." method="_on_EnemyProjectile_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
