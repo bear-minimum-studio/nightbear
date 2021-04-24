@@ -9,6 +9,9 @@ const FRICTION = 1000000
 var velocity = Vector2.ZERO
 var id := 1
 
+func initialize(father_id: int):
+	id = father_id
+
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("P%d_walk_right" % id) - Input.get_action_strength("P%d_walk_left" % id)
