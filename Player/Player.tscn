@@ -21,3 +21,8 @@ player_path = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.0846291, 2.45427 )
 shape = SubResource( 1 )
+
+[node name="BuildTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]

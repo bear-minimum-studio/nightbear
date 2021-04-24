@@ -2,12 +2,16 @@ extends KinematicBody2D
 
 signal build
 
+onready var build_timer = $BuildTimer
+
 const PLAYER_WALK_ACCELERATION = 5000
 const PLAYER_WALK_SPEED = 500
 const FRICTION = 1000000
+const BUILD_RELOAD_TIME = 1
 
-var velocity = Vector2.ZERO
+var velocity := Vector2.ZERO
 var id := 1
+var ready_to_build := true
 
 func initialize(father_id: int):
 	id = father_id
@@ -30,8 +34,17 @@ func _physics_process(delta):
 
 
 func _input(event):
-	if event.is_action_pressed("P%d_build" % id):
+	if event.is_action_pressed("P%d_build" % id) && ready_to_build:
 		_build()
 
 func _build():
+	ready_to_build = false
+	reset_build_timer()
 	emit_signal("build", id , self.transform)
+
+func _on_BuildTimer_timeout():
+	ready_to_build = true
+
+func reset_build_timer():
+	build_timer.set_wait_time(BUILD_RELOAD_TIME)
+	build_timer.start()
