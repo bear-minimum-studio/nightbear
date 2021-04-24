@@ -2,13 +2,12 @@ extends KinematicBody2D
 
 signal build
 
-export (int) var id = 1
-
 const PLAYER_WALK_ACCELERATION = 500
 const PLAYER_WALK_SPEED = 500
 const FRICTION = 10
 
 var velocity = Vector2.ZERO
+var id := 1
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO

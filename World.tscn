@@ -13,4 +13,3 @@ texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -0.346558, -0.72464 )
-rotation = -1.5708
