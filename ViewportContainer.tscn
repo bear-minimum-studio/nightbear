@@ -18,6 +18,7 @@ world_path = NodePath("Viewport/World")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 480, 600 )
+transparent_bg = true
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
