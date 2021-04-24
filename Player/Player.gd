@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal build
 
+# TODO refactor into int
 export (String) var id = "1"
 
 const PLAYER_WALK_ACCELERATION = 500
