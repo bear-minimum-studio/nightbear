@@ -2,8 +2,7 @@ extends KinematicBody2D
 
 signal build
 
-# TODO refactor into int
-export (String) var id = "1"
+export (int) var id = 1
 
 const PLAYER_WALK_ACCELERATION = 500
 const PLAYER_WALK_SPEED = 500
@@ -13,8 +12,8 @@ var velocity = Vector2.ZERO
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("P"+id+"_walk_right") - Input.get_action_strength("P"+id+"_walk_left")
-	input_vector.y = Input.get_action_strength("P"+id+"_walk_down") - Input.get_action_strength("P"+id+"_walk_up")
+	input_vector.x = Input.get_action_strength("P%d_walk_right" % id) - Input.get_action_strength("P%d_walk_left" % id)
+	input_vector.y = Input.get_action_strength("P%d_walk_down" % id) - Input.get_action_strength("P%d_walk_up" % id)
  
 	if input_vector.length() > 1:
 	   input_vector = input_vector.normalized()
@@ -29,7 +28,7 @@ func _physics_process(delta):
 
 
 func _input(event):
-	if event.is_action_pressed("P"+id+"_build"):
+	if event.is_action_pressed("P%d_build" % id):
 		_build()
 
 func _build():

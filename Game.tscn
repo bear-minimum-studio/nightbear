@@ -19,7 +19,7 @@ position = Vector2( 607.722, 183.663 )
 
 [node name="Player2" parent="World2" instance=ExtResource( 3 )]
 position = Vector2( -12.159, 63.834 )
-id = "2"
+id = 2
 
 [node name="SpawnPath" parent="." instance=ExtResource( 2 )]
 position = Vector2( 315, -17 )
