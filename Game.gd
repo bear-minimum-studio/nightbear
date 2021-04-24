@@ -22,7 +22,7 @@ func _ready():
 
 func _build(id: int, t:Transform2D):
 	var new_wall = wall.instance()
-	new_wall.transform = t
+	new_wall.transform.origin = t.origin
 
 	if (id  == 1):
 		world2.add_child(new_wall)
