@@ -2,7 +2,7 @@ extends StaticBody2D
 
 class_name CWall
 
-const NUMBER_OF_SPRITES = 3
+const NUMBER_OF_SPRITES = 1
 var health_points = 3
 
 onready var animated_sprite = $AnimatedSprite
