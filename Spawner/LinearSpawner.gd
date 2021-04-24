@@ -16,4 +16,4 @@ func spawn():
 	spawn_location.unit_offset = randf()
 	
 	add_child(entity)
-	entity.initialize(spawn_location.transform, spawn_direction)
+	entity.initialize(spawn_location.transform.origin, spawn_direction)
