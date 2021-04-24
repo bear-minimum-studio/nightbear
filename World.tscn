@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://carre-bleu.png" type="Texture" id=2]
+
+[node name="World1" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 6.43523, 6.43523 )
+texture = ExtResource( 2 )
