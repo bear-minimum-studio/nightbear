@@ -14,6 +14,6 @@ func spawn():
 	
 	var spawn_location = $SpawnLocation
 	spawn_location.unit_offset = randf()
-
+	
 	add_child(entity)
 	entity.initialize(spawn_location.transform, spawn_direction)

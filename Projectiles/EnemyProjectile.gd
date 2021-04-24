@@ -3,8 +3,8 @@ extends Area2D
 const SPEED = 300
 onready var direction = Vector2.RIGHT
 
-func initialize(spawn_location: Transform2D, spawn_direction: Vector2):
-	transform = spawn_location
+func initialize(spawn_transfrom: Transform2D, spawn_direction: Vector2):
+	transform.origin = spawn_transfrom.origin
 	direction = spawn_direction
 
 # Called when the node enters the scene tree for the first time.
