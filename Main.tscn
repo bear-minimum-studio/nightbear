@@ -7,6 +7,10 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
+camera1_path = NodePath("Viewports/ViewportContainer1/Viewport/Camera")
+camera2_path = NodePath("Viewports/ViewportContainer2/Viewport/Camera")
+world1_path = NodePath("Viewports/ViewportContainer1/Viewport/World")
+world2_path = NodePath("Viewports/ViewportContainer2/Viewport/World")
 
 [node name="Viewports" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -23,17 +27,17 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 stretch = true
 
-[node name="Viewport1" type="Viewport" parent="Viewports/ViewportContainer1"]
+[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer1"]
 size = Vector2( 480, 600 )
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="Camera1" type="Camera2D" parent="Viewports/ViewportContainer1/Viewport1"]
+[node name="Camera" type="Camera2D" parent="Viewports/ViewportContainer1/Viewport"]
 current = true
 script = ExtResource( 3 )
 
-[node name="World1" parent="Viewports/ViewportContainer1/Viewport1" instance=ExtResource( 1 )]
+[node name="World" parent="Viewports/ViewportContainer1/Viewport" instance=ExtResource( 1 )]
 
 [node name="ViewportContainer2" type="ViewportContainer" parent="Viewports"]
 margin_left = 544.0
@@ -42,16 +46,16 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 stretch = true
 
-[node name="Viewport2" type="Viewport" parent="Viewports/ViewportContainer2"]
+[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer2"]
 size = Vector2( 480, 600 )
 size_override_stretch = true
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="Camera2" type="Camera2D" parent="Viewports/ViewportContainer2/Viewport2"]
+[node name="Camera" type="Camera2D" parent="Viewports/ViewportContainer2/Viewport"]
 current = true
 script = ExtResource( 4 )
 
-[node name="World2" parent="Viewports/ViewportContainer2/Viewport2" instance=ExtResource( 1 )]
+[node name="World" parent="Viewports/ViewportContainer2/Viewport" instance=ExtResource( 1 )]
 id = 2
