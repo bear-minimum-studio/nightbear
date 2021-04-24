@@ -3,19 +3,23 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://carre-bleu.png" type="Texture" id=2]
 
-[node name="World" type="Node2D"]
+[node name="Game" type="Node2D"]
 
-[node name="carre-bleu" type="Sprite" parent="."]
+[node name="World1" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="World1"]
 position = Vector2( 254.909, 226.771 )
 scale = Vector2( 6.43523, 6.43523 )
 texture = ExtResource( 2 )
 
-[node name="Player" parent="carre-bleu" instance=ExtResource( 1 )]
+[node name="Player" parent="World1/Background" instance=ExtResource( 1 )]
 
-[node name="carre-bleu2" type="Sprite" parent="."]
-position = Vector2( 747.123, 226.771 )
+[node name="World2" type="Node2D" parent="."]
+position = Vector2( 460.85, 0 )
+
+[node name="Background" type="Sprite" parent="World2"]
+position = Vector2( 254.909, 226.771 )
 scale = Vector2( 6.43523, 6.43523 )
 texture = ExtResource( 2 )
 
-[node name="Player2" parent="carre-bleu2" instance=ExtResource( 1 )]
-position = Vector2( -12.236, -4.90991 )
+[node name="Player2" parent="World2/Background" instance=ExtResource( 1 )]
