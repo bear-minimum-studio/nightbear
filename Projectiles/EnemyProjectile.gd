@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 300
+const SPEED = 100
 onready var direction = Vector2.RIGHT
 
 func initialize(spawn_location: Vector2, spawn_direction: Vector2):
