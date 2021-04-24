@@ -15,6 +15,7 @@ var ready_to_build := true
 
 func initialize(father_id: int):
 	id = father_id
+	$Sprite.initialize(father_id)
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO

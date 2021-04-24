@@ -11,5 +11,5 @@ const body_sprites = {
 
 var id = 1
 
-func _ready():
-	self.texture = body_sprites[player.id]
+func initialize(father_id: int):
+	self.texture = body_sprites[father_id]
