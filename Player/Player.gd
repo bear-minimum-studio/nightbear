@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 signal build
 
-const PLAYER_WALK_ACCELERATION = 500
+const PLAYER_WALK_ACCELERATION = 5000
 const PLAYER_WALK_SPEED = 500
-const FRICTION = 10
+const FRICTION = 1000000
 
 var velocity = Vector2.ZERO
 var id := 1
