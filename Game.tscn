@@ -14,5 +14,9 @@ position = Vector2( 205.563, 180.497 )
 [node name="World2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 607.722, 183.663 )
 
+[node name="Player2" parent="World2" instance=ExtResource( 3 )]
+position = Vector2( -12.159, 63.834 )
+id = "2"
+
 [node name="EnemyProjectile" parent="." instance=ExtResource( 2 )]
 position = Vector2( 66, 192 )
