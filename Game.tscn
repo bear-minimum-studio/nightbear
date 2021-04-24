@@ -18,8 +18,10 @@ __meta__ = {
 }
 
 [node name="ViewportContainer1" parent="Viewports" instance=ExtResource( 3 )]
+margin_bottom = 640.0
 
 [node name="ViewportContainer2" parent="Viewports" instance=ExtResource( 3 )]
 margin_left = 544.0
 margin_right = 1024.0
+margin_bottom = 640.0
 id = 2
