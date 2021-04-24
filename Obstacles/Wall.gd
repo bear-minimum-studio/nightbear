@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-class_name CWall
+class_name Wall
 
 const NUMBER_OF_SPRITES = 1
 var health_points = 3

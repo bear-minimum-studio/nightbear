@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 signal build
 
 onready var build_timer = $BuildTimer
@@ -49,3 +51,9 @@ func _on_BuildTimer_timeout():
 func reset_build_timer():
 	build_timer.set_wait_time(BUILD_RELOAD_TIME)
 	build_timer.start()
+
+func hit():
+	_player_death()
+
+func _player_death():
+	queue_free()

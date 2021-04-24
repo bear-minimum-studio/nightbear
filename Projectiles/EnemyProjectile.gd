@@ -23,6 +23,9 @@ func _projectile_destruction():
 	queue_free()
 
 func _on_EnemyProjectile_body_entered(body):
-	if (body is CWall):
+	if (body is Wall):
+		body.hit()
+		_projectile_destruction()
+	elif (body is Player):
 		body.hit()
 		_projectile_destruction()
