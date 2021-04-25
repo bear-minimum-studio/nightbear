@@ -46,4 +46,5 @@ func _on_missed_ally_projectile():
 
 func _dream_caught():
 	dreams_caught += 1
-	dream_caught_text.text = String(dreams_caught) + " dreams caught"
+	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
+	dream_caught_text.text = String(dreams_caught) + wording
