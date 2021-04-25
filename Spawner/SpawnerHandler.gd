@@ -19,7 +19,7 @@ var spawn_delay = 1
 var duration = 0
 var nb_sides = sides.size()
 
-onready var wave_timer = $WaveTimer
+onready var burst_timer = $BurstTimer
 onready var spawn_timer = $SpawnTimer
 onready var spawners = {
 	Sides.Left: $SpawnerContainer/LinearSpawnerLeft,
@@ -29,17 +29,17 @@ onready var spawners = {
 }
 onready var spawned_entity = spawned_entities[spawn_type]
 
-func stop_spawn_wave():
+func stop_spawn_burst():
 	spawn_timer.stop()
-	wave_timer.stop()
+	burst_timer.stop()
 
-func start_spawn_wave(wave_spawn_delay: float, wave_duration: float, wave_sides: Array):
-	spawn_delay = wave_spawn_delay
-	duration = wave_duration
-	sides = wave_sides
+func start_spawn_burst(burst_spawn_delay: float, burst_duration: float, burst_sides: Array):
+	spawn_delay = burst_spawn_delay
+	duration = burst_duration
+	sides = burst_sides
 	nb_sides = sides.size()
 	
-	wave_timer.start(duration)
+	burst_timer.start(duration)
 	spawn_timer.start(spawn_delay)
 
 # Called when the node enters the scene tree for the first time.
@@ -57,8 +57,8 @@ func _spawn():
 		emit_signal("allied_projectile_spawned", spawned_instance)
 
 func _on_SpawnTimer_timeout():
-	if !wave_timer.is_stopped():
+	if !burst_timer.is_stopped():
 		_spawn()
 
-func _on_WaveTimer_timeout():
-	stop_spawn_wave()
+func _on_BurstTimer_timeout():
+	stop_spawn_burst()

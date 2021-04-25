@@ -26,10 +26,10 @@ func _ready():
 		player.connect("player_dead", self, "_player_dead")
 	
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		ally_projectile_spawner_handler.start_spawn_wave(1, 2, [SpawnHandler.Sides.Left])
+		ally_projectile_spawner_handler.start_spawn_burst(1, 2, [SpawnHandler.Sides.Left])
 		
 	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
-		enemy_projectile_spawner_handler.start_spawn_wave(0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
+		enemy_projectile_spawner_handler.start_spawn_burst(0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
 
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
