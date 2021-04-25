@@ -35,8 +35,7 @@ func _ready():
 		player.connect("player_moved", self, "_move_player_shade")
 	
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		var burst = create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Left])
-		print("Burst %d created" % burst.id)
+		create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Left])
 		
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
 		create_burst(ally_projectile_spawner_handler, 1, 2, [])
@@ -82,5 +81,5 @@ func _move_player_shade(player_id: int, position: Vector2):
 		if player_shade.id != player_id:
 			player_shade.move_shade(position)
 
-func _on_burst_ended(burst_id):
-	print("Burst %d ended" % burst_id)
+func _on_burst_ended():
+	print("Burst ended")
