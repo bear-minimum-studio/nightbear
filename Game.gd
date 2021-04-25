@@ -29,7 +29,7 @@ func _ready():
 		ally_projectile_spawner_handler.start_spawn_wave(1, 2, [SpawnHandler.Sides.Left])
 		
 	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
-		enemy_projectile_spawner_handler.start_spawn_wave(0.001, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
+		enemy_projectile_spawner_handler.start_spawn_wave(0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
 
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
