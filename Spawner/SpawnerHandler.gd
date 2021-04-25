@@ -2,10 +2,20 @@ extends Node2D
 
 signal allied_projectile_spawned
 
-export (PackedScene) var spawned_entity
-export (float) var spawn_delay = 0.5
+enum SpawnType {Ally, Enemy}
 
-const DEFAULT_SPAWNED_ENTITY = preload("res://Projectiles/EnemyProjectile.tscn")
+export (SpawnType) var spawn_type = SpawnType.Enemy
+
+const spawning_parameters = {
+	SpawnType.Ally: {
+		"spawned_entity": preload("res://Projectiles/AllyProjectile.tscn"),
+		"spawn_delay": 5
+	},
+	SpawnType.Enemy: {
+		"spawned_entity": preload("res://Projectiles/EnemyProjectile.tscn"),
+		"spawn_delay": 0.5
+	}
+}
 
 onready var spawn_timer = $SpawnTimer
 onready var spawners = $SpawnerContainer.get_children()
@@ -13,10 +23,11 @@ onready var nb_spawners = spawners.size()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var spawned_entity = spawning_parameters[spawn_type].spawned_entity
+	var spawn_delay = spawning_parameters[spawn_type].spawn_delay
+	
 	spawn_timer.set_wait_time(spawn_delay)
 	randomize()
-	if !spawned_entity:
-		spawned_entity = DEFAULT_SPAWNED_ENTITY
 	for spawner in spawners:
 		spawner.initialize(spawned_entity)
 
