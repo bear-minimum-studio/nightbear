@@ -39,6 +39,7 @@ id = 2
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="carre-bleu" type="Sprite" parent="Background"]
+visible = false
 modulate = Color( 0.133333, 0.133333, 0.133333, 1 )
 position = Vector2( 660, 380 )
 scale = Vector2( 23.069, 14.2963 )

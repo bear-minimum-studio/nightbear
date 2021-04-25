@@ -1,15 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://UI/dpcomic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/FontTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/GameOver.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 92
-outline_size = 5
-outline_color = Color( 0.45098, 0.619608, 0.576471, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Appear"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -44,7 +38,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "Game Over"
 align = 1
 valign = 1
@@ -53,6 +47,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Appear = SubResource( 2 )
+anims/Appear = SubResource( 1 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

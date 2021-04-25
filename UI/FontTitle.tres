@@ -1,0 +1,9 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://UI/dpcomic.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 92
+outline_size = 5
+outline_color = Color( 0.45098, 0.619608, 0.576471, 1 )
+font_data = ExtResource( 1 )
