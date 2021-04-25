@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/PlayerSprite.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.6049, 14.4941 )
+extents = Vector2( 12.0073, 14.6506 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Cast"
@@ -68,16 +68,17 @@ collision_mask = 20
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -15.9547 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 2
-frame = 12
+frame = 13
 script = ExtResource( 3 )
 player_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.228207, 10.9009 )
+position = Vector2( 0.228207, -6.61792 )
 shape = SubResource( 1 )
 
 [node name="BuildTimer" type="Timer" parent="."]

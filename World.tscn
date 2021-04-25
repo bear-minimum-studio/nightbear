@@ -176,10 +176,12 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 64, 0, 64 )
 } ]
 0/z_index = 0
 
-[node name="World" type="Node2D"]
+[node name="World" type="YSort"]
 script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -5
+z_as_relative = false
 tile_set = SubResource( 17 )
 cell_size = Vector2( 128, 128 )
 format = 1
