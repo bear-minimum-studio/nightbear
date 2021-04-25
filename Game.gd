@@ -24,6 +24,7 @@ func _ready():
 	for player in players:
 		player.connect("build", self, "_build")
 		player.connect("player_dead", self, "_player_dead")
+		player.connect("player_moved", self, "_move_player_shade")
 	
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
 		ally_projectile_spawner_handler.start_spawn_burst(1, 2, [SpawnHandler.Sides.Left])
@@ -59,3 +60,9 @@ func _dream_caught():
 func _player_dead(id):
 	print("Player %d is dead !" % id)
 	var _unused = get_tree().reload_current_scene()
+
+func _move_player_shade(player_id: int, position: Vector2):
+	var player_shades = get_tree().get_nodes_in_group("player_shade")
+	for player_shade in player_shades:
+		if player_shade.id != player_id:
+			player_shade.move_shade(position)

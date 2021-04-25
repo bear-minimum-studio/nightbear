@@ -4,6 +4,7 @@ class_name Player
 
 signal build
 signal player_dead
+signal player_moved
 
 onready var build_timer = $BuildTimer
 onready var sprite = $Sprite
@@ -31,6 +32,10 @@ func _physics_process(_delta):
 	
 	if abs(velocity.x) > 5:
 		sprite.set_orientation(velocity.x)
+	
+	# Might have a performance impact
+	# Make this a direct function call the day it becomes a problem
+	emit_signal("player_moved", id, transform.origin)
 
 func _input(event):
 	if event.is_action_pressed("P%d_build" % id) && ready_to_build:
