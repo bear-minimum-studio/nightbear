@@ -12,7 +12,7 @@ func _ready():
 func _on_Timer_timeout():
 	self.queue_free()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_process_color()
 
 func hit():
