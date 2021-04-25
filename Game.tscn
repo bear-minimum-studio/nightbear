@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://carre-bleu.png" type="Texture" id=1]
+[ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ViewportContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
 
@@ -53,3 +54,5 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GameOver" parent="." instance=ExtResource( 2 )]

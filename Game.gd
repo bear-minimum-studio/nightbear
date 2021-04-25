@@ -12,6 +12,7 @@ onready var world2 = viewport_container2.world
 onready var spawner_handlers = [world1.spawner_handler, world2.spawner_handler]
 
 onready var dream_caught_text = $DreamCaughtText
+onready var game_over = $GameOver
 
 var dreams_caught = 0
 
@@ -130,6 +131,8 @@ func play_burst(burst_description):
 		burst.connect("StartDelayTimer_timeout", self, "_on_burst_StartDelayTimer_timeout")
 
 func _ready():
+	game_over.connect("replay", self, "_replay_game")
+	
 	for spawner_handler in spawner_handlers:
 		spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
 		spawner_handler.connect("burst_ended", self, "_on_burst_ended")
@@ -169,7 +172,7 @@ func _dream_caught():
 
 func _player_dead(id):
 	print("Player %d is dead !" % id)
-	var _unused = get_tree().reload_current_scene()
+	game_over.show()
 
 func _move_player_shade(player_id: int, position: Vector2):
 	var player_shades = get_tree().get_nodes_in_group("player_shade")
@@ -183,3 +186,6 @@ func _on_burst_ended():
 func _on_burst_StartDelayTimer_timeout():
 	print("Next burst")
 	next_burst()
+
+func _replay_game():
+	var _unused = get_tree().reload_current_scene()
