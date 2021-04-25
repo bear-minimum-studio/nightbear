@@ -35,10 +35,10 @@ func stop_burst(burst):
 	burst.queue_free()
 	emit_signal("burst_ended")
 
-func start_burst(burst_spawn_delay: float, burst_duration: float, burst_sides: Array):
+func start_burst(burst_spawn_delay: float, burst_duration: float, burst_start_delay : float, burst_sides: Array):
 	var burst = burst_entity.instance()
 	add_child(burst)
-	burst.initialize(burst_spawn_delay, burst_duration, burst_sides)
+	burst.initialize(burst_spawn_delay, burst_duration, burst_start_delay, burst_sides)
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")

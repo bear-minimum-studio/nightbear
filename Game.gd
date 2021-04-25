@@ -16,8 +16,23 @@ onready var dream_caught_text = $DreamCaughtText
 
 var dreams_caught = 0
 
-func create_burst(spawner_handler, spawn_delay, burst_duration, burst_sides):
-	var burst = spawner_handler.start_burst(spawn_delay, burst_duration, burst_sides)
+var current_wave = []
+var burst_index = 0
+var current_burst
+
+func play_wave(wave):
+	current_wave = wave
+	burst_index = 0
+	var burst_description = wave[burst_index]
+	current_burst = create_burst(burst_description)
+
+func create_burst(burst_description):
+	var burst = burst_description.spawner_handler.start_burst(
+		burst_description.spawn_delay,
+		burst_description.burst_duration,
+		burst_description.burst_start_delay,
+		burst_description.burst_sides)
+	burst.connect("StartDelayTimer_timeout", self, "_on_burst_StartDelayTimer_timeout")
 	return burst
 
 func _ready():
@@ -33,19 +48,26 @@ func _ready():
 		player.connect("build", self, "_build")
 		player.connect("player_dead", self, "_player_dead")
 		player.connect("player_moved", self, "_move_player_shade")
+		
+	var wave  = [
+		{
+			"spawner_handler": ally_projectile_spawner_handlers[0],
+			"spawn_delay": 0.06,
+			"burst_duration": 6,
+			"burst_start_delay": 1.5,
+			"burst_sides": [SpawnHandler.Sides.Top]
+		},
+		{
+			"spawner_handler": enemy_projectile_spawner_handlers[0],
+			"spawn_delay": 0.03,
+			"burst_duration": 3,
+			"burst_start_delay": 2,
+			"burst_sides": [SpawnHandler.Sides.Left]
+		}
+	]
 	
-	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Left])
-		
-	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		create_burst(ally_projectile_spawner_handler, 1, 2, [])
-		
-	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Right])
-		
-	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
-		create_burst(enemy_projectile_spawner_handler, 0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
-
+	play_wave(wave)
+	
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
 	new_wall.transform.origin = t.origin
@@ -83,3 +105,11 @@ func _move_player_shade(player_id: int, position: Vector2):
 
 func _on_burst_ended():
 	print("Burst ended")
+
+func _on_burst_StartDelayTimer_timeout():
+	burst_index += 1
+	if burst_index < current_wave.size():
+		var burst_description = current_wave[burst_index]
+		current_burst = create_burst(burst_description)
+	else:
+		pass
