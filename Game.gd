@@ -13,6 +13,10 @@ onready var world1 = viewport_container1.world
 onready var world2 = viewport_container2.world
 
 func _ready():
+	var ally_projectile_spawner_handlers = get_tree().get_nodes_in_group("ally_projectile_spawner_handler")
+	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
+		ally_projectile_spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
+		
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
 		player.connect("build", self, "_build")
@@ -29,3 +33,9 @@ func _build(id: int, t:Transform2D):
 	elif (id  == 2):
 		world1.add_child(new_wall)
 		world2.add_child(new_dream_catcher)
+
+func _connect_allied_projectile(spawned_entity: AllyProjectile):
+	spawned_entity.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
+
+func _on_missed_ally_projectile():
+	print("missed_ally_projectile")

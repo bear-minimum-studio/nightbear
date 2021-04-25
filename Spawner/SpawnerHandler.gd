@@ -1,5 +1,7 @@
 extends Node2D
 
+signal allied_projectile_spawned
+
 export (PackedScene) var spawned_entity
 export (float) var spawn_delay = 0.5
 
@@ -20,4 +22,6 @@ func _ready():
 
 func _on_SpawnTimer_timeout():
 	var spawner_index = randi() % nb_spawners
-	spawners[spawner_index].spawn()
+	var spawned_entity = spawners[spawner_index].spawn()
+	if spawned_entity is AllyProjectile:
+		emit_signal("allied_projectile_spawned", spawned_entity)

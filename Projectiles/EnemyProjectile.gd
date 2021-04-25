@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name EnemyProjectile
+
 const SPEED = 100
 onready var direction = Vector2.RIGHT
 
@@ -14,10 +16,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	translate(SPEED * delta * direction)
-	pass
 
 func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+	_projectile_destruction()
 
 func _projectile_destruction():
 	queue_free()

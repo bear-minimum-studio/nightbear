@@ -17,3 +17,5 @@ func spawn():
 	
 	add_child(entity)
 	entity.initialize(spawn_location.transform.origin, spawn_direction)
+
+	return entity
