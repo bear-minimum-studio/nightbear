@@ -188,15 +188,6 @@ tile_data = PoolIntArray( -65538, 0, 2, -65537, 0, 196609, -131072, 0, 196611, -
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -0.346558, -0.72464 )
 
-[node name="SpawnHandlersContainer" type="Node2D" parent="."]
-
-[node name="EnemyProjectiles_SpawnerHandler" parent="SpawnHandlersContainer" groups=[
-"enemy_projectile_spawner_handler",
-] instance=ExtResource( 1 )]
-
-[node name="AllyProjectiles_SpawnerHandler" parent="SpawnHandlersContainer" groups=[
-"ally_projectile_spawner_handler",
-] instance=ExtResource( 1 )]
-spawn_type = 0
+[node name="SpawnerHandler" parent="." instance=ExtResource( 1 )]
 
 [node name="PlayerShade" parent="." instance=ExtResource( 2 )]

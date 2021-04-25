@@ -6,6 +6,10 @@ signal BurstTimer_timeout
 signal SpawnTimer_timeout
 signal StartDelayTimer_timeout
 
+enum SpawnType {Ally, Enemy}
+
+var spawn_type = SpawnType.Enemy
+
 var spawn_delay = 1.0
 var duration = 1.5
 var start_delay = 1.5
@@ -17,7 +21,8 @@ onready var burst_timer = $BurstTimer
 onready var spawn_timer = $SpawnTimer
 onready var start_delay_timer = $StartDelayTimer
 
-func initialize(burst_spawn_delay: float, burst_duration: float, burst_start_delay : float, burst_sides: Array):
+func initialize(burst_spawn_type, burst_spawn_delay: float, burst_duration: float, burst_start_delay : float, burst_sides: Array):
+	spawn_type = burst_spawn_type
 	
 	spawn_delay = burst_spawn_delay
 	duration = burst_duration

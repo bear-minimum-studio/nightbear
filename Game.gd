@@ -9,8 +9,7 @@ onready var viewport_container2 = get_node(viewport_container2_path)
 onready var world1 = viewport_container1.world
 onready var world2 = viewport_container2.world
 
-onready var ally_projectile_spawner_handlers = get_tree().get_nodes_in_group("ally_projectile_spawner_handler")
-onready var enemy_projectile_spawner_handlers = get_tree().get_nodes_in_group("enemy_projectile_spawner_handler")
+onready var spawner_handlers = [world1.spawner_handler, world2.spawner_handler]
 
 onready var dream_caught_text = $DreamCaughtText
 
@@ -18,7 +17,8 @@ var dreams_caught = 0
 
 onready var empty_wave = [
 	{
-		"spawner_handler": ally_projectile_spawner_handlers[0],
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": 10,
 		"burst_duration": 10,
 		"burst_start_delay": 10,
@@ -28,14 +28,16 @@ onready var empty_wave = [
 
 onready var wave1 = [
 	{
-		"spawner_handler": ally_projectile_spawner_handlers[0],
+		"worlds": [world2],
+		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": 0.01,
 		"burst_duration": 0.015,
 		"burst_start_delay": 0.015,
 		"burst_sides": [SpawnHandler.Sides.Top]
 	},
 	{
-		"spawner_handler": enemy_projectile_spawner_handlers[0],
+		"worlds": [world1],
+		"spawn_type": Burst.SpawnType.Enemy,
 		"spawn_delay": 0.03,
 		"burst_duration": 3,
 		"burst_start_delay": 2,
@@ -45,14 +47,16 @@ onready var wave1 = [
 
 onready var wave2 = [
 	{
-		"spawner_handler": ally_projectile_spawner_handlers[0],
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": 0.01,
 		"burst_duration": 0.015,
 		"burst_start_delay": 0.015,
 		"burst_sides": [SpawnHandler.Sides.Top]
 	},
 	{
-		"spawner_handler": enemy_projectile_spawner_handlers[0],
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": 0.03,
 		"burst_duration": 3,
 		"burst_start_delay": 2,
@@ -66,7 +70,6 @@ var current_level
 var wave_index
 var current_wave
 var burst_index
-var current_burst
 
 func play_level(level):
 	print("Level started")
@@ -91,33 +94,32 @@ func play_wave(wave):
 	current_wave = wave
 	burst_index = 0
 	var burst_description = wave[burst_index]
-	current_burst = create_burst(burst_description)
+	create_burst(burst_description)
 
 func next_burst():
 	burst_index += 1
 	if burst_index < current_wave.size():
 		var burst_description = current_wave[burst_index]
-		current_burst = create_burst(burst_description)
+		create_burst(burst_description)
 	else:
 		next_wave()
 
 func create_burst(burst_description):
 	print("Burst %d created" % burst_index)
-	var burst = burst_description.spawner_handler.start_burst(
-		burst_description.spawn_delay,
-		burst_description.burst_duration,
-		burst_description.burst_start_delay,
-		burst_description.burst_sides)
-	burst.connect("StartDelayTimer_timeout", self, "_on_burst_StartDelayTimer_timeout")
-	return burst
+	for world in burst_description.worlds:
+		var spawner_handler = world.spawner_handler
+		var burst = spawner_handler.start_burst(
+			burst_description.spawn_type,
+			burst_description.spawn_delay,
+			burst_description.burst_duration,
+			burst_description.burst_start_delay,
+			burst_description.burst_sides)
+		burst.connect("StartDelayTimer_timeout", self, "_on_burst_StartDelayTimer_timeout")
 
 func _ready():
-	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		ally_projectile_spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
-		ally_projectile_spawner_handler.connect("burst_ended", self, "_on_burst_ended")
-		
-	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
-		enemy_projectile_spawner_handler.connect("burst_ended", self, "_on_burst_ended")
+	for spawner_handler in spawner_handlers:
+		spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
+		spawner_handler.connect("burst_ended", self, "_on_burst_ended")
 		
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
