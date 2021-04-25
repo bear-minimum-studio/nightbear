@@ -9,9 +9,6 @@ onready var sprite = $Sprite
 
 export (bool) var isMortal = false
 
-const PLAYER_WALK_SPEED = 500
-const BUILD_RELOAD_TIME = 1
-
 var velocity := Vector2.ZERO
 var id := 1
 var ready_to_build := true
@@ -29,7 +26,7 @@ func _physics_process(delta):
 	   input_vector = input_vector.normalized()
  
 	if input_vector != Vector2.ZERO:
-		velocity = input_vector * PLAYER_WALK_SPEED
+		velocity = input_vector * Parameters.PLAYER_WALK_SPEED
 	else:
 		velocity = Vector2.ZERO
  
@@ -51,7 +48,7 @@ func _on_BuildTimer_timeout():
 	ready_to_build = true
 
 func reset_build_timer():
-	build_timer.set_wait_time(BUILD_RELOAD_TIME)
+	build_timer.set_wait_time(Parameters.BUILD_RELOAD_TIME)
 	build_timer.start()
 
 func hit():

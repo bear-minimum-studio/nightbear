@@ -50,7 +50,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Parameters="*res://Singletons/PARAMETERS.gd"
+Parameters="*res://Singletons/Parameters.gd"
 
 [display]
 

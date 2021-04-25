@@ -1,9 +1,8 @@
 extends Node
 
 # Player parameters :
-const PLAYER_WALK_ACCELERATION = 5000
+
 const PLAYER_WALK_SPEED = 500
-const FRICTION = 1000000
 const BUILD_RELOAD_TIME = 1
 
 # Ally projectiles parameters :
@@ -20,5 +19,4 @@ const WALL_MAX_HEALTH_POINTS = 5
 
 # Dream catcher :
 
-
-const NUMBER_OF_SPRITES = 1
+const DREAM_CATCHER_NUMBER_OF_SPRITES = 1
