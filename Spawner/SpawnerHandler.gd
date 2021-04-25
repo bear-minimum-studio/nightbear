@@ -22,6 +22,6 @@ func _ready():
 
 func _on_SpawnTimer_timeout():
 	var spawner_index = randi() % nb_spawners
-	var spawned_entity = spawners[spawner_index].spawn()
-	if spawned_entity is AllyProjectile:
-		emit_signal("allied_projectile_spawned", spawned_entity)
+	var spawned_instance = spawners[spawner_index].spawn()
+	if spawned_instance is AllyProjectile:
+		emit_signal("allied_projectile_spawned", spawned_instance)

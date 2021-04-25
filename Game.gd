@@ -34,8 +34,8 @@ func _build(id: int, t:Transform2D):
 		world1.add_child(new_wall)
 		world2.add_child(new_dream_catcher)
 
-func _connect_allied_projectile(spawned_entity: AllyProjectile):
-	spawned_entity.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
+func _connect_allied_projectile(spawned_instance: AllyProjectile):
+	var _unsed = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
 
 func _on_missed_ally_projectile():
-	print("missed_ally_projectile")
+	pass
