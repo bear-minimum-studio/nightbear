@@ -2,9 +2,8 @@ extends StaticBody2D
 
 class_name Wall
 
-var health_points = 5
-
 onready var animated_sprite = $AnimatedSprite
+onready var timer = $Timer
 
 func _ready():
 	randomize()
@@ -13,10 +12,18 @@ func _ready():
 func _on_Timer_timeout():
 	self.queue_free()
 
+func _physics_process(delta):
+	_process_color()
+
 func hit():
-	health_points -= 1
-	var color_modulation = float(health_points) / float(Parameters.WALL_MAX_HEALTH_POINTS)
+	_set_timer()
+
+func _process_color():
+	var color_modulation = timer.time_left / Parameters.WALL_MAX_LIFETIME
 	self.modulate.g = color_modulation
 	self.modulate.b = color_modulation
-	if (health_points <= 0):
-		self.queue_free()
+
+func _set_timer():
+	var timeleft = timer.time_left
+	timer.stop()
+	timer.start(max(timeleft-3.0, 0.0001))
