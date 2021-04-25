@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name Wall
 
 onready var animated_sprite = $AnimatedSprite
+onready var lifebar = $ProgressBar
 onready var timer = $Timer
 
 func _ready():
@@ -19,9 +20,10 @@ func hit():
 	_set_timer()
 
 func _process_color():
-	var color_modulation = timer.time_left / Parameters.WALL_MAX_LIFETIME
-	self.modulate.g = color_modulation
-	self.modulate.b = color_modulation
+	var life_left = timer.time_left / Parameters.WALL_MAX_LIFETIME
+	lifebar.value = life_left * 100
+	self.modulate.g = life_left
+	self.modulate.b = life_left
 
 func _set_timer():
 	var timeleft = timer.time_left
