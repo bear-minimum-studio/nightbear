@@ -11,7 +11,7 @@ func show():
 	animation_player.play("Appear")
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	ready = true
 
 func _input(event):

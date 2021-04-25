@@ -23,8 +23,8 @@ onready var empty_wave = [
 		"worlds": [world1],
 		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": -1,
-		"burst_duration": 10,
-		"burst_start_delay": 10,
+		"burst_duration": 30,
+		"burst_start_delay": 30,
 		"burst_sides": []
 	}
 ]
@@ -33,7 +33,7 @@ onready var wave1 = [
 	{
 		"worlds": [world1, world2],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_delay": 0.01,
+		"spawn_delay": 0.05,
 		"burst_duration": 2,
 		"burst_start_delay": 4,
 		"burst_sides": [SpawnHandler.Sides.Top]
@@ -65,7 +65,7 @@ onready var wave1 = [
 	{
 		"worlds": [world1, world2],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_delay": 0.02,
+		"spawn_delay": 0.03,
 		"burst_duration": 1,
 		"burst_start_delay": 4,
 		"burst_sides": [SpawnHandler.Sides.Top]
@@ -79,12 +79,20 @@ onready var wave1 = [
 		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	},
 	{
-		"worlds": [world1, world2],
+		"worlds": [world1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_delay": 0.02,
+		"spawn_delay": 0.03,
 		"burst_duration": 1,
-		"burst_start_delay": 4,
-		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Right]
+		"burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left]
+	},
+	{
+		"worlds": [world2],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_delay": 0.03,
+		"burst_duration": 1,
+		"burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Right]
 	}
 ]
 
