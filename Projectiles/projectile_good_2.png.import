@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/projectile_good.png-1d7bf58edfbda88ef584f646f3f11c99.stex"
+path="res://.import/projectile_good_2.png-47a0033b468147074d5a1d76e69d512b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectiles/projectile_good.png"
-dest_files=[ "res://.import/projectile_good.png-1d7bf58edfbda88ef584f646f3f11c99.stex" ]
+source_file="res://Projectiles/projectile_good_2.png"
+dest_files=[ "res://.import/projectile_good_2.png-47a0033b468147074d5a1d76e69d512b.stex" ]
 
 [params]
 

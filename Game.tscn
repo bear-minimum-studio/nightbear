@@ -56,6 +56,7 @@ __meta__ = {
 }
 
 [node name="GameOver" parent="." instance=ExtResource( 2 )]
+
 [node name="BurstStartTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="BurstStartTimer" to="." method="_on_BurstStartTimer_timeout"]
