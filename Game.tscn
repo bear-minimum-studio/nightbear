@@ -12,18 +12,18 @@ viewport_container2_path = NodePath("Viewports/ViewportContainer2")
 [node name="Viewports" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 0
+custom_constants/separation = 32
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ViewportContainer1" parent="Viewports" instance=ExtResource( 3 )]
-margin_right = 640.0
+margin_right = 624.0
 margin_bottom = 720.0
 
 [node name="ViewportContainer2" parent="Viewports" instance=ExtResource( 3 )]
-margin_left = 640.0
+margin_left = 656.0
 margin_right = 1280.0
 margin_bottom = 720.0
 id = 2
