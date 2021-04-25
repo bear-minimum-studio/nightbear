@@ -13,7 +13,7 @@ const spawning_parameters = {
 	},
 	SpawnType.Enemy: {
 		"spawned_entity": preload("res://Projectiles/EnemyProjectile.tscn"),
-		"spawn_delay": 0.5
+		"spawn_delay": 0.1
 	}
 }
 
