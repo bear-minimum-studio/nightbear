@@ -8,6 +8,8 @@ signal player_moved
 
 onready var build_timer = $BuildTimer
 onready var sprite = $Sprite
+onready var animation_player = $AnimationPlayer
+onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 
 export (bool) var is_immortal = false
 
@@ -42,6 +44,7 @@ func _input(event):
 		_build()
 
 func _build():
+	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
 	emit_signal("build", id, self.transform)
