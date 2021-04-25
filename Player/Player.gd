@@ -3,11 +3,12 @@ extends KinematicBody2D
 class_name Player
 
 signal build
+signal player_dead
 
 onready var build_timer = $BuildTimer
 onready var sprite = $Sprite
 
-export (bool) var isMortal = false
+export (bool) var is_immortal = false
 
 var velocity := Vector2.ZERO
 var id := 1
@@ -51,5 +52,6 @@ func hit():
 	_player_death()
 
 func _player_death():
-	if (isMortal):
+	emit_signal("player_dead", id)
+	if (!is_immortal):
 		queue_free()

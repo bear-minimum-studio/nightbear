@@ -20,6 +20,7 @@ func _ready():
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
 		player.connect("build", self, "_build")
+		player.connect("player_dead", self, "_player_dead")
 
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
@@ -45,3 +46,7 @@ func _dream_caught():
 	dreams_caught += 1
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = String(dreams_caught) + wording
+
+func _player_dead(id):
+	print("Player %d is dead !" % id)
+	get_tree().reload_current_scene()
