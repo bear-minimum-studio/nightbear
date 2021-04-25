@@ -8,6 +8,8 @@ extents = Vector2( 30.062, 31.2219 )
 
 [node name="EnemyProjectile" type="Area2D"]
 scale = Vector2( 0.3, 0.3 )
+collision_layer = 16
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

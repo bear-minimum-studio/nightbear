@@ -145,6 +145,14 @@ P1_build={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player_layer"
+2d_render/layer_2="dream_catcher_layer"
+2d_render/layer_3="wall_layer"
+2d_render/layer_4="ally_proj_layer"
+2d_render/layer_5="enemy_proj_layer"
+
 [physics]
 
 common/enable_pause_aware_picking=true

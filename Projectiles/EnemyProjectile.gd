@@ -30,3 +30,5 @@ func _on_EnemyProjectile_body_entered(body):
 	elif (body is Player):
 		body.hit()
 		_projectile_destruction()
+	elif(body is DreamCatcher):
+		body.hit()
