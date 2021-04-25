@@ -2,7 +2,6 @@ extends Area2D
 
 class_name EnemyProjectile
 
-const SPEED = 100
 onready var direction = Vector2.RIGHT
 
 func initialize(spawn_location: Vector2, spawn_direction: Vector2):
@@ -15,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	translate(SPEED * delta * direction)
+	translate(Parameters.ENEMY_PROJECTILE_SPEED * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	_projectile_destruction()

@@ -48,6 +48,10 @@ config/name="Nightbear"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Parameters="*res://Singletons/PARAMETERS.gd"
+
 [display]
 
 window/size/width=1280

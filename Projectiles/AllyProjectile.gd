@@ -5,7 +5,6 @@ class_name AllyProjectile
 signal missed_ally_projectile
 signal dream_caught
 
-const SPEED = 75
 onready var direction = Vector2.RIGHT
 
 func initialize(spawn_location: Vector2, spawn_direction: Vector2):
@@ -18,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	translate(SPEED * delta * direction)
+	translate(Parameters.ALLY_PROJECTILE_SPEED * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	emit_signal("missed_ally_projectile")
