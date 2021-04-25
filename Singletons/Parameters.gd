@@ -1,5 +1,10 @@
 extends Node
 
+# Game parameters :
+
+const GAME_WALL = preload("res://Obstacles/Wall.tscn")
+const GAME_DREAM_CATCHER = preload("res://Obstacles/DreamCatcher.tscn")
+
 # Player parameters :
 
 const PLAYER_WALK_SPEED = 500

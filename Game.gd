@@ -1,8 +1,5 @@
 extends Node
 
-const wall = preload("res://Obstacles/Wall.tscn")
-const dream_catcher = preload("res://Obstacles/DreamCatcher.tscn")
-
 export (NodePath) var viewport_container1_path
 export (NodePath) var viewport_container2_path
 
@@ -25,9 +22,9 @@ func _ready():
 		player.connect("build", self, "_build")
 
 func _build(id: int, t:Transform2D):
-	var new_wall = wall.instance()
+	var new_wall = Parameters.GAME_WALL.instance()
 	new_wall.transform.origin = t.origin
-	var new_dream_catcher = dream_catcher.instance()
+	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instance()
 	new_dream_catcher.transform.origin = t.origin
 
 	if (id  == 1):
