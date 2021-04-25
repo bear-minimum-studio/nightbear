@@ -11,6 +11,9 @@ onready var viewport_container2 = get_node(viewport_container2_path)
 
 onready var world1 = viewport_container1.world
 onready var world2 = viewport_container2.world
+onready var dream_caught_text = $DreamCaughtText
+
+var dreams_caught = 0
 
 func _ready():
 	var ally_projectile_spawner_handlers = get_tree().get_nodes_in_group("ally_projectile_spawner_handler")
@@ -35,7 +38,12 @@ func _build(id: int, t:Transform2D):
 		world2.add_child(new_dream_catcher)
 
 func _connect_allied_projectile(spawned_instance: AllyProjectile):
-	var _unsed = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
+	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
+	var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
 
 func _on_missed_ally_projectile():
 	pass
+
+func _dream_caught():
+	dreams_caught += 1
+	dream_caught_text.text = String(dreams_caught) + " dreams caught"

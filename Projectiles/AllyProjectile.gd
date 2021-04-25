@@ -3,6 +3,7 @@ extends Area2D
 class_name AllyProjectile
 
 signal missed_ally_projectile
+signal dream_caught
 
 const SPEED = 75
 onready var direction = Vector2.RIGHT
@@ -30,10 +31,12 @@ func _on_AllyProjectile_body_entered(body):
 	if (body is Wall):
 		_hit_wall()
 	elif (body is DreamCatcher):
+		body.caught()
 		_dream_caught()
 
 func _hit_wall():
 	queue_free()
 
 func _dream_caught():
+	emit_signal("dream_caught")
 	queue_free()

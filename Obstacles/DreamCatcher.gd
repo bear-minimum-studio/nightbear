@@ -18,3 +18,6 @@ func hit():
 	health_points -= 1
 	if (health_points < 1):
 		self.queue_free()
+
+func caught():
+	pass
