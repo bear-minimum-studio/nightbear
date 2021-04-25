@@ -17,20 +17,16 @@ func initialize(father_id: int):
 	id = father_id
 	sprite.initialize(father_id)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("P%d_walk_right" % id) - Input.get_action_strength("P%d_walk_left" % id)
 	input_vector.y = Input.get_action_strength("P%d_walk_down" % id) - Input.get_action_strength("P%d_walk_up" % id)
  
 	if input_vector.length() > 1:
 	   input_vector = input_vector.normalized()
- 
-	if input_vector != Vector2.ZERO:
-		velocity = input_vector * Parameters.PLAYER_WALK_SPEED
-	else:
-		velocity = Vector2.ZERO
- 
-	velocity = move_and_slide(velocity, Vector2.ZERO)
+	
+	velocity = Parameters.PLAYER_WALK_SPEED * input_vector
+	velocity = move_and_slide(velocity)
 	
 	if abs(velocity.x) > 5:
 		sprite.set_orientation(velocity.x)
