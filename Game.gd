@@ -17,7 +17,7 @@ var dreams_caught = 0
 
 onready var empty_wave = [
 	{
-		"worlds": [world1, world2],
+		"worlds": [world1],
 		"spawn_type": Burst.SpawnType.Ally,
 		"spawn_delay": 10,
 		"burst_duration": 10,
@@ -28,43 +28,56 @@ onready var empty_wave = [
 
 onready var wave1 = [
 	{
-		"worlds": [world2],
-		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_delay": 0.01,
-		"burst_duration": 0.015,
-		"burst_start_delay": 0.015,
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_delay": 0.07,
+		"burst_duration": 2,
+		"burst_start_delay": 4,
 		"burst_sides": [SpawnHandler.Sides.Top]
 	},
 	{
 		"worlds": [world1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_delay": 0.03,
+		"spawn_delay": 0.07,
 		"burst_duration": 3,
-		"burst_start_delay": 2,
+		"burst_start_delay": 0.5,
 		"burst_sides": [SpawnHandler.Sides.Left]
-	}
-]
-
-onready var wave2 = [
+	},
 	{
-		"worlds": [world1, world2],
-		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_delay": 0.01,
-		"burst_duration": 0.015,
-		"burst_start_delay": 0.015,
-		"burst_sides": [SpawnHandler.Sides.Top]
+		"worlds": [world2],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_delay": 0.07,
+		"burst_duration": 3,
+		"burst_start_delay": 0.5,
+		"burst_sides": [SpawnHandler.Sides.Right]
 	},
 	{
 		"worlds": [world1, world2],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_delay": 0.03,
-		"burst_duration": 3,
-		"burst_start_delay": 2,
-		"burst_sides": [SpawnHandler.Sides.Left]
+		"spawn_delay": 1,
+		"burst_duration": 2,
+		"burst_start_delay": 0.001,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
+	},
+	{
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_delay": 0.07,
+		"burst_duration": 2,
+		"burst_start_delay": 4,
+		"burst_sides": [SpawnHandler.Sides.Top]
+	},
+	{
+		"worlds": [world1, world2],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_delay": 0.07,
+		"burst_duration": 2,
+		"burst_start_delay": 4,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Right]
 	}
 ]
 
-onready var test_level = [wave1, empty_wave, wave2]
+onready var test_level = [wave1, empty_wave, wave1]
 
 var current_level
 var wave_index
@@ -82,30 +95,30 @@ func level_ended():
 	print("Level ended")
 
 func next_wave():
-		wave_index += 1
-		if wave_index < current_level.size():
-			var wave = current_level[wave_index]
-			play_wave(wave)
-		else:
-			level_ended()
+	wave_index += 1
+	if wave_index < current_level.size():
+		var wave = current_level[wave_index]
+		play_wave(wave)
+	else:
+		level_ended()
 
 func play_wave(wave):
 	print("Wave %d started" % wave_index)
 	current_wave = wave
 	burst_index = 0
 	var burst_description = wave[burst_index]
-	create_burst(burst_description)
+	play_burst(burst_description)
 
 func next_burst():
 	burst_index += 1
 	if burst_index < current_wave.size():
 		var burst_description = current_wave[burst_index]
-		create_burst(burst_description)
+		play_burst(burst_description)
 	else:
 		next_wave()
 
-func create_burst(burst_description):
-	print("Burst %d created" % burst_index)
+func play_burst(burst_description):
+	print("Burst %d started" % burst_index)
 	for world in burst_description.worlds:
 		var spawner_handler = world.spawner_handler
 		var burst = spawner_handler.start_burst(
@@ -165,7 +178,8 @@ func _move_player_shade(player_id: int, position: Vector2):
 			player_shade.move_shade(position)
 
 func _on_burst_ended():
-	print("Burst ended")
+	pass
 
 func _on_burst_StartDelayTimer_timeout():
+	print("Next burst")
 	next_burst()

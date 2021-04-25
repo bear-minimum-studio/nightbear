@@ -11,7 +11,7 @@ onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 
-export (bool) var is_immortal = false
+export (bool) var is_immortal = true
 
 var velocity := Vector2.ZERO
 var id := 1

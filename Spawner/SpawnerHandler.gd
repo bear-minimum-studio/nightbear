@@ -22,7 +22,8 @@ var spawned_entities = {
 onready var burst_entity = preload("res://Spawner/Burst.tscn")
 
 func stop_burst(burst):
-	burst.queue_free()
+	if burst.start_delay_timer.is_stopped():
+		burst.queue_free()
 	emit_signal("burst_ended")
 
 func start_burst(burst_spawn_type, burst_spawn_delay: float, burst_duration: float, burst_start_delay : float, burst_sides: Array):
@@ -32,6 +33,7 @@ func start_burst(burst_spawn_type, burst_spawn_delay: float, burst_duration: flo
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")
+	burst.connect("StartDelayTimer_timeout", self, "_on_StartDelayTimer_timeout")
 	
 	return burst
 
@@ -53,3 +55,7 @@ func _on_SpawnTimer_timeout(burst):
 
 func _on_BurstTimer_timeout(burst):
 	stop_burst(burst)
+
+func _on_StartDelayTimer_timeout(burst):
+	if burst.spawn_timer.is_stopped():
+		burst.queue_free()
