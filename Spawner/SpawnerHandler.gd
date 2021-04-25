@@ -22,18 +22,16 @@ var spawned_entities = {
 onready var burst_entity = preload("res://Spawner/Burst.tscn")
 
 func stop_burst(burst):
-	if burst.start_delay_timer.is_stopped():
-		burst.queue_free()
-	emit_signal("burst_ended")
+	emit_signal("burst_ended", burst)
+	burst.queue_free()
 
-func start_burst(burst_spawn_type, burst_spawn_delay: float, burst_duration: float, burst_start_delay : float, burst_sides: Array):
+func start_burst(burst_index: int, burst_spawn_type, burst_spawn_delay: float, burst_duration: float, burst_sides: Array):
 	var burst = burst_entity.instance()
 	add_child(burst)
-	burst.initialize(burst_spawn_type, burst_spawn_delay, burst_duration, burst_start_delay, burst_sides)
+	burst.initialize(burst_index, burst_spawn_type, burst_spawn_delay, burst_duration, burst_sides)
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")
-	burst.connect("StartDelayTimer_timeout", self, "_on_StartDelayTimer_timeout")
 	
 	return burst
 
@@ -50,12 +48,8 @@ func _spawn(burst):
 		emit_signal("allied_projectile_spawned", spawned_instance)
 
 func _on_SpawnTimer_timeout(burst):
-	if burst.nb_sides > 0 && !burst.burst_timer.is_stopped():
+	if burst.nb_sides > 0:
 		_spawn(burst)
 
 func _on_BurstTimer_timeout(burst):
 	stop_burst(burst)
-
-func _on_StartDelayTimer_timeout(burst):
-	if burst.spawn_timer.is_stopped():
-		burst.queue_free()

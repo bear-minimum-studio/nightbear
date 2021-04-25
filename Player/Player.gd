@@ -11,7 +11,7 @@ onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 
-export (bool) var is_immortal = true
+export (bool) var is_immortal = false
 
 var velocity := Vector2.ZERO
 var id := 1
@@ -60,6 +60,6 @@ func hit():
 	_player_death()
 
 func _player_death():
-	emit_signal("player_dead", id)
 	if (!is_immortal):
+		emit_signal("player_dead", id)
 		queue_free()
