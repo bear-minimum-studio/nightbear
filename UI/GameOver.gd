@@ -18,6 +18,6 @@ func _input(event):
 	if !ready:
 		return
 
-	if event.is_action_pressed("P1_build") or event.is_action_pressed("P2_build"):
+	if event.is_action_pressed("ui_accept"):
 		emit_signal("replay")
 		visible = false
