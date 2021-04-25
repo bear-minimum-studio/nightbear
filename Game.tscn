@@ -36,12 +36,9 @@ position = Vector2( 660, 380 )
 scale = Vector2( 23.069, 14.2963 )
 texture = ExtResource( 1 )
 
-[node name="DreamCaughtText" type="RichTextLabel" parent="."]
-margin_left = 467.251
-margin_top = 23.2444
-margin_right = 611.251
-margin_bottom = 52.2444
+[node name="DreamCaughtText" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 32.0
+margin_bottom = 32.0
 text = "0 dream caught"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
