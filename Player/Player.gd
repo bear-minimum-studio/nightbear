@@ -9,9 +9,7 @@ onready var sprite = $Sprite
 
 export (bool) var isMortal = false
 
-const PLAYER_WALK_ACCELERATION = 5000
 const PLAYER_WALK_SPEED = 500
-const FRICTION = 1000000
 const BUILD_RELOAD_TIME = 1
 
 var velocity := Vector2.ZERO
@@ -31,9 +29,9 @@ func _physics_process(delta):
 	   input_vector = input_vector.normalized()
  
 	if input_vector != Vector2.ZERO:
-	   velocity = velocity.move_toward(input_vector * PLAYER_WALK_SPEED, PLAYER_WALK_ACCELERATION * delta)
+		velocity = input_vector * PLAYER_WALK_SPEED
 	else:
-	   velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		velocity = Vector2.ZERO
  
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 	
