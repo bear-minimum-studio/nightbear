@@ -5,6 +5,7 @@ class_name Player
 signal build
 
 onready var build_timer = $BuildTimer
+onready var sprite = $Sprite
 
 export (bool) var isMortal = false
 
@@ -19,7 +20,7 @@ var ready_to_build := true
 
 func initialize(father_id: int):
 	id = father_id
-	$Sprite.initialize(father_id)
+	sprite.initialize(father_id)
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -35,6 +36,9 @@ func _physics_process(delta):
 	   velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
  
 	velocity = move_and_slide(velocity, Vector2.ZERO)
+	
+	if abs(velocity.x) > 5:
+		sprite.set_orientation(velocity.x)
 
 func _input(event):
 	if event.is_action_pressed("P%d_build" % id) && ready_to_build:
