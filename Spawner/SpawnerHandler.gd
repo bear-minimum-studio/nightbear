@@ -9,11 +9,11 @@ export (SpawnType) var spawn_type = SpawnType.Enemy
 const spawning_parameters = {
 	SpawnType.Ally: {
 		"spawned_entity": preload("res://Projectiles/AllyProjectile.tscn"),
-		"spawn_delay": 5
+		"spawn_delay": Parameters.ALLY_PROJECTILE_SPAWN_DELAY
 	},
 	SpawnType.Enemy: {
 		"spawned_entity": preload("res://Projectiles/EnemyProjectile.tscn"),
-		"spawn_delay": 0.1
+		"spawn_delay": Parameters.ENEMY_PROJECTILE_SPAWN_DELAY
 	}
 }
 
