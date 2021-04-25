@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://carre-bleu.png" type="Texture" id=1]
 [ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ViewportContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://LevelHandler.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://UI/dpcomic.ttf"
@@ -14,8 +15,7 @@ font_data = SubResource( 1 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 4 )
-viewport_container1_path = NodePath("Viewports/ViewportContainer1")
-viewport_container2_path = NodePath("Viewports/ViewportContainer2")
+viewport_container_paths = [ NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2") ]
 
 [node name="Viewports" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -58,6 +58,4 @@ __meta__ = {
 
 [node name="GameOver" parent="." instance=ExtResource( 2 )]
 
-[node name="BurstStartTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="BurstStartTimer" to="." method="_on_BurstStartTimer_timeout"]
+[node name="LevelHandler" parent="." instance=ExtResource( 5 )]
