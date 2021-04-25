@@ -22,11 +22,3 @@ rotation = -3.14159
 [node name="LinearSpawnerBottom" parent="SpawnerContainer" instance=ExtResource( 2 )]
 position = Vector2( 0, 250 )
 rotation = -1.5708
-
-[node name="BurstTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="SpawnTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="BurstTimer" to="." method="_on_WaveTimer_timeout"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

@@ -16,9 +16,17 @@ onready var dream_caught_text = $DreamCaughtText
 
 var dreams_caught = 0
 
+func create_burst(spawner_handler, spawn_delay, burst_duration, burst_sides):
+	var burst = spawner_handler.start_burst(spawn_delay, burst_duration, burst_sides)
+	return burst
+
 func _ready():
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
 		ally_projectile_spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
+		ally_projectile_spawner_handler.connect("burst_ended", self, "_on_burst_ended")
+		
+	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
+		enemy_projectile_spawner_handler.connect("burst_ended", self, "_on_burst_ended")
 		
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
@@ -27,10 +35,17 @@ func _ready():
 		player.connect("player_moved", self, "_move_player_shade")
 	
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
-		ally_projectile_spawner_handler.start_spawn_burst(1, 2, [SpawnHandler.Sides.Left])
+		var burst = create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Left])
+		print("Burst %d created" % burst.id)
+		
+	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
+		create_burst(ally_projectile_spawner_handler, 1, 2, [])
+		
+	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
+		create_burst(ally_projectile_spawner_handler, 1, 2, [SpawnHandler.Sides.Right])
 		
 	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
-		enemy_projectile_spawner_handler.start_spawn_burst(0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
+		create_burst(enemy_projectile_spawner_handler, 0.03, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
 
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
@@ -66,3 +81,6 @@ func _move_player_shade(player_id: int, position: Vector2):
 	for player_shade in player_shades:
 		if player_shade.id != player_id:
 			player_shade.move_shade(position)
+
+func _on_burst_ended(burst_id):
+	print("Burst %d ended" % burst_id)
