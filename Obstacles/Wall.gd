@@ -3,7 +3,8 @@ extends StaticBody2D
 class_name Wall
 
 const NUMBER_OF_SPRITES = 1
-var health_points = 3
+const MAX_HEALTH_POINTS = 5
+var health_points = 5
 
 onready var animated_sprite = $AnimatedSprite
 
@@ -16,5 +17,8 @@ func _on_Timer_timeout():
 
 func hit():
 	health_points -= 1
+	var color_modulation = float(health_points) / float(MAX_HEALTH_POINTS)
+	self.modulate.g = color_modulation
+	self.modulate.b = color_modulation
 	if (health_points <= 0):
 		self.queue_free()
