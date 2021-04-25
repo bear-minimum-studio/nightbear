@@ -6,6 +6,8 @@ signal build
 
 onready var build_timer = $BuildTimer
 
+export (bool) var isMortal = false
+
 const PLAYER_WALK_ACCELERATION = 5000
 const PLAYER_WALK_SPEED = 500
 const FRICTION = 1000000
@@ -54,4 +56,5 @@ func hit():
 	_player_death()
 
 func _player_death():
-	queue_free()
+	if (isMortal):
+		queue_free()
