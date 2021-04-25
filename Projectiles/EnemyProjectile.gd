@@ -3,10 +3,15 @@ extends Area2D
 class_name EnemyProjectile
 
 onready var direction = Vector2.RIGHT
+var enemy_projectile_speed
 
 func initialize(spawn_location: Vector2, spawn_direction: Vector2):
 	transform.origin = spawn_location
 	direction = spawn_direction
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	enemy_projectile_speed = rng.randf_range(Parameters.ENEMY_PROJECTILE_MIN_SPEED, Parameters.ENEMY_PROJECTILE_MAX_SPEED)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +19,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	translate(Parameters.ENEMY_PROJECTILE_SPEED * delta * direction)
+	translate(enemy_projectile_speed * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	_projectile_destruction()
