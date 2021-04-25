@@ -23,8 +23,10 @@ rotation = -3.14159
 position = Vector2( 0, 250 )
 rotation = -1.5708
 
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
 
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

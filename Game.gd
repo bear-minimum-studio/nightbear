@@ -8,12 +8,15 @@ onready var viewport_container2 = get_node(viewport_container2_path)
 
 onready var world1 = viewport_container1.world
 onready var world2 = viewport_container2.world
+
+onready var ally_projectile_spawner_handlers = get_tree().get_nodes_in_group("ally_projectile_spawner_handler")
+onready var enemy_projectile_spawner_handlers = get_tree().get_nodes_in_group("enemy_projectile_spawner_handler")
+
 onready var dream_caught_text = $DreamCaughtText
 
 var dreams_caught = 0
 
 func _ready():
-	var ally_projectile_spawner_handlers = get_tree().get_nodes_in_group("ally_projectile_spawner_handler")
 	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
 		ally_projectile_spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
 		
@@ -21,6 +24,12 @@ func _ready():
 	for player in players:
 		player.connect("build", self, "_build")
 		player.connect("player_dead", self, "_player_dead")
+	
+	for ally_projectile_spawner_handler in ally_projectile_spawner_handlers:
+		ally_projectile_spawner_handler.start_spawn_wave(1, 2, [SpawnHandler.Sides.Left])
+		
+	for enemy_projectile_spawner_handler in enemy_projectile_spawner_handlers:
+		enemy_projectile_spawner_handler.start_spawn_wave(0.001, 2, [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right])
 
 func _build(id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()

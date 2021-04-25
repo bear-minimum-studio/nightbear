@@ -1,38 +1,64 @@
 extends Node2D
 
+class_name SpawnHandler
+
 signal allied_projectile_spawned
 
 enum SpawnType {Ally, Enemy}
+enum Sides {Left, Top, Right, Bottom}
 
 export (SpawnType) var spawn_type = SpawnType.Enemy
 
-const spawning_parameters = {
-	SpawnType.Ally: {
-		"spawned_entity": preload("res://Projectiles/AllyProjectile.tscn"),
-		"spawn_delay": Parameters.ALLY_PROJECTILE_SPAWN_DELAY
-	},
-	SpawnType.Enemy: {
-		"spawned_entity": preload("res://Projectiles/EnemyProjectile.tscn"),
-		"spawn_delay": Parameters.ENEMY_PROJECTILE_SPAWN_DELAY
-	}
+var spawned_entities = {
+	SpawnType.Ally: preload("res://Projectiles/AllyProjectile.tscn"),
+	SpawnType.Enemy: preload("res://Projectiles/EnemyProjectile.tscn")
 }
 
+var sides = []
+var spawn_delay = 1
+var duration = 0
+var nb_sides = sides.size()
+
+onready var wave_timer = $WaveTimer
 onready var spawn_timer = $SpawnTimer
-onready var spawners = $SpawnerContainer.get_children()
-onready var nb_spawners = spawners.size()
+onready var spawners = {
+	Sides.Left: $SpawnerContainer/LinearSpawnerLeft,
+	Sides.Top: $SpawnerContainer/LinearSpawnerTop,
+	Sides.Right: $SpawnerContainer/LinearSpawnerRight,
+	Sides.Bottom: $SpawnerContainer/LinearSpawnerBottom
+}
+onready var spawned_entity = spawned_entities[spawn_type]
+
+func stop_spawn_wave():
+	spawn_timer.stop()
+	wave_timer.stop()
+
+func start_spawn_wave(wave_spawn_delay: float, wave_duration: float, wave_sides: Array):
+	spawn_delay = wave_spawn_delay
+	duration = wave_duration
+	sides = wave_sides
+	nb_sides = sides.size()
+	
+	wave_timer.start(duration)
+	spawn_timer.start(spawn_delay)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var spawned_entity = spawning_parameters[spawn_type].spawned_entity
-	var spawn_delay = spawning_parameters[spawn_type].spawn_delay
-	
-	spawn_timer.set_wait_time(spawn_delay)
 	randomize()
-	for spawner in spawners:
-		spawner.initialize(spawned_entity)
+	spawn_timer.set_wait_time(spawn_delay)
+	for side in [Sides.Left, Sides.Top, Sides.Right, Sides.Bottom]:
+		spawners[side].initialize(spawned_entity)
 
-func _on_SpawnTimer_timeout():
-	var spawner_index = randi() % nb_spawners
-	var spawned_instance = spawners[spawner_index].spawn()
+func _spawn():
+	var spawn_side = sides[randi() % nb_sides]
+	var spawner = spawners[spawn_side]
+	var spawned_instance = spawner.spawn()
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
+
+func _on_SpawnTimer_timeout():
+	if !wave_timer.is_stopped():
+		_spawn()
+
+func _on_WaveTimer_timeout():
+	stop_spawn_wave()

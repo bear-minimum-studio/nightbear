@@ -10,12 +10,12 @@ func initialize(father_spawn_entity: PackedScene):
 	spawned_entity = father_spawn_entity
 	
 func spawn():
-	var entity = spawned_entity.instance()
+	var instance = spawned_entity.instance()
 	
 	var spawn_location = $SpawnLocation
 	spawn_location.unit_offset = randf()
 	
-	add_child(entity)
-	entity.initialize(spawn_location.transform.origin, spawn_direction)
+	add_child(instance)
+	instance.initialize(spawn_location.transform.origin, spawn_direction)
 
-	return entity
+	return instance
