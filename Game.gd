@@ -58,4 +58,4 @@ func _dream_caught():
 
 func _player_dead(id):
 	print("Player %d is dead !" % id)
-	get_tree().reload_current_scene()
+	var _unused = get_tree().reload_current_scene()
