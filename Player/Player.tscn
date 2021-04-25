@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/bear1.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,18 @@ extents = Vector2( 17.1864, 22.6496 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Cast"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.4
@@ -26,6 +38,28 @@ tracks/0/keys = {
 "values": [ 11, 12, 13, 14 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Cast"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Cast/node = SubResource( 4 )
+states/Cast/position = Vector2( 268, 90 )
+states/Run/node = SubResource( 5 )
+states/Run/position = Vector2( 116, 98.5 )
+transitions = [ "Run", "Cast", SubResource( 6 ), "Cast", "Run", SubResource( 7 ) ]
+start_node = "Run"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -37,7 +71,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 2
-frame = 13
+frame = 12
 script = ExtResource( 3 )
 player_path = NodePath("..")
 
@@ -49,8 +83,13 @@ shape = SubResource( 1 )
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Run"
 anims/Cast = SubResource( 2 )
 anims/Run = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 8 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 9 )
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]
