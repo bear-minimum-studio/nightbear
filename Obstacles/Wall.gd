@@ -7,6 +7,7 @@ onready var lifebar = $ProgressBar
 onready var timer = $Timer
 
 func _ready():
+	timer.start(Parameters.WALL_MAX_LIFETIME)
 	randomize()
 	animated_sprite.frame = randi() % Parameters.WALL_NUMBER_OF_SPRITES
 
