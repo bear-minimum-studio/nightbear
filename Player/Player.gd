@@ -34,8 +34,6 @@ func _physics_process(delta):
  
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
-
-
 func _input(event):
 	if event.is_action_pressed("P%d_build" % id) && ready_to_build:
 		_build()
@@ -43,7 +41,7 @@ func _input(event):
 func _build():
 	ready_to_build = false
 	reset_build_timer()
-	emit_signal("build", id , self.transform)
+	emit_signal("build", id, self.transform)
 
 func _on_BuildTimer_timeout():
 	ready_to_build = true

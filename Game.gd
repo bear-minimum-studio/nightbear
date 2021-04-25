@@ -1,6 +1,7 @@
 extends Node
 
 const wall = preload("res://Obstacles/Wall.tscn")
+const dream_catcher = preload("res://Obstacles/DreamCatcher.tscn")
 
 export (NodePath) var viewport_container1_path
 export (NodePath) var viewport_container2_path
@@ -19,8 +20,12 @@ func _ready():
 func _build(id: int, t:Transform2D):
 	var new_wall = wall.instance()
 	new_wall.transform.origin = t.origin
+	var new_dream_catcher = dream_catcher.instance()
+	new_dream_catcher.transform.origin = t.origin
 
 	if (id  == 1):
 		world2.add_child(new_wall)
+		world1.add_child(new_dream_catcher)
 	elif (id  == 2):
 		world1.add_child(new_wall)
+		world2.add_child(new_dream_catcher)
