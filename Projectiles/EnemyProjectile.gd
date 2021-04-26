@@ -2,6 +2,8 @@ extends Area2D
 
 class_name EnemyProjectile
 
+signal hit_wall
+
 onready var direction = Vector2.RIGHT
 onready var speed = Parameters.ENEMY_PROJECTILE_SPEED
 
@@ -27,6 +29,7 @@ func _projectile_destruction():
 func _on_EnemyProjectile_body_entered(body):
 	if (body is Wall):
 		body.hit()
+		emit_signal("hit_wall", self.global_position)
 		_projectile_destruction()
 	elif (body is Player):
 		body.hit()

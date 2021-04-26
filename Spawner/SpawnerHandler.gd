@@ -3,6 +3,7 @@ extends Node2D
 class_name SpawnHandler
 
 signal allied_projectile_spawned
+signal enemy_projectile_spawned
 signal burst_ended
 
 enum Sides {Left, Top, Right, Bottom}
@@ -47,6 +48,8 @@ func _spawn(burst):
 	var spawned_instance = spawner.spawn(spawn_entity, spawn_speed, burst.target)
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
+	if spawned_instance is EnemyProjectile:
+		emit_signal("enemy_projectile_spawned", spawned_instance)
 
 func _on_SpawnTimer_timeout(burst):
 	if burst.nb_sides > 0:
