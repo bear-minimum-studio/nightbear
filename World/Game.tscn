@@ -5,7 +5,7 @@
 [ext_resource path="res://World/View/ViewportContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/LevelManagement/LevelHandler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World/Game.gd" type="Script" id=5]
-[ext_resource path="res://Audio/SFX/Death/death_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX/Death/death_2.wav" type="AudioStream" id=7]
 [ext_resource path="res://UI/GameEnd.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFontData" id=1]
@@ -60,6 +60,6 @@ pause_mode = 2
 pause_mode = 2
 
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = -14.135
 bus = "Game Over"
