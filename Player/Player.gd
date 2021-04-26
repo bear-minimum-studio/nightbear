@@ -16,7 +16,7 @@ export (bool) var is_immortal = false
 
 var velocity := Vector2.ZERO
 var id := 1
-var ready_to_build := true
+var ready_to_build := false
 
 func initialize(father_id: int):
 	id = father_id
@@ -39,12 +39,14 @@ func _physics_process(_delta):
 	# Might have a performance impact
 	# Make this a direct function call the day it becomes a problem
 	emit_signal("player_moved", id, transform.origin)
-
-func _input(event):
-	if event.is_action_pressed("P%d_build" % id) && ready_to_build:
+	
+	if Input.is_action_pressed("P%d_build" % id):
 		_build()
 
 func _build():
+	if !ready_to_build:
+		return
+
 	spell_fx.play()
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
