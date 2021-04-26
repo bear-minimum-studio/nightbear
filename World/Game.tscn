@@ -57,4 +57,5 @@ pause_mode = 2
 
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
 stream = ExtResource( 6 )
-volume_db = -8.077
+volume_db = -14.135
+bus = "Game Over"
