@@ -1,7 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Obstacles/shield.png" type="Texture" id=1]
+[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_3.wav" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_3.wav" type="AudioStream" id=3]
 [ext_resource path="res://Obstacles/Wall.gd" type="Script" id=4]
+[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_2.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_7.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_4.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_3.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_5.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_6.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_1.wav" type="AudioStream" id=15]
+[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_2.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -50,5 +64,60 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HitFX" parent="." instance=ExtResource( 10 )]
+
+[node name="HitFX1" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 7 )
+volume_db = -6.058
+
+[node name="HitFX2" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 8 )
+volume_db = -6.0
+
+[node name="HitFX3" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 12 )
+volume_db = -6.0
+
+[node name="HitFX4" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 11 )
+volume_db = -6.0
+
+[node name="HitFX5" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 13 )
+volume_db = -6.0
+
+[node name="HitFX6" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 14 )
+volume_db = -6.0
+
+[node name="HitFX7" type="AudioStreamPlayer" parent="HitFX"]
+stream = ExtResource( 9 )
+volume_db = -6.0
+
+[node name="DestroyedFX" parent="." instance=ExtResource( 10 )]
+
+[node name="DestroyedFX1" type="AudioStreamPlayer" parent="DestroyedFX"]
+stream = ExtResource( 15 )
+volume_db = 13.126
+
+[node name="DestroyedFX2" type="AudioStreamPlayer" parent="DestroyedFX"]
+stream = ExtResource( 16 )
+volume_db = 13.126
+
+[node name="DestroyedFX3" type="AudioStreamPlayer" parent="DestroyedFX"]
+stream = ExtResource( 2 )
+volume_db = 14.136
+
+[node name="CastFX" parent="." instance=ExtResource( 10 )]
+
+[node name="CastFX1" type="AudioStreamPlayer" parent="CastFX"]
+stream = ExtResource( 6 )
+
+[node name="CastFX2" type="AudioStreamPlayer" parent="CastFX"]
+stream = ExtResource( 5 )
+
+[node name="CastFX3" type="AudioStreamPlayer" parent="CastFX"]
+stream = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
