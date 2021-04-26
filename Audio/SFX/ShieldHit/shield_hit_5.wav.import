@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shield_hit_5.wav-10c99efcda1b7d1ef5afd051cf086d88.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/ShieldHit/shield_hit_5.wav"
+dest_files=[ "res://.import/shield_hit_5.wav-10c99efcda1b7d1ef5afd051cf086d88.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
