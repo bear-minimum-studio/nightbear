@@ -17,7 +17,8 @@ onready var spawners = {
 
 var spawned_entities = {
 	Burst.SpawnType.Ally: preload("res://Projectiles/AllyProjectile.tscn"),
-	Burst.SpawnType.Enemy: preload("res://Projectiles/EnemyProjectile.tscn")
+	Burst.SpawnType.Enemy: preload("res://Projectiles/EnemyProjectile.tscn"),
+	Burst.SpawnType.Doom: preload("res://Projectiles/DoomProjectile.tscn")
 }
 
 onready var burst_entity = preload("res://World/LevelManagement/Burst.tscn")
@@ -40,16 +41,26 @@ func start_burst(burst_index: int, burst_spawn_type, burst_spawn_speed: float, b
 func _ready():
 	randomize()
 
+func spawn_projectile(sides, speed, type, target):
+	var spawn_side = sides[randi() % sides.size()]
+	var spawner = spawners[spawn_side]
+	var spawn_entity = spawned_entities[type]
+	var spawned_instance = spawner.spawn(spawn_entity, speed, target)
+	if spawned_instance is AllyProjectile:
+		emit_signal("allied_projectile_spawned", spawned_instance)
+	return spawned_instance
+
 func _spawn(burst):
 	var spawn_side = burst.sides[randi() % burst.nb_sides]
 	var spawner = spawners[spawn_side]
-	var spawn_speed = burst.spawn_speed
+	var speed = burst.spawn_speed
 	var spawn_entity = spawned_entities[burst.spawn_type]
-	var spawned_instance = spawner.spawn(spawn_entity, spawn_speed, burst.target)
+	var spawned_instance = spawner.spawn(spawn_entity, speed, burst.target)
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
 	if spawned_instance is EnemyProjectile:
 		emit_signal("enemy_projectile_spawned", spawned_instance)
+	return spawned_instance
 
 func _on_SpawnTimer_timeout(burst):
 	if burst.nb_sides > 0:

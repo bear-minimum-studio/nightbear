@@ -4,6 +4,8 @@ var worlds
 
 signal next_wave
 
+var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
+
 onready var burst_start_timer = $BurstStartTimer
 
 var wave1 = [
@@ -139,16 +141,16 @@ func initialize(father_worlds):
 	worlds = father_worlds
 	for world in worlds:
 		world.spawner_handler.connect("burst_ended", self, "_on_burst_ended")
+		world.spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
 		
-	full_level = [wave1, wave1]
+	full_level = [wave1]
 
 func start():
 	_play_level(full_level)
 
 func _input(input):
 	if OS.is_debug_build() && input.is_action_pressed("spawn_doom_projectile"):
-		var proj_ent = preload("res://Projectiles/DoomProjectile.tscn")
-		worlds[0].spawner_handler.spawners[SpawnHandler.Sides.Left].spawn(proj_ent, 20, worlds[0].player)
+		worlds[0].spawner_handler.spawners[SpawnHandler.Sides.Left].spawn(doom_projectile, 20, worlds[0].player)
 	if OS.is_debug_build() && input.is_action_pressed("next_burst"):
 		_next_burst()
 
@@ -219,12 +221,32 @@ func _play_burst(burst_description):
 	burst_start_timer.set_wait_time(next_burst_start_delay)
 	burst_start_timer.start()
 
+func _on_missed_ally_projectile(world_id):
+	if world_id > 1:
+		world_id = 0
+	else:
+		world_id = 1
+	var world = worlds[world_id]
+	var spawner_handler = world.spawner_handler
+#	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
+	var sides = [SpawnHandler.Sides.Left]
+	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
+	sides = [SpawnHandler.Sides.Top]
+	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
+	sides = [SpawnHandler.Sides.Right]
+	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
+	sides = [SpawnHandler.Sides.Bottom]
+	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _on_burst_ended(_burst):
 	pass
 
 func _on_BurstStartTimer_timeout():
 	_next_burst()
+
+func _connect_allied_projectile(spawned_instance: AllyProjectile):
+	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")

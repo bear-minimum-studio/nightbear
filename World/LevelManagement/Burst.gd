@@ -5,12 +5,12 @@ class_name Burst
 signal BurstTimer_timeout
 signal SpawnTimer_timeout
 
-enum SpawnType {Ally, Enemy}
+enum SpawnType {Ally, Enemy, Doom}
 
 var id = 0
 var spawn_type = SpawnType.Enemy
 var spawn_speed = 10.0
-var target
+var target = self
 
 var spawn_delay = 1.0
 var duration = 1.5

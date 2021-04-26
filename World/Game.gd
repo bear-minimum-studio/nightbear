@@ -4,6 +4,7 @@ export (Array, NodePath) var viewport_container_paths
 
 var viewport_containers = []
 var worlds = []
+var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
@@ -19,8 +20,6 @@ func _ready():
 		
 		viewport_containers.push_back(viewport_container)
 		worlds.push_back(world)
-		
-		world.spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
 	
 	level_handler.initialize(worlds)
 	
@@ -54,9 +53,6 @@ func _build(id: int, t:Transform2D):
 func _connect_allied_projectile(spawned_instance: AllyProjectile):
 	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
 	var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
-
-func _on_missed_ally_projectile():
-	pass
 
 func _dream_caught():
 	dreams_caught += 1

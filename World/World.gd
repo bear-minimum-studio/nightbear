@@ -17,6 +17,10 @@ func initialize(father_id: int):
 
 func _ready():
 	spawner_handler.connect("enemy_projectile_spawned", self, "_connect_enemy_projectile")
+	
+	for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
+		var spawner = spawner_handler.spawners[side]
+		spawner.connect("entity_spawned", self, "_on_entity_spawned")
 
 func _connect_enemy_projectile(enemy_projectile: EnemyProjectile) -> void:
 	enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
@@ -26,3 +30,6 @@ func _spawn_hit_wall_particle(wall_global_position: Vector2) -> void:
 	new_particles.global_position = wall_global_position
 	add_child(new_particles)
 	new_particles.emitting = true
+
+func _on_entity_spawned(instance):
+	add_child(instance)
