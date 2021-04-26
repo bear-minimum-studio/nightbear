@@ -10,11 +10,16 @@ var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
 onready var burst_start_timer = $BurstStartTimer
 
+var wave1_ennemy_wall_speed = 12
+var wave1_eparse_ennemy_speed = 11
+var wave1_alone_ally_speed = 10
+var wave1_eparse_ally_speed = 9
+
 var wave1 = [
 	{
 		"world_indexes": [0, 1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.03,
 		"burst_duration": 2,
 		"next_burst_start_delay": 15,
@@ -23,7 +28,7 @@ var wave1 = [
 	{
 		"world_indexes": [0],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.02,
 		"burst_duration": 1,
 		"next_burst_start_delay": 5,
@@ -32,7 +37,7 @@ var wave1 = [
 	{
 		"world_indexes": [1],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_speed": 8,
+		"spawn_speed": wave1_alone_ally_speed,
 		"spawn_delay": 0,
 		"burst_duration": 1,
 		"next_burst_start_delay": 0,
@@ -41,7 +46,7 @@ var wave1 = [
 	{
 		"world_indexes": [1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.02,
 		"burst_duration": 1,
 		"next_burst_start_delay": 5,
@@ -50,17 +55,16 @@ var wave1 = [
 	{
 		"world_indexes": [0],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_speed": 8,
+		"spawn_speed": wave1_alone_ally_speed,
 		"spawn_delay": 0,
 		"burst_duration": 1,
-		"next_burst_start_delay": 0,
+		"next_burst_start_delay": 10,
 		"burst_sides": [SpawnHandler.Sides.Left]
 	},
-	_create_empty_burst_description(5),
 	{
-		"world_indexes": [0, 1],
+		"world_indexes": [1],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_speed": 8,
+		"spawn_speed": wave1_alone_ally_speed,
 		"spawn_delay": 0,
 		"burst_duration": 1,
 		"next_burst_start_delay": 0,
@@ -69,8 +73,8 @@ var wave1 = [
 	{
 		"world_indexes": [0],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 14,
-		"spawn_delay": 0.75,
+		"spawn_speed": wave1_eparse_ennemy_speed,
+		"spawn_delay": 0.85,
 		"burst_duration": 35,
 		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Top, SpawnHandler.Sides.Right]
@@ -78,8 +82,8 @@ var wave1 = [
 	{
 		"world_indexes": [1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 14,
-		"spawn_delay": 0.75,
+		"spawn_speed": wave1_eparse_ennemy_speed,
+		"spawn_delay": 0.85,
 		"burst_duration": 35,
 		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Bottom, SpawnHandler.Sides.Left]
@@ -87,7 +91,7 @@ var wave1 = [
 	{
 		"world_indexes": [0, 1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.01,
 		"burst_duration": 1,
 		"next_burst_start_delay": 20,
@@ -96,7 +100,7 @@ var wave1 = [
 	{
 		"world_indexes": [0],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.01,
 		"burst_duration": 2,
 		"next_burst_start_delay": 6,
@@ -105,7 +109,7 @@ var wave1 = [
 	{
 		"world_indexes": [0, 1],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_speed": 8,
+		"spawn_speed": wave1_alone_ally_speed,
 		"spawn_delay": 0,
 		"burst_duration": 1,
 		"next_burst_start_delay": 0,
@@ -114,7 +118,7 @@ var wave1 = [
 	{
 		"world_indexes": [1],
 		"spawn_type": Burst.SpawnType.Enemy,
-		"spawn_speed": 12,
+		"spawn_speed": wave1_ennemy_wall_speed,
 		"spawn_delay": 0.01,
 		"burst_duration": 2,
 		"next_burst_start_delay": 6,
@@ -123,11 +127,110 @@ var wave1 = [
 	{
 		"world_indexes": [0, 1],
 		"spawn_type": Burst.SpawnType.Ally,
-		"spawn_speed": 20,
+		"spawn_speed": wave1_alone_ally_speed,
 		"spawn_delay": 0,
 		"burst_duration": 1,
 		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Right]
+	},
+	_create_empty_burst_description(40),
+]
+
+var wave2_ennemy_wall_speed = 14
+var wave2_eparse_ennemy_speed = 13
+var wave2_alone_ally_speed = 12
+var wave2_eparse_ally_speed = 11
+
+var wave2 = [
+	{
+		"world_indexes": [0, 1],
+		"spawn_type": Burst.SpawnType.Ally,
+		"spawn_speed": wave2_eparse_ally_speed,
+		"spawn_delay": 3,
+		"burst_duration": 50,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
+	},
+	{
+		"world_indexes": [0],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_eparse_ennemy_speed,
+		"spawn_delay": 0.75,
+		"burst_duration": 35,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Right]
+	},
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_eparse_ennemy_speed,
+		"spawn_delay": 0.75,
+		"burst_duration": 35,
+		"next_burst_start_delay": 3,
+		"burst_sides": [SpawnHandler.Sides.Bottom, SpawnHandler.Sides.Top]
+	},
+	{
+		"world_indexes": [0],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.03,
+		"burst_duration": 1.5,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left]
+	},
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.03,
+		"burst_duration": 1.5,
+		"next_burst_start_delay": 10,
+		"burst_sides": [SpawnHandler.Sides.Top]
+	},
+	{
+		"world_indexes": [0],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.03,
+		"burst_duration": 2.5,
+		"next_burst_start_delay": 5,
+		"burst_sides": [SpawnHandler.Sides.Top]
+	},
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.03,
+		"burst_duration": 2.5,
+		"next_burst_start_delay": 20,
+		"burst_sides": [SpawnHandler.Sides.Bottom]
+	},
+	{
+		"world_indexes": [0, 1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.02,
+		"burst_duration": 2,
+		"next_burst_start_delay": 20,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right]
+	},
+	{
+		"world_indexes": [0],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.02,
+		"burst_duration": 2,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top]
+	},
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave2_ennemy_wall_speed,
+		"spawn_delay": 0.02,
+		"burst_duration": 2,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	},
 	_create_empty_burst_description(45),
 ]
@@ -147,7 +250,7 @@ func initialize(father_worlds, father_viewport_containers):
 	
 	viewport_containers = father_viewport_containers
 	
-	full_level = [wave1]
+	full_level = [wave1, wave2]
 
 func start():
 	_play_level(full_level)

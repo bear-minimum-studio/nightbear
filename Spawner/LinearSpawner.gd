@@ -15,6 +15,6 @@ func spawn(spawned_entity, spawn_speed: float, target):
 	
 	emit_signal("entity_spawned", instance)
 	
-	instance.initialize(spawn_location.get_global_position(), spawn_direction, spawn_speed, target)
+	instance.initialize(spawn_location.global_position, spawn_direction, spawn_speed, target)
 
 	return instance
