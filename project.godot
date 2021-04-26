@@ -73,7 +73,7 @@ default_bus_layout="res://Audio/bus_layout.tres"
 [autoload]
 
 Parameters="*res://Singletons/Parameters.gd"
-MusicPlayer="*res://Audio/MusicPlayer.tscn"
+MusicPlayer="*res://Audio/Soundtrack/MusicPlayer.tscn"
 
 [display]
 
