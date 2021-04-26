@@ -94,5 +94,9 @@ one_shot = true
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 3 )
 
+[node name="FlashTimer" type="Timer" parent="Flash"]
+one_shot = true
+
 [connection signal="timeout" from="Shake/ShakeLengthTimer" to="." method="_on_ShakeLengthTimer_timeout"]
 [connection signal="timeout" from="Shake/ShakingTimer" to="." method="_on_ShakingTimer_timeout"]
+[connection signal="timeout" from="Flash/FlashTimer" to="." method="_on_FlashTimer_timeout"]
