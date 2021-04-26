@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/View/ViewportContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/LevelManagement/LevelHandler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World/Game.gd" type="Script" id=5]
+[ext_resource path="res://Audio/SFX/Death/death_1.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://UI/dpcomic.ttf"
@@ -49,3 +51,10 @@ __meta__ = {
 pause_mode = 2
 
 [node name="LevelHandler" parent="." instance=ExtResource( 4 )]
+
+[node name="DeathFX" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
+
+[node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
+stream = ExtResource( 6 )
+volume_db = -8.077

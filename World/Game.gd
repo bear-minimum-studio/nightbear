@@ -8,6 +8,7 @@ var worlds = []
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
 onready var level_handler = $LevelHandler
+onready var death_fx = $DeathFX
 
 var dreams_caught = 0
 
@@ -64,6 +65,7 @@ func _dream_caught():
 
 func _player_dead(id):
 	print("Player %d is dead !" % id)
+	death_fx.play()
 	var wave_index = level_handler.wave_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
