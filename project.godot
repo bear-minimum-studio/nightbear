@@ -63,6 +63,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Parameters="*res://Singletons/Parameters.gd"
+MusicPlayer="*res://Audio/MusicPlayer.tscn"
 
 [display]
 

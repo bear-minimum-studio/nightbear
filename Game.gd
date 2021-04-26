@@ -32,6 +32,7 @@ func _ready():
 		player.connect("player_dead", self, "_player_dead")
 		player.connect("player_moved", self, "_move_player_shade")
 		
+	MusicPlayer.next()
 	level_handler.start()
 
 func _build(id: int, t:Transform2D):
