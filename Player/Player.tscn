@@ -8,8 +8,9 @@
 [ext_resource path="res://Audio/SFX/Spell/spell_3.wav" type="AudioStream" id=6]
 [ext_resource path="res://Audio/SFX/Spell/spell_1.wav" type="AudioStream" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.0073, 14.6506 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 9.59423
+height = 4.82609
 
 [sub_resource type="Animation" id=2]
 resource_name = "Cast"
@@ -82,7 +83,8 @@ script = ExtResource( 3 )
 player_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.228207, -6.61792 )
+position = Vector2( -1.64881, -1.76895 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="BuildTimer" type="Timer" parent="."]
