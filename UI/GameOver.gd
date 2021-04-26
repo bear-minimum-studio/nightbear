@@ -3,9 +3,11 @@ extends Control
 signal replay
 
 onready var animation_player = $AnimationPlayer
+onready var wave_number_text = $WaveNumber
 var ready = false
 
-func show():
+func show_game_over(wave_number: int):
+	wave_number_text.text = "%d" % wave_number
 	visible = true
 	ready = false
 	animation_player.play("Appear")

@@ -64,7 +64,8 @@ func _dream_caught():
 
 func _player_dead(id):
 	print("Player %d is dead !" % id)
-	game_over.show()
+	var wave_index = level_handler.wave_index
+	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
 func _move_player_shade(player_id: int, position: Vector2):
