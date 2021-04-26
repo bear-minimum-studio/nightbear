@@ -7,6 +7,7 @@ signal dream_caught
 
 onready var direction = Vector2.RIGHT
 onready var speed = Parameters.ALLY_PROJECTILE_SPEED
+var is_dead = false
 var world_id
 
 func initialize(spawn_location: Vector2, spawn_direction: Vector2, projectile_speed: float, target):
@@ -24,22 +25,16 @@ func _process(delta):
 	translate(speed * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("missed_ally_projectile", world_id)
-	_projectile_destruction()
-
-func _projectile_destruction():
+	if !is_dead:
+		emit_signal("missed_ally_projectile", world_id)
 	queue_free()
 
 func _on_AllyProjectile_body_entered(body):
-	if (body is Wall):
-		_hit_wall()
-	elif (body is DreamCatcher):
+	if body is DreamCatcher:
 		body.caught()
 		_dream_caught()
 
-func _hit_wall():
-	queue_free()
-
 func _dream_caught():
 	emit_signal("dream_caught", self.global_position)
+	is_dead = true
 	queue_free()

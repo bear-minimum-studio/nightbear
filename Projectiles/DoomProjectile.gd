@@ -10,7 +10,10 @@ func initialize(spawn_location: Vector2, _spawn_direction: Vector2, projectile_s
 	transform.origin = spawn_location
 	speed = projectile_speed
 	target = projectile_target
-	direction = self.get_global_position().direction_to(target.get_global_position())
+	if target:
+		direction = self.get_global_position().direction_to(target.get_global_position())
+	else:
+		direction = _spawn_direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +23,7 @@ func _ready():
 func _process(delta):
 	if target:
 		direction = self.get_global_position().direction_to(target.get_global_position())
-		translate(speed * delta * direction)
+	translate(speed * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	_projectile_destruction()

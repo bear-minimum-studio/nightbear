@@ -228,14 +228,7 @@ func _on_missed_ally_projectile(world_id):
 		world_id = 1
 	var world = worlds[world_id]
 	var spawner_handler = world.spawner_handler
-#	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
-	var sides = [SpawnHandler.Sides.Left]
-	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
-	sides = [SpawnHandler.Sides.Top]
-	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
-	sides = [SpawnHandler.Sides.Right]
-	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
-	sides = [SpawnHandler.Sides.Bottom]
+	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
 	
 # Called when the node enters the scene tree for the first time.
