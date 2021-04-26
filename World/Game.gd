@@ -65,6 +65,7 @@ func _dream_caught():
 func _player_dead(id):
 	print("Player %d is dead !" % id)
 	game_over.show()
+	get_tree().paused = true
 
 func _move_player_shade(player_id: int, position: Vector2):
 	var player_shades = get_tree().get_nodes_in_group("player_shade")
@@ -73,6 +74,7 @@ func _move_player_shade(player_id: int, position: Vector2):
 			player_shade.move_shade(position)
 
 func _replay_game():
+	get_tree().paused = false
 	var _unused = get_tree().reload_current_scene()
 
 func _new_wave():

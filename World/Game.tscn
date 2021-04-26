@@ -46,5 +46,6 @@ __meta__ = {
 }
 
 [node name="GameOver" parent="." instance=ExtResource( 2 )]
+pause_mode = 2
 
 [node name="LevelHandler" parent="." instance=ExtResource( 4 )]
