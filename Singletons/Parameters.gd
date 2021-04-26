@@ -18,8 +18,4 @@ const ENEMY_PROJECTILE_SPEED = 8
 const ENEMY_PROJECTILE_SPAWN_DELAY = 0.1
 
 # Wall parameters :
-const WALL_NUMBER_OF_SPRITES = 1
 const WALL_MAX_LIFETIME := 30.0
-
-# Dream catcher :
-const DREAM_CATCHER_NUMBER_OF_SPRITES = 1
