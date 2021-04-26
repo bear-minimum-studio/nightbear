@@ -12,11 +12,14 @@ script = ExtResource( 4 )
 [node name="IntroMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -14.0
+bus = "Soundtrack"
 
 [node name="PreVerseMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -14.0
+bus = "Soundtrack"
 
 [node name="NightmareMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -14.0
+bus = "Soundtrack"
