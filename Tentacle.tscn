@@ -51,7 +51,9 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 2 ), Vector2( 1, 2 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ), Vector2( 5, 2 ), Vector2( 4, 2 ), Vector2( 3, 2 ), Vector2( 2, 2 ), Vector2( 1, 2 ) ]
 }
 
-[node name="Tentacle" type="Node2D"]
+[node name="Tentacle" type="Node2D" groups=[
+"tentacle",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

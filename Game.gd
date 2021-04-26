@@ -31,7 +31,9 @@ func _ready():
 		player.connect("build", self, "_build")
 		player.connect("player_dead", self, "_player_dead")
 		player.connect("player_moved", self, "_move_player_shade")
-		
+	
+	level_handler.connect("next_wave", self, "_new_wave")
+	
 	MusicPlayer.next()
 	level_handler.start()
 
@@ -72,3 +74,8 @@ func _move_player_shade(player_id: int, position: Vector2):
 
 func _replay_game():
 	var _unused = get_tree().reload_current_scene()
+
+func _new_wave():
+	var tentacles = get_tree().get_nodes_in_group("tentacle")
+	for tentacle in tentacles:
+		tentacle.grow()

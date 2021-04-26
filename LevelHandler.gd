@@ -2,6 +2,8 @@ extends Node
 
 var worlds
 
+signal next_wave
+
 onready var burst_start_timer = $BurstStartTimer
 
 var wave1 = [
@@ -123,6 +125,7 @@ func _level_ended():
 	burst_start_timer.stop()
 
 func _next_wave():
+	emit_signal("next_wave")
 	wave_index += 1
 	if wave_index < current_level.size():
 		var wave = current_level[wave_index]
