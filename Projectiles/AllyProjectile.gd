@@ -8,10 +8,10 @@ signal dream_caught
 onready var direction = Vector2.RIGHT
 onready var speed = Parameters.ALLY_PROJECTILE_SPEED
 
-func initialize(spawn_location: Vector2, spawn_direction: Vector2, spawn_speed: float):
+func initialize(spawn_location: Vector2, spawn_direction: Vector2, projectile_speed: float, _target):
 	transform.origin = spawn_location
 	direction = spawn_direction
-	speed = spawn_speed
+	speed = projectile_speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

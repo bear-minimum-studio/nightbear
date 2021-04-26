@@ -17,6 +17,10 @@ const ALLY_PROJECTILE_SPAWN_DELAY = 5
 const ENEMY_PROJECTILE_SPEED = 8
 const ENEMY_PROJECTILE_SPAWN_DELAY = 0.1
 
+# Doom projectiles parameters :
+const DOOM_PROJECTILE_SPEED = 8
+const DOOM_PROJECTILE_SPAWN_DELAY = 0.1
+
 # Wall parameters :
 const WALL_MAX_LIFETIME := 30.0
 

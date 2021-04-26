@@ -10,6 +10,7 @@ enum SpawnType {Ally, Enemy}
 var id = 0
 var spawn_type = SpawnType.Enemy
 var spawn_speed = 10.0
+var target
 
 var spawn_delay = 1.0
 var duration = 1.5
@@ -21,11 +22,12 @@ var nb_sides = sides.size()
 onready var burst_timer = $BurstTimer
 onready var spawn_timer = $SpawnTimer
 
-func initialize(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array):
+func initialize(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target):
 	id = burst_index
 	
 	spawn_type = burst_spawn_type
 	spawn_speed = burst_spawn_speed
+	target = burst_target
 	
 	spawn_delay = burst_spawn_delay
 	duration = burst_duration

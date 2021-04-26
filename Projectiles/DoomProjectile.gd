@@ -1,14 +1,16 @@
 extends Area2D
 
-class_name EnemyProjectile
+class_name DoomProjectile
 
-onready var direction = Vector2.RIGHT
-onready var speed = Parameters.ENEMY_PROJECTILE_SPEED
+onready var direction = Vector2.ZERO
+onready var speed = Parameters.DOOM_PROJECTILE_SPEED
+var target = self
 
-func initialize(spawn_location: Vector2, spawn_direction: Vector2, projectile_speed: float, _target):
-	transform.origin = spawn_location
-	direction = spawn_direction
+func initialize(spawn_location: Vector2, _spawn_direction: Vector2, projectile_speed: float, projectile_target):
+	transform.origin = spawn_location + 50 * Vector2.RIGHT
 	speed = projectile_speed
+	target = projectile_target
+	direction = self.get_global_position().direction_to(target.get_global_position())
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	direction = self.get_global_position().direction_to(target.get_global_position())
 	translate(speed * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -24,7 +27,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _projectile_destruction():
 	queue_free()
 
-func _on_EnemyProjectile_body_entered(body):
+func _on_DoomProjectile_body_entered(body):
 	if (body is Wall):
 		body.hit()
 		_projectile_destruction()

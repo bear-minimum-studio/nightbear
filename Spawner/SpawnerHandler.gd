@@ -25,10 +25,10 @@ func stop_burst(burst):
 	emit_signal("burst_ended", burst)
 	burst.queue_free()
 
-func start_burst(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array):
+func start_burst(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target):
 	var burst = burst_entity.instance()
 	add_child(burst)
-	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides)
+	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides, burst_target)
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")
@@ -44,7 +44,7 @@ func _spawn(burst):
 	var spawner = spawners[spawn_side]
 	var spawn_speed = burst.spawn_speed
 	var spawn_entity = spawned_entities[burst.spawn_type]
-	var spawned_instance = spawner.spawn(spawn_entity, spawn_speed)
+	var spawned_instance = spawner.spawn(spawn_entity, spawn_speed, burst.target)
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
 
