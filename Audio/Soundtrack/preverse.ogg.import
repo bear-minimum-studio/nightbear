@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/preverse.ogg-602e81ba535ab53bee0d5118ac736c91.oggstr"
+
+[deps]
+
+source_file="res://Audio/Soundtrack/preverse.ogg"
+dest_files=[ "res://.import/preverse.ogg-602e81ba535ab53bee0d5118ac736c91.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

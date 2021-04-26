@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/nightmare_theme.ogg-11e0d249fe19c393c68a632f14498021.oggstr"
+
+[deps]
+
+source_file="res://Audio/Soundtrack/nightmare_theme.ogg"
+dest_files=[ "res://.import/nightmare_theme.ogg-11e0d249fe19c393c68a632f14498021.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
