@@ -354,6 +354,17 @@ var wave2 = [
 	_create_empty_burst_description(55),
 ]
 
+var test_wave = [
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Ally,
+		"spawn_speed": 100,
+		"spawn_delay": 0,
+		"burst_duration": 1,
+		"next_burst_start_delay": 1500,
+		"burst_sides": [SpawnHandler.Sides.Top]
+	}]
+
 var full_level
 
 var current_level
