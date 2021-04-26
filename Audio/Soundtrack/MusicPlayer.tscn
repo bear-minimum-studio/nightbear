@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Audio/nightmare_theme.ogg" type="AudioStream" id=1]
-[ext_resource path="res://Audio/intro.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Audio/preverse.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Audio/MusicPlayer.gd" type="Script" id=4]
+[ext_resource path="res://Audio/Soundtrack/nightmare_theme.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Audio/Soundtrack/intro.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/Soundtrack/preverse.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Audio/Soundtrack/MusicPlayer.gd" type="Script" id=4]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
