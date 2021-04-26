@@ -64,4 +64,3 @@ func hit():
 func _player_death():
 	if (!is_immortal):
 		emit_signal("player_dead", id)
-		queue_free()
