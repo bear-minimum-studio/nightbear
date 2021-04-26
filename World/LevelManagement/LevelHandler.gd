@@ -9,6 +9,7 @@ signal level_end
 var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
 onready var burst_start_timer = $BurstStartTimer
+onready var lightning_fx = $LightningFX
 
 var wave0_ennemy_wall_speed = 10
 var wave0_eparse_ennemy_speed = 9
@@ -456,6 +457,7 @@ func _on_missed_ally_projectile(world_id):
 	var spawner_handler = world.spawner_handler
 #	viewport_containers[world_id].camera.start_shake(0.5, 0.01, 3)
 	viewport_containers[world_id].camera.start_flash(0.25, 0.3)
+	lightning_fx.play()
 	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
 	

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lightning_1.wav-d166aa7f7df72c97b9aa462a97ce3725.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Lightning/lightning_1.wav"
+dest_files=[ "res://.import/lightning_1.wav-d166aa7f7df72c97b9aa462a97ce3725.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
