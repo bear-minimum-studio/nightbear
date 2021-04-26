@@ -17,13 +17,31 @@ var wave0_eparse_ally_speed = 7
 
 var wave0 = [
 	{
+		"world_indexes": [0],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave0_eparse_ennemy_speed,
+		"spawn_delay": 2.5,
+		"burst_duration": 35,
+		"next_burst_start_delay": 0,
+		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top]
+	},
+	{
+		"world_indexes": [1],
+		"spawn_type": Burst.SpawnType.Enemy,
+		"spawn_speed": wave0_eparse_ennemy_speed,
+		"spawn_delay": 2.5,
+		"burst_duration": 35,
+		"next_burst_start_delay": 5,
+		"burst_sides": [SpawnHandler.Sides.Right, SpawnHandler.Sides.Top]
+	},
+	{
 		"world_indexes": [0, 1],
 		"spawn_type": Burst.SpawnType.Enemy,
 		"spawn_speed": wave0_ennemy_wall_speed,
 		"spawn_delay": 0.03,
 		"burst_duration": 2,
-		"next_burst_start_delay": 20,
-		"burst_sides": [SpawnHandler.Sides.Top]
+		"next_burst_start_delay": 13,
+		"burst_sides": [SpawnHandler.Sides.Right]
 	},
 	{
 		"world_indexes": [0],
@@ -31,7 +49,7 @@ var wave0 = [
 		"spawn_speed": wave0_ennemy_wall_speed,
 		"spawn_delay": 0.03,
 		"burst_duration": 2,
-		"next_burst_start_delay": 7,
+		"next_burst_start_delay": 4,
 		"burst_sides": [SpawnHandler.Sides.Right]
 	},
 	{
@@ -40,7 +58,7 @@ var wave0 = [
 		"spawn_speed": wave0_ennemy_wall_speed,
 		"spawn_delay": 0.03,
 		"burst_duration": 2,
-		"next_burst_start_delay": 20,
+		"next_burst_start_delay": 12,
 		"burst_sides": [SpawnHandler.Sides.Bottom]
 	},
 	{
@@ -58,10 +76,10 @@ var wave0 = [
 		"spawn_speed": wave0_ennemy_wall_speed,
 		"spawn_delay": 0.02,
 		"burst_duration": 2,
-		"next_burst_start_delay": 20,
+		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	},
-	_create_empty_burst_description(50),
+	_create_empty_burst_description(45),
 ]
 	
 	
@@ -206,7 +224,7 @@ var wave1 = [
 		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Left, SpawnHandler.Sides.Right]
 	},
-	_create_empty_burst_description(50),
+	_create_empty_burst_description(45),
 ]
 
 var wave2_ennemy_wall_speed = 14
@@ -332,7 +350,7 @@ var wave2 = [
 		"next_burst_start_delay": 0,
 		"burst_sides": [SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	},
-	_create_empty_burst_description(70),
+	_create_empty_burst_description(55),
 ]
 
 var full_level
