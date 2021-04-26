@@ -79,10 +79,20 @@ position = Vector2( 151.134, 0 )
 [node name="Tentacle3" parent="Control/Bottom" instance=ExtResource( 1 )]
 position = Vector2( -148.949, -3.30554 )
 
+[node name="Shake" type="Node" parent="."]
+
+[node name="ShakeLengthTimer" type="Timer" parent="Shake"]
+one_shot = true
+
+[node name="ShakingTimer" type="Timer" parent="Shake"]
+
+[node name="ShakingTween" type="Tween" parent="Shake"]
+
 [node name="Flash" type="Node" parent="."]
 
-[node name="FlashTimer" type="Timer" parent="Flash"]
-
-[node name="Sprite" type="Sprite" parent="Flash"]
+[node name="FlashSprite" type="Sprite" parent="Flash"]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 3 )
+
+[connection signal="timeout" from="Shake/ShakeLengthTimer" to="." method="_on_ShakeLengthTimer_timeout"]
+[connection signal="timeout" from="Shake/ShakingTimer" to="." method="_on_ShakingTimer_timeout"]

@@ -1,6 +1,7 @@
 extends Node
 
 var worlds
+var viewport_containers
 
 signal next_wave
 
@@ -137,12 +138,14 @@ var wave_index
 var current_wave
 var burst_index
 
-func initialize(father_worlds):
+func initialize(father_worlds, father_viewport_containers):
 	worlds = father_worlds
 	for world in worlds:
 		world.spawner_handler.connect("burst_ended", self, "_on_burst_ended")
 		world.spawner_handler.connect("allied_projectile_spawned", self, "_connect_allied_projectile")
-		
+	
+	viewport_containers = father_viewport_containers
+	
 	full_level = [wave1]
 
 func start():
@@ -228,6 +231,8 @@ func _on_missed_ally_projectile(world_id):
 		world_id = 1
 	var world = worlds[world_id]
 	var spawner_handler = world.spawner_handler
+	viewport_containers[world_id].camera.start_shake(0.5, 0.01, 3)
+	viewport_containers[world_id].camera.start_flash(0.25, 0.5)
 	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)
 	

@@ -25,10 +25,10 @@ func _ready():
 		spawner.connect("entity_spawned", self, "_on_entity_spawned")
 
 func _connect_enemy_projectile(enemy_projectile: EnemyProjectile) -> void:
-	enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
+	var _unsed = enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
 
 func _connect_ally_projectile(ally_projectile: AllyProjectile) -> void:
-	ally_projectile.connect("dream_caught", self, "_spawn_dream_caught_particle")
+	var _unsed = ally_projectile.connect("dream_caught", self, "_spawn_dream_caught_particle")
 
 func _spawn_hit_wall_particle(wall_global_position: Vector2) -> void:
 	var new_particles = hit_wall_particle.instance()

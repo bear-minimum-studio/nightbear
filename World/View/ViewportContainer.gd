@@ -10,4 +10,4 @@ onready var world = get_node(world_path)
 
 func _ready():
 	world.initialize(id)
-	camera.target = world
+	camera.position = world.position

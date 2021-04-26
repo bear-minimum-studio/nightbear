@@ -21,7 +21,7 @@ func _ready():
 		viewport_containers.push_back(viewport_container)
 		worlds.push_back(world)
 	
-	level_handler.initialize(worlds)
+	level_handler.initialize(worlds, viewport_containers)
 	
 	game_over.connect("replay", self, "_replay_game")
 		
