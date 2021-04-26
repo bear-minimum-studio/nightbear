@@ -54,6 +54,8 @@ tracks/0/keys = {
 [node name="Tentacle" type="Node2D" groups=[
 "tentacle",
 ]]
+z_index = 10
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
