@@ -20,8 +20,8 @@ scale_curve = SubResource( 2 )
 
 [node name="HitWallParticles" type="Particles2D"]
 emitting = false
-amount = 20
+amount = 10
 one_shot = true
-explosiveness = 0.51
+explosiveness = 0.73
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
