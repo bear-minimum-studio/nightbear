@@ -41,5 +41,5 @@ func _hit_wall():
 	queue_free()
 
 func _dream_caught():
-	emit_signal("dream_caught")
+	emit_signal("dream_caught", self.global_position)
 	queue_free()

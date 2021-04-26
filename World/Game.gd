@@ -54,7 +54,7 @@ func _connect_allied_projectile(spawned_instance: AllyProjectile):
 	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
 	var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
 
-func _dream_caught():
+func _dream_caught(_position: Vector2):
 	dreams_caught += 1
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = String(dreams_caught) + wording
