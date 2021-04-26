@@ -18,6 +18,7 @@ func initialize(father_id: int):
 
 func _ready():
 	spawner_handler.connect("enemy_projectile_spawned", self, "_connect_enemy_projectile")
+	spawner_handler.connect("doom_projectile_spawned", self, "_connect_doom_projectile")
 	spawner_handler.connect("allied_projectile_spawned", self, "_connect_ally_projectile")
 
 	for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
@@ -26,6 +27,9 @@ func _ready():
 
 func _connect_enemy_projectile(enemy_projectile: EnemyProjectile) -> void:
 	var _unsed = enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
+
+func _connect_doom_projectile(enemy_projectile: DoomProjectile) -> void:
+	enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
 
 func _connect_ally_projectile(ally_projectile: AllyProjectile) -> void:
 	var _unsed = ally_projectile.connect("dream_caught", self, "_spawn_dream_caught_particle")

@@ -153,7 +153,7 @@ func start():
 
 func _input(input):
 	if OS.is_debug_build() && input.is_action_pressed("spawn_doom_projectile"):
-		worlds[0].spawner_handler.spawners[SpawnHandler.Sides.Left].spawn(doom_projectile, 20, worlds[0].player)
+		worlds[0].spawner_handler.spawn_projectile([SpawnHandler.Sides.Left], 30, Burst.SpawnType.Doom, worlds[0].player)
 	if OS.is_debug_build() && input.is_action_pressed("next_burst"):
 		_next_burst()
 

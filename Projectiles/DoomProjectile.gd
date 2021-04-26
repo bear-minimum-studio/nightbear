@@ -2,6 +2,8 @@ extends Area2D
 
 class_name DoomProjectile
 
+signal hit_wall
+
 onready var direction = Vector2.ZERO
 onready var speed = Parameters.DOOM_PROJECTILE_SPEED
 var target
@@ -34,6 +36,7 @@ func _projectile_destruction():
 func _on_DoomProjectile_body_entered(body):
 	if (body is Wall):
 		body.hit()
+		emit_signal("hit_wall", self.global_position)
 		_projectile_destruction()
 	elif (body is Player):
 		body.hit()

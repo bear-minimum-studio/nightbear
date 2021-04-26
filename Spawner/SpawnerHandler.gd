@@ -4,6 +4,7 @@ class_name SpawnHandler
 
 signal allied_projectile_spawned
 signal enemy_projectile_spawned
+signal doom_projectile_spawned
 signal burst_ended
 
 enum Sides {Left, Top, Right, Bottom}
@@ -48,6 +49,8 @@ func spawn_projectile(sides, speed, type, target):
 	var spawned_instance = spawner.spawn(spawn_entity, speed, target)
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
+	if spawned_instance is DoomProjectile:
+		emit_signal("doom_projectile_spawned", spawned_instance)
 	return spawned_instance
 
 func _spawn(burst):
@@ -60,6 +63,8 @@ func _spawn(burst):
 		emit_signal("allied_projectile_spawned", spawned_instance)
 	if spawned_instance is EnemyProjectile:
 		emit_signal("enemy_projectile_spawned", spawned_instance)
+	if spawned_instance is DoomProjectile:
+		emit_signal("doom_projectile_spawned", spawned_instance)
 	return spawned_instance
 
 func _on_SpawnTimer_timeout(burst):
