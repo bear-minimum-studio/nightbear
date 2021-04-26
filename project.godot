@@ -66,6 +66,10 @@ config/name="Nightbear"
 run/main_scene="res://UI/Intro/Intro.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://bus_layout.tres"
+
 [autoload]
 
 Parameters="*res://Singletons/Parameters.gd"
