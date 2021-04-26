@@ -21,7 +21,6 @@ __meta__ = {
 }
 
 [node name="DialogIterator" parent="." instance=ExtResource( 3 )]
-current_step = 1
 
 [node name="Splash" type="TextureRect" parent="DialogIterator"]
 visible = false
@@ -205,6 +204,7 @@ hframes = 11
 vframes = 2
 
 [node name="Tuto3" type="Control" parent="DialogIterator"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.94177
