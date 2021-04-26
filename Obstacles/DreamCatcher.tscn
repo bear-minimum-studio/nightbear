@@ -46,27 +46,33 @@ autostart = true
 [node name="CastFX1" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource( 8 )
 volume_db = -12.117
+bus = "SFX"
 
 [node name="CastFX2" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource( 5 )
 volume_db = -12.117
+bus = "SFX"
 
 [node name="CastFX3" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource( 4 )
 volume_db = -12.116
+bus = "SFX"
 
 [node name="CatchFX" parent="." instance=ExtResource( 3 )]
 
 [node name="CatchFX1" type="AudioStreamPlayer" parent="CatchFX"]
 stream = ExtResource( 6 )
 volume_db = -12.117
+bus = "SFX"
 
 [node name="CatchFX2" type="AudioStreamPlayer" parent="CatchFX"]
 stream = ExtResource( 7 )
 volume_db = -16.156
+bus = "SFX"
 
 [node name="CatchFX3" type="AudioStreamPlayer" parent="CatchFX"]
 stream = ExtResource( 9 )
 volume_db = -14.136
+bus = "SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
