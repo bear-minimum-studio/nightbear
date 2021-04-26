@@ -1,5 +1,7 @@
 extends Path2D
 
+signal entity_spawned
+
 export (Vector2) var spawn_direction
 
 func _ready():
@@ -11,7 +13,8 @@ func spawn(spawned_entity, spawn_speed: float, target):
 	var spawn_location = $SpawnLocation
 	spawn_location.unit_offset = randf()
 	
-	add_child(instance)
-	instance.initialize(spawn_location.transform.origin, spawn_direction, spawn_speed, target)
+	emit_signal("entity_spawned", instance)
+	
+	instance.initialize(spawn_location.get_global_position(), spawn_direction, spawn_speed, target)
 
 	return instance

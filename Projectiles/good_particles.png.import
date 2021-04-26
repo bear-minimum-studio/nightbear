@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/good_particles.png-8f6a17c657fc9ee01ae60b58eceb224d.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Projectiles/good_particles.png"
+dest_files=[ "res://.import/good_particles.png-8f6a17c657fc9ee01ae60b58eceb224d.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

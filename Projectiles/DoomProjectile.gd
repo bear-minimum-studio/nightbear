@@ -4,10 +4,10 @@ class_name DoomProjectile
 
 onready var direction = Vector2.ZERO
 onready var speed = Parameters.DOOM_PROJECTILE_SPEED
-var target = self
+var target
 
 func initialize(spawn_location: Vector2, _spawn_direction: Vector2, projectile_speed: float, projectile_target):
-	transform.origin = spawn_location + 50 * Vector2.RIGHT
+	transform.origin = spawn_location
 	speed = projectile_speed
 	target = projectile_target
 	direction = self.get_global_position().direction_to(target.get_global_position())
@@ -18,8 +18,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	direction = self.get_global_position().direction_to(target.get_global_position())
-	translate(speed * delta * direction)
+	if target:
+		direction = self.get_global_position().direction_to(target.get_global_position())
+		translate(speed * delta * direction)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	_projectile_destruction()

@@ -37,6 +37,7 @@ margin_bottom = 720.0
 id = 2
 
 [node name="DreamCaughtText" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 margin_top = 32.0
 margin_bottom = 32.0
