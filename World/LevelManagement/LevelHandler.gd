@@ -4,6 +4,7 @@ var worlds
 var viewport_containers
 
 signal next_wave
+signal level_end
 
 var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
@@ -182,6 +183,7 @@ func _play_level(level):
 func _level_ended():
 	print("Level ended")
 	burst_start_timer.stop()
+	emit_signal("level_end")
 
 func _next_wave():
 	wave_index += 1

@@ -8,6 +8,7 @@ var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
+onready var game_end = $GameEnd
 onready var level_handler = $LevelHandler
 onready var death_fx = $DeathFX
 
@@ -24,6 +25,7 @@ func _ready():
 	level_handler.initialize(worlds, viewport_containers)
 	
 	game_over.connect("replay", self, "_replay_game")
+	game_end.connect("replay", self, "_replay_game")
 		
 	var players = get_tree().get_nodes_in_group("player")
 	
@@ -33,6 +35,7 @@ func _ready():
 		player.connect("player_moved", self, "_move_player_shade")
 	
 	level_handler.connect("next_wave", self, "_new_wave")
+	level_handler.connect("level_end", self, "_end_game")
 	
 	MusicPlayer.next()
 	level_handler.start()
@@ -71,6 +74,10 @@ func _move_player_shade(player_id: int, position: Vector2):
 	for player_shade in player_shades:
 		if player_shade.id != player_id:
 			player_shade.move_shade(position)
+
+func _end_game():
+	game_end.show_scene()
+	get_tree().paused = true
 
 func _replay_game():
 	get_tree().paused = false

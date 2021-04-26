@@ -5,14 +5,13 @@
 [ext_resource path="res://UI/FontBody.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UI/dpcomic.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 150
 outline_size = 5
 outline_color = Color( 0.658824, 0.431373, 0.431373, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Appear"
+[sub_resource type="Animation" id=2]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("WaveWording:modulate")
@@ -64,6 +63,7 @@ tracks/3/keys = {
 }
 
 [node name="GameOver" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -118,7 +118,7 @@ margin_left = -1.02769
 margin_top = 365.862
 margin_right = -1.02771
 margin_bottom = -211.138
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "7"
 align = 1
 valign = 1
@@ -143,6 +143,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Appear = SubResource( 1 )
+anims/Appear = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
