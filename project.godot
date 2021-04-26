@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Burst",
 "language": "GDScript",
-"path": "res://Spawner/Burst.gd"
+"path": "res://World/LevelManagement/Burst.gd"
 }, {
 "base": "StaticBody2D",
 "class": "DreamCatcher",

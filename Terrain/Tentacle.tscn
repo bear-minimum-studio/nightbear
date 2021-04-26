@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Terrain/claws.png" type="Texture" id=1]
-[ext_resource path="res://Tentacle.gd" type="Script" id=2]
+[ext_resource path="res://Terrain/Tentacle.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Wave01"

@@ -19,7 +19,7 @@ var spawned_entities = {
 	Burst.SpawnType.Enemy: preload("res://Projectiles/EnemyProjectile.tscn")
 }
 
-onready var burst_entity = preload("res://Spawner/Burst.tscn")
+onready var burst_entity = preload("res://World/LevelManagement/Burst.tscn")
 
 func stop_burst(burst):
 	emit_signal("burst_ended", burst)
