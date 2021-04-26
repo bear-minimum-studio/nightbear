@@ -13,6 +13,6 @@ func _input(event):
 		grow()
 
 func grow():
-	size = min(size+1, 4)
+	size = min(size+1, 3)
 	animation_player.play("Wave0"+String(size))
 	
