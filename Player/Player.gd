@@ -10,6 +10,7 @@ onready var build_timer = $BuildTimer
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
+onready var spell_fx = $SpellFX
 
 export (bool) var is_immortal = false
 
@@ -44,6 +45,7 @@ func _input(event):
 		_build()
 
 func _build():
+	spell_fx.play()
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
