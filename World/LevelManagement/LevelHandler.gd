@@ -293,7 +293,7 @@ func _next_wave():
 	if wave_index < current_level.size():
 		var wave = current_level[wave_index]
 		_play_wave(wave)
-		emit_signal("next_wave")
+		emit_signal("next_wave", wave_index)
 	else:
 		_level_ended()
 

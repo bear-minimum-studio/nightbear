@@ -6,6 +6,7 @@ var viewport_containers = []
 var worlds = []
 var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
 
+onready var wave_number_text = $WaveNumber
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
 onready var game_end = $GameEnd
@@ -83,7 +84,8 @@ func _replay_game():
 	get_tree().paused = false
 	var _unused = get_tree().reload_current_scene()
 
-func _new_wave():
+func _new_wave(wave_index: int):
+	wave_number_text.next_wave(wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
 		tentacle.grow()
