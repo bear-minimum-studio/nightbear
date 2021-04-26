@@ -99,6 +99,10 @@ func initialize(father_worlds):
 func start():
 	_play_level(full_level)
 
+func _input(input):
+	if OS.is_debug_build() && input.is_action_pressed("next_burst"):
+		_next_burst()
+
 func _create_empty_burst_description(next_burst_start_delay):
 	var empty_burst_description = {
 		"world_indexes": [],
@@ -118,29 +122,27 @@ func _create_empty_wave(next_wave_start_delay):
 func _play_level(level):
 	print("Level started")
 	current_level = level
-	wave_index = 0
-	var wave = level[wave_index]
-	_play_wave(wave)
+	wave_index = -1
+	_next_wave()
 
 func _level_ended():
 	print("Level ended")
 	burst_start_timer.stop()
 
 func _next_wave():
-	emit_signal("next_wave")
 	wave_index += 1
 	if wave_index < current_level.size():
 		var wave = current_level[wave_index]
 		_play_wave(wave)
+		emit_signal("next_wave")
 	else:
 		_level_ended()
 
 func _play_wave(wave):
 	print("\tWave %d started" % wave_index)
 	current_wave = wave
-	burst_index = 0
-	var burst_description = wave[burst_index]
-	_play_burst(burst_description)
+	burst_index = -1
+	_next_burst()
 
 func _next_burst():
 	burst_index += 1
@@ -162,7 +164,9 @@ func _play_burst(burst_description):
 			burst_description.spawn_delay,
 			burst_description.burst_duration,
 			burst_description.burst_sides)
-	burst_start_timer.start(burst_description.next_burst_start_delay)
+	var next_burst_start_delay = max(burst_description.next_burst_start_delay, 0.0001)
+	burst_start_timer.set_wait_time(next_burst_start_delay)
+	burst_start_timer.start()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

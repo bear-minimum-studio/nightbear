@@ -37,13 +37,17 @@ func initialize(burst_index: int, burst_spawn_type, burst_spawn_speed: float, bu
 		spawn_timer.one_shot = true
 	
 	if spawn_delay >= 0:
-		spawn_timer.start(spawn_delay)
+		spawn_delay = max(spawn_delay, 0.0001)
+		spawn_timer.set_wait_time(spawn_delay)
+		spawn_timer.start()
 	
 	if duration == 0:
 		burst_timer.one_shot = true
 		
 	if duration >= 0:
-		burst_timer.start(duration)
+		duration = max(duration, 0.0001)
+		burst_timer.set_wait_time(duration)
+		burst_timer.start()
 
 func _on_BurstTimer_timeout():
 	emit_signal("BurstTimer_timeout", self)
