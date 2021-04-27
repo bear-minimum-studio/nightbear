@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/projectile_good_2.png-47a0033b468147074d5a1d76e69d512b.stex"
+path="res://.import/bad_particles.png-56b503091fd7171f3c33841019eed3f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectiles/projectile_good_2.png"
-dest_files=[ "res://.import/projectile_good_2.png-47a0033b468147074d5a1d76e69d512b.stex" ]
+source_file="res://Projectiles/ProjectilesTypes/bad_particles.png"
+dest_files=[ "res://.import/bad_particles.png-56b503091fd7171f3c33841019eed3f2.stex" ]
 
 [params]
 

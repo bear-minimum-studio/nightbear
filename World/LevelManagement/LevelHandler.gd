@@ -6,7 +6,7 @@ var viewport_containers
 signal next_wave
 signal level_end
 
-var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
+var doom_projectile = preload("res://Projectiles/ProjectilesTypes/DoomProjectile.tscn")
 
 onready var burst_start_timer = $BurstStartTimer
 onready var lightning_fx = $LightningFX
@@ -447,6 +447,9 @@ func _play_burst(burst_description):
 	for world_index in burst_description.world_indexes:
 		var world = worlds[world_index]
 		var spawner_handler = world.spawner_handler
+		var target
+		if burst_description.spawn_type == Burst.SpawnType.Doom:
+			target = world.player
 		var _burst = spawner_handler.start_burst(
 			burst_index,
 			burst_description.spawn_type,
@@ -454,20 +457,17 @@ func _play_burst(burst_description):
 			burst_description.spawn_delay,
 			burst_description.burst_duration,
 			burst_description.burst_sides,
-			world.player)
+			target)
 	var next_burst_start_delay = max(burst_description.next_burst_start_delay, 0.0001)
 	burst_start_timer.set_wait_time(next_burst_start_delay)
 	burst_start_timer.start()
 
 func _on_missed_ally_projectile(world_id):
-	if world_id > 1:
-		world_id = 0
-	else:
-		world_id = 1
-	var world = worlds[world_id]
+	var other_world_id = 1 - world_id
+	var world = worlds[other_world_id]
 	var spawner_handler = world.spawner_handler
-#	viewport_containers[world_id].camera.start_shake(0.5, 0.01, 3)
-	viewport_containers[world_id].camera.start_flash(0.25, 0.3)
+#	viewport_containers[other_world_id].camera.start_shake(0.5, 0.01, 3)
+	viewport_containers[other_world_id].camera.start_flash(0.25, 0.3)
 	lightning_fx.play()
 	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	spawner_handler.spawn_projectile(sides, 30, Burst.SpawnType.Doom, world.player)

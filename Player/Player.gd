@@ -15,17 +15,17 @@ onready var spell_fx = $SpellFX
 export (bool) var is_immortal = false
 
 var velocity := Vector2.ZERO
-var id := 1
+var world_id := 0
 var ready_to_build := false
 
-func initialize(father_id: int):
-	id = father_id
-	sprite.initialize(father_id)
+func initialize(father_world_id: int):
+	world_id = father_world_id
+	sprite.initialize(world_id)
 
 func _physics_process(_delta):
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("P%d_walk_right" % id) - Input.get_action_strength("P%d_walk_left" % id)
-	input_vector.y = Input.get_action_strength("P%d_walk_down" % id) - Input.get_action_strength("P%d_walk_up" % id)
+	input_vector.x = Input.get_action_strength("P%d_walk_right" % world_id) - Input.get_action_strength("P%d_walk_left" % world_id)
+	input_vector.y = Input.get_action_strength("P%d_walk_down" % world_id) - Input.get_action_strength("P%d_walk_up" % world_id)
  
 	if input_vector.length() > 1:
 	   input_vector = input_vector.normalized()
@@ -38,9 +38,9 @@ func _physics_process(_delta):
 	
 	# Might have a performance impact
 	# Make this a direct function call the day it becomes a problem
-	emit_signal("player_moved", id, transform.origin)
+	emit_signal("player_moved", world_id, transform.origin)
 	
-	if Input.is_action_pressed("P%d_build" % id):
+	if Input.is_action_pressed("P%d_build" % world_id):
 		_build()
 
 func _build():
@@ -51,7 +51,7 @@ func _build():
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
-	emit_signal("build", id, self.transform)
+	emit_signal("build", world_id, self.transform)
 
 func _on_BuildTimer_timeout():
 	ready_to_build = true
@@ -65,4 +65,4 @@ func hit():
 
 func _player_death():
 	if (!is_immortal):
-		emit_signal("player_dead", id)
+		emit_signal("player_dead", world_id)

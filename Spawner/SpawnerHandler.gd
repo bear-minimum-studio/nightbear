@@ -17,12 +17,19 @@ onready var spawners = {
 }
 
 var spawned_entities = {
-	Burst.SpawnType.Ally: preload("res://Projectiles/AllyProjectile.tscn"),
-	Burst.SpawnType.Enemy: preload("res://Projectiles/EnemyProjectile.tscn"),
-	Burst.SpawnType.Doom: preload("res://Projectiles/DoomProjectile.tscn")
+	Burst.SpawnType.Ally: preload("res://Projectiles/ProjectilesTypes/AllyProjectile.tscn"),
+	Burst.SpawnType.Enemy: preload("res://Projectiles/ProjectilesTypes/EnemyProjectile.tscn"),
+	Burst.SpawnType.Doom: preload("res://Projectiles/ProjectilesTypes/DoomProjectile.tscn")
 }
 
+var world_id = 0
+
 onready var burst_entity = preload("res://World/LevelManagement/Burst.tscn")
+
+func initialize(father_world_id):
+	world_id = father_world_id
+	for side in [Sides.Left, Sides.Top, Sides.Right, Sides.Bottom]:
+		spawners[side].initialize(world_id)
 
 func stop_burst(burst):
 	emit_signal("burst_ended", burst)
@@ -31,7 +38,7 @@ func stop_burst(burst):
 func start_burst(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target):
 	var burst = burst_entity.instance()
 	add_child(burst)
-	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides, burst_target)
+	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides, burst_target, world_id)
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")

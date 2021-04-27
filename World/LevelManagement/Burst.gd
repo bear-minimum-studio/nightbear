@@ -8,6 +8,7 @@ signal SpawnTimer_timeout
 enum SpawnType {Ally, Enemy, Doom}
 
 var id = 0
+var world_id = 0
 var spawn_type = SpawnType.Enemy
 var spawn_speed = 10.0
 var target = self
@@ -22,7 +23,8 @@ var nb_sides = sides.size()
 onready var burst_timer = $BurstTimer
 onready var spawn_timer = $SpawnTimer
 
-func initialize(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target):
+func initialize(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target, father_world_id: int):
+	world_id = father_world_id
 	id = burst_index
 	
 	spawn_type = burst_spawn_type

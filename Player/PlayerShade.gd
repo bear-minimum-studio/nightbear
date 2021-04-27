@@ -1,15 +1,12 @@
 extends Sprite
 
-var id = 1
+const body_sprites = [preload("res://Player/paw1.png"), preload("res://Player/paw2.png")]
 
-const body_sprites = {
-	1: preload("res://Player/paw2.png"),
-	2: preload("res://Player/paw1.png"),
-}
+var world_id = 0
 
-func initialize(player_id: int):
-	id = player_id
-	self.texture = body_sprites[player_id]
+func initialize(father_world_id: int):
+	world_id = father_world_id
+	self.texture = body_sprites[1-world_id]
 
 func move_shade(position: Vector2):
 	transform.origin = position
