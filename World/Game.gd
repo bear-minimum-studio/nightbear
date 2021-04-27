@@ -4,7 +4,7 @@ export (Array, NodePath) var viewport_container_paths
 
 var viewport_containers = []
 var worlds = []
-var doom_projectile = preload("res://Projectiles/DoomProjectile.tscn")
+var doom_projectile = preload("res://Projectiles/ProjectilesTypes/DoomProjectile.tscn")
 
 onready var wave_number_text = $WaveNumber
 onready var dream_caught_text = $DreamCaughtText
@@ -41,18 +41,14 @@ func _ready():
 	MusicPlayer.next()
 	level_handler.start()
 
-func _build(id: int, t:Transform2D):
+func _build(world_id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
 	new_wall.transform.origin = t.origin
 	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instance()
 	new_dream_catcher.transform.origin = t.origin
 
-	if (id == 1):
-		worlds[1].add_child(new_wall)
-		worlds[0].add_child(new_dream_catcher)
-	elif (id == 2):
-		worlds[0].add_child(new_wall)
-		worlds[1].add_child(new_dream_catcher)
+	worlds[1 - world_id].add_child(new_wall)
+	worlds[world_id].add_child(new_dream_catcher)
 
 func _connect_allied_projectile(spawned_instance: AllyProjectile):
 	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
@@ -63,17 +59,17 @@ func _dream_caught(_position: Vector2):
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = String(dreams_caught) + wording
 
-func _player_dead(id):
-	print("Player %d is dead !" % id)
+func _player_dead(world_id):
+	print("Player %d is dead !" % world_id)
 	death_fx.play()
 	var wave_index = level_handler.wave_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
-func _move_player_shade(player_id: int, position: Vector2):
+func _move_player_shade(world_id: int, position: Vector2):
 	var player_shades = get_tree().get_nodes_in_group("player_shade")
 	for player_shade in player_shades:
-		if player_shade.id != player_id:
+		if player_shade.world_id != world_id:
 			player_shade.move_shade(position)
 
 func _end_game():

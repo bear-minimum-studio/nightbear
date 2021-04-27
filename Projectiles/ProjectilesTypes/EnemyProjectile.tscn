@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Projectiles/ProjectilesTypes/EnemyProjectile.gd" type="Script" id=1]
+[ext_resource path="res://Projectiles/Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Projectiles/ProjectilesTypes/projectile_bad.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Moving"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteContainer/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="Projectile" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
+[node name="Sprite" parent="SpriteContainer" index="0"]
+texture = ExtResource( 3 )
+frame = 4
+
+[node name="AnimationPlayer" parent="." index="3"]
+autoplay = "Moving"
+anims/Moving = SubResource( 1 )

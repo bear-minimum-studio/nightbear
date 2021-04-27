@@ -1,9 +1,9 @@
 extends Node2D
 
-export (int) var id = 1
+var world_id = 0
 
-const hit_wall_particle = preload("res://Projectiles/HitWallParticles.tscn")
-const catch_dream_particle = preload("res://Projectiles/CatchDreamParticles.tscn")
+const hit_wall_particle = preload("res://Projectiles/ProjectilesTypes/HitWallParticles.tscn")
+const catch_dream_particle = preload("res://Projectiles/ProjectilesTypes/CatchDreamParticles.tscn")
 
 onready var player = $Player
 onready var player_shade = $PlayerShade
@@ -12,9 +12,10 @@ onready var spawner_handler = $SpawnerHandler
 var dream_caught = 0
 
 func initialize(father_id: int):
-	id = father_id
-	player.initialize(id)
-	player_shade.initialize(id)
+	world_id = father_id
+	player.initialize(world_id)
+	player_shade.initialize(world_id)
+	spawner_handler.initialize(world_id)
 
 func _ready():
 	spawner_handler.connect("enemy_projectile_spawned", self, "_connect_enemy_projectile")
@@ -23,7 +24,7 @@ func _ready():
 
 	for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
 		var spawner = spawner_handler.spawners[side]
-		spawner.connect("entity_spawned", self, "_on_entity_spawned")
+		var _unused = spawner.connect("entity_spawned", self, "_on_entity_spawned")
 
 func _connect_enemy_projectile(enemy_projectile: EnemyProjectile) -> void:
 	var _unsed = enemy_projectile.connect("hit_wall", self, "_spawn_hit_wall_particle")
