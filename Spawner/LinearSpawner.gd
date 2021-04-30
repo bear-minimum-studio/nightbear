@@ -19,6 +19,8 @@ func spawn(spawned_entity, spawn_speed: float, target):
 	
 	emit_signal("entity_spawned", instance)
 	
-	instance.initialize(spawn_location.global_position, spawn_direction, spawn_speed, target, world_id)
+	instance.initialize(spawn_location.global_position, spawn_direction, spawn_speed, world_id)
+	if spawned_entity is DoomProjectile:
+		instance.set_target(target)
 
 	return instance

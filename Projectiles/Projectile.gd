@@ -5,10 +5,7 @@ extends Area2D
 ###########
 
 func _update_direction(default_direction):
-	if target:
-		direction = self.global_position.direction_to(target.global_position)
-	else:
-		direction = default_direction
+	direction = default_direction
 		
 	return direction
 
@@ -47,14 +44,12 @@ func _on_Projectile_body_entered(body):
 # PUBLIC #
 ##########
 
-var world_id = 0
-var direction = Vector2.ZERO
-var speed = 0
-var target
+var world_id := 0
+var direction := Vector2.ZERO
+var speed := 0.0
 
-func initialize(spawn_location: Vector2, spawn_direction: Vector2, projectile_speed: float, projectile_target, father_world_id: int):
+func initialize(spawn_location: Vector2, spawn_direction: Vector2, projectile_speed: float, father_world_id: int):
 	world_id = father_world_id
 	transform.origin = spawn_location
 	speed = projectile_speed
-	target = projectile_target
 	_update_direction(spawn_direction)

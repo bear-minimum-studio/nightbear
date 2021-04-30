@@ -38,7 +38,9 @@ func stop_burst(burst):
 func start_burst(burst_index: int, burst_spawn_type, burst_spawn_speed: float, burst_spawn_delay: float, burst_duration: float, burst_sides: Array, burst_target):
 	var burst = burst_entity.instance()
 	add_child(burst)
-	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides, burst_target, world_id)
+	burst.initialize(burst_index, burst_spawn_type, burst_spawn_speed, burst_spawn_delay, burst_duration, burst_sides, world_id)
+	if(burst_spawn_type == Burst.SpawnType.Doom):
+		burst.set_target(burst_target)
 	
 	burst.connect("BurstTimer_timeout", self, "_on_BurstTimer_timeout")
 	burst.connect("SpawnTimer_timeout", self, "_on_SpawnTimer_timeout")
