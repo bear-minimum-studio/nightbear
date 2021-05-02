@@ -65,15 +65,30 @@ func spawn_projectile(sides, speed, type, target):
 func _spawn(burst):
 	var spawn_side = burst.sides[randi() % burst.nb_sides]
 	var spawner = spawners[spawn_side]
-	var speed = burst.spawn_speed
+	
 	var spawn_entity = spawned_entities[burst.spawn_type]
-	var spawned_instance = spawner.spawn(spawn_entity, speed, burst.target)
+	
+	var spawn_parameters = {"speed": burst.spawn_speed}
+	if burst.spawn_type == Burst.SpawnType.Doom:
+		spawn_parameters.target = burst.target
+	
+	if spawn_side == Sides.Left:
+		spawn_parameters.direction = Vector2.RIGHT
+	if spawn_side == Sides.Top:
+		spawn_parameters.direction = Vector2.DOWN
+	if spawn_side == Sides.Right:
+		spawn_parameters.direction = Vector2.LEFT
+	if spawn_side == Sides.Bottom:
+		spawn_parameters.direction = Vector2.UP
+	
+	var spawned_instance = spawner.spawn(spawn_entity, spawn_parameters)
 	if spawned_instance is AllyProjectile:
 		emit_signal("allied_projectile_spawned", spawned_instance)
 	if spawned_instance is EnemyProjectile:
 		emit_signal("enemy_projectile_spawned", spawned_instance)
 	if spawned_instance is DoomProjectile:
 		emit_signal("doom_projectile_spawned", spawned_instance)
+		
 	return spawned_instance
 
 func _on_SpawnTimer_timeout(burst):

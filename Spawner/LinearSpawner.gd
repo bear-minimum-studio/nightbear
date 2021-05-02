@@ -2,25 +2,25 @@ extends Path2D
 
 signal entity_spawned
 
-export (Vector2) var spawn_direction
-var world_id = 0
+onready var _spawn_location = $SpawnLocation
+var world_id := 0
 
-func _ready():
+func _ready() -> void:
 	randomize()
 
-func initialize(father_world_id):
+func _get_spawn_location(offset: float) -> Vector2:
+	_spawn_location.unit_offset = offset
+	return _spawn_location.global_position
+
+func initialize(father_world_id: int) -> void:
 	world_id = father_world_id
 	
-func spawn(spawned_entity, spawn_speed: float, target):
-	var instance = spawned_entity.instance()
+func spawn(spawned_entity: PackedScene, spawn_parameters: Dictionary) -> Node2D:
 	
-	var spawn_location = $SpawnLocation
-	spawn_location.unit_offset = randf()
+	spawn_parameters.position = _get_spawn_location(randf())
 	
-	emit_signal("entity_spawned", instance)
-	
-	instance.initialize(spawn_location.global_position, spawn_direction, spawn_speed, world_id)
-	if spawned_entity is DoomProjectile:
-		instance.set_target(target)
+	var spawned_instance = spawned_entity.instance()
+	spawned_instance.initialize(spawn_parameters, world_id)
+	emit_signal("entity_spawned", spawned_instance)
 
-	return instance
+	return spawned_instance
