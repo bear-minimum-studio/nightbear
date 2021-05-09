@@ -7,7 +7,7 @@ func init(father_worlds: Array) -> void:
 				"subsequence": [
 					{
 						"spawn_type": Projectile.ProjectyleType.Ally,
-						"spawn_parameters": {"speed": 100.0},
+						"spawn_speed": 10.0,
 						"world_indexes": [0],
 						"spawn_delay": 1.0,
 						"next_delay": 3.0,
@@ -16,7 +16,7 @@ func init(father_worlds: Array) -> void:
 					},
 					{
 						"spawn_type": Projectile.ProjectyleType.Ennemy,
-						"spawn_parameters": {"speed": 100.0},
+						"spawn_speed": 10.0,
 						"world_indexes": [0, 1],
 						"spawn_delay": 1.0,
 						"next_delay": 1.0,

@@ -21,7 +21,9 @@ func initialize(squence_id: String, element_description: Dictionary, father_node
 	.initialize(squence_id, element_description, father_node, father_worlds)
 
 	spawn_type = element_description.spawn_type
-	spawn_parameters = element_description.spawn_parameters
+	spawn_parameters = {
+		"speed": element_description.spawn_speed
+	}
 
 	spawner_handlers = []
 	for world_index in element_description.world_indexes:
