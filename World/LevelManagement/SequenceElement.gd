@@ -2,15 +2,8 @@ extends Node
 
 class_name SequenceElement
 
-enum ElementType {Sequence, Burst}
-
 var sequence_element_entity = load("res://World/LevelManagement/SequenceElement.tscn")
 var burst_entity = load("res://World/LevelManagement/Burst.tscn")
-
-onready var element_entities = {
-	ElementType.Sequence: sequence_element_entity,
-	ElementType.Burst: burst_entity,
-}
 
 var id: String
 var worlds: Array
@@ -28,9 +21,15 @@ func initialize(squence_id: String, element_description: Dictionary, father_node
 	father_next_called = (father == null)
 	_set_subsequence(element_description)
 
+func _get_entity_for_element(element_description: Dictionary) -> PackedScene:
+	if element_description.has("spawn_type"):
+		return burst_entity
+	else:
+		return sequence_element_entity
+
 func _create_element(element_id: String, element_description: Dictionary) -> SequenceElement:
 	var element: SequenceElement
-	element = element_entities[element_description.type].instance()
+	element = _get_entity_for_element(element_description).instance()
 	add_child(element)
 	element.initialize(element_id, element_description, self, worlds)
 	return element

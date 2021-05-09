@@ -2,13 +2,10 @@ extends "res://World/LevelManagement/SequenceElement.gd"
 
 func init(father_worlds: Array) -> void:
 	var element_description = {
-		"type": ElementType.Sequence,
 		"subsequence": [
 			{
-				"type": ElementType.Sequence,
 				"subsequence": [
 					{
-						"type": ElementType.Burst,
 						"spawn_type": Projectile.ProjectyleType.Ally,
 						"spawn_parameters": {"speed": 100.0},
 						"world_indexes": [0],
@@ -18,7 +15,6 @@ func init(father_worlds: Array) -> void:
 						"sides": [SpawnHandler.Sides.Left],
 					},
 					{
-						"type": ElementType.Burst,
 						"spawn_type": Projectile.ProjectyleType.Ennemy,
 						"spawn_parameters": {"speed": 100.0},
 						"world_indexes": [0, 1],
@@ -30,19 +26,14 @@ func init(father_worlds: Array) -> void:
 				],
 			},
 			{
-				"type": ElementType.Sequence,
 				"subsequence": [],
 			},
 			{
-				"type": ElementType.Sequence,
 				"subsequence": [
 					{
-						"type": ElementType.Sequence,
 						"subsequence": [],
 					},
-					{
-						"type": ElementType.Sequence,
-					}
+					{}
 				],
 			},
 		],
