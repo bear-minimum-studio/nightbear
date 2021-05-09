@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://World/LevelManagement/Resources/SequenceResource.gd" type="Script" id=1]
 [ext_resource path="res://World/LevelManagement/Resources/BurstResource.gd" type="Script" id=2]
+[ext_resource path="res://World/LevelManagement/Resources/BurstEmptyResource.gd" type="Script" id=3]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -17,24 +18,28 @@ right = false
 top = false
 bottom = false
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+next_delay = 10.0
+
+[sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
 spawn_type = 1
 spawn_speed = 10.0
-world_1 = false
-world_2 = false
-spawn_delay = 0.3
+world_1 = true
+world_2 = true
+spawn_delay = 0.5
 next_delay = 1.0
 duration = 5.0
-left = false
-right = false
-top = false
-bottom = false
+left = true
+right = true
+top = true
+bottom = true
 
-[sub_resource type="Resource" id=4]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
-subsequence = [ SubResource( 1 ), SubResource( 3 ) ]
+subsequence = [ SubResource( 1 ), SubResource( 4 ), SubResource( 5 ) ]
 
 [resource]
 script = ExtResource( 1 )
-subsequence = [ SubResource( 4 ) ]
+subsequence = [ SubResource( 3 ) ]

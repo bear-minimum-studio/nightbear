@@ -9,6 +9,7 @@ class_name BurstEmptyResource
 var spawn_type = Projectile.ProjectyleType.Ally
 var spawn_speed = -1
 var spawn_delay = -1
+
 export (float) var next_delay = 1.0
 var duration = -1
 
