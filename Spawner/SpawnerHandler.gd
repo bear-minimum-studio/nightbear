@@ -2,6 +2,8 @@ extends Node2D
 
 class_name SpawnHandler
 
+signal entity_spawned
+
 enum Sides {Left, Top, Right, Bottom}
 
 var world_id := 0
@@ -22,8 +24,8 @@ func initialize(father_world_id: int) -> void:
 func _ready():
 	randomize()
 
-func spawn(spawned_entity: PackedScene, spawn_parameters: Dictionary, sides: Array) -> Node2D:
+func spawn(spawn_type: int, spawn_parameters: Dictionary, sides: Array) -> void:
 	var spawn_side = sides[randi() % sides.size()]
 	var spawner = spawners[spawn_side]
-	var spawned_instance = spawner.spawn(spawned_entity, spawn_parameters)
-	return spawned_instance
+	var spawned_instance = spawner.spawn(spawn_type, spawn_parameters)
+	emit_signal("entity_spawned", spawned_instance)

@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Projectiles/Projectile.gd"
 }, {
+"base": "Node",
+"class": "SequenceElement",
+"language": "GDScript",
+"path": "res://World/LevelManagement/SequenceElement.gd"
+}, {
 "base": "Node2D",
 "class": "SpawnHandler",
 "language": "GDScript",
@@ -62,6 +67,7 @@ _global_script_class_icons={
 "EnemyProjectile": "",
 "Player": "",
 "Projectile": "",
+"SequenceElement": "",
 "SpawnHandler": "",
 "Wall": ""
 }

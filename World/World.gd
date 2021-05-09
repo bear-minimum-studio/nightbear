@@ -18,10 +18,10 @@ func initialize(father_id: int):
 	spawner_handler.initialize(world_id)
 
 func _ready():
-	spawner_handler.connect("enemy_projectile_spawned", self, "_connect_enemy_projectile")
-	spawner_handler.connect("doom_projectile_spawned", self, "_connect_doom_projectile")
-	spawner_handler.connect("allied_projectile_spawned", self, "_connect_ally_projectile")
-
+#	spawner_handler.connect("enemy_projectile_spawned", self, "_connect_enemy_projectile")
+#	spawner_handler.connect("doom_projectile_spawned", self, "_connect_doom_projectile")
+#	spawner_handler.connect("allied_projectile_spawned", self, "_connect_ally_projectile")
+	
 	for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
 		var spawner = spawner_handler.spawners[side]
 		var _unused = spawner.connect("entity_spawned", self, "_on_entity_spawned")

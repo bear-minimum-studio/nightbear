@@ -4,10 +4,10 @@ class_name DoomProjectile
 
 signal hit_wall
 
-var target := Node2D.new()
+var target: Node2D
 
 func initialize(spawn_parameters: Dictionary, father_world_id: int) -> void:
-	.intitialize(spawn_parameters, father_world_id)
+	.initialize(spawn_parameters, father_world_id)
 	target = spawn_parameters.target
 	_update_direction(spawn_parameters.direction)
 
