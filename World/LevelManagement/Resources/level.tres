@@ -7,21 +7,29 @@
 script = ExtResource( 2 )
 spawn_type = 0
 spawn_speed = 10.0
-world_indexes = [ 0 ]
+world_1 = true
+world_2 = false
 spawn_delay = 1.0
 next_delay = 3.0
 duration = 1.0
-sides = [ 0 ]
+left = true
+right = false
+top = false
+bottom = false
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 spawn_type = 1
 spawn_speed = 10.0
-world_indexes = [ 0, 1 ]
+world_1 = true
+world_2 = true
 spawn_delay = 1.0
 next_delay = 1.0
 duration = 3.0
-sides = [ 0 ]
+left = true
+right = true
+top = false
+bottom = false
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
