@@ -59,7 +59,10 @@ func end() -> void:
 		print("Element %s stopped." % id)
 		if father != null:
 			father.end()
-		queue_free()
+		_queue_free()
+
+func _queue_free():
+	queue_free()
 
 func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:

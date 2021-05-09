@@ -5,5 +5,5 @@ var level_description = preload("res://World/LevelManagement/Resources/level.tre
 func init(father_worlds: Array) -> void:
 	initialize("0", level_description, null, father_worlds)
 
-func end() -> void:
-	print("Element %s stopped." % id)
+func _queue_free():
+	pass
