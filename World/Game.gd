@@ -9,7 +9,7 @@ onready var wave_number_text = $WaveNumber
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
 onready var game_end = $GameEnd
-onready var sequence = $TestSequence
+onready var sequence = $SequencePlayer
 onready var death_fx = $DeathFX
 onready var lightning_fx = $LightningFX
 
