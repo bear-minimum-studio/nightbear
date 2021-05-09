@@ -14,29 +14,32 @@ var current_element: SequenceElement
 var father: SequenceElement
 var father_next_called: bool
 
-func initialize(squence_id: String, element_description: Dictionary, father_node: SequenceElement, father_worlds: Array) -> void:
+func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
 	id = squence_id
 	worlds = father_worlds
 	father = father_node
 	father_next_called = (father == null)
 	_set_subsequence(element_description)
 
-func _get_entity_for_element(element_description: Dictionary) -> PackedScene:
-	if element_description.has("spawn_type"):
+func _get_entity_for_element(element_description: Resource) -> PackedScene:
+	if element_description is BurstResource:
 		return burst_entity
 	else:
 		return sequence_element_entity
 
-func _create_element(element_id: String, element_description: Dictionary) -> SequenceElement:
+func _create_element(element_id: String, element_description: Resource) -> SequenceElement:
 	var element: SequenceElement
 	element = _get_entity_for_element(element_description).instance()
 	add_child(element)
 	element.initialize(element_id, element_description, self, worlds)
 	return element
 
-func _set_subsequence(element_description: Dictionary) -> void:
+func _set_subsequence(element_description: Resource) -> void:
+	if not element_description is SequenceResource:
+		return
+
 	subsequence = []
-	if !element_description.has("subsequence") or element_description.subsequence.size() == 0:
+	if element_description.subsequence.size() == 0:
 		nb_elements = -1
 	else:
 		var element_id := 0

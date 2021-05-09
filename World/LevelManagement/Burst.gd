@@ -17,7 +17,7 @@ onready var spawn_timer := $SpawnTimer
 onready var next_timer := $NextTimer
 onready var burst_timer := $BurstTimer
 
-func initialize(squence_id: String, element_description: Dictionary, father_node: SequenceElement, father_worlds: Array) -> void:
+func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
 	.initialize(squence_id, element_description, father_node, father_worlds)
 
 	spawn_type = element_description.spawn_type
