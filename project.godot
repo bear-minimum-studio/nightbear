@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://World/LevelManagement/Burst.gd"
 }, {
 "base": "Resource",
+"class": "BurstEmptyResource",
+"language": "GDScript",
+"path": "res://World/LevelManagement/Resources/BurstEmptyResource.gd"
+}, {
+"base": "Resource",
 "class": "BurstResource",
 "language": "GDScript",
 "path": "res://World/LevelManagement/Resources/BurstResource.gd"
@@ -72,6 +77,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AllyProjectile": "",
 "Burst": "",
+"BurstEmptyResource": "",
 "BurstResource": "",
 "DoomProjectile": "",
 "DreamCatcher": "",
