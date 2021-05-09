@@ -22,7 +22,7 @@ func initialize(squence_id: String, element_description: Resource, father_node: 
 	_set_subsequence(element_description)
 
 func _get_entity_for_element(element_description: Resource) -> PackedScene:
-	if element_description is BurstResource:
+	if not element_description is SequenceResource:
 		return burst_entity
 	else:
 		return sequence_element_entity
