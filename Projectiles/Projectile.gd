@@ -4,6 +4,10 @@ class_name Projectile
 
 enum ProjectyleType {Ally, Ennemy, Doom}
 
+onready var sprite_container = $SpriteContainer
+onready var particles = $Particles
+onready var collision_shape = $CollisionShape2D
+
 ###########
 # PRIVATE #
 ###########
@@ -41,6 +45,13 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
 # Called when the object collides with a body
 func _on_Projectile_body_entered(body: Node2D) -> void:
 	_on_collision(body)
+
+func _die_with_particles():
+	set_physics_process(false)
+	collision_shape.call_deferred("set_disabled", true)
+	sprite_container.visible = false
+	particles.emitting = true
+	# TODO needs to be freed after particles stop emitting, but not trivial
 
 ##########
 # PUBLIC #

@@ -2,8 +2,6 @@ extends "res://Projectiles/Projectile.gd"
 
 class_name DoomProjectile
 
-signal hit_wall
-
 var target: Node2D
 
 func initialize(spawn_parameters: Dictionary, father_world_id: int) -> void:
@@ -22,8 +20,7 @@ func _update_direction(default_direction: Vector2) -> void:
 func _on_collision(body: Node2D) -> void:
 	if (body is Wall):
 		body.hit()
-		emit_signal("hit_wall", self.global_position)
-		_end()
+		_die_with_particles()
 	elif (body is Player):
 		body.hit()
 		_end()

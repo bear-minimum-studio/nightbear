@@ -20,4 +20,4 @@ func _on_collision(body: Node2D) -> void:
 func _dream_caught() -> void:
 	emit_signal("dream_caught", self.global_position)
 	_is_dead = true
-	_end()
+	_die_with_particles()
