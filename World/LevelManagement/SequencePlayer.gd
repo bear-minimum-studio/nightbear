@@ -1,9 +1,9 @@
 extends "res://World/LevelManagement/SequenceElement.gd"
 
-var level_description = preload("res://World/LevelManagement/Resources/level.tres")
+export (Resource) var level
 
 func init(father_worlds: Array) -> void:
-	initialize("0", level_description, null, father_worlds)
+	initialize("0", level, null, father_worlds)
 
 func _queue_free():
 	pass
