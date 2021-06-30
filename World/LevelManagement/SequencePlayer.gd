@@ -7,3 +7,7 @@ func init(father_worlds: Array) -> void:
 
 func _queue_free():
 	pass
+
+func _input(event) -> void:
+	if event.is_action_pressed("next_burst") and OS.is_debug_build():
+		current_element.next()
