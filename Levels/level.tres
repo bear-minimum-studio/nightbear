@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=13 format=2]
+[gd_resource type="Resource" load_steps=30 format=2]
 
 [ext_resource path="res://World/LevelManagement/Resources/BurstResource.gd" type="Script" id=1]
 [ext_resource path="res://World/LevelManagement/Resources/SequenceResource.gd" type="Script" id=2]
@@ -102,14 +102,232 @@ right = true
 top = false
 bottom = true
 
-[sub_resource type="Resource" id=9]
+[sub_resource type="Resource" id=8]
 script = ExtResource( 3 )
 next_delay = 45.0
 
-[sub_resource type="Resource" id=8]
+[sub_resource type="Resource" id=9]
 script = ExtResource( 2 )
-subsequence = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 9 ) ]
+subsequence = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.03
+next_delay = 15.0
+duration = 2.0
+left = false
+right = false
+top = true
+bottom = false
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = true
+world_2 = false
+spawn_delay = 0.02
+next_delay = 5.0
+duration = 1.0
+left = true
+right = false
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 8.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = false
+right = false
+top = true
+bottom = true
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 10.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = false
+right = true
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = false
+world_2 = true
+spawn_delay = 0.02
+next_delay = 5.0
+duration = 1.0
+left = false
+right = true
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 8.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = false
+right = false
+top = true
+bottom = true
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 10.0
+world_1 = true
+world_2 = false
+spawn_delay = 0.0
+next_delay = 10.0
+duration = 1.0
+left = true
+right = false
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 10.0
+world_1 = false
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = false
+right = false
+top = false
+bottom = true
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 11.0
+world_1 = true
+world_2 = false
+spawn_delay = 0.95
+next_delay = 0.0
+duration = 35.0
+left = false
+right = true
+top = true
+bottom = false
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 11.0
+world_1 = false
+world_2 = true
+spawn_delay = 0.95
+next_delay = 0.0
+duration = 35.0
+left = true
+right = false
+top = false
+bottom = true
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.01
+next_delay = 20.0
+duration = 1.0
+left = false
+right = false
+top = false
+bottom = true
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = true
+world_2 = false
+spawn_delay = 0.01
+next_delay = 6.0
+duration = 2.0
+left = false
+right = true
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 10.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = false
+right = false
+top = true
+bottom = true
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 1 )
+spawn_type = 1
+spawn_speed = 12.0
+world_1 = false
+world_2 = true
+spawn_delay = 0.01
+next_delay = 6.0
+duration = 2.0
+left = true
+right = false
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 1 )
+spawn_type = 0
+spawn_speed = 10.0
+world_1 = true
+world_2 = true
+spawn_delay = 0.0
+next_delay = 0.0
+duration = 1.0
+left = true
+right = true
+top = false
+bottom = false
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 3 )
+next_delay = 45.0
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 2 )
+subsequence = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 26 ) ]
 
 [resource]
 script = ExtResource( 2 )
-subsequence = [ SubResource( 8 ) ]
+subsequence = [ SubResource( 9 ), SubResource( 25 ) ]
