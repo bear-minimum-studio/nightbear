@@ -52,7 +52,8 @@ func _set_subsequence(element_description: Resource) -> void:
 
 func _set_current_element(element_index: int) -> void:
 	current_index = element_index
-	current_element = subsequence[current_index]
+	if current_index > -1 and current_index < nb_elements:
+		current_element = subsequence[current_index]
 
 func end() -> void:
 	if element_ended() and father_next_called:
@@ -66,9 +67,11 @@ func _queue_free():
 
 func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
-		current_element.stop()
+		if current_element != null:
+			current_element.stop()
 		_set_current_element(element_index)
-		current_element.start()
+		if current_element != null:
+			current_element.start()
 	else:
 		_father_next()
 		end()

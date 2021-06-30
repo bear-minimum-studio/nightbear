@@ -12,6 +12,7 @@ onready var game_end = $GameEnd
 onready var sequence = $SequencePlayer
 onready var death_fx = $DeathFX
 onready var lightning_fx = $LightningFX
+onready var sequence_player = $SequencePlayer
 
 var dreams_caught = 0
 
@@ -25,6 +26,8 @@ func _ready():
 		world.spawner_handler.connect("entity_spawned", self, "_connect_projectile")
 	
 	sequence.init(worlds)
+	sequence_player.connect("new_subsequence", self, "_new_subsequence")
+	sequence_player.connect("sequence_ended", self, "_sequence_ended")
 	
 	game_over.connect("replay", self, "_replay_game")
 	game_end.connect("replay", self, "_replay_game")
@@ -71,7 +74,7 @@ func _move_player_shade(world_id: int, position: Vector2):
 		if player_shade.world_id != world_id:
 			player_shade.move_shade(position)
 
-func _end_game():
+func _sequence_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
@@ -79,7 +82,7 @@ func _replay_game():
 	get_tree().paused = false
 	var _unused = get_tree().reload_current_scene()
 
-func _new_wave(wave_index: int):
+func _new_subsequence(wave_index: int):
 	wave_number_text.next_wave(wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
