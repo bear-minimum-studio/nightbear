@@ -1,120 +1,120 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://v7d30trnnhbn"]
 
-[ext_resource path="res://Player/bear1.png" type="Texture2D" id=1]
-[ext_resource path="res://Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Player/PlayerSprite.gd" type="Script" id=3]
-[ext_resource path="res://Audio/SFX/Spell/spell_2.wav" type="AudioStream" id=4]
-[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Audio/SFX/Spell/spell_3.wav" type="AudioStream" id=6]
-[ext_resource path="res://Audio/SFX/Spell/spell_1.wav" type="AudioStream" id=7]
+[ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear1.png" id="1"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="2"]
+[ext_resource type="Script" path="res://Player/PlayerSprite.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://bguyk7nhviyo8" path="res://Audio/SFX/Spell/spell_2.wav" id="4"]
+[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="5"]
+[ext_resource type="AudioStream" uid="uid://df4cphf11r7me" path="res://Audio/SFX/Spell/spell_3.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://d21seei5xutcs" path="res://Audio/SFX/Spell/spell_1.wav" id="7"]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 9.59423
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 2.41304
 height = 4.82609
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Cast"
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.4
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 11, 12, 13, 14 ]
+"values": [11, 12, 13, 14]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "Cast"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5n143"]
+_data = {
+"Cast": SubResource("2"),
+"Run": SubResource("3")
+}
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Run"
+[sub_resource type="AnimationNodeAnimation" id="4"]
+animation = &"Cast"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id="6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="7"]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/Cast/node = SubResource( 4 )
-states/Cast/position = Vector2( 268, 90 )
-states/Run/node = SubResource( 5 )
-states/Run/position = Vector2( 116, 98.5 )
-transitions = [ "Run", "Cast", SubResource( 6 ), "Cast", "Run", SubResource( 7 ) ]
-start_node = "Run"
+[sub_resource type="AnimationNodeStateMachine" id="8"]
+states/Cast/node = SubResource("4")
+states/Cast/position = Vector2(268, 90)
+states/Run/node = SubResource("5")
+states/Run/position = Vector2(116, 98.5)
+transitions = ["Run", "Cast", SubResource("6"), "Cast", "Run", SubResource("7")]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="9"]
 
-[node name="Player" type="CharacterBody2D" groups=[
-"player",
-]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2( 0, -15.9547 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
+position = Vector2(0, -15.9547)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1")
 hframes = 11
 vframes = 2
 frame = 14
-script = ExtResource( 3 )
+script = ExtResource("3")
 player_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.64881, -1.76895 )
+position = Vector2(-1.64881, -1.76895)
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="BuildTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cast = SubResource( 2 )
-anims/Run = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 8 )
+tree_root = SubResource("8")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource("9")
 
-[node name="SpellFX" parent="." instance=ExtResource( 5 )]
+[node name="SpellFX" parent="." instance=ExtResource("5")]
 
 [node name="SpellFX1" type="AudioStreamPlayer" parent="SpellFX"]
-stream = ExtResource( 7 )
+stream = ExtResource("7")
 volume_db = -17.165
-bus = "SFX"
 
 [node name="SpellFX2" type="AudioStreamPlayer" parent="SpellFX"]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -19.184
-bus = "SFX"
 
 [node name="SpellFX3" type="AudioStreamPlayer" parent="SpellFX"]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = -18.175
-bus = "SFX"
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]
