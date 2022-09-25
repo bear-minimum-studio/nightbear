@@ -13,12 +13,14 @@ var nb_elements: int
 var current_element: SequenceElement
 var father: SequenceElement
 var father_next_called: bool
+var element_started: bool
 
 func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
 	id = squence_id
 	worlds = father_worlds
 	father = father_node
 	father_next_called = (father == null)
+	element_started = false
 	_set_subsequence(element_description)
 
 func _get_entity_for_element(element_description: Resource) -> PackedScene:
@@ -86,13 +88,14 @@ func element_ended() -> bool:
 	for sub_element in subsequence:
 		if is_instance_valid(sub_element):
 			all_sub_elements_ended = all_sub_elements_ended and sub_element.element_ended()
-	return all_sub_elements_ended
+	return element_started and all_sub_elements_ended
 
 func next() -> void:
 	play(current_index + 1)
 
 func start() -> void:
 	print("Element %s started." % id)
+	element_started = true
 	play(0)
 
 func stop() -> void:

@@ -17,8 +17,9 @@ func _input(event) -> void:
 			current_element.next()
 
 func end() -> void:
-	emit_signal("sequence_ended")
-	.end()
+	if(element_ended()):
+		emit_signal("sequence_ended")
+		.end()
 
 func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
