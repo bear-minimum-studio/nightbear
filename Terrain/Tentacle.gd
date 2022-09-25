@@ -7,4 +7,4 @@ var size = 0
 
 func grow():
 	size = min(size+1, 3)
-	animation_player.play("Wave0"+String(size))
+	animation_player.play("Wave0"+str(size))

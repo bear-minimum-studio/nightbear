@@ -2,8 +2,8 @@ extends Node
 
 class_name SequenceElement
 
-var sequence_element_entity = load("res://World3D/LevelManagement/SequenceElement.tscn")
-var burst_entity = load("res://World3D/LevelManagement/Burst.tscn")
+var sequence_element_entity = load("res://World/LevelManagement/SequenceElement.tscn")
+var burst_entity = load("res://World/LevelManagement/Burst.tscn")
 
 var id: String
 var worlds: Array

@@ -1,331 +1,318 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://byaxr160suuwk"]
 
-[ext_resource path="res://UI/Intro/splash2.png" type="Texture2D" id=1]
-[ext_resource path="res://UI/Intro/Intro.gd" type="Script" id=2]
-[ext_resource path="res://UI/DialogIterator.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/FontBodySmaller.tres" type="FontFile" id=4]
-[ext_resource path="res://Obstacles/dream_catcher.png" type="Texture2D" id=5]
-[ext_resource path="res://Player/bear1.png" type="Texture2D" id=6]
-[ext_resource path="res://Projectiles/ProjectilesTypes/projectile_good_2.png" type="Texture2D" id=7]
-[ext_resource path="res://Obstacles/shield.png" type="Texture2D" id=8]
-[ext_resource path="res://Player/paw1.png" type="Texture2D" id=9]
-[ext_resource path="res://Player/bear2.png" type="Texture2D" id=10]
-[ext_resource path="res://Projectiles/ProjectilesTypes/projectile_bad.png" type="Texture2D" id=11]
-[ext_resource path="res://UI/FontBody.tres" type="FontFile" id=12]
+[ext_resource type="Texture2D" uid="uid://bkxkmd52j8wli" path="res://UI/Intro/splash2.png" id="1"]
+[ext_resource type="Script" path="res://UI/Intro/Intro.gd" id="2"]
+[ext_resource type="PackedScene" path="res://UI/DialogIterator.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://cdjgfcu5g53dl" path="res://Obstacles/dream_catcher.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://binip3hdnpppp" path="res://Projectiles/ProjectilesTypes/projectile_good_2.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cdmlaw5nmwv6h" path="res://Obstacles/shield.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ena704ofwry5" path="res://Player/paw1.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://ba8m7x374mq8q" path="res://Player/bear2.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://8c73qhnhnn85" path="res://Projectiles/ProjectilesTypes/projectile_bad.png" id="11"]
 
 [node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
 
-[node name="DialogIterator" parent="." instance=ExtResource( 3 )]
+[node name="DialogIterator" parent="." instance=ExtResource("3")]
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Splash" type="TextureRect" parent="DialogIterator"]
-visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -561.5
+offset_top = -316.0
+offset_right = 561.5
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1")
 
 [node name="Tuto1" type="Control" parent="DialogIterator"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.941772
 offset_right = 0.941772
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="DialogIterator/Tuto1"]
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 247.0
-custom_fonts/font = ExtResource( 12 )
+grow_horizontal = 2
 text = "Catch the dreams!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto1"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = -5.65039
 offset_top = -31.0769
 offset_right = 34.3496
 offset_bottom = 8.92313
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration1"]
-position = Vector2( 800.836, 342.001 )
-texture = ExtResource( 6 )
+position = Vector2(800.836, 342.001)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="Illustration2" type="Control" parent="DialogIterator/Tuto1"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = -5.65039
 offset_top = -31.0769
 offset_right = 34.3496
 offset_bottom = 8.92313
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="dream_catcher" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration2"]
-position = Vector2( 721.415, 479.213 )
-scale = Vector2( 1.2, 1.2 )
-texture = ExtResource( 5 )
+position = Vector2(721.415, 479.213)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5")
 
 [node name="projectile_good_2" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration2"]
-position = Vector2( 498.559, 483.429 )
-texture = ExtResource( 7 )
+position = Vector2(498.559, 483.429)
+texture = ExtResource("7")
 hframes = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration2"]
-position = Vector2( 800.836, 477.169 )
-texture = ExtResource( 6 )
+position = Vector2(800.836, 477.169)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 frame = 3
 
 [node name="Illustration3" type="Control" parent="DialogIterator/Tuto1"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = -5.65039
 offset_top = 104.531
 offset_right = 34.3496
 offset_bottom = 144.531
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="dream_catcher" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration3"]
-position = Vector2( 721.415, 479.213 )
-scale = Vector2( 1.2, 1.2 )
-texture = ExtResource( 5 )
+position = Vector2(721.415, 479.213)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5")
 
 [node name="projectile_good_2" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration3"]
-position = Vector2( 629.459, 483.429 )
-texture = ExtResource( 7 )
+position = Vector2(629.459, 483.429)
+texture = ExtResource("7")
 hframes = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="DialogIterator/Tuto1/Illustration3"]
-position = Vector2( 800.836, 477.169 )
-texture = ExtResource( 6 )
+position = Vector2(800.836, 477.169)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="Tuto2" type="Control" parent="DialogIterator"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.941772
 offset_right = 0.941772
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="DialogIterator/Tuto2"]
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 247.0
-custom_fonts/font = ExtResource( 12 )
+grow_horizontal = 2
 text = "Beware of the nightmares..."
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto2"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 634.721
 offset_top = 293.818
 offset_right = 674.721
 offset_bottom = 333.818
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="projectile_bad" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration1"]
-position = Vector2( -187.059, 16.1974 )
-texture = ExtResource( 11 )
+position = Vector2(-187.059, 16.1974)
+texture = ExtResource("11")
 hframes = 10
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration1"]
-position = Vector2( 193.425, 10.5145 )
-texture = ExtResource( 6 )
+position = Vector2(193.425, 10.5145)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="Illustration2" type="Control" parent="DialogIterator/Tuto2"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 634.721
 offset_top = 458.619
 offset_right = 674.721
 offset_bottom = 498.619
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="projectile_bad" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration2"]
-position = Vector2( 13.5284, 16.1974 )
-texture = ExtResource( 11 )
+position = Vector2(13.5284, 16.1974)
+texture = ExtResource("11")
 hframes = 10
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration2"]
-position = Vector2( 313.024, 10.5145 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 6 )
+position = Vector2(313.024, 10.5145)
+scale = Vector2(-1, 1)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="Illustration3" type="Control" parent="DialogIterator/Tuto2"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 634.721
 offset_top = 619.654
 offset_right = 674.721
 offset_bottom = 659.654
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="projectile_bad" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration3"]
-position = Vector2( 280.978, 16.1974 )
-texture = ExtResource( 11 )
+position = Vector2(280.978, 16.1974)
+texture = ExtResource("11")
 hframes = 10
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto2/Illustration3"]
-position = Vector2( 448.632, 10.5145 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 6 )
+position = Vector2(448.632, 10.5145)
+scale = Vector2(-1, 1)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="Tuto3" type="Control" parent="DialogIterator"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.94177
 offset_right = 1.94177
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="DialogIterator/Tuto3"]
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = 48.9232
 offset_bottom = 135.923
-custom_fonts/font = ExtResource( 12 )
+grow_horizontal = 2
 text = "Protect your friend!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="DialogIterator/Tuto3"]
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = 119.552
 offset_bottom = 206.552
-custom_fonts/font = ExtResource( 4 )
+grow_horizontal = 2
 text = "Only you can..."
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto3"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 784.455
 offset_top = 260.857
 offset_right = 824.455
 offset_bottom = 300.857
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="projectile_bad2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration1"]
-position = Vector2( -658.92, 33.1485 )
-texture = ExtResource( 11 )
+position = Vector2(-658.92, 33.1485)
+texture = ExtResource("11")
 hframes = 10
 
 [node name="bear2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration1"]
-position = Vector2( -223.844, 29.0049 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 10 )
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("10")
 hframes = 11
 vframes = 2
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration1"]
-position = Vector2( 244.278, 31.2324 )
-texture = ExtResource( 6 )
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 frame = 3
 
 [node name="paw1" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration1"]
-position = Vector2( -415.956, 32.7718 )
-scale = Vector2( 1.43858, 1.43858 )
-texture = ExtResource( 9 )
+position = Vector2(-415.956, 32.7718)
+scale = Vector2(1.43858, 1.43858)
+texture = ExtResource("9")
 
 [node name="Illustration2" type="Control" parent="DialogIterator/Tuto3"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 784.455
 offset_top = 425.659
 offset_right = 824.455
 offset_bottom = 465.659
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="projectile_bad2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration2"]
-position = Vector2( -506.361, 33.1485 )
-texture = ExtResource( 11 )
+position = Vector2(-506.361, 33.1485)
+texture = ExtResource("11")
 hframes = 10
 
 [node name="bear2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration2"]
-position = Vector2( -223.844, 29.0049 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 10 )
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("10")
 hframes = 11
 vframes = 2
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration2"]
-position = Vector2( 244.278, 31.2324 )
-texture = ExtResource( 6 )
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="shield" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration2"]
-position = Vector2( -415.014, 11.1121 )
-scale = Vector2( 1.53125, 1.53125 )
-texture = ExtResource( 8 )
+position = Vector2(-415.014, 11.1121)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("8")
 
 [node name="Illustration3" type="Control" parent="DialogIterator/Tuto3"]
+layout_mode = 1
+anchors_preset = 0
 offset_left = 784.455
 offset_top = 587.635
 offset_right = 824.455
 offset_bottom = 627.635
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="bear2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration3"]
-position = Vector2( -223.844, 29.0049 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 10 )
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("10")
 hframes = 11
 vframes = 2
 
 [node name="Sprite2" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration3"]
-position = Vector2( 244.278, 31.2324 )
-texture = ExtResource( 6 )
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("6")
 hframes = 11
 vframes = 2
 
 [node name="shield" type="Sprite2D" parent="DialogIterator/Tuto3/Illustration3"]
-position = Vector2( -415.014, 11.1121 )
-scale = Vector2( 1.53125, 1.53125 )
-texture = ExtResource( 8 )
+position = Vector2(-415.014, 11.1121)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("8")

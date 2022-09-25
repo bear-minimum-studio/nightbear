@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/dreamcatcher_catch_2.wav-b13aeb86d2423fe28473e1cf33fcdb2f.sample"
+type="AudioStreamWAV"
+uid="uid://3l3e8nv5gttf"
+path="res://.godot/imported/dreamcatcher_catch_2.wav-b13aeb86d2423fe28473e1cf33fcdb2f.sample"
 
 [deps]
 
 source_file="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_2.wav"
-dest_files=[ "res://.import/dreamcatcher_catch_2.wav-b13aeb86d2423fe28473e1cf33fcdb2f.sample" ]
+dest_files=["res://.godot/imported/dreamcatcher_catch_2.wav-b13aeb86d2423fe28473e1cf33fcdb2f.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

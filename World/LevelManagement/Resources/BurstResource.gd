@@ -2,17 +2,17 @@ extends Resource
 
 class_name BurstResource
 
-@export (Projectile.ProjectyleType) var spawn_type = Projectile.ProjectyleType.Ally
-@export (float) var spawn_speed = 10.0
-@export (bool) var world_1 = false
-@export (bool) var world_2 = false
-@export (float) var spawn_delay = 1.0
-@export (float) var next_delay = 1.0
-@export (float) var duration = 1.0
-@export (bool) var left = false
-@export (bool) var right = false
-@export (bool) var top = false
-@export (bool) var bottom = false
+@export var spawn_type: Projectile.ProjectyleType = Projectile.ProjectyleType.Ally
+@export var spawn_speed := 10.0
+@export var world_1 := false
+@export var world_2 := false
+@export var spawn_delay := 1.0
+@export var next_delay := 1.0
+@export var duration := 1.0
+@export var left := false
+@export var right := false
+@export var top := false
+@export var bottom := false
 
 var world_indexes = [] :
 	get:

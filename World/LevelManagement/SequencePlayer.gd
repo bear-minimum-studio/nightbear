@@ -1,9 +1,9 @@
-extends "res://World3D/LevelManagement/SequenceElement.gd"
+extends "res://World/LevelManagement/SequenceElement.gd"
 
 signal new_subsequence
 signal sequence_ended
 
-@export (Resource) var level
+@export var level: Resource
 
 func init(father_worlds: Array) -> void:
 	initialize("0", level, null, father_worlds)

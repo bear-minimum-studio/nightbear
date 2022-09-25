@@ -1,81 +1,72 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://y231bdkdnpu3"]
 
-[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=1]
-[ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
-[ext_resource path="res://World3D/View/ViewportContainer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://World3D/LevelManagement/SequencePlayer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://World3D/Game.gd" type="Script" id=5]
-[ext_resource path="res://Audio/SFX/Death/death_2.wav" type="AudioStream" id=6]
-[ext_resource path="res://UI/GameEnd.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UI/WaveNumber.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Audio/SFX/Lightning/lightning_1.wav" type="AudioStream" id=9]
-[ext_resource path="res://Audio/SFX/Lightning/lightning_2.wav" type="AudioStream" id=10]
-
-[sub_resource type="FontFile" id=1]
-font_path = "res://UI/dpcomic.ttf"
-
-[sub_resource type="FontFile" id=2]
-size = 32
-font_data = SubResource( 1 )
+[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://UI/GameOver.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://World/View/ViewportContainer.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://World/LevelManagement/SequencePlayer.tscn" id="4"]
+[ext_resource type="Script" path="res://World/Game.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://b64yscmb1ae6h" path="res://Audio/SFX/Death/death_2.wav" id="6"]
+[ext_resource type="PackedScene" uid="uid://djl03abvohd5o" path="res://UI/GameEnd.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://UI/WaveNumber.tscn" id="8"]
+[ext_resource type="AudioStream" uid="uid://dfyljd6u8tlwi" path="res://Audio/SFX/Lightning/lightning_1.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://dprgwe2yu1us4" path="res://Audio/SFX/Lightning/lightning_2.wav" id="10"]
 
 [node name="Game" type="Node"]
-script = ExtResource( 5 )
-viewport_container_paths = [ NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2") ]
+script = ExtResource("5")
+viewport_container_paths = [NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2")]
 
 [node name="Viewports" type="HBoxContainer" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="ViewportContainer1" parent="Viewports" instance=ExtResource( 3 )]
-offset_right = 638.0
-offset_bottom = 720.0
+[node name="ViewportContainer1" parent="Viewports" instance=ExtResource("3")]
+layout_mode = 2
+offset_right = 574.0
+offset_bottom = 648.0
 
-[node name="ViewportContainer2" parent="Viewports" instance=ExtResource( 3 )]
-offset_left = 642.0
-offset_right = 1280.0
-offset_bottom = 720.0
+[node name="ViewportContainer2" parent="Viewports" instance=ExtResource("3")]
+layout_mode = 2
+offset_left = 578.0
+offset_right = 1152.0
+offset_bottom = 648.0
 world_id = 1
 
 [node name="DreamCaughtText" type="Label" parent="."]
 visible = false
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = 32.0
 offset_bottom = 32.0
-custom_fonts/font = SubResource( 2 )
 text = "0 dream caught"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="WaveNumber" parent="." instance=ExtResource( 8 )]
+[node name="WaveNumber" parent="." instance=ExtResource("8")]
+anchors_preset = 10
 
-[node name="GameOver" parent="." instance=ExtResource( 2 )]
+[node name="GameOver" parent="." instance=ExtResource("2")]
+layout_mode = 3
+anchors_preset = 15
 
-[node name="GameEnd" parent="." instance=ExtResource( 7 )]
+[node name="GameEnd" parent="." instance=ExtResource("7")]
+layout_mode = 3
+anchors_preset = 15
 
-[node name="SequencePlayer" parent="." instance=ExtResource( 4 )]
+[node name="SequencePlayer" parent="." instance=ExtResource("4")]
 
-[node name="DeathFX" parent="." instance=ExtResource( 1 )]
+[node name="DeathFX" parent="." instance=ExtResource("1")]
 process_mode = 2
 
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = -14.135
-bus = "Game Over"
 
-[node name="LightningFX" parent="." instance=ExtResource( 1 )]
+[node name="LightningFX" parent="." instance=ExtResource("1")]
 
 [node name="LightningFX1" type="AudioStreamPlayer" parent="LightningFX"]
-stream = ExtResource( 9 )
+stream = ExtResource("9")
 volume_db = -9.087
-bus = "SFX"
 
 [node name="LightningFX2" type="AudioStreamPlayer" parent="LightningFX"]
-stream = ExtResource( 10 )
+stream = ExtResource("10")
 volume_db = -8.078
-bus = "SFX"

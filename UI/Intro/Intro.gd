@@ -1,6 +1,6 @@
 extends Control
 
-var Game = preload("res://World3D/Game.tscn")
+var Game = load("res://World/Game.tscn")
 
 @onready var dialog_iterator = $DialogIterator
 

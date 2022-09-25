@@ -1,11 +1,12 @@
 @tool
 extends Control
 
-@export (int) var current_step = 0 :
+@export var current_step := 0 :
 	get:
-		return current_step # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of _set_current_step
+		return current_step
+	set(new_current_step):
+		current_step = new_current_step
+		print_screen(current_step)
 
 signal end
 
@@ -45,10 +46,6 @@ func _input(event):
 			emit_signal("end")
 		else:
 			print_screen(current_step)
-
-func _set_current_step(new_current_step):
-	current_step = new_current_step
-	print_screen(current_step)
 
 func _ready():
 	hide()

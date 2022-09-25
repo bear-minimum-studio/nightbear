@@ -1,8 +1,8 @@
 extends Node
 
 # Game parameters :
-const GAME_WALL = preload("res://Obstacles/Wall.tscn")
-const GAME_DREAM_CATCHER = preload("res://Obstacles/DreamCatcher.tscn")
+var GAME_WALL = load("res://Obstacles/Wall.tscn")
+var GAME_DREAM_CATCHER = load("res://Obstacles/DreamCatcher.tscn")
 
 # Player parameters :
 

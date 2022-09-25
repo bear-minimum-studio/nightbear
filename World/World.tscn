@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Spawner/SpawnerHandler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/PlayerShade.tscn" type="PackedScene" id=4]
-[ext_resource path="res://World3D/World.gd" type="Script" id=5]
+[ext_resource path="res://World/World.gd" type="Script" id=5]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -200,7 +200,7 @@ points = PackedVector2Array( 0, 0, 128, 0, 128, 64, 0, 64 )
 } ]
 0/z_index = 0
 
-[node name="World3D" type="Node2D"]
+[node name="World" type="Node2D"]
 material = SubResource( 2 )
 script = ExtResource( 5 )
 

@@ -1,9 +1,9 @@
 extends SubViewportContainer
 
-@export (int) var world_id = 0
+@export var world_id := 0
 
-@export (NodePath) var camera_path
-@export (NodePath) var world_path
+@export var camera_path: NodePath
+@export var world_path: NodePath
 
 @onready var camera = get_node(camera_path)
 @onready var world = get_node(world_path)

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shield_hit_2.wav-53cb270a337915e63f57f7909f176b07.sample"
+type="AudioStreamWAV"
+uid="uid://5mky1f4330fx"
+path="res://.godot/imported/shield_hit_2.wav-53cb270a337915e63f57f7909f176b07.sample"
 
 [deps]
 
 source_file="res://Audio/SFX/ShieldHit/shield_hit_2.wav"
-dest_files=[ "res://.import/shield_hit_2.wav-53cb270a337915e63f57f7909f176b07.sample" ]
+dest_files=["res://.godot/imported/shield_hit_2.wav-53cb270a337915e63f57f7909f176b07.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

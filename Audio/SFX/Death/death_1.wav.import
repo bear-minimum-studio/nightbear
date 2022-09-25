@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/death_1.wav-26852fffb0ae487994934414a122ffe5.sample"
+type="AudioStreamWAV"
+uid="uid://cjd4ur8a83qf3"
+path="res://.godot/imported/death_1.wav-26852fffb0ae487994934414a122ffe5.sample"
 
 [deps]
 
 source_file="res://Audio/SFX/Death/death_1.wav"
-dest_files=[ "res://.import/death_1.wav-26852fffb0ae487994934414a122ffe5.sample" ]
+dest_files=["res://.godot/imported/death_1.wav-26852fffb0ae487994934414a122ffe5.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

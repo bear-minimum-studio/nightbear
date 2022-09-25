@@ -1,6 +1,6 @@
 extends Node
 
-@export (Array, NodePath) var viewport_container_paths
+@export var viewport_container_paths: Array[NodePath]
 
 var viewport_containers = []
 var worlds = []

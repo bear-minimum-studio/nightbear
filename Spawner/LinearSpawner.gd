@@ -2,9 +2,9 @@ extends Path2D
 
 signal entity_spawned
 
-@export (PackedScene) var ally_projectile
-@export (PackedScene) var ennemy_projectile
-@export (PackedScene) var doom_projectile
+@export var ally_projectile: PackedScene
+@export var ennemy_projectile: PackedScene
+@export var doom_projectile: PackedScene
 
 var spawn_direction: Vector2
 var world_id: int

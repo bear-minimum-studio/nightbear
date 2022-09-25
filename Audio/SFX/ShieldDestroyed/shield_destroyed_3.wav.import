@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shield_destroyed_3.wav-39c5a92287e367c0b5365471bb37bf4b.sample"
+type="AudioStreamWAV"
+uid="uid://c3jdj41j37vjb"
+path="res://.godot/imported/shield_destroyed_3.wav-39c5a92287e367c0b5365471bb37bf4b.sample"
 
 [deps]
 
 source_file="res://Audio/SFX/ShieldDestroyed/shield_destroyed_3.wav"
-dest_files=[ "res://.import/shield_destroyed_3.wav-39c5a92287e367c0b5365471bb37bf4b.sample" ]
+dest_files=["res://.godot/imported/shield_destroyed_3.wav-39c5a92287e367c0b5365471bb37bf4b.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

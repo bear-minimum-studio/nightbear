@@ -12,9 +12,9 @@ signal player_moved
 @onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 @onready var spell_fx = $SpellFX
 
-@export (bool) var is_immortal = false
+@export var is_immortal := false
 
-var velocity := Vector2.ZERO
+var player_velocity := Vector2.ZERO
 var world_id := 0
 var ready_to_build := false
 
@@ -28,15 +28,15 @@ func _physics_process(_delta):
 	input_vector.y = Input.get_action_strength("P%d_walk_down" % world_id) - Input.get_action_strength("P%d_walk_up" % world_id)
  
 	if input_vector.length() > 1:
-	   input_vector = input_vector.normalized()
+		input_vector = input_vector.normalized()
 	
-	velocity = Parameters.PLAYER_WALK_SPEED * input_vector
-	set_velocity(velocity)
+	player_velocity = Parameters.PLAYER_WALK_SPEED * input_vector
+	set_velocity(player_velocity)
 	move_and_slide()
-	velocity = velocity
+	player_velocity = player_velocity
 	
-	if abs(velocity.x) > 5:
-		sprite.set_orientation(velocity.x)
+	if abs(player_velocity.x) > 5:
+		sprite.set_orientation(player_velocity.x)
 	
 	# Might have a performance impact
 	# Make this a direct function call the day it becomes a problem
