@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/View/ViewportContainer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://World/LevelManagement/LevelHandler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/LevelManagement/SequencePlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World/Game.gd" type="Script" id=5]
 [ext_resource path="res://Audio/SFX/Death/death_2.wav" type="AudioStream" id=6]
 [ext_resource path="res://UI/GameEnd.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/WaveNumber.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Audio/SFX/Lightning/lightning_1.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/Lightning/lightning_2.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://UI/dpcomic.ttf"
@@ -56,7 +58,7 @@ __meta__ = {
 
 [node name="GameEnd" parent="." instance=ExtResource( 7 )]
 
-[node name="LevelHandler" parent="." instance=ExtResource( 4 )]
+[node name="SequencePlayer" parent="." instance=ExtResource( 4 )]
 
 [node name="DeathFX" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
@@ -65,3 +67,15 @@ pause_mode = 2
 stream = ExtResource( 6 )
 volume_db = -14.135
 bus = "Game Over"
+
+[node name="LightningFX" parent="." instance=ExtResource( 1 )]
+
+[node name="LightningFX1" type="AudioStreamPlayer" parent="LightningFX"]
+stream = ExtResource( 9 )
+volume_db = -9.087
+bus = "SFX"
+
+[node name="LightningFX2" type="AudioStreamPlayer" parent="LightningFX"]
+stream = ExtResource( 10 )
+volume_db = -8.078
+bus = "SFX"

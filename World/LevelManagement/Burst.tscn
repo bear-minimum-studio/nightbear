@@ -5,10 +5,14 @@
 [node name="Burst" type="Node"]
 script = ExtResource( 1 )
 
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="NextTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="BurstTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="SpawnTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="BurstTimer" to="." method="_on_BurstTimer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="NextTimer" to="." method="_on_NextTimer_timeout"]
+[connection signal="timeout" from="BurstTimer" to="." method="_on_BurstTimer_timeout"]

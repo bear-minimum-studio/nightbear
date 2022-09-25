@@ -4,14 +4,15 @@ export (Array, NodePath) var viewport_container_paths
 
 var viewport_containers = []
 var worlds = []
-var doom_projectile = preload("res://Projectiles/ProjectilesTypes/DoomProjectile.tscn")
 
 onready var wave_number_text = $WaveNumber
 onready var dream_caught_text = $DreamCaughtText
 onready var game_over = $GameOver
 onready var game_end = $GameEnd
-onready var level_handler = $LevelHandler
+onready var sequence = $SequencePlayer
 onready var death_fx = $DeathFX
+onready var lightning_fx = $LightningFX
+onready var sequence_player = $SequencePlayer
 
 var dreams_caught = 0
 
@@ -22,8 +23,11 @@ func _ready():
 		
 		viewport_containers.push_back(viewport_container)
 		worlds.push_back(world)
+		world.spawner_handler.connect("entity_spawned", self, "_connect_projectile")
 	
-	level_handler.initialize(worlds, viewport_containers)
+	sequence.init(worlds)
+	sequence_player.connect("new_subsequence", self, "_new_subsequence")
+	sequence_player.connect("sequence_ended", self, "_sequence_ended")
 	
 	game_over.connect("replay", self, "_replay_game")
 	game_end.connect("replay", self, "_replay_game")
@@ -35,11 +39,8 @@ func _ready():
 		player.connect("player_dead", self, "_player_dead")
 		player.connect("player_moved", self, "_move_player_shade")
 	
-	level_handler.connect("next_wave", self, "_new_wave")
-	level_handler.connect("level_end", self, "_end_game")
-	
 	MusicPlayer.next()
-	level_handler.start()
+	sequence.start()
 
 func _build(world_id: int, t:Transform2D):
 	var new_wall = Parameters.GAME_WALL.instance()
@@ -50,9 +51,10 @@ func _build(world_id: int, t:Transform2D):
 	worlds[1 - world_id].add_child(new_wall)
 	worlds[world_id].add_child(new_dream_catcher)
 
-func _connect_allied_projectile(spawned_instance: AllyProjectile):
-	var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
-	var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
+func _connect_projectile(spawned_instance: Projectile):
+	if spawned_instance is AllyProjectile:
+		var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
+		var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
 
 func _dream_caught(_position: Vector2):
 	dreams_caught += 1
@@ -62,7 +64,7 @@ func _dream_caught(_position: Vector2):
 func _player_dead(world_id):
 	print("Player %d is dead !" % world_id)
 	death_fx.play()
-	var wave_index = level_handler.wave_index
+	var wave_index = sequence.current_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
@@ -72,7 +74,7 @@ func _move_player_shade(world_id: int, position: Vector2):
 		if player_shade.world_id != world_id:
 			player_shade.move_shade(position)
 
-func _end_game():
+func _sequence_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
@@ -80,8 +82,17 @@ func _replay_game():
 	get_tree().paused = false
 	var _unused = get_tree().reload_current_scene()
 
-func _new_wave(wave_index: int):
+func _new_subsequence(wave_index: int):
 	wave_number_text.next_wave(wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
 		tentacle.grow()
+
+func _on_missed_ally_projectile(world_id):
+	var other_world_id = 1 - world_id
+	var world = worlds[other_world_id]
+	var spawner_handler = world.spawner_handler
+	viewport_containers[other_world_id].camera.start_flash(0.25, 0.3)
+	lightning_fx.play()
+	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
+	spawner_handler.spawn(Projectile.ProjectyleType.Doom, {"speed": 30.0, "target": world.player}, sides)

@@ -2,13 +2,10 @@ extends "res://Projectiles/Projectile.gd"
 
 class_name EnemyProjectile
 
-signal hit_wall
-
-func _on_collision(body):
+func _on_collision(body: Node2D)  -> void:
 	if (body is Wall):
 		body.hit()
-		emit_signal("hit_wall", self.global_position)
-		_end()
+		_die_with_particles()
 	elif (body is Player):
 		body.hit()
 		_end()

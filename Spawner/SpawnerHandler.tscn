@@ -14,14 +14,11 @@ position = Vector2( -250, 0 )
 [node name="LinearSpawnerTop" parent="SpawnerContainer" instance=ExtResource( 2 )]
 position = Vector2( 0, -250 )
 rotation = 1.5708
-spawn_direction = Vector2( 0, 1 )
 
 [node name="LinearSpawnerRight" parent="SpawnerContainer" instance=ExtResource( 2 )]
 position = Vector2( 250, 0 )
 rotation = -3.14159
-spawn_direction = Vector2( -1, 0 )
 
 [node name="LinearSpawnerBottom" parent="SpawnerContainer" instance=ExtResource( 2 )]
 position = Vector2( 0, 250 )
 rotation = -1.5708
-spawn_direction = Vector2( 0, -1 )
