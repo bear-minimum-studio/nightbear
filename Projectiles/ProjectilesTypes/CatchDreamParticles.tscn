@@ -1,27 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://6jbd4athkrx"]
 
-[ext_resource path="res://Projectiles/ProjectilesTypes/good_particles.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://dx4wpwbeiwgf5" path="res://Projectiles/ProjectilesTypes/good_particles.png" id="1"]
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
+[sub_resource type="CurveTexture" id="2"]
+curve = SubResource("1")
 
-[sub_resource type="ParticleProcessMaterial" id=3]
-flag_disable_z = true
+[sub_resource type="ParticleProcessMaterial" id="3"]
 spread = 180.0
-gravity = Vector3( 0, 30, 0 )
-initial_velocity = 47.14
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.2
-scale_curve = SubResource( 2 )
+gravity = Vector3(0, 30, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("2")
 
 [node name="CatchDreamParticles" type="GPUParticles2D"]
 emitting = false
 amount = 10
 one_shot = true
 explosiveness = 0.73
-process_material = SubResource( 3 )
-texture = ExtResource( 1 )
+process_material = SubResource("3")
+texture = ExtResource("1")
