@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cfqt4bojki2db"]
+
+[ext_resource type="FontFile" uid="uid://drvrypbv8p71j" path="res://UI/FontBody.tres" id="1_kcpf5"]
+
+[resource]
+font = ExtResource("1_kcpf5")
+font_size = 62
+outline_size = 14
+outline_color = Color(0.45098, 0.619608, 0.576471, 1)
+shadow_size = 0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://byaxr160suuwk"]
+[gd_scene load_steps=12 format=3 uid="uid://byaxr160suuwk"]
 
 [ext_resource type="Texture2D" uid="uid://bkxkmd52j8wli" path="res://UI/Intro/splash2.png" id="1"]
 [ext_resource type="Script" path="res://UI/Intro/Intro.gd" id="2"]
 [ext_resource type="PackedScene" path="res://UI/DialogIterator.tscn" id="3"]
+[ext_resource type="LabelSettings" uid="uid://cfqt4bojki2db" path="res://UI/Intro/intro_font_settings.tres" id="4_g5q7s"]
 [ext_resource type="Texture2D" uid="uid://cdjgfcu5g53dl" path="res://Obstacles/dream_catcher.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear1.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://binip3hdnpppp" path="res://Projectiles/ProjectilesTypes/projectile_good_2.png" id="7"]
@@ -54,6 +55,9 @@ anchor_right = 1.0
 offset_bottom = 247.0
 grow_horizontal = 2
 text = "Catch the dreams!"
+label_settings = ExtResource("4_g5q7s")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto1"]
 layout_mode = 1
@@ -136,6 +140,9 @@ anchor_right = 1.0
 offset_bottom = 247.0
 grow_horizontal = 2
 text = "Beware of the nightmares..."
+label_settings = ExtResource("4_g5q7s")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto2"]
 layout_mode = 1
@@ -215,6 +222,9 @@ offset_top = 48.9232
 offset_bottom = 135.923
 grow_horizontal = 2
 text = "Protect your friend!"
+label_settings = ExtResource("4_g5q7s")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="DialogIterator/Tuto3"]
 layout_mode = 1
@@ -224,6 +234,9 @@ offset_top = 119.552
 offset_bottom = 206.552
 grow_horizontal = 2
 text = "Only you can..."
+label_settings = ExtResource("4_g5q7s")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Illustration1" type="Control" parent="DialogIterator/Tuto3"]
 layout_mode = 1
