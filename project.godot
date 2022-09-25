@@ -108,6 +108,9 @@ MusicPlayer="*res://Audio/Soundtrack/MusicPlayer.tscn"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
 window/size/width=1280
 window/size/height=720
 
@@ -237,6 +240,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.113725, 0.121569, 0.12549, 1)
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
