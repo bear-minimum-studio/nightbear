@@ -1,24 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://ntuuq14lawh6"]
 
-[ext_resource path="res://Spawner/SpawnerHandler.gd" type="Script" id=1]
-[ext_resource path="res://Spawner/LinearSpawner.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://Spawner/SpawnerHandler.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dcni3osbf34ea" path="res://Spawner/LinearSpawner.tscn" id="2"]
 
 [node name="SpawnerHandler" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="SpawnerContainer" type="Node2D" parent="."]
 
-[node name="LinearSpawnerLeft" parent="SpawnerContainer" instance=ExtResource( 2 )]
-position = Vector2( -250, 0 )
+[node name="LinearSpawnerLeft" parent="SpawnerContainer" instance=ExtResource("2")]
+position = Vector2(-250, 0)
 
-[node name="LinearSpawnerTop" parent="SpawnerContainer" instance=ExtResource( 2 )]
-position = Vector2( 0, -250 )
+[node name="LinearSpawnerTop" parent="SpawnerContainer" instance=ExtResource("2")]
+position = Vector2(0, -250)
 rotation = 1.5708
 
-[node name="LinearSpawnerRight" parent="SpawnerContainer" instance=ExtResource( 2 )]
-position = Vector2( 250, 0 )
+[node name="LinearSpawnerRight" parent="SpawnerContainer" instance=ExtResource("2")]
+position = Vector2(250, 0)
 rotation = -3.14159
 
-[node name="LinearSpawnerBottom" parent="SpawnerContainer" instance=ExtResource( 2 )]
-position = Vector2( 0, 250 )
+[node name="LinearSpawnerBottom" parent="SpawnerContainer" instance=ExtResource("2")]
+position = Vector2(0, 250)
 rotation = -1.5708

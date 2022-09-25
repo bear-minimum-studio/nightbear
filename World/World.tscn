@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Spawner/SpawnerHandler.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ntuuq14lawh6" path="res://Spawner/SpawnerHandler.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Player/PlayerShade.tscn" id="4"]
 [ext_resource type="Script" path="res://World/World.gd" id="5"]
 
