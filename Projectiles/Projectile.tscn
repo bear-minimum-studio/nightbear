@@ -17,14 +17,14 @@ shape = SubResource( 1 )
 [node name="SpriteContainer" type="Node2D" parent="."]
 scale = Vector2( 1.53334, 1.53334 )
 
-[node name="Sprite" type="Sprite" parent="SpriteContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="SpriteContainer"]
 hframes = 10
 frame = 1
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2( 3.16162, 3.16942 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

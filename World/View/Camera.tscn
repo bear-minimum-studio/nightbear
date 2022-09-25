@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Terrain/Tentacle.tscn" type="PackedScene" id=1]
-[ext_resource path="res://World/View/Camera.gd" type="Script" id=2]
-[ext_resource path="res://World/View/carreBlanc.png" type="Texture" id=3]
+[ext_resource path="res://World3D/View/Camera.gd" type="Script" id=2]
+[ext_resource path="res://World3D/View/carreBlanc.png" type="Texture2D" id=3]
 
-[node name="Camera" type="Camera2D"]
+[node name="Camera3D" type="Camera2D"]
 current = true
 script = ExtResource( 2 )
 
@@ -14,10 +14,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -300.0
-margin_right = 260.0
-margin_bottom = 300.0
+offset_left = -260.0
+offset_top = -300.0
+offset_right = 260.0
+offset_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -90,7 +90,7 @@ one_shot = true
 
 [node name="Flash" type="Node" parent="."]
 
-[node name="FlashSprite" type="Sprite" parent="Flash"]
+[node name="FlashSprite" type="Sprite2D" parent="Flash"]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 3 )
 

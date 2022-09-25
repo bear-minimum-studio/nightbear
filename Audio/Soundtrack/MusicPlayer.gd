@@ -10,11 +10,11 @@ var next_theme = {
 	"nightmare": "nightmare",
 }
 
-onready var intro = $IntroMusic
-onready var preverse = $PreVerseMusic
-onready var nightmare = $NightmareMusic
+@onready var intro = $IntroMusic
+@onready var preverse = $PreVerseMusic
+@onready var nightmare = $NightmareMusic
 
-onready var soundtrack = {
+@onready var soundtrack = {
 	"intro": intro,
 	"preverse": preverse,
 	"nightmare": nightmare,
@@ -31,7 +31,7 @@ func next():
 
 func _ready():
 	for track in soundtrack.values():
-		var _connect_error = track.connect("finished", self, "_on_finished")
+		var _connect_error = track.connect("finished",Callable(self,"_on_finished"))
 	start()
 
 func _play(theme):

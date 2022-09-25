@@ -2,11 +2,11 @@ extends StaticBody2D
 
 class_name Wall
 
-onready var lifebar = $ProgressBar
-onready var timer = $Timer
-onready var cast_fx = $CastFX
-onready var hit_fx = $HitFX
-onready var destroyed_fx = $DestroyedFX
+@onready var lifebar = $ProgressBar
+@onready var timer = $Timer
+@onready var cast_fx = $CastFX
+@onready var hit_fx = $HitFX
+@onready var destroyed_fx = $DestroyedFX
 
 func _ready():
 	timer.start(Parameters.WALL_MAX_LIFETIME)

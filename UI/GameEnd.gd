@@ -2,7 +2,7 @@ extends Control
 
 signal replay
 
-onready var animation_player = $AnimationPlayer
+@onready var animation_player = $AnimationPlayer
 var ready = false
 
 func show_scene():

@@ -1,9 +1,9 @@
-extends "res://World/LevelManagement/SequenceElement.gd"
+extends "res://World3D/LevelManagement/SequenceElement.gd"
 
 signal new_subsequence
 signal sequence_ended
 
-export (Resource) var level
+@export (Resource) var level
 
 func init(father_worlds: Array) -> void:
 	initialize("0", level, null, father_worlds)
@@ -19,9 +19,9 @@ func _input(event) -> void:
 func end() -> void:
 	if(element_ended()):
 		emit_signal("sequence_ended")
-		.end()
+		super.end()
 
 func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
 		emit_signal("new_subsequence", element_index)
-	.play(element_index)
+	super.play(element_index)

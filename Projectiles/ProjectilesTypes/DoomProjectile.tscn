@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Projectiles/ProjectilesTypes/DoomProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Projectile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Projectiles/ProjectilesTypes/projectile_bad.png" type="Texture" id=3]
+[ext_resource path="res://Projectiles/ProjectilesTypes/projectile_bad.png" type="Texture2D" id=3]
 [ext_resource path="res://Projectiles/ProjectilesTypes/HitWallParticles.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -10,14 +10,14 @@ resource_name = "Moving"
 length = 1.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpriteContainer/Sprite:frame")
+tracks/0/path = NodePath("SpriteContainer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
@@ -28,8 +28,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -4.08284, -3.26628 ), Vector2( -2.27473, 6.18262 ), Vector2( 8.31153, -0.972111 ), Vector2( 0.116655, -8.1268 ), Vector2( -3.1788, -1.60396 ), Vector2( 6.45479, 2.60526 ), Vector2( -4.53002, 2.93576 ) ]
 }
@@ -41,7 +41,7 @@ script = ExtResource( 1 )
 [node name="SpriteContainer" parent="." index="1"]
 position = Vector2( 0.962382, 2.77051 )
 
-[node name="Sprite" parent="SpriteContainer" index="0"]
+[node name="Sprite2D" parent="SpriteContainer" index="0"]
 texture = ExtResource( 3 )
 frame = 6
 
@@ -49,5 +49,5 @@ frame = 6
 autoplay = "Moving"
 anims/Moving = SubResource( 1 )
 
-[node name="Particles" parent="." index="4" instance=ExtResource( 4 )]
+[node name="GPUParticles3D" parent="." index="4" instance=ExtResource( 4 )]
 scale = Vector2( 2.5, 2.5 )

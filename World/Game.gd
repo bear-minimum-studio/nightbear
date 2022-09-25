@@ -1,18 +1,18 @@
 extends Node
 
-export (Array, NodePath) var viewport_container_paths
+@export (Array, NodePath) var viewport_container_paths
 
 var viewport_containers = []
 var worlds = []
 
-onready var wave_number_text = $WaveNumber
-onready var dream_caught_text = $DreamCaughtText
-onready var game_over = $GameOver
-onready var game_end = $GameEnd
-onready var sequence = $SequencePlayer
-onready var death_fx = $DeathFX
-onready var lightning_fx = $LightningFX
-onready var sequence_player = $SequencePlayer
+@onready var wave_number_text = $WaveNumber
+@onready var dream_caught_text = $DreamCaughtText
+@onready var game_over = $GameOver
+@onready var game_end = $GameEnd
+@onready var sequence = $SequencePlayer
+@onready var death_fx = $DeathFX
+@onready var lightning_fx = $LightningFX
+@onready var sequence_player = $SequencePlayer
 
 var dreams_caught = 0
 
@@ -23,29 +23,29 @@ func _ready():
 		
 		viewport_containers.push_back(viewport_container)
 		worlds.push_back(world)
-		world.spawner_handler.connect("entity_spawned", self, "_connect_projectile")
+		world.spawner_handler.connect("entity_spawned",Callable(self,"_connect_projectile"))
 	
 	sequence.init(worlds)
-	sequence_player.connect("new_subsequence", self, "_new_subsequence")
-	sequence_player.connect("sequence_ended", self, "_sequence_ended")
+	sequence_player.connect("new_subsequence",Callable(self,"_new_subsequence"))
+	sequence_player.connect("sequence_ended",Callable(self,"_sequence_ended"))
 	
-	game_over.connect("replay", self, "_replay_game")
-	game_end.connect("replay", self, "_replay_game")
+	game_over.connect("replay",Callable(self,"_replay_game"))
+	game_end.connect("replay",Callable(self,"_replay_game"))
 		
 	var players = get_tree().get_nodes_in_group("player")
 	
 	for player in players:
-		player.connect("build", self, "_build")
-		player.connect("player_dead", self, "_player_dead")
-		player.connect("player_moved", self, "_move_player_shade")
+		player.connect("build",Callable(self,"_build"))
+		player.connect("player_dead",Callable(self,"_player_dead"))
+		player.connect("player_moved",Callable(self,"_move_player_shade"))
 	
 	MusicPlayer.next()
 	sequence.start()
 
 func _build(world_id: int, t:Transform2D):
-	var new_wall = Parameters.GAME_WALL.instance()
+	var new_wall = Parameters.GAME_WALL.instantiate()
 	new_wall.transform.origin = t.origin
-	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instance()
+	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instantiate()
 	new_dream_catcher.transform.origin = t.origin
 
 	worlds[1 - world_id].add_child(new_wall)
@@ -53,8 +53,8 @@ func _build(world_id: int, t:Transform2D):
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
-		var _unused1 = spawned_instance.connect("missed_ally_projectile", self, "_on_missed_ally_projectile")
-		var _unused2 = spawned_instance.connect("dream_caught", self, "_dream_caught")
+		var _unused1 = spawned_instance.connect("missed_ally_projectile",Callable(self,"_on_missed_ally_projectile"))
+		var _unused2 = spawned_instance.connect("dream_caught",Callable(self,"_dream_caught"))
 
 func _dream_caught(_position: Vector2):
 	dreams_caught += 1

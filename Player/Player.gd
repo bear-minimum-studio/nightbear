@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Player
 
@@ -6,13 +6,13 @@ signal build
 signal player_dead
 signal player_moved
 
-onready var build_timer = $BuildTimer
-onready var sprite = $Sprite
-onready var animation_player = $AnimationPlayer
-onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
-onready var spell_fx = $SpellFX
+@onready var build_timer = $BuildTimer
+@onready var sprite = $Sprite2D
+@onready var animation_player = $AnimationPlayer
+@onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
+@onready var spell_fx = $SpellFX
 
-export (bool) var is_immortal = false
+@export (bool) var is_immortal = false
 
 var velocity := Vector2.ZERO
 var world_id := 0
@@ -31,7 +31,9 @@ func _physics_process(_delta):
 	   input_vector = input_vector.normalized()
 	
 	velocity = Parameters.PLAYER_WALK_SPEED * input_vector
-	velocity = move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
+	velocity = velocity
 	
 	if abs(velocity.x) > 5:
 		sprite.set_orientation(velocity.x)

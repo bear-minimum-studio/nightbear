@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, -192, 0, 0, 0, 0, 0, 192 )
+"points": PackedVector2Array( 0, 0, 0, 0, 0, -192, 0, 0, 0, 0, 0, 192 )
 }
 
 [node name="LinearSpawner" type="Path2D"]

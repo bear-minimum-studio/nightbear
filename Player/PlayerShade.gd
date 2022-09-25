@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 const body_sprites = [preload("res://Player/paw1.png"), preload("res://Player/paw2.png")]
 

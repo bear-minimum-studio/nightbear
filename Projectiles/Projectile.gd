@@ -4,9 +4,9 @@ class_name Projectile
 
 enum ProjectyleType {Ally, Ennemy, Doom}
 
-onready var sprite_container = $SpriteContainer
-onready var particles = $Particles
-onready var collision_shape = $CollisionShape2D
+@onready var sprite_container = $SpriteContainer
+@onready var particles = $GPUParticles3D
+@onready var collision_shape = $CollisionShape2D
 
 ###########
 # PRIVATE #

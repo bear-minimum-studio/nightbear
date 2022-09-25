@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Obstacles/dream_catcher.png" type="Texture" id=1]
+[ext_resource path="res://Obstacles/dream_catcher.png" type="Texture2D" id=1]
 [ext_resource path="res://Obstacles/DreamCatcher.gd" type="Script" id=2]
 [ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_3.wav" type="AudioStream" id=4]
@@ -27,7 +27,7 @@ collision_layer = 2
 collision_mask = 24
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 1 )
 animation = "New Anim"
 

@@ -2,25 +2,25 @@ extends Path2D
 
 signal entity_spawned
 
-export (PackedScene) var ally_projectile
-export (PackedScene) var ennemy_projectile
-export (PackedScene) var doom_projectile
+@export (PackedScene) var ally_projectile
+@export (PackedScene) var ennemy_projectile
+@export (PackedScene) var doom_projectile
 
 var spawn_direction: Vector2
 var world_id: int
-onready var spawned_entities = {
+@onready var spawned_entities = {
 	Projectile.ProjectyleType.Ally: ally_projectile,
 	Projectile.ProjectyleType.Ennemy: ennemy_projectile,
 	Projectile.ProjectyleType.Doom: doom_projectile,
 }
 
-onready var _spawn_location := $SpawnLocation
+@onready var _spawn_location := $SpawnLocation
 
 func _ready() -> void:
 	randomize()
 
 func _get_spawn_location(offset: float) -> Vector2:
-	_spawn_location.unit_offset = offset
+	_spawn_location.progress_ratio = offset
 	return _spawn_location.global_position
 
 func _get_spawn_direction(side) -> Vector2:
@@ -45,7 +45,7 @@ func spawn(spawn_type: int, spawn_parameters: Dictionary) -> Node2D:
 	spawn_parameters.position = _get_spawn_location(randf())
 	spawn_parameters.direction = spawn_direction
 	
-	var spawned_instance = spawned_entities[spawn_type].instance()
+	var spawned_instance = spawned_entities[spawn_type].instantiate()
 	spawned_instance.initialize(spawn_parameters, world_id)
 	emit_signal("entity_spawned", spawned_instance)
 

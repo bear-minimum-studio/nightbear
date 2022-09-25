@@ -1,7 +1,11 @@
-tool
+@tool
 extends Control
 
-export (int) var current_step = 0 setget _set_current_step
+@export (int) var current_step = 0 :
+	get:
+		return current_step # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_current_step
 
 signal end
 

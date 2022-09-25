@@ -7,12 +7,12 @@ var doing_shake = false
 var flash_strength = 0
 var flash_speed = 0.01
 
-onready var shake_length_timer = $Shake/ShakeLengthTimer
-onready var shaking_timer = $Shake/ShakingTimer
-onready var shaking_tween = $Shake/ShakingTween
+@onready var shake_length_timer = $Shake/ShakeLengthTimer
+@onready var shaking_timer = $Shake/ShakingTimer
+@onready var shaking_tween = $Shake/ShakingTween
 
-onready var flash_sprite = $Flash/FlashSprite
-onready var flash_timer = $Flash/FlashTimer
+@onready var flash_sprite = $Flash/FlashSprite
+@onready var flash_timer = $Flash/FlashTimer
 
 func _ready():
 	pass
@@ -25,7 +25,7 @@ func _on_ShakeLengthTimer_timeout():
 
 func _on_ShakingTimer_timeout():
 	if doing_shake:
-		shaking_tween.interpolate_property(self, "offset", offset, Vector2(rand_range(-shake_strength, shake_strength), rand_range(-shake_strength, shake_strength)), reset_speed, Tween.TRANS_SINE, Tween.EASE_OUT)
+		shaking_tween.interpolate_property(self, "offset", offset, Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength)), reset_speed, Tween.TRANS_SINE, Tween.EASE_OUT)
 		shaking_tween.start()
 
 func _reset_camera():

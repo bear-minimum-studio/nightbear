@@ -2,19 +2,19 @@
 
 [ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/GameOver.tscn" type="PackedScene" id=2]
-[ext_resource path="res://World/View/ViewportContainer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://World/LevelManagement/SequencePlayer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://World/Game.gd" type="Script" id=5]
+[ext_resource path="res://World3D/View/ViewportContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World3D/LevelManagement/SequencePlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World3D/Game.gd" type="Script" id=5]
 [ext_resource path="res://Audio/SFX/Death/death_2.wav" type="AudioStream" id=6]
 [ext_resource path="res://UI/GameEnd.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/WaveNumber.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Audio/SFX/Lightning/lightning_1.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/SFX/Lightning/lightning_2.wav" type="AudioStream" id=10]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="FontFile" id=1]
 font_path = "res://UI/dpcomic.ttf"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 32
 font_data = SubResource( 1 )
 
@@ -31,20 +31,20 @@ __meta__ = {
 }
 
 [node name="ViewportContainer1" parent="Viewports" instance=ExtResource( 3 )]
-margin_right = 638.0
-margin_bottom = 720.0
+offset_right = 638.0
+offset_bottom = 720.0
 
 [node name="ViewportContainer2" parent="Viewports" instance=ExtResource( 3 )]
-margin_left = 642.0
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_left = 642.0
+offset_right = 1280.0
+offset_bottom = 720.0
 world_id = 1
 
 [node name="DreamCaughtText" type="Label" parent="."]
 visible = false
 anchor_right = 1.0
-margin_top = 32.0
-margin_bottom = 32.0
+offset_top = 32.0
+offset_bottom = 32.0
 custom_fonts/font = SubResource( 2 )
 text = "0 dream caught"
 align = 1
@@ -61,7 +61,7 @@ __meta__ = {
 [node name="SequencePlayer" parent="." instance=ExtResource( 4 )]
 
 [node name="DeathFX" parent="." instance=ExtResource( 1 )]
-pause_mode = 2
+process_mode = 2
 
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
 stream = ExtResource( 6 )

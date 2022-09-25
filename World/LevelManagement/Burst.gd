@@ -1,4 +1,4 @@
-extends "res://World/LevelManagement/SequenceElement.gd"
+extends "res://World3D/LevelManagement/SequenceElement.gd"
 
 class_name Burst
 
@@ -13,12 +13,12 @@ var duration: float
 var sides: Array
 var nb_sides: int
 
-onready var spawn_timer := $SpawnTimer
-onready var next_timer := $NextTimer
-onready var burst_timer := $BurstTimer
+@onready var spawn_timer := $SpawnTimer
+@onready var next_timer := $NextTimer
+@onready var burst_timer := $BurstTimer
 
 func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
-	.initialize(squence_id, element_description, father_node, father_worlds)
+	super.initialize(squence_id, element_description, father_node, father_worlds)
 
 	spawn_type = element_description.spawn_type
 	spawn_parameters = {

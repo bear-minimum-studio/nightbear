@@ -2,8 +2,8 @@ extends Node
 
 class_name SequenceElement
 
-var sequence_element_entity = load("res://World/LevelManagement/SequenceElement.tscn")
-var burst_entity = load("res://World/LevelManagement/Burst.tscn")
+var sequence_element_entity = load("res://World3D/LevelManagement/SequenceElement.tscn")
+var burst_entity = load("res://World3D/LevelManagement/Burst.tscn")
 
 var id: String
 var worlds: Array
@@ -31,7 +31,7 @@ func _get_entity_for_element(element_description: Resource) -> PackedScene:
 
 func _create_element(element_id: String, element_description: Resource) -> SequenceElement:
 	var element: SequenceElement
-	element = _get_entity_for_element(element_description).instance()
+	element = _get_entity_for_element(element_description).instantiate()
 	add_child(element)
 	element.initialize(element_id, element_description, self, worlds)
 	return element

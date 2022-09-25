@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Player/bear1.png" type="Texture" id=1]
+[ext_resource path="res://Player/bear1.png" type="Texture2D" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Player/PlayerSprite.gd" type="Script" id=3]
 [ext_resource path="res://Audio/SFX/Spell/spell_2.wav" type="AudioStream" id=4]
@@ -16,14 +16,14 @@ height = 4.82609
 resource_name = "Cast"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
@@ -32,14 +32,14 @@ tracks/0/keys = {
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 11, 12, 13, 14 ]
 }
@@ -66,13 +66,13 @@ start_node = "Run"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="CharacterBody2D" groups=[
 "player",
 ]]
 collision_mask = 20
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 0, -15.9547 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )

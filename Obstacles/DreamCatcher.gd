@@ -4,9 +4,9 @@ class_name DreamCatcher
 
 var health_points = 1
 
-onready var timer = $Timer
-onready var cast_fx = $CastFX
-onready var catch_fx = $CatchFX
+@onready var timer = $Timer
+@onready var cast_fx = $CastFX
+@onready var catch_fx = $CatchFX
 
 func _ready():
 	timer.start(Parameters.DREAM_CATCHER_MAX_LIFETIME)

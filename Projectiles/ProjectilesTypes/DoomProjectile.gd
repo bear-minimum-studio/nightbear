@@ -5,7 +5,7 @@ class_name DoomProjectile
 var target: Node2D
 
 func initialize(spawn_parameters: Dictionary, father_world_id: int) -> void:
-	.initialize(spawn_parameters, father_world_id)
+	super.initialize(spawn_parameters, father_world_id)
 	target = spawn_parameters.target
 	_update_direction(spawn_parameters.direction)
 

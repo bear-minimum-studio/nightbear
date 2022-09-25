@@ -2,20 +2,28 @@ extends Resource
 
 class_name BurstResource
 
-export (Projectile.ProjectyleType) var spawn_type = Projectile.ProjectyleType.Ally
-export (float) var spawn_speed = 10.0
-export (bool) var world_1 = false
-export (bool) var world_2 = false
-export (float) var spawn_delay = 1.0
-export (float) var next_delay = 1.0
-export (float) var duration = 1.0
-export (bool) var left = false
-export (bool) var right = false
-export (bool) var top = false
-export (bool) var bottom = false
+@export (Projectile.ProjectyleType) var spawn_type = Projectile.ProjectyleType.Ally
+@export (float) var spawn_speed = 10.0
+@export (bool) var world_1 = false
+@export (bool) var world_2 = false
+@export (float) var spawn_delay = 1.0
+@export (float) var next_delay = 1.0
+@export (float) var duration = 1.0
+@export (bool) var left = false
+@export (bool) var right = false
+@export (bool) var top = false
+@export (bool) var bottom = false
 
-var world_indexes = [] setget , _get_world_indexes
-var sides = [] setget , _get_sides_array
+var world_indexes = [] :
+	get:
+		return world_indexes # TODOConverter40 Copy here content of _get_world_indexes 
+	set(mod_value):
+		mod_value  # TODOConverter40  Non existent set function
+var sides = [] :
+	get:
+		return sides # TODOConverter40 Copy here content of _get_sides_array 
+	set(mod_value):
+		mod_value  # TODOConverter40  Non existent set function
 
 func _get_world_indexes() -> Array:
 	var adapted_world_indexes = []

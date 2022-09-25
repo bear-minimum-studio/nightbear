@@ -1,8 +1,8 @@
-extends Sprite
+extends Sprite2D
 
-export(NodePath) var player_path
+@export var player_path: NodePath
 
-onready var player = get_node(player_path)
+@onready var player = get_node(player_path)
 
 const body_sprites = [preload("res://Player/bear1.png"), preload("res://Player/bear2.png")]
 

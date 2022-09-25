@@ -1,8 +1,8 @@
 extends Node
 
 
-onready var sound_fxs = self.get_children()
-onready var nb_fxs = len(sound_fxs)
+@onready var sound_fxs = self.get_children()
+@onready var nb_fxs = len(sound_fxs)
 
 func play():
 	randomize()

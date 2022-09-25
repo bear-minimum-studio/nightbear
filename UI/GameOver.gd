@@ -2,8 +2,8 @@ extends Control
 
 signal replay
 
-onready var animation_player = $AnimationPlayer
-onready var wave_number_text = $WaveNumber
+@onready var animation_player = $AnimationPlayer
+@onready var wave_number_text = $WaveNumber
 var ready = false
 
 func show_game_over(wave_number: int):

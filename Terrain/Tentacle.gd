@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var sprite = $Sprite
-onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 
 var size = 0
 

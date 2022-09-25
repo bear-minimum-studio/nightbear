@@ -8,7 +8,7 @@ enum Sides {Left, Top, Right, Bottom}
 
 var world_id := 0
 
-onready var spawners := {
+@onready var spawners := {
 	Sides.Left: $SpawnerContainer/LinearSpawnerLeft,
 	Sides.Top: $SpawnerContainer/LinearSpawnerTop,
 	Sides.Right: $SpawnerContainer/LinearSpawnerRight,
