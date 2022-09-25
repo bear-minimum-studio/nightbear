@@ -262,6 +262,7 @@ sources/0 = SubResource("TileSetAtlasSource_dloxr")
 
 [node name="World" type="Node2D"]
 material = SubResource("2")
+y_sort_enabled = true
 script = ExtResource("5")
 
 [node name="TileMap" type="TileMap" parent="."]
