@@ -1,136 +1,116 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=3 uid="uid://skudso32voxg"]
 
-[ext_resource path="res://Obstacles/shield.png" type="Texture2D" id=1]
-[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_3.wav" type="AudioStream" id=2]
-[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_3.wav" type="AudioStream" id=3]
-[ext_resource path="res://Obstacles/Wall.gd" type="Script" id=4]
-[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_2.wav" type="AudioStream" id=5]
-[ext_resource path="res://Audio/SFX/ShieldCast/shield_cast_1.wav" type="AudioStream" id=6]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_1.wav" type="AudioStream" id=7]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_2.wav" type="AudioStream" id=8]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_7.wav" type="AudioStream" id=9]
-[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_4.wav" type="AudioStream" id=11]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_3.wav" type="AudioStream" id=12]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_5.wav" type="AudioStream" id=13]
-[ext_resource path="res://Audio/SFX/ShieldHit/shield_hit_6.wav" type="AudioStream" id=14]
-[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_1.wav" type="AudioStream" id=15]
-[ext_resource path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_2.wav" type="AudioStream" id=16]
+[ext_resource type="Texture2D" uid="uid://cdmlaw5nmwv6h" path="res://Obstacles/shield.png" id="1"]
+[ext_resource type="AudioStream" uid="uid://c3jdj41j37vjb" path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_3.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://ycbbk48b2mq2" path="res://Audio/SFX/ShieldCast/shield_cast_3.wav" id="3"]
+[ext_resource type="Script" path="res://Obstacles/Wall.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://cx1q777rv2dml" path="res://Audio/SFX/ShieldCast/shield_cast_2.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://cqvn3shxrqd5a" path="res://Audio/SFX/ShieldCast/shield_cast_1.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://nlx3huil1h02" path="res://Audio/SFX/ShieldHit/shield_hit_1.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://5mky1f4330fx" path="res://Audio/SFX/ShieldHit/shield_hit_2.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://d22vbc0t34gke" path="res://Audio/SFX/ShieldHit/shield_hit_7.wav" id="9"]
+[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="10"]
+[ext_resource type="AudioStream" uid="uid://c4p45whm2ghd6" path="res://Audio/SFX/ShieldHit/shield_hit_4.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://bi2cv65ycuew1" path="res://Audio/SFX/ShieldHit/shield_hit_3.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://exhtdyytx4rb" path="res://Audio/SFX/ShieldHit/shield_hit_5.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://c71lc7pna40xo" path="res://Audio/SFX/ShieldHit/shield_hit_6.wav" id="14"]
+[ext_resource type="AudioStream" uid="uid://bbpdfo70gpa28" path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_1.wav" id="15"]
+[ext_resource type="AudioStream" uid="uid://03q5kudm28iq" path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_2.wav" id="16"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [ExtResource("1")],
 "loop": false,
-"name": "New Anim",
+"name": &"New Anim",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 33.1217
-height = 7.40849
-
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 22.0026
+height = 46.9463
 
 [node name="Wall" type="StaticBody2D"]
-scale = Vector2( 0.68, 0.68 )
+scale = Vector2(0.68, 0.68)
 collision_layer = 4
 collision_mask = 17
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2( 0, -12.8623 )
-frames = SubResource( 1 )
-animation = "New Anim"
+position = Vector2(0, -12.8623)
+frames = SubResource("1")
+animation = &"New Anim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.256943, 0.0562668 )
+position = Vector2(-0.256943, 0.0562668)
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource("2")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-self_modulate = Color( 1, 0, 0, 1 )
+self_modulate = Color(1, 0, 0, 1)
 offset_left = -29.0847
 offset_top = 35.839
 offset_right = 27.9153
 offset_bottom = 46.839
-custom_styles/fg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 value = 50.0
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+show_percentage = false
 
-[node name="HitFX" parent="." instance=ExtResource( 10 )]
+[node name="HitFX" parent="." instance=ExtResource("10")]
 
 [node name="HitFX1" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 7 )
+stream = ExtResource("7")
 volume_db = -6.058
-bus = "SFX"
 
 [node name="HitFX2" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 8 )
+stream = ExtResource("8")
 volume_db = -6.0
-bus = "SFX"
 
 [node name="HitFX3" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 12 )
+stream = ExtResource("12")
 volume_db = -6.0
-bus = "SFX"
 
 [node name="HitFX4" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 11 )
+stream = ExtResource("11")
 volume_db = -6.0
-bus = "SFX"
 
 [node name="HitFX5" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 13 )
+stream = ExtResource("13")
 volume_db = -6.0
-bus = "SFX"
 
 [node name="HitFX6" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 volume_db = -6.0
-bus = "SFX"
 
 [node name="HitFX7" type="AudioStreamPlayer" parent="HitFX"]
-stream = ExtResource( 9 )
+stream = ExtResource("9")
 volume_db = -6.0
-bus = "SFX"
 
-[node name="DestroyedFX" parent="." instance=ExtResource( 10 )]
+[node name="DestroyedFX" parent="." instance=ExtResource("10")]
 
 [node name="DestroyedFX1" type="AudioStreamPlayer" parent="DestroyedFX"]
-stream = ExtResource( 15 )
+stream = ExtResource("15")
 volume_db = 13.126
-bus = "SFX"
 
 [node name="DestroyedFX2" type="AudioStreamPlayer" parent="DestroyedFX"]
-stream = ExtResource( 16 )
+stream = ExtResource("16")
 volume_db = 13.126
-bus = "SFX"
 
 [node name="DestroyedFX3" type="AudioStreamPlayer" parent="DestroyedFX"]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 volume_db = 14.136
-bus = "SFX"
 
-[node name="CastFX" parent="." instance=ExtResource( 10 )]
+[node name="CastFX" parent="." instance=ExtResource("10")]
 
 [node name="CastFX1" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 6 )
-bus = "SFX"
+stream = ExtResource("6")
 
 [node name="CastFX2" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 5 )
-bus = "SFX"
+stream = ExtResource("5")
 
 [node name="CastFX3" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 3 )
-bus = "SFX"
+stream = ExtResource("3")
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
