@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Projectiles/ProjectilesTypes/EnemyProjectile.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d4ki5xsxru1ao" path="res://Projectiles/Projectile.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://8c73qhnhnn85" path="res://Projectiles/ProjectilesTypes/projectile_bad.png" id="3"]
-[ext_resource type="PackedScene" path="res://Projectiles/ProjectilesTypes/HitWallParticles.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://c0e0edqsxmptm" path="res://Projectiles/ProjectilesTypes/HitWallParticles.tscn" id="4"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Moving"
