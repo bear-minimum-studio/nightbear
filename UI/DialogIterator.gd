@@ -12,7 +12,7 @@ signal end
 
 var is_active = false
 
-func hide():
+func hide_iterator():
 	current_step = 0
 	var children = get_children()
 	for child in children:
@@ -24,7 +24,7 @@ func start():
 
 func print_screen(_step):
 	var children = get_children()
-	var number_of_steps = get_children().size()
+	var number_of_steps = children.size()
 	for index in range(number_of_steps):
 		var child = children[index]
 		if (index) == current_step:
@@ -42,11 +42,11 @@ func _input(event):
 
 		if (current_step >= number_of_steps):
 			is_active = false
-			hide()
+			hide_iterator()
 			emit_signal("end")
 		else:
 			print_screen(current_step)
 
 func _ready():
-	hide()
+	hide_iterator()
 
