@@ -16,7 +16,7 @@ func hide_iterator():
 	current_step = 0
 	var children = get_children()
 	for child in children:
-		child.visible = false
+		child.hide()
 
 func start():
 	is_active = true
@@ -28,9 +28,9 @@ func print_screen(_step):
 	for index in range(number_of_steps):
 		var child = children[index]
 		if (index) == current_step:
-			child.visible = true
+			child.show()
 		else:
-			child.visible = false
+			child.hide()
 
 func _input(event):
 	if !is_active:
