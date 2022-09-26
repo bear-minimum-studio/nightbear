@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bbxmydfgv8ikb"]
+
+[ext_resource type="FontFile" uid="uid://drvrypbv8p71j" path="res://UI/FontBody.tres" id="1_xrgx7"]
+
+[resource]
+default_font = ExtResource("1_xrgx7")
+default_font_size = 20
+Label/colors/font_outline_color = Color(0.45098, 0.619608, 0.576471, 1)
+Label/constants/outline_size = 16
+Label/font_sizes/font_size = 54
+Label/fonts/font = ExtResource("1_xrgx7")

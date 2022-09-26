@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://djl03abvohd5o"]
+[gd_scene load_steps=6 format=3 uid="uid://djl03abvohd5o"]
 
+[ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_t7iop"]
 [ext_resource type="Texture2D" uid="uid://2vkdj4ahqmbf" path="res://UI/bears_asleep.png" id="2"]
 [ext_resource type="Script" path="res://UI/GameEnd.gd" id="4"]
 
@@ -54,6 +55,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t7iop")
 script = ExtResource("4")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -61,6 +65,8 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.113725, 0.121569, 0.12549, 1)
 
 [node name="Title" type="Label" parent="Background"]
@@ -71,6 +77,8 @@ anchor_bottom = 1.0
 offset_top = -1.33514e-05
 offset_bottom = -491.0
 text = "Well done..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Subtitle" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -80,7 +88,11 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -175.602
 offset_bottom = -54.6024
+grow_horizontal = 2
+grow_vertical = 2
 text = "You went through another night."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
