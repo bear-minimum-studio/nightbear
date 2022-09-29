@@ -1,5 +1,5 @@
-extends Resource
+extends AbstractSequenceResource
 
 class_name SequenceResource
 
-@export var subsequence: Array[Resource] = []
+@export var subsequence: Array[AbstractSequenceResource] = []

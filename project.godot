@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Resource",
+"class": &"AbstractSequenceResource",
+"language": &"GDScript",
+"path": "res://World/LevelManagement/Resources/AbstractSequenceResource.gd"
+}, {
 "base": "Area2D",
 "class": &"AllyProjectile",
 "language": &"GDScript",
@@ -19,12 +24,12 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://World/LevelManagement/Burst.gd"
 }, {
-"base": "Resource",
+"base": "AbstractSequenceResource",
 "class": &"BurstEmptyResource",
 "language": &"GDScript",
 "path": "res://World/LevelManagement/Resources/BurstEmptyResource.gd"
 }, {
-"base": "Resource",
+"base": "AbstractSequenceResource",
 "class": &"BurstResource",
 "language": &"GDScript",
 "path": "res://World/LevelManagement/Resources/BurstResource.gd"
@@ -59,7 +64,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://World/LevelManagement/SequenceElement.gd"
 }, {
-"base": "Resource",
+"base": "AbstractSequenceResource",
 "class": &"SequenceResource",
 "language": &"GDScript",
 "path": "res://World/LevelManagement/Resources/SequenceResource.gd"
@@ -75,6 +80,7 @@ _global_script_classes=[{
 "path": "res://Obstacles/Wall.gd"
 }]
 _global_script_class_icons={
+"AbstractSequenceResource": "",
 "AllyProjectile": "",
 "Burst": "",
 "BurstEmptyResource": "",

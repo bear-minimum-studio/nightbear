@@ -1,4 +1,4 @@
-extends Resource
+extends AbstractSequenceResource
 
 class_name BurstEmptyResource
 
