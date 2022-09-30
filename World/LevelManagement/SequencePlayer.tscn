@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dsejj61xaju71"]
 
-[ext_resource path="res://World/LevelManagement/SequencePlayer.gd" type="Script" id=1]
-[ext_resource path="res://Levels/level.tres" type="Resource" id=2]
+[ext_resource type="Script" path="res://World/LevelManagement/SequencePlayer.gd" id="1"]
+[ext_resource type="Resource" uid="uid://bwbs3cwrchxwp" path="res://Levels/level.tres" id="2"]
 
 [node name="SequencePlayer" type="Node"]
-script = ExtResource( 1 )
-level = ExtResource( 2 )
+script = ExtResource("1")
+level = ExtResource("2")

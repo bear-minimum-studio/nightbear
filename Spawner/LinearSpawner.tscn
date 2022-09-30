@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Spawner/LinearSpawner.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c8ei17161m44f" path="res://Projectiles/ProjectilesTypes/EnemyProjectile.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Projectiles/ProjectilesTypes/DoomProjectile.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://6sehs6txj0g0" path="res://Projectiles/ProjectilesTypes/DoomProjectile.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://b8inyfdpcqacg" path="res://Projectiles/ProjectilesTypes/AllyProjectile.tscn" id="4"]
 
 [sub_resource type="Curve2D" id="1"]

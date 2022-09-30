@@ -1,78 +1,78 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://5teniascndw2"]
 
-[ext_resource path="res://Obstacles/dream_catcher.png" type="Texture2D" id=1]
-[ext_resource path="res://Obstacles/DreamCatcher.gd" type="Script" id=2]
-[ext_resource path="res://Audio/SFX/FXPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_3.wav" type="AudioStream" id=4]
-[ext_resource path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_2.wav" type="AudioStream" id=5]
-[ext_resource path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_1.wav" type="AudioStream" id=6]
-[ext_resource path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_2.wav" type="AudioStream" id=7]
-[ext_resource path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_1.wav" type="AudioStream" id=8]
-[ext_resource path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_3.wav" type="AudioStream" id=9]
+[ext_resource type="Texture2D" uid="uid://cdjgfcu5g53dl" path="res://Obstacles/dream_catcher.png" id="1"]
+[ext_resource type="Script" path="res://Obstacles/DreamCatcher.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://w62ibkaknbdk" path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_3.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://cbrghdutv60vb" path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_2.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://ckl1u40e7i0nu" path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_1.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://3l3e8nv5gttf" path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_2.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://dmv5dwhv1xiu6" path="res://Audio/SFX/DreamcatcherCast/dreamcatcher_cast_1.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://beqs3bw4irra" path="res://Audio/SFX/DreamcatcherCatch/dreamcatcher_catch_3.wav" id="9"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [ExtResource("1")],
 "loop": false,
-"name": "New Anim",
+"name": &"New Anim",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 35.2941
 
 [node name="DreamCatcher" type="StaticBody2D"]
-scale = Vector2( 0.68, 0.68 )
+scale = Vector2(0.68, 0.68)
 collision_layer = 2
 collision_mask = 24
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource( 1 )
-animation = "New Anim"
+frames = SubResource("1")
+animation = &"New Anim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1.13687e-13 )
+position = Vector2(0, -1.13687e-13)
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource("2")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="CastFX" parent="." instance=ExtResource( 3 )]
+[node name="CastFX" parent="." instance=ExtResource("3")]
 
 [node name="CastFX1" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 8 )
+stream = ExtResource("8")
 volume_db = -12.117
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CastFX2" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 volume_db = -12.117
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CastFX3" type="AudioStreamPlayer" parent="CastFX"]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -12.116
-bus = "SFX"
+bus = &"SFX"
 
-[node name="CatchFX" parent="." instance=ExtResource( 3 )]
+[node name="CatchFX" parent="." instance=ExtResource("3")]
 
 [node name="CatchFX1" type="AudioStreamPlayer" parent="CatchFX"]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = -12.117
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CatchFX2" type="AudioStreamPlayer" parent="CatchFX"]
-stream = ExtResource( 7 )
+stream = ExtResource("7")
 volume_db = -16.156
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CatchFX3" type="AudioStreamPlayer" parent="CatchFX"]
-stream = ExtResource( 9 )
+stream = ExtResource("9")
 volume_db = -14.136
-bus = "SFX"
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://y231bdkdnpu3"]
 
-[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://xyjo08025xdi" path="res://UI/GameOver.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://World/LevelManagement/SequencePlayer.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dsejj61xaju71" path="res://World/LevelManagement/SequencePlayer.tscn" id="4"]
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="4_av0iw"]
 [ext_resource type="Script" path="res://World/Game.gd" id="5"]
 [ext_resource type="AudioStream" uid="uid://b64yscmb1ae6h" path="res://Audio/SFX/Death/death_2.wav" id="6"]
@@ -56,8 +56,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOver" parent="." instance=ExtResource("2")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="GameEnd" parent="." instance=ExtResource("7")]
 
@@ -69,13 +67,16 @@ process_mode = 2
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
 stream = ExtResource("6")
 volume_db = -14.135
+bus = &"Game Over"
 
 [node name="LightningFX" parent="." instance=ExtResource("1")]
 
 [node name="LightningFX1" type="AudioStreamPlayer" parent="LightningFX"]
 stream = ExtResource("9")
 volume_db = -9.087
+bus = &"SFX"
 
 [node name="LightningFX2" type="AudioStreamPlayer" parent="LightningFX"]
 stream = ExtResource("10")
 volume_db = -8.078
+bus = &"SFX"

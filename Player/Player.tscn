@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Player/Player.gd" id="2"]
 [ext_resource type="Script" path="res://Player/PlayerSprite.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://bguyk7nhviyo8" path="res://Audio/SFX/Spell/spell_2.wav" id="4"]
-[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="5"]
 [ext_resource type="AudioStream" uid="uid://df4cphf11r7me" path="res://Audio/SFX/Spell/spell_3.wav" id="6"]
 [ext_resource type="AudioStream" uid="uid://d21seei5xutcs" path="res://Audio/SFX/Spell/spell_1.wav" id="7"]
 
@@ -86,7 +86,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1")
 hframes = 11
 vframes = 2
-frame = 12
+frame = 13
 script = ExtResource("3")
 player_path = NodePath("..")
 
@@ -114,13 +114,16 @@ parameters/playback = SubResource("9")
 [node name="SpellFX1" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("7")
 volume_db = -17.165
+bus = &"SFX"
 
 [node name="SpellFX2" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("4")
 volume_db = -19.184
+bus = &"SFX"
 
 [node name="SpellFX3" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("6")
 volume_db = -18.175
+bus = &"SFX"
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]

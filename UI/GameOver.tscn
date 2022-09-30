@@ -72,7 +72,6 @@ script = ExtResource("2")
 
 [node name="Background" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -81,7 +80,6 @@ grow_vertical = 2
 color = Color(0.113725, 0.121569, 0.12549, 1)
 
 [node name="GameOverText" type="Label" parent="Background"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,7 +94,6 @@ vertical_alignment = 1
 
 [node name="WaveWording" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -114,7 +111,6 @@ vertical_alignment = 1
 
 [node name="WaveNumber" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -132,7 +128,6 @@ vertical_alignment = 1
 
 [node name="TryAgain" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
