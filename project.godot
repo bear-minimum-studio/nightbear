@@ -116,6 +116,7 @@ MusicPlayer="*res://Audio/Soundtrack/MusicPlayer.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
 window/stretch/mode="viewport"
 window/size/width=1280
 window/size/height=720
