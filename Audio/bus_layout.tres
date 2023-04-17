@@ -1,12 +1,12 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://ci1m0aqgc2vd6"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ci1m0aqgc2vd6"]
 
-[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_t560s"]
-resource_name = "Compressor"
-threshold = -30.9
-ratio = 10.8
-release_ms = 1006.0
-mix = 0.9
-sidechain = &"Game Over"
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_joxjd"]
+resource_name = "LowPassFilter"
+cutoff_hz = 400.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_3iw4v"]
+resource_name = "HighPassFilter"
+cutoff_hz = 80.0
 
 [resource]
 bus/0/volume_db = 0.0672607
@@ -16,8 +16,10 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
-bus/1/effect/0/effect = SubResource("AudioEffectCompressor_t560s")
-bus/1/effect/0/enabled = true
+bus/1/effect/0/effect = SubResource("AudioEffectLowPassFilter_joxjd")
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource("AudioEffectHighPassFilter_3iw4v")
+bus/1/effect/1/enabled = false
 bus/2/name = &"SFX"
 bus/2/solo = false
 bus/2/mute = false
