@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://nlx3huil1h02" path="res://Audio/SFX/ShieldHit/shield_hit_1.wav" id="7"]
 [ext_resource type="AudioStream" uid="uid://5mky1f4330fx" path="res://Audio/SFX/ShieldHit/shield_hit_2.wav" id="8"]
 [ext_resource type="AudioStream" uid="uid://d22vbc0t34gke" path="res://Audio/SFX/ShieldHit/shield_hit_7.wav" id="9"]
-[ext_resource type="PackedScene" path="res://Audio/SFX/FXPlayer.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="10"]
 [ext_resource type="AudioStream" uid="uid://c4p45whm2ghd6" path="res://Audio/SFX/ShieldHit/shield_hit_4.wav" id="11"]
 [ext_resource type="AudioStream" uid="uid://bi2cv65ycuew1" path="res://Audio/SFX/ShieldHit/shield_hit_3.wav" id="12"]
 [ext_resource type="AudioStream" uid="uid://exhtdyytx4rb" path="res://Audio/SFX/ShieldHit/shield_hit_5.wav" id="13"]
@@ -19,7 +19,10 @@
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
-"frames": [ExtResource("1")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": false,
 "name": &"New Anim",
 "speed": 5.0
@@ -37,7 +40,7 @@ script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12.8623)
-frames = SubResource("1")
+sprite_frames = SubResource("1")
 animation = &"New Anim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,54 +66,67 @@ show_percentage = false
 [node name="HitFX1" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("7")
 volume_db = -6.058
+bus = &"SFX"
 
 [node name="HitFX2" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("8")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="HitFX3" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("12")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="HitFX4" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("11")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="HitFX5" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("13")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="HitFX6" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("14")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="HitFX7" type="AudioStreamPlayer" parent="HitFX"]
 stream = ExtResource("9")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="DestroyedFX" parent="." instance=ExtResource("10")]
 
 [node name="DestroyedFX1" type="AudioStreamPlayer" parent="DestroyedFX"]
 stream = ExtResource("15")
 volume_db = 13.126
+bus = &"SFX"
 
 [node name="DestroyedFX2" type="AudioStreamPlayer" parent="DestroyedFX"]
 stream = ExtResource("16")
 volume_db = 13.126
+bus = &"SFX"
 
 [node name="DestroyedFX3" type="AudioStreamPlayer" parent="DestroyedFX"]
 stream = ExtResource("2")
 volume_db = 14.136
+bus = &"SFX"
 
 [node name="CastFX" parent="." instance=ExtResource("10")]
 
 [node name="CastFX1" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource("6")
+bus = &"SFX"
 
 [node name="CastFX2" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource("5")
+bus = &"SFX"
 
 [node name="CastFX3" type="AudioStreamPlayer" parent="CastFX"]
 stream = ExtResource("3")
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

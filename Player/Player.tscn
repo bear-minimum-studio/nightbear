@@ -112,13 +112,16 @@ parameters/playback = SubResource("9")
 [node name="SpellFX1" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("7")
 volume_db = -17.165
+bus = &"SFX"
 
 [node name="SpellFX2" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("4")
 volume_db = -19.184
+bus = &"SFX"
 
 [node name="SpellFX3" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("6")
 volume_db = -18.175
+bus = &"SFX"
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]

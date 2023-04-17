@@ -62,13 +62,16 @@ process_mode = 2
 [node name="DeathFX1" type="AudioStreamPlayer" parent="DeathFX"]
 stream = ExtResource("6")
 volume_db = -14.135
+bus = &"Game Over"
 
 [node name="LightningFX" parent="." instance=ExtResource("1")]
 
 [node name="LightningFX1" type="AudioStreamPlayer" parent="LightningFX"]
 stream = ExtResource("9")
 volume_db = -9.087
+bus = &"SFX"
 
 [node name="LightningFX2" type="AudioStreamPlayer" parent="LightningFX"]
 stream = ExtResource("10")
 volume_db = -8.078
+bus = &"SFX"
