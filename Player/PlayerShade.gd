@@ -8,5 +8,5 @@ func initialize(father_world_id: int):
 	world_id = father_world_id
 	self.texture = body_sprites[1-world_id]
 
-func move_shade(position: Vector2):
-	transform.origin = position
+func move_shade(new_position: Vector2):
+	transform.origin = new_position

@@ -24,11 +24,11 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id="2"]
 shader = SubResource("1")
+shader_parameter/player_position = null
+shader_parameter/color = Color(0.305, 0.298, 0.341, 1)
 shader_parameter/MULTIPLIER = 0.56
 shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.45
-shader_parameter/color = Color(0.305, 0.298, 0.341, 1)
-shader_parameter/player_position = null
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dloxr"]
 texture = ExtResource("1")
@@ -261,8 +261,8 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_dloxr")
 
 [node name="World" type="Node2D"]
-material = SubResource("2")
 y_sort_enabled = true
+material = SubResource("2")
 script = ExtResource("5")
 
 [node name="TileMap" type="TileMap" parent="."]

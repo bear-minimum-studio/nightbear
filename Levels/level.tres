@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=45 format=3 uid="uid://bwbs3cwrchxwp"]
+[gd_resource type="Resource" script_class="SequenceResource" load_steps=45 format=3 uid="uid://bwbs3cwrchxwp"]
 
 [ext_resource type="Script" path="res://World/LevelManagement/Resources/BurstResource.gd" id="1"]
 [ext_resource type="Script" path="res://World/LevelManagement/Resources/SequenceResource.gd" id="2"]
@@ -108,7 +108,7 @@ next_delay = 45.0
 
 [sub_resource type="Resource" id="9"]
 script = ExtResource("2")
-subsequence = [SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4"), SubResource("5"), SubResource("6"), SubResource("7"), SubResource("8")]
+subsequence = Array[Resource("res://World/LevelManagement/Resources/AbstractSequenceResource.gd")]([SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4"), SubResource("5"), SubResource("6"), SubResource("7"), SubResource("8")])
 
 [sub_resource type="Resource" id="10"]
 script = ExtResource("1")
@@ -326,7 +326,7 @@ next_delay = 45.0
 
 [sub_resource type="Resource" id="26"]
 script = ExtResource("2")
-subsequence = [SubResource("10"), SubResource("11"), SubResource("12"), SubResource("13"), SubResource("14"), SubResource("15"), SubResource("16"), SubResource("17"), SubResource("18"), SubResource("19"), SubResource("20"), SubResource("21"), SubResource("22"), SubResource("23"), SubResource("24"), SubResource("25")]
+subsequence = Array[Resource("res://World/LevelManagement/Resources/AbstractSequenceResource.gd")]([SubResource("10"), SubResource("11"), SubResource("12"), SubResource("13"), SubResource("14"), SubResource("15"), SubResource("16"), SubResource("17"), SubResource("18"), SubResource("19"), SubResource("20"), SubResource("21"), SubResource("22"), SubResource("23"), SubResource("24"), SubResource("25")])
 
 [sub_resource type="Resource" id="27"]
 script = ExtResource("1")
@@ -516,8 +516,8 @@ next_delay = 55.0
 
 [sub_resource type="Resource" id="41"]
 script = ExtResource("2")
-subsequence = [SubResource("27"), SubResource("28"), SubResource("29"), SubResource("30"), SubResource("31"), SubResource("32"), SubResource("33"), SubResource("34"), SubResource("35"), SubResource("36"), SubResource("37"), SubResource("38"), SubResource("39"), SubResource("40")]
+subsequence = Array[Resource("res://World/LevelManagement/Resources/AbstractSequenceResource.gd")]([SubResource("27"), SubResource("28"), SubResource("29"), SubResource("30"), SubResource("31"), SubResource("32"), SubResource("33"), SubResource("34"), SubResource("35"), SubResource("36"), SubResource("37"), SubResource("38"), SubResource("39"), SubResource("40")])
 
 [resource]
 script = ExtResource("2")
-subsequence = [SubResource("9"), SubResource("26"), SubResource("41")]
+subsequence = Array[Resource("res://World/LevelManagement/Resources/AbstractSequenceResource.gd")]([SubResource("9"), SubResource("26"), SubResource("41")])

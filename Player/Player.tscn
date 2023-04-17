@@ -57,13 +57,11 @@ animation = &"Cast"
 animation = &"Run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjbem"]
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="6"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="7"]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id="8"]
 states/Cast/node = SubResource("4")
@@ -114,16 +112,13 @@ parameters/playback = SubResource("9")
 [node name="SpellFX1" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("7")
 volume_db = -17.165
-bus = &"SFX"
 
 [node name="SpellFX2" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("4")
 volume_db = -19.184
-bus = &"SFX"
 
 [node name="SpellFX3" type="AudioStreamPlayer" parent="SpellFX"]
 stream = ExtResource("6")
 volume_db = -18.175
-bus = &"SFX"
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]
