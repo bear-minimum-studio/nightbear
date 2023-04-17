@@ -59,7 +59,7 @@ func _connect_projectile(spawned_instance: Projectile):
 func _dream_caught(_position: Vector2):
 	dreams_caught += 1
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
-	dream_caught_text.text = String(dreams_caught) + wording
+	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
 
 func _player_dead(world_id):
 	print("Player %d is dead !" % world_id)
