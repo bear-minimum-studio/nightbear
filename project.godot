@@ -8,94 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Resource",
-"class": &"AbstractSequenceResource",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/Resources/AbstractSequenceResource.gd"
-}, {
-"base": "Area2D",
-"class": &"AllyProjectile",
-"language": &"GDScript",
-"path": "res://Projectiles/ProjectilesTypes/AllyProjectile.gd"
-}, {
-"base": "Node",
-"class": &"Burst",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/Burst.gd"
-}, {
-"base": "AbstractSequenceResource",
-"class": &"BurstEmptyResource",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/Resources/BurstEmptyResource.gd"
-}, {
-"base": "AbstractSequenceResource",
-"class": &"BurstResource",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/Resources/BurstResource.gd"
-}, {
-"base": "Area2D",
-"class": &"DoomProjectile",
-"language": &"GDScript",
-"path": "res://Projectiles/ProjectilesTypes/DoomProjectile.gd"
-}, {
-"base": "StaticBody2D",
-"class": &"DreamCatcher",
-"language": &"GDScript",
-"path": "res://Obstacles/DreamCatcher.gd"
-}, {
-"base": "Area2D",
-"class": &"EnemyProjectile",
-"language": &"GDScript",
-"path": "res://Projectiles/ProjectilesTypes/EnemyProjectile.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"Player",
-"language": &"GDScript",
-"path": "res://Player/Player.gd"
-}, {
-"base": "Area2D",
-"class": &"Projectile",
-"language": &"GDScript",
-"path": "res://Projectiles/Projectile.gd"
-}, {
-"base": "Node",
-"class": &"SequenceElement",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/SequenceElement.gd"
-}, {
-"base": "AbstractSequenceResource",
-"class": &"SequenceResource",
-"language": &"GDScript",
-"path": "res://World/LevelManagement/Resources/SequenceResource.gd"
-}, {
-"base": "Node2D",
-"class": &"SpawnHandler",
-"language": &"GDScript",
-"path": "res://Spawner/SpawnerHandler.gd"
-}, {
-"base": "StaticBody2D",
-"class": &"Wall",
-"language": &"GDScript",
-"path": "res://Obstacles/Wall.gd"
-}]
-_global_script_class_icons={
-"AbstractSequenceResource": "",
-"AllyProjectile": "",
-"Burst": "",
-"BurstEmptyResource": "",
-"BurstResource": "",
-"DoomProjectile": "",
-"DreamCatcher": "",
-"EnemyProjectile": "",
-"Player": "",
-"Projectile": "",
-"SequenceElement": "",
-"SequenceResource": "",
-"SpawnHandler": "",
-"Wall": ""
-}
-
 [application]
 
 config/name="Nightbear"
@@ -112,6 +24,7 @@ default_bus_layout="res://Audio/bus_layout.tres"
 
 Parameters="*res://Singletons/Parameters.gd"
 MusicPlayer="*res://Audio/Soundtrack/MusicPlayer.tscn"
+Events="*res://Singletons/Events.gd"
 
 [display]
 

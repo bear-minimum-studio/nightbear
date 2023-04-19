@@ -1,7 +1,5 @@
 extends "res://World/LevelManagement/SequenceElement.gd"
 
-signal new_subsequence
-signal sequence_ended
 
 @export var level: Resource
 
@@ -18,10 +16,10 @@ func _input(event) -> void:
 
 func end() -> void:
 	if(element_ended()):
-		emit_signal("sequence_ended")
+		Events.sequence_ended.emit()
 		super.end()
 
 func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
-		emit_signal("new_subsequence", element_index)
+		Events.new_subsequence.emit(element_index)
 	super.play(element_index)

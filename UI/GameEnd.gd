@@ -1,6 +1,5 @@
 extends Control
 
-signal replay
 
 @onready var animation_player = $AnimationPlayer
 var game_end_ready = false
@@ -18,5 +17,5 @@ func _input(event):
 		return
 
 	if event.is_action_pressed("ui_accept"):
-		emit_signal("replay")
+		Events.replay_game.emit()
 		visible = false

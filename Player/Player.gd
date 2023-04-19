@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-signal build
-signal player_dead
-signal player_moved
 
 @onready var build_timer = $BuildTimer
 @onready var sprite = $Sprite2D
@@ -40,7 +37,7 @@ func _physics_process(_delta):
 	
 	# Might have a performance impact
 	# Make this a direct function call the day it becomes a problem
-	emit_signal("player_moved", world_id, transform.origin)
+	Events.player_moved.emit(world_id, transform.origin)
 	
 	if Input.is_action_pressed("P%d_build" % world_id):
 		_build()
@@ -53,7 +50,7 @@ func _build():
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
-	emit_signal("build", world_id, self.transform)
+	Events.build.emit(world_id, self.transform)
 
 func _on_BuildTimer_timeout():
 	ready_to_build = true
@@ -67,4 +64,4 @@ func hit():
 
 func _player_death():
 	if (!is_immortal):
-		emit_signal("player_dead", world_id)
+		Events.player_dead.emit(world_id)

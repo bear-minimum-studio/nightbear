@@ -26,18 +26,16 @@ func _ready():
 		world.spawner_handler.connect("entity_spawned",Callable(self,"_connect_projectile"))
 	
 	sequence.init(worlds)
-	sequence_player.connect("new_subsequence",Callable(self,"_new_subsequence"))
-	sequence_player.connect("sequence_ended",Callable(self,"_sequence_ended"))
+	Events.new_subsequence.connect(_new_subsequence)
+	Events.sequence_ended.connect(_sequence_ended)
 	
-	game_over.connect("replay",Callable(self,"_replay_game"))
-	game_end.connect("replay",Callable(self,"_replay_game"))
+	Events.replay_game.connect(_replay_game)
 		
 	var players = get_tree().get_nodes_in_group("player")
 	
-	for player in players:
-		player.connect("build",Callable(self,"_build"))
-		player.connect("player_dead",Callable(self,"_player_dead"))
-		player.connect("player_moved",Callable(self,"_move_player_shade"))
+	Events.build.connect(_build)
+	Events.player_dead.connect(_player_dead)
+	Events.player_moved.connect(_move_player_shade)
 	
 	MusicPlayer.next()
 	sequence.start()
@@ -53,8 +51,8 @@ func _build(world_id: int, t:Transform2D):
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
-		var _unused1 = spawned_instance.connect("missed_ally_projectile",Callable(self,"_on_missed_ally_projectile"))
-		var _unused2 = spawned_instance.connect("dream_caught",Callable(self,"_dream_caught"))
+		Events.missed_ally_projectile.connect(_on_missed_ally_projectile)
+		Events.dream_caught.connect(_dream_caught)
 
 func _dream_caught(_position: Vector2):
 	dreams_caught += 1
