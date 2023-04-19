@@ -5,7 +5,7 @@ var Game = load("res://World/Game.tscn")
 @onready var dialog_iterator = $DialogIterator
 
 func _ready():
-	var _connect_error = dialog_iterator.connect("end", start_game)
+	var _connect_error = dialog_iterator.end.connect(start_game)
 	dialog_iterator.start()
 
 func start_game():

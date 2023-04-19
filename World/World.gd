@@ -17,7 +17,7 @@ func initialize(father_id: int):
 func _ready():
 	for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
 		var spawner = spawner_handler.spawners[side]
-		var _unused = spawner.connect("entity_spawned",Callable(self,"_on_entity_spawned"))
+		var _unused = spawner.entity_spawned.connect(_on_entity_spawned)
 
 func _on_entity_spawned(instance):
 	add_child(instance)

@@ -23,14 +23,14 @@ func _ready():
 		
 		viewport_containers.push_back(viewport_container)
 		worlds.push_back(world)
-		world.spawner_handler.connect("entity_spawned",Callable(self,"_connect_projectile"))
+		world.spawner_handler.entity_spawned.connect(_connect_projectile)
 	
 	sequence.init(worlds)
 	Events.new_subsequence.connect(_new_subsequence)
 	Events.sequence_ended.connect(_sequence_ended)
 	
 	Events.replay_game.connect(_replay_game)
-		
+	
 	var players = get_tree().get_nodes_in_group("player")
 	
 	Events.build.connect(_build)

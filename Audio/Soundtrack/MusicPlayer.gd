@@ -31,7 +31,7 @@ func next():
 
 func _ready():
 	for track in soundtrack.values():
-		var _connect_error = track.connect("finished",Callable(self,"_on_finished"))
+		var _connect_error = track.finished.connect(_on_finished)
 	start()
 
 func _play(theme):
