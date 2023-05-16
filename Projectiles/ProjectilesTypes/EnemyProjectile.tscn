@@ -31,7 +31,7 @@ script = ExtResource("1")
 
 [node name="Sprite2D" parent="SpriteContainer" index="0"]
 texture = ExtResource("3")
-frame = 9
+frame = 0
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "Moving"

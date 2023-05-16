@@ -32,7 +32,7 @@ animations = [{
 radius = 22.0026
 height = 46.9463
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="StaticBody2D" groups=["builds"]]
 scale = Vector2(0.68, 0.68)
 collision_layer = 4
 collision_mask = 17

@@ -17,7 +17,7 @@ var world_id: int
 @onready var _spawn_location := $SpawnLocation
 
 func _ready() -> void:
-	randomize()
+	seed(Parameters.SEED)
 
 func _get_spawn_location(offset: float) -> Vector2:
 	_spawn_location.progress_ratio = offset

@@ -15,7 +15,7 @@ var flash_speed = 0.01
 
 func _ready():
 	pass
-	
+
 func _on_ShakeLengthTimer_timeout():
 	doing_shake = false
 	_reset_camera()

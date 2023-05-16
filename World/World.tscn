@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhgc1oi7qk0iv"]
+[gd_scene load_steps=8 format=3 uid="uid://bhgc1oi7qk0iv"]
 
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://ntuuq14lawh6" path="res://Spawner/SpawnerHandler.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://llb2a20jft0v" path="res://Player/PlayerShade.tscn" id="4"]
 [ext_resource type="Script" path="res://World/World.gd" id="5"]
 
 [sub_resource type="Shader" id="1"]
@@ -272,9 +270,8 @@ tile_set = SubResource("TileSet_nxc75")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65538, 131072, 0, -2, 196608, 1, 65534, 0, 2, -1, 262144, 3, -65537, 131072, 3, 131070, 0, 0, 131071, 65536, 1, 65535, 262144, 3, 65536, 65536, 1, 0, 262144, 2, -65536, 262144, 2, -131072, 65536, 3, 1, 196608, 2, -65535, 131072, 2, -131071, 196608, 0, 65537, 65536, 0)
 
-[node name="Player" parent="." instance=ExtResource("2")]
-position = Vector2(-0.346558, -0.72464)
-
 [node name="SpawnerHandler" parent="." instance=ExtResource("3")]
 
-[node name="PlayerShade" parent="." instance=ExtResource("4")]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Player/PlayerShade.tscn")
+spawn_path = NodePath("..")

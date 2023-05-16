@@ -5,7 +5,7 @@ extends Node
 @onready var nb_fxs = len(sound_fxs)
 
 func play():
-	randomize()
+	seed(Parameters.SEED)
 	sound_fxs[randi() % nb_fxs].play()
 
 

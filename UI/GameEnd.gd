@@ -17,5 +17,9 @@ func _input(event):
 		return
 
 	if event.is_action_pressed("ui_accept"):
-		Events.replay_game.emit()
-		visible = false
+		_on_ui_accept.rpc()
+
+@rpc("call_local", "any_peer")
+func _on_ui_accept():
+	Events.replay_game.emit()
+	visible = false

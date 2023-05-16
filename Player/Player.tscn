@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://v7d30trnnhbn"]
+[gd_scene load_steps=20 format=3 uid="uid://v7d30trnnhbn"]
 
 [ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear1.png" id="1"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="2"]
@@ -74,6 +74,14 @@ graph_offset = Vector2(-390.555, 62.28)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="9"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_48b6l"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Sprite2D:scale")
+properties/1/spawn = true
+properties/1/sync = true
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
 script = ExtResource("2")
@@ -123,5 +131,8 @@ bus = &"SFX"
 stream = ExtResource("6")
 volume_db = -18.175
 bus = &"SFX"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_48b6l")
 
 [connection signal="timeout" from="BuildTimer" to="." method="_on_BuildTimer_timeout"]

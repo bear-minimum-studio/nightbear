@@ -22,7 +22,7 @@ func initialize(father_world_id: int) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
+	seed(Parameters.SEED)
 
 func spawn(spawn_type: int, spawn_parameters: Dictionary, sides: Array) -> void:
 	var spawn_side = sides[randi() % sides.size()]

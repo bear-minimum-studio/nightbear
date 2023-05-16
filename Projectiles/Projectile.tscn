@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(60.124, 62.4438)
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" groups=["projectiles"]]
 scale = Vector2(0.3, 0.3)
 collision_layer = 16
 collision_mask = 7

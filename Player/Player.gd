@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-
 @onready var build_timer = $BuildTimer
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -12,22 +11,35 @@ class_name Player
 @export var is_immortal := false
 
 var player_velocity := Vector2.ZERO
-var world_id := 0
+var world_id : int
+var input_id : int
 var ready_to_build := false
 
-func initialize(father_world_id: int):
-	world_id = father_world_id
+## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
+func _enter_tree():
+	set_multiplayer_authority(str(self.name).split('_')[0].to_int())
+	self.world_id = self.name.split('_')[1].to_int()
+
+func _ready():
 	sprite.initialize(world_id)
+	input_id = world_id if NetworkTools.local_multiplayer else 0
+
+@rpc("call_local", "authority")
+func _on_player_moved():
+	Events.player_moved.emit(world_id, transform.origin)
 
 func _physics_process(_delta):
+	if not is_multiplayer_authority(): return
+	
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("P%d_walk_right" % world_id) - Input.get_action_strength("P%d_walk_left" % world_id)
-	input_vector.y = Input.get_action_strength("P%d_walk_down" % world_id) - Input.get_action_strength("P%d_walk_up" % world_id)
+	input_vector.x = Input.get_action_strength("P%d_walk_right" % input_id) - Input.get_action_strength("P%d_walk_left" % input_id)
+	input_vector.y = Input.get_action_strength("P%d_walk_down" % input_id) - Input.get_action_strength("P%d_walk_up" % input_id)
  
 	if input_vector.length() > 1:
 		input_vector = input_vector.normalized()
 	
 	player_velocity = Parameters.PLAYER_WALK_SPEED * input_vector
+	
 	set_velocity(player_velocity)
 	move_and_slide()
 	player_velocity = player_velocity
@@ -37,11 +49,17 @@ func _physics_process(_delta):
 	
 	# Might have a performance impact
 	# Make this a direct function call the day it becomes a problem
-	Events.player_moved.emit(world_id, transform.origin)
+	if player_velocity.length_squared() > 0:
+		_on_player_moved.rpc()
 	
-	if Input.is_action_pressed("P%d_build" % world_id):
-		_build()
+	if Input.is_action_just_pressed("P%d_build" % input_id):
+		_build.rpc()
 
+@rpc("call_local", "any_peer")
+func reset_position():
+	position = Vector2.ZERO
+
+@rpc("call_local", "authority")
 func _build():
 	if !ready_to_build:
 		return

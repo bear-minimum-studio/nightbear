@@ -23,6 +23,12 @@ func initialize(squence_id: String, element_description: Resource, father_node: 
 	element_started = false
 	_set_subsequence(element_description)
 
+func force_stop():
+	for sub_element in subsequence:
+		if sub_element != null:
+			sub_element.force_stop()
+	_queue_free()
+
 func _get_entity_for_element(element_description: Resource) -> PackedScene:
 	if not element_description is SequenceResource:
 		return burst_entity

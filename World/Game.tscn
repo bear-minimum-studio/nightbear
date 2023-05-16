@@ -12,11 +12,18 @@
 [ext_resource type="AudioStream" uid="uid://dfyljd6u8tlwi" path="res://Audio/SFX/Lightning/lightning_1.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://dprgwe2yu1us4" path="res://Audio/SFX/Lightning/lightning_2.wav" id="10"]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5")
 viewport_container_paths = Array[NodePath]([NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2")])
 
 [node name="Viewports" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,6 +40,7 @@ world_id = 1
 
 [node name="DreamCaughtText" type="Label" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 32.0
@@ -42,6 +50,7 @@ theme = ExtResource("4_av0iw")
 text = "0 dream caught"
 
 [node name="WaveNumber" parent="." instance=ExtResource("8")]
+layout_mode = 1
 anchors_preset = 10
 offset_top = 0.0
 offset_bottom = 26.0
@@ -51,8 +60,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOver" parent="." instance=ExtResource("2")]
+layout_mode = 1
 
 [node name="GameEnd" parent="." instance=ExtResource("7")]
+layout_mode = 1
 
 [node name="SequencePlayer" parent="." instance=ExtResource("4")]
 

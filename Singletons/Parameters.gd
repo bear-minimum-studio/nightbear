@@ -1,11 +1,12 @@
 extends Node
 
+const SEED = 0
+
 # Game parameters :
 var GAME_WALL = load("res://Obstacles/Wall.tscn")
 var GAME_DREAM_CATCHER = load("res://Obstacles/DreamCatcher.tscn")
 
 # Player parameters :
-
 const PLAYER_WALK_SPEED = 250
 const BUILD_RELOAD_TIME = 1
 

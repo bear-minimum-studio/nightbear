@@ -1,4 +1,4 @@
-extends "res://World/LevelManagement/SequenceElement.gd"
+extends SequenceElement
 
 
 @export var level: Resource
@@ -23,3 +23,7 @@ func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
 		Events.new_subsequence.emit(element_index)
 	super.play(element_index)
+
+func reset():
+	force_stop()
+	init(worlds)

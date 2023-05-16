@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 @export var viewport_container_paths: Array[NodePath]
 
@@ -31,23 +31,48 @@ func _ready():
 	
 	Events.replay_game.connect(_replay_game)
 	
-	var players = get_tree().get_nodes_in_group("player")
-	
 	Events.build.connect(_build)
 	Events.player_dead.connect(_player_dead)
 	Events.player_moved.connect(_move_player_shade)
-	
+
+func initialize():
+	_center_players()
+	_clean_builds()
+	_clean_projectiles()
+	_reset_tentacles()
+	_reset_sequence()
+
+func _center_players():
+	if multiplayer.is_server():
+		for world in worlds:
+			world.player.reset_position.rpc()
+			world.player_shade.reset_position.rpc()
+
+func _clean_builds():
+	for build in get_tree().get_nodes_in_group("builds"):
+		build.queue_free()
+
+func _clean_projectiles():
+	for projectile in get_tree().get_nodes_in_group("projectiles"):
+		projectile.queue_free()
+
+func _reset_tentacles():
+	var tentacles = get_tree().get_nodes_in_group("tentacle")
+	for tentacle in tentacles:
+		tentacle.reset()
+
+func _reset_sequence():
+	sequence.reset()
+
+# TODO: MAKE LEVEL PARAMETRABLE
+func start_level():
 	MusicPlayer.next()
+	initialize()
 	sequence.start()
 
-func _build(world_id: int, t:Transform2D):
-	var new_wall = Parameters.GAME_WALL.instantiate()
-	new_wall.transform.origin = t.origin
-	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instantiate()
-	new_dream_catcher.transform.origin = t.origin
-
-	worlds[1 - world_id].add_child(new_wall)
-	worlds[world_id].add_child(new_dream_catcher)
+func _build(world_id: int, pos:Transform2D):
+	worlds[1 - world_id].spawn_wall(pos)
+	worlds[world_id].spawn_dream_catcher(pos)
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
@@ -66,11 +91,11 @@ func _player_dead(world_id):
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
-func _move_player_shade(world_id: int, position: Vector2):
+func _move_player_shade(world_id: int, new_position: Vector2):
 	var player_shades = get_tree().get_nodes_in_group("player_shade")
 	for player_shade in player_shades:
 		if player_shade.world_id != world_id:
-			player_shade.move_shade(position)
+			player_shade.move_shade(new_position)
 
 func _sequence_ended():
 	game_end.show_scene()
@@ -78,7 +103,6 @@ func _sequence_ended():
 
 func _replay_game():
 	get_tree().paused = false
-	var _unused = get_tree().reload_current_scene()
 
 func _new_subsequence(wave_index: int):
 	wave_number_text.next_wave(wave_index + 1)

@@ -1,4 +1,4 @@
-extends "res://World/LevelManagement/SequenceElement.gd"
+extends SequenceElement
 
 class_name Burst
 

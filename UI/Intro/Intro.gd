@@ -1,12 +1,10 @@
 extends Control
 
-var Game = load("res://World/Game.tscn")
-
 @onready var dialog_iterator = $DialogIterator
 
 func _ready():
-	var _connect_error = dialog_iterator.end.connect(start_game)
+	var _connect_error = dialog_iterator.end.connect(intro_ended)
 	dialog_iterator.start()
 
-func start_game():
-	var _change_scene_error = get_tree().change_scene_to_packed(Game)
+func intro_ended():
+	Events.intro_ended.emit()
