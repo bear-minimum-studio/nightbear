@@ -14,4 +14,4 @@ func _on_tutorial_button_pressed():
 
 
 func _on_quit_button_pressed():
-	pass # Replace with function body.
+	Events.quit_game.emit()

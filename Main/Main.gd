@@ -16,12 +16,15 @@ var client_peer_id : int
 func _ready():
 #	Events.intro_ended.connect(focus_scene.bind(network_menu))
 #	intro.show()
+	Events.quit_game.connect(quit_game)
 	Events.hosting.connect(host_game)
 	Events.joining.connect(join_game)
 	Events.localing.connect(local_game)
 	Events.replay_game.connect(replay_game)
 	menu_navigator.open(MenuNavigator.MENU.MAIN)
 
+func quit_game():
+	get_tree().quit()
 
 func start_game():
 	game = game_scene.instantiate()
