@@ -153,6 +153,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Local"
 
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Main menu"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HostLANButton" to="." method="_on_host_lan_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HostWANButton" to="." method="_on_host_wan_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

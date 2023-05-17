@@ -5,11 +5,9 @@ var game : Control
 
 var enet_peer = ENetMultiplayerPeer.new()
 
-@onready var intro : Control = $Intro
-@onready var network_menu : Control = $NetworkMenu
+@onready var menu_navigator = $MenuNavigator
 @onready var lobby = $Lobby
 
-var currently_focused_scene : Control
 
 var host_peer_id : int
 var client_peer_id : int
@@ -18,23 +16,18 @@ var client_peer_id : int
 func _ready():
 #	Events.intro_ended.connect(focus_scene.bind(network_menu))
 #	intro.show()
-	network_menu.hosting.connect(host_game)
-	network_menu.joining.connect(join_game)
-	network_menu.localing.connect(local_game)
+	Events.hosting.connect(host_game)
+	Events.joining.connect(join_game)
+	Events.localing.connect(local_game)
 	Events.replay_game.connect(replay_game)
-	focus_scene(network_menu)
+	menu_navigator.focus(MenuNavigator.MENU.MAIN)
 
-
-func focus_scene(scene: Control):
-	if currently_focused_scene != null:
-		currently_focused_scene.hide()
-	scene.show()
-	currently_focused_scene = scene
 
 func start_game():
 	game = game_scene.instantiate()
 	add_child(game)
-	focus_scene(game)
+	menu_navigator.switch(MenuNavigator.MENU.NONE)
+	game.show()
 	lobby.show()
 
 @rpc("call_local")

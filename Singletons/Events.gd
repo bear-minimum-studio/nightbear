@@ -1,7 +1,11 @@
 extends Node
 
+signal hosting(wan: bool)
+signal joining(host_address_and_port: String)
+signal localing
 signal server_port_updated(server_port: int)
 
+signal quit_game
 signal intro_ended
 signal replay_game
 

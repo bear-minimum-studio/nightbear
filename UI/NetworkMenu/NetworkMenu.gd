@@ -1,5 +1,7 @@
 extends Control
 
+class_name NetworkMenu
+
 @onready var host_lan_button = $MarginContainer/VBoxContainer/HostLANButton
 @onready var host_wan_button = $MarginContainer/VBoxContainer/HostWANButton
 @onready var join_button = $MarginContainer/VBoxContainer/JoinButton
@@ -10,11 +12,10 @@ extends Control
 @onready var correct_label = $MarginContainer/VBoxContainer/CorrectLabel
 @onready var local_button = $MarginContainer/VBoxContainer/LocalButton
 
-signal hosting(wan: bool)
-signal joining(host_address_and_port: String)
-signal localing
 
 @onready var joining_address : String
+
+@onready var exits_dict = {}
 
 var local_ip = null :
 	set(ip):
@@ -38,11 +39,11 @@ func _on_server_port_updated(_server_port: int):
 
 func _on_host_lan_button_pressed():
 	print('hosting_lan')
-	hosting.emit(false)
+	Events.hosting.emit(false)
 
 func _on_host_wan_button_pressed():
 	print('hosting_wan')
-	hosting.emit(true)
+	Events.hosting.emit(true)
 	
 func _on_join_button_pressed():
 	if not address_field.visible:
@@ -55,7 +56,7 @@ func _on_join_button_pressed():
 
 func _on_local_button_pressed():
 	print('localing')
-	localing.emit()
+	Events.localing.emit()
 
 
 func _on_line_edit_text_submitted(new_text):
@@ -64,7 +65,7 @@ func _on_line_edit_text_submitted(new_text):
 	if NetworkTools.is_valid_address(new_text):
 		correct_label.visible = true
 		joining_address = new_text
-		joining.emit(joining_address)
+		Events.joining.emit(joining_address)
 		print('joining ' + joining_address)
 	else:
 		error_label.visible = true
