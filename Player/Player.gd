@@ -82,4 +82,8 @@ func hit():
 
 func _player_death():
 	if (!is_immortal):
+		# vibrate controller of hit player
+		if is_multiplayer_authority():
+			Input.start_joy_vibration(input_id,0.5,0.5,0.1)
+			Input.vibrate_handheld(100)
 		Events.player_dead.emit(world_id)
