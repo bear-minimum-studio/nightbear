@@ -10,7 +10,8 @@ class_name  SettingsMenu
 @onready var exits_dict = {}
 
 
-func _ready():
+
+func initialize_buttons():
 	check_button.button_pressed = Settings.fullscreen
 	master_slider.value = Settings.get_bus_gain(AudioBuses.MASTER_BUS)
 	music_slider.value = Settings.get_bus_gain(AudioBuses.MUSIC_BUS)
@@ -43,3 +44,8 @@ func _on_fx_slider_value_changed(value):
 	else:
 		Settings.mute_bus(AudioBuses.SFX_BUS,false)
 	Settings.set_bus_gain(AudioBuses.SFX_BUS,value)
+
+
+func _on_visibility_changed():
+	if visible:
+		initialize_buttons()

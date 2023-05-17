@@ -123,6 +123,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Press escape or B to go back"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer4/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
