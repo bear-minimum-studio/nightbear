@@ -16,12 +16,13 @@ var client_peer_id : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.intro_ended.connect(focus_scene.bind(network_menu))
+#	Events.intro_ended.connect(focus_scene.bind(network_menu))
+#	intro.show()
 	network_menu.hosting.connect(host_game)
 	network_menu.joining.connect(join_game)
 	network_menu.localing.connect(local_game)
 	Events.replay_game.connect(replay_game)
-	intro.show()
+	focus_scene(network_menu)
 
 
 func focus_scene(scene: Control):
