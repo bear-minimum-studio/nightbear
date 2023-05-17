@@ -21,8 +21,11 @@ func _ready():
 	
 	Events.replay_game.connect(replay_game)
 	
-#	play_intro()
-	menu_navigator.open(MenuNavigator.MENU.MAIN)
+	Settings.load_settings()
+	if Settings.first_execution:
+		play_intro()
+	else:
+		menu_navigator.open(MenuNavigator.MENU.MAIN)
 
 func quit_game():
 	get_tree().quit()

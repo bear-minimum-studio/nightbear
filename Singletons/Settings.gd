@@ -20,6 +20,13 @@ var configPath = "user://settings.cfg"
 		config.set_value("Settings", "window_mode", value)
 		_save_settings()
 
+@onready var first_execution : bool:
+	set(value):
+		first_execution = value
+		config.set_value("Settings", "first_execution", value)
+		_save_settings()
+		
+
 # default values are stored in default_bus_layout
 #var buses_dict = {
 #	MusicPlayer.MASTER_BUS: {
@@ -45,18 +52,18 @@ var configPath = "user://settings.cfg"
 #	},	
 #}
 
-func _ready():
-	_load_settings()
-
 func _save_settings() -> void:
 	config.save(configPath)
 
-func _load_settings() -> void:
+func load_settings() -> void:
 	var err = config.load(configPath)
-	if err == OK:
-		var value = config.get_value("Settings", "window_mode")
-		if value != null:
-			window_mode = value
+	if err != OK:
+		first_execution = true
+		return
+	first_execution = false
+	var value = config.get_value("Settings", "window_mode")
+	if value != null:
+		window_mode = value
 #		_load_buses_settings()
 #	_set_buses_settings()
 
