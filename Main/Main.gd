@@ -52,9 +52,10 @@ func local_game():
 	_spawn_player(1, host_peer_id)
 	lobby_ready()
 
-func host_game():
+func host_game(wan: bool):
 	NetworkTools.local_multiplayer = false
-	enet_peer.create_server(NetworkTools.server_port, 1)
+	var server_port = NetworkTools.server_port if wan else NetworkTools.LOCAL_PORT
+	enet_peer.create_server(server_port, 1)
 	multiplayer.multiplayer_peer = enet_peer
 	host_peer_id = multiplayer.get_unique_id()
 	multiplayer.peer_connected.connect(peer_connected)

@@ -3,6 +3,8 @@ extends Node
 # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
 signal upnp_completed
 
+const LOCAL_PORT := 3628
+
 var thread = null
 var upnp : UPNP
 var is_upnp_completed := false
@@ -41,6 +43,7 @@ func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.
 	await thread.wait_to_finish()
 	upnp.delete_port_mapping(server_port)
+	pass
 
 func _on_upnp_completed():
 	is_upnp_completed = true
@@ -72,9 +75,8 @@ func get_address(address_and_port: String) -> String:
 	return address_and_port.split(":")[0]
 
 ## On localhost we don't want to have to precise the port for easier debuging.
-## If both instances are on the same pc then server_port should be the same on both sides.
 func get_port(address_and_port: String) -> int:
-	if get_address(address_and_port) == "localhost": return server_port
+	if get_address(address_and_port) == "localhost": return LOCAL_PORT
 	return address_and_port.split(":")[1].to_int()
 
 ## Return all the local ipv4 except 127.0.0.1
@@ -88,11 +90,14 @@ func get_local_ipv4_addresses(return_localhost=false):
 		ipv4_addresses.append(addr)
 	return ipv4_addresses
 
+func concatenate_port_and_address(address: String, port: int) -> String:
+	return "%s:%d" % [address, port]
+
 func get_local_ipv4():
-	return "%s:%d" % [get_local_ipv4_addresses()[0], server_port]
+	return concatenate_port_and_address(get_local_ipv4_addresses()[0], LOCAL_PORT)
 
 func get_public_ip():
 	if is_upnp_completed:
-		return "%s:%d" % [upnp.query_external_address(), server_port]
+		return concatenate_port_and_address(upnp.query_external_address(), server_port)
 	await upnp_completed
-	return "%s:%d" % [upnp.query_external_address(), server_port]
+	return concatenate_port_and_address(upnp.query_external_address(), server_port)

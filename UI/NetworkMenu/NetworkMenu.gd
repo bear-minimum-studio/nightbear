@@ -1,6 +1,7 @@
 extends Control
 
-@onready var host_button = $MarginContainer/VBoxContainer/HostButton
+@onready var host_lan_button = $MarginContainer/VBoxContainer/HostLANButton
+@onready var host_wan_button = $MarginContainer/VBoxContainer/HostWANButton
 @onready var join_button = $MarginContainer/VBoxContainer/JoinButton
 @onready var address_field = $MarginContainer/VBoxContainer/AddressField
 @onready var local_ip_label = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/LocalIPLabel
@@ -9,8 +10,8 @@ extends Control
 @onready var correct_label = $MarginContainer/VBoxContainer/CorrectLabel
 @onready var local_button = $MarginContainer/VBoxContainer/LocalButton
 
-signal hosting
-signal joining(address)
+signal hosting(wan: bool)
+signal joining(host_address_and_port: String)
 signal localing
 
 @onready var joining_address : String
@@ -35,14 +36,20 @@ func _ready():
 func _on_server_port_updated(_server_port: int):
 	local_ip = NetworkTools.get_local_ipv4()
 
-func _on_host_button_pressed():
-	print('hosting')
-	hosting.emit()
+func _on_host_lan_button_pressed():
+	print('hosting_lan')
+	hosting.emit(false)
 
+func _on_host_wan_button_pressed():
+	print('hosting_wan')
+	hosting.emit(true)
+	
 func _on_join_button_pressed():
 	if not address_field.visible:
 		join_button.disabled = true
-		host_button.disabled = true
+		host_lan_button.disabled = true
+		host_wan_button.disabled = true
+		local_button.disabled = true
 		address_field.show()
 		address_field.grab_focus()
 
@@ -66,7 +73,9 @@ func _on_line_edit_text_submitted(new_text):
 func _on_address_field_focus_exited():
 	address_field.hide()
 	join_button.disabled = false
-	host_button.disabled = false
+	host_lan_button.disabled = false
+	host_wan_button.disabled = false
+	local_button.disabled = false
 	error_label.visible = false
 	correct_label.visible = false
 
@@ -75,4 +84,3 @@ func _on_address_field_gui_input(event):
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			address_field.release_focus()
 			join_button.grab_focus()
-
