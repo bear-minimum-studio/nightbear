@@ -3,6 +3,8 @@ extends Node
 var config = ConfigFile.new()
 var configPath = "user://settings.cfg"
 
+var _initialized = false
+
 @onready var fullscreen : bool : 
 	get: 
 		return (window_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
@@ -75,6 +77,9 @@ func load_settings() -> void:
 			window_mode = value
 		_load_buses_settings()
 	_set_buses_settings()
+	if not _initialized:
+		_initialized = true
+		Events.settings_initialized.emit()
 
 func _load_buses_settings() -> void:
 	for bus_idx in buses_dict.keys():

@@ -1,5 +1,7 @@
 extends Node
 
+signal settings_initialized
+
 signal hosting(wan: bool)
 signal joining(host_address_and_port: String)
 signal localing

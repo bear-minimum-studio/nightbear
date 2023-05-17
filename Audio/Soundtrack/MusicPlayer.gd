@@ -22,6 +22,7 @@ var next_theme = {
 
 
 func start():
+	await Events.settings_initialized
 	_play("intro")
 
 func next():
