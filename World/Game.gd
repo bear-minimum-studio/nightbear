@@ -16,6 +16,9 @@ var worlds = []
 
 var dreams_caught = 0
 
+var is_running := false
+
+
 func _ready():
 	for viewport_container_path in viewport_container_paths:
 		var viewport_container = get_node(viewport_container_path)
@@ -28,11 +31,10 @@ func _ready():
 	Events.new_subsequence.connect(_new_subsequence)
 	Events.sequence_ended.connect(_sequence_ended)
 	
-	Events.replay_game.connect(_replay_game)
-	
 	Events.build.connect(_build)
 	Events.player_dead.connect(_player_dead)
 	Events.player_moved.connect(_move_player_shade)
+
 
 func initialize():
 	_center_players()
@@ -65,6 +67,7 @@ func _init_sequence():
 
 # TODO: MAKE LEVEL PARAMETRABLE
 func start_level():
+	is_running = true
 	MusicPlayer.next()
 	initialize()
 	sequence.start()
@@ -100,8 +103,6 @@ func _sequence_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
-func _replay_game():
-	get_tree().paused = false
 
 func _new_subsequence(wave_index: int):
 	wave_number_text.next_wave(wave_index + 1)

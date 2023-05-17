@@ -10,10 +10,19 @@ var enet_peer = ENetMultiplayerPeer.new()
 var host_peer_id : int
 var client_peer_id : int
 
+var pause:
+	get:
+		return get_tree().paused
+	set(value):
+		get_tree().paused = value
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Events.quit_game.connect(quit_game)
 	Events.play_intro.connect(play_intro)
+	Events.resume_game.connect(exit_pause_menu)
+	
+	menu_navigator.exit_menu.connect(_on_exist_menu)
 	
 	Events.hosting.connect(host_game)
 	Events.joining.connect(join_game)
@@ -42,6 +51,7 @@ func lobby_ready():
 	game.start_level()
 
 func replay_game():
+	pause = false
 	game.start_level()
 
 func local_game():
@@ -93,3 +103,35 @@ func end_intro():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed('pause'):
+		toggle_pause_menu()
+	# if a menu is opened by MenuNavigator, ui_cancel is set as handled to call go_back()
+	# -> the event only propagates in unhandled_input if no menu is open
+	if event.is_action_pressed('ui_cancel'):
+		open_pause_menu()
+
+
+func toggle_pause_menu():
+	if pause:
+		exit_pause_menu()
+	else:
+		open_pause_menu()
+
+func open_pause_menu():
+	if not game.is_running:
+		return
+	menu_navigator.open(MenuNavigator.MENU.PAUSE)
+	pause = true
+
+func exit_pause_menu():
+	if not game.is_running:
+		return
+	menu_navigator.close()
+	pause = false
+
+func _on_exist_menu(menu):
+	if menu == MenuNavigator.MENU.PAUSE:
+		exit_pause_menu()

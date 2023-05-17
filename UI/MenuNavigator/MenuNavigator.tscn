@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccghg5nq3e22c"]
+[gd_scene load_steps=7 format=3 uid="uid://ccghg5nq3e22c"]
 
 [ext_resource type="Script" path="res://UI/MenuNavigator/MenuNavigator.gd" id="1_slea4"]
 [ext_resource type="PackedScene" uid="uid://cwfq4kqs8gfi" path="res://UI/MainMenu/MainMenu.tscn" id="2_2f0sd"]
 [ext_resource type="PackedScene" uid="uid://b1v77u11c5crb" path="res://UI/PlayMenu/PlayMenu.tscn" id="3_56817"]
 [ext_resource type="PackedScene" uid="uid://ccufufec6au3v" path="res://UI/NetworkMenu/NetworkMenu.tscn" id="4_1gmuh"]
 [ext_resource type="PackedScene" uid="uid://bw4gvj01m1b5w" path="res://UI/SettingsMenu/SettingsMenu.tscn" id="5_4re3n"]
+[ext_resource type="PackedScene" uid="uid://cc6pen4tnv1e4" path="res://UI/PauseMenu/PauseMenu.tscn" id="6_dklxq"]
 
 [node name="MenuNavigator" type="Node"]
+process_mode = 3
 script = ExtResource("1_slea4")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_2f0sd")]
@@ -19,4 +21,7 @@ visible = false
 visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("5_4re3n")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_dklxq")]
 visible = false

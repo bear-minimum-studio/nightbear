@@ -8,6 +8,7 @@ signal localing
 signal server_port_updated(server_port: int)
 
 signal quit_game
+signal resume_game
 signal play_intro
 signal intro_ended
 signal replay_game

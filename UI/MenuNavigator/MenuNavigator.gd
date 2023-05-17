@@ -2,7 +2,7 @@ extends Node
 
 class_name MenuNavigator
 
-signal exit_menu
+signal exit_menu(menu)
 
 enum MENU {
 		NONE,
@@ -10,6 +10,7 @@ enum MENU {
 		PLAY,
 		NETWORK,
 		SETTINGS,
+		PAUSE,
 	}
 
 @onready var menu_dict = {
@@ -17,6 +18,7 @@ enum MENU {
 	MENU.PLAY: $PlayMenu,
 	MENU.NETWORK: $NetworkMenu,
 	MENU.SETTINGS: $SettingsMenu,
+	MENU.PAUSE: $PauseMenu,
 }
 
 var active := false
@@ -31,6 +33,7 @@ func _ready():
 
 func _input(event):
 	if active and event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
 		go_back()
 
 func open(start_menu: MENU):
@@ -39,7 +42,6 @@ func open(start_menu: MENU):
 	reset_history()
 
 func close():
-	active = false
 	switch(MENU.NONE)
 
 func reset_history():
@@ -48,7 +50,7 @@ func reset_history():
 func go_back():
 	var last_menu = navigation_history.pop_back()
 	if last_menu == null or last_menu == MENU.NONE:
-		exit_menu.emit()
+		exit_menu.emit(focused_menu)
 		return
 	switch(last_menu, true)
 
@@ -61,6 +63,7 @@ func switch(to_menu: MENU, going_back = false):
 
 func focus(to_menu: MENU):
 	if to_menu == MENU.NONE:
+		active = false
 		return
 	_show(to_menu)
 	focused_menu = to_menu

@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://g7836823m4wc" path="res://UI/Lobby/Lobby.tscn" id="4_u1o5j"]
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_tlwlh")
 
 [node name="Game" parent="." instance=ExtResource("2_fytas")]
+process_mode = 1
 visible = false
 
 [node name="Lobby" parent="." instance=ExtResource("4_u1o5j")]
@@ -19,3 +21,4 @@ visible = false
 visible = false
 
 [node name="MenuNavigator" parent="." instance=ExtResource("2_5ebcv")]
+process_mode = 0
