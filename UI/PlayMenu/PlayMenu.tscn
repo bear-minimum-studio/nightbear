@@ -60,12 +60,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Online"
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BackLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-text = "Main menu"
+text = "Press escape or B to go back"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LocalButton" to="." method="_on_local_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LANButton" to="." method="_on_lan_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/WANButton" to="." method="_on_wan_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

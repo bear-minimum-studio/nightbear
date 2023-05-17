@@ -20,13 +20,13 @@ func _ready():
 	Events.joining.connect(join_game)
 	Events.localing.connect(local_game)
 	Events.replay_game.connect(replay_game)
-	menu_navigator.focus(MenuNavigator.MENU.MAIN)
+	menu_navigator.open(MenuNavigator.MENU.MAIN)
 
 
 func start_game():
 	game = game_scene.instantiate()
 	add_child(game)
-	menu_navigator.switch(MenuNavigator.MENU.NONE)
+	menu_navigator.close()
 	game.show()
 	lobby.show()
 

@@ -58,7 +58,6 @@ func _on_local_button_pressed():
 	print('localing')
 	Events.localing.emit()
 
-
 func _on_line_edit_text_submitted(new_text):
 	error_label.visible = false
 	correct_label.visible = false
