@@ -1,14 +1,11 @@
 extends Node
 
-var game_scene = preload("res://World/Game.tscn")
-var game : Control
-
 var enet_peer = ENetMultiplayerPeer.new()
 
-@onready var menu_navigator = $MenuNavigator
-@onready var intro = $Intro
+@onready var game = $Game
 @onready var lobby = $Lobby
-
+@onready var intro = $Intro
+@onready var menu_navigator = $MenuNavigator
 
 var host_peer_id : int
 var client_peer_id : int
@@ -30,9 +27,7 @@ func _ready():
 func quit_game():
 	get_tree().quit()
 
-func start_game():
-	game = game_scene.instantiate()
-	add_child(game)
+func open_lobby():
 	menu_navigator.close()
 	game.show()
 	lobby.show()
@@ -40,6 +35,7 @@ func start_game():
 @rpc("call_local")
 func lobby_ready():
 	lobby.hide()
+	game.initialize()
 	game.start_level()
 
 func replay_game():
@@ -48,7 +44,7 @@ func replay_game():
 func local_game():
 	NetworkTools.local_multiplayer = true
 	host_peer_id = multiplayer.get_unique_id()
-	start_game()
+	open_lobby()
 	_spawn_player(0, host_peer_id)
 	_spawn_player(1, host_peer_id)
 	lobby_ready()
@@ -60,7 +56,7 @@ func host_game(wan: bool):
 	multiplayer.multiplayer_peer = enet_peer
 	host_peer_id = multiplayer.get_unique_id()
 	multiplayer.peer_connected.connect(peer_connected)
-	start_game()
+	open_lobby()
 	_spawn_player(0, host_peer_id)
 
 func join_game(host_address_and_port: String):
@@ -69,7 +65,7 @@ func join_game(host_address_and_port: String):
 	var port = NetworkTools.get_port(host_address_and_port)
 	enet_peer.create_client(address, port)
 	multiplayer.multiplayer_peer = enet_peer
-	start_game()
+	open_lobby()
 
 func peer_connected(peer_id):
 	client_peer_id = peer_id

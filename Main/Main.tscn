@@ -1,17 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt2xd0oo60vml"]
+[gd_scene load_steps=6 format=3 uid="uid://bt2xd0oo60vml"]
 
 [ext_resource type="Script" path="res://Main/Main.gd" id="1_tlwlh"]
 [ext_resource type="PackedScene" uid="uid://ccghg5nq3e22c" path="res://UI/MenuNavigator/MenuNavigator.tscn" id="2_5ebcv"]
+[ext_resource type="PackedScene" uid="uid://y231bdkdnpu3" path="res://World/Game.tscn" id="2_fytas"]
 [ext_resource type="PackedScene" uid="uid://byaxr160suuwk" path="res://UI/Intro/Intro.tscn" id="2_o5fqk"]
 [ext_resource type="PackedScene" uid="uid://g7836823m4wc" path="res://UI/Lobby/Lobby.tscn" id="4_u1o5j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tlwlh")
 
-[node name="MenuNavigator" parent="." instance=ExtResource("2_5ebcv")]
-
-[node name="Intro" parent="." instance=ExtResource("2_o5fqk")]
+[node name="Game" parent="." instance=ExtResource("2_fytas")]
 visible = false
 
 [node name="Lobby" parent="." instance=ExtResource("4_u1o5j")]
 visible = false
+
+[node name="Intro" parent="." instance=ExtResource("2_o5fqk")]
+visible = false
+
+[node name="MenuNavigator" parent="." instance=ExtResource("2_5ebcv")]

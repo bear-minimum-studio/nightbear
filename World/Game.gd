@@ -25,7 +25,6 @@ func _ready():
 		worlds.push_back(world)
 		world.spawner_handler.entity_spawned.connect(_connect_projectile)
 	
-	sequence.init(worlds)
 	Events.new_subsequence.connect(_new_subsequence)
 	Events.sequence_ended.connect(_sequence_ended)
 	
@@ -39,8 +38,8 @@ func initialize():
 	_center_players()
 	_clean_builds()
 	_clean_projectiles()
-	_reset_tentacles()
-	_reset_sequence()
+	_init_tentacles()
+	_init_sequence()
 
 func _center_players():
 	if multiplayer.is_server():
@@ -56,13 +55,13 @@ func _clean_projectiles():
 	for projectile in get_tree().get_nodes_in_group("projectiles"):
 		projectile.queue_free()
 
-func _reset_tentacles():
+func _init_tentacles():
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
-		tentacle.reset()
+		tentacle.init()
 
-func _reset_sequence():
-	sequence.reset()
+func _init_sequence():
+	sequence.init(worlds)
 
 # TODO: MAKE LEVEL PARAMETRABLE
 func start_level():

@@ -4,6 +4,7 @@ extends SequenceElement
 @export var level: Resource
 
 func init(father_worlds: Array) -> void:
+	force_stop()
 	initialize("0", level, null, father_worlds)
 
 func _queue_free():
@@ -23,7 +24,3 @@ func play(element_index: int) -> void:
 	if element_index > -1 and element_index < nb_elements:
 		Events.new_subsequence.emit(element_index)
 	super.play(element_index)
-
-func reset():
-	force_stop()
-	init(worlds)
