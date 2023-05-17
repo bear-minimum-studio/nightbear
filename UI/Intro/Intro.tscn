@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://byaxr160suuwk"]
+[gd_scene load_steps=11 format=3 uid="uid://byaxr160suuwk"]
 
-[ext_resource type="Texture2D" uid="uid://bkxkmd52j8wli" path="res://UI/Intro/splash2.png" id="1"]
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_f4gbq"]
 [ext_resource type="Script" path="res://UI/Intro/Intro.gd" id="2"]
 [ext_resource type="PackedScene" path="res://UI/DialogIterator.tscn" id="3"]
@@ -27,16 +26,6 @@ layout_mode = 1
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Splash" type="TextureRect" parent="DialogIterator"]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1")
-expand_mode = 1
 
 [node name="Tuto1" type="Control" parent="DialogIterator"]
 visible = false

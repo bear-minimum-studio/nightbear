@@ -6,6 +6,7 @@ var game : Control
 var enet_peer = ENetMultiplayerPeer.new()
 
 @onready var menu_navigator = $MenuNavigator
+@onready var intro = $Intro
 @onready var lobby = $Lobby
 
 
@@ -14,13 +15,16 @@ var client_peer_id : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	Events.intro_ended.connect(focus_scene.bind(network_menu))
-#	intro.show()
 	Events.quit_game.connect(quit_game)
+	Events.play_intro.connect(play_intro)
+	
 	Events.hosting.connect(host_game)
 	Events.joining.connect(join_game)
 	Events.localing.connect(local_game)
+	
 	Events.replay_game.connect(replay_game)
+	
+#	play_intro()
 	menu_navigator.open(MenuNavigator.MENU.MAIN)
 
 func quit_game():
@@ -75,6 +79,17 @@ func peer_connected(peer_id):
 func _spawn_player(world_id: int, peer_id: int):
 	game.worlds[world_id].spawn_player(peer_id)
 	game.worlds[1 - world_id].spawn_player_shade()
+
+func play_intro():
+	menu_navigator.close()
+	Events.intro_ended.connect(end_intro)
+	intro.init()
+	intro.show()
+
+func end_intro():
+	Events.intro_ended.disconnect(end_intro)
+	intro.hide()
+	menu_navigator.open(MenuNavigator.MENU.MAIN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

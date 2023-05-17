@@ -6,5 +6,8 @@ func _ready():
 	var _connect_error = dialog_iterator.end.connect(intro_ended)
 	dialog_iterator.start()
 
+func init():
+	dialog_iterator.start()
+
 func intro_ended():
 	Events.intro_ended.emit()

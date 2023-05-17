@@ -7,11 +7,8 @@ class_name MainMenu
 		$MarginContainer/VBoxContainer/SettingsButton.pressed: MenuNavigator.MENU.SETTINGS,
 	}
 
-
-
 func _on_tutorial_button_pressed():
-	pass # Replace with function body.
-
+	Events.play_intro.emit()
 
 func _on_quit_button_pressed():
 	Events.quit_game.emit()
