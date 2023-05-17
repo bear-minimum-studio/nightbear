@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw4gvj01m1b5w"]
+[gd_scene load_steps=4 format=3 uid="uid://bw4gvj01m1b5w"]
 
+[ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_8w0q7"]
 [ext_resource type="Script" path="res://UI/SettingsMenu/SettingsMenu.gd" id="1_r4cpx"]
 [ext_resource type="Texture2D" uid="uid://bkxkmd52j8wli" path="res://UI/Intro/splash2.png" id="1_xa6p5"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8w0q7")
 script = ExtResource("1_r4cpx")
 
 [node name="Splash" type="TextureRect" parent="."]
