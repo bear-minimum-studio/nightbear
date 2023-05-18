@@ -38,6 +38,7 @@ func _input(event):
 
 	var number_of_steps = get_children().size()
 	if event.is_action_pressed("ui_accept"):
+		get_viewport().set_input_as_handled() # stop ui_accept to propagate to main menu when closing intro
 		current_step += 1
 
 		if (current_step >= number_of_steps):
