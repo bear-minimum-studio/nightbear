@@ -2,72 +2,73 @@ extends Control
 
 class_name NetworkMenu
 
-@onready var host_lan_button = $MarginContainer/VBoxContainer/HostLANButton
-@onready var host_wan_button = $MarginContainer/VBoxContainer/HostWANButton
+
+@onready var title = $MarginContainer/VBoxContainer/Title
+@onready var ip_label = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/IPLabel
+@onready var ip_value = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/IPValue
+@onready var host_button = $MarginContainer/VBoxContainer/HostButton
 @onready var join_button = $MarginContainer/VBoxContainer/JoinButton
 @onready var address_field = $MarginContainer/VBoxContainer/AddressField
-@onready var local_ip_label = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/LocalIPLabel
-@onready var public_ip_label = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/PublicIPLabel
 @onready var error_label = $MarginContainer/VBoxContainer/ErrorLabel
 @onready var correct_label = $MarginContainer/VBoxContainer/CorrectLabel
-@onready var local_button = $MarginContainer/VBoxContainer/LocalButton
-
 
 @onready var joining_address : String
 
 @onready var exits_dict = {}
 
-@onready var default_focus = $MarginContainer/VBoxContainer/HostLANButton
+@onready var default_focus = host_button
+
+## Choose private (LAN) or public (WAN) networking
+@export_enum("LAN", "WAN") var network: String = "LAN"
 
 
-var local_ip = null :
-	set(ip):
+var ip = null :
+	set(new_ip):
 		# make the label focusable when ip is set the first time
-		if local_ip == null:
-			local_ip_label.focus_mode = FOCUS_CLICK
-			local_ip_label.selecting_enabled = true
-		local_ip = ip
-		local_ip_label.text = ip
+		if ip == null:
+			ip_value.focus_mode = FOCUS_CLICK
+			ip_value.selecting_enabled = true
+		ip = new_ip
+		ip_value.text = new_ip
 
-var public_ip = null :
-	set(ip):
-		# make the label focusable when ip is set the first time
-		if public_ip == null:
-			public_ip_label.focus_mode = FOCUS_CLICK
-			public_ip_label.selecting_enabled = true
-		public_ip = ip
-		public_ip_label.text = ip
 
 func _ready():
-	Events.server_port_updated.connect(_on_server_port_updated)
-	local_ip = NetworkTools.get_local_ipv4()
-	public_ip = await NetworkTools.get_public_ip()
+	match network:
+		'LAN':
+			Events.server_port_updated.connect(_on_server_port_updated)
+			ip_label.text = 'Local IP:'
+			title.text = 'LAN'
+			ip = NetworkTools.get_local_ipv4()
+		'WAN': 
+			ip_label.text = 'Public IP:'
+			title.text = 'Online'
+			ip = await NetworkTools.get_public_ip()
+
 
 ## Update displayed local ip address each time the server port is updated
 ## while upnp is looking for an available port
 func _on_server_port_updated(_server_port: int):
-	local_ip = NetworkTools.get_local_ipv4()
+	if network == 'LAN':
+		ip = NetworkTools.get_local_ipv4()
 
-func _on_host_lan_button_pressed():
-	print('hosting_lan')
-	Events.hosting.emit(false)
 
-func _on_host_wan_button_pressed():
-	print('hosting_wan')
-	Events.hosting.emit(true)
-	
+func _on_host_button_pressed():
+	match network:
+		'LAN':
+			print('hosting_lan')
+			Events.hosting.emit(false)
+		'WAN':
+			print('hosting_wan')
+			Events.hosting.emit(true)
+
+
 func _on_join_button_pressed():
 	if not address_field.visible:
 		join_button.disabled = true
-		host_lan_button.disabled = true
-		host_wan_button.disabled = true
-		local_button.disabled = true
+		host_button.disabled = true
 		address_field.show()
 		address_field.grab_focus()
 
-func _on_local_button_pressed():
-	print('localing')
-	Events.localing.emit()
 
 func _on_line_edit_text_submitted(new_text):
 	error_label.visible = false
@@ -84,9 +85,7 @@ func _on_line_edit_text_submitted(new_text):
 func _on_address_field_focus_exited():
 	address_field.hide()
 	join_button.disabled = false
-	host_lan_button.disabled = false
-	host_wan_button.disabled = false
-	local_button.disabled = false
+	host_button.disabled = false
 	error_label.visible = false
 	correct_label.visible = false
 

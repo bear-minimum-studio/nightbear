@@ -17,8 +17,12 @@ visible = false
 [node name="PlayMenu" parent="." instance=ExtResource("3_56817")]
 visible = false
 
-[node name="NetworkMenu" parent="." instance=ExtResource("4_1gmuh")]
+[node name="LocalNetworkMenu" parent="." instance=ExtResource("4_1gmuh")]
 visible = false
+
+[node name="OnlineNetworkMenu" parent="." instance=ExtResource("4_1gmuh")]
+visible = false
+network = "WAN"
 
 [node name="SettingsMenu" parent="." instance=ExtResource("5_4re3n")]
 visible = false

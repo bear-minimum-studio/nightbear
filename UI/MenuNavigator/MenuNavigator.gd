@@ -8,7 +8,8 @@ enum MENU {
 		NONE,
 		MAIN,
 		PLAY,
-		NETWORK,
+		LAN,
+		WAN,
 		SETTINGS,
 		PAUSE,
 	}
@@ -16,7 +17,8 @@ enum MENU {
 @onready var menu_dict = {
 	MENU.MAIN: $MainMenu,
 	MENU.PLAY: $PlayMenu,
-	MENU.NETWORK: $NetworkMenu,
+	MENU.LAN: $LocalNetworkMenu,
+	MENU.WAN: $OnlineNetworkMenu,
 	MENU.SETTINGS: $SettingsMenu,
 	MENU.PAUSE: $PauseMenu,
 }

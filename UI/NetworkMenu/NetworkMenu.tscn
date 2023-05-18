@@ -35,7 +35,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Remote Play"
@@ -59,15 +59,15 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LocalAddress" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="IPLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.568627, 0.568627, 0.568627, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 20
-text = "Local IP: "
+text = "IP: "
 vertical_alignment = 1
 
-[node name="LocalIPLabel" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="IPValue" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -83,50 +83,13 @@ selecting_enabled = false
 flat = true
 select_all_on_focus = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="PublicAddress" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.568627, 0.568627, 0.568627, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 20
-text = "Public IP: "
-vertical_alignment = 1
-
-[node name="PublicIPLabel" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_colors/font_color = Color(0.568627, 0.568627, 0.568627, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fxji1")
-text = "searching..."
-alignment = 2
-editable = false
-selecting_enabled = false
-flat = true
-select_all_on_focus = true
-
-[node name="HostLANButton" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_next = NodePath("../HostWANButton")
-focus_previous = NodePath("../LocalButton")
 theme_override_font_sizes/font_size = 34
-text = "Host Local Network Game"
-
-[node name="HostWANButton" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_next = NodePath("../JoinButton")
-focus_previous = NodePath("../HostLANButton")
-theme_override_font_sizes/font_size = 34
-text = "Host Online Network Game"
+text = "Host"
 
 [node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-focus_next = NodePath("../LocalButton")
-focus_previous = NodePath("../HostWANButton")
 theme_override_font_sizes/font_size = 34
 text = "Join"
 
@@ -165,22 +128,20 @@ theme_override_font_sizes/font_size = 18
 text = "Valid address"
 horizontal_alignment = 2
 
-[node name="LocalButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Space2" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-focus_next = NodePath("../HostLANButton")
-focus_previous = NodePath("../JoinButton")
 theme_override_font_sizes/font_size = 34
-text = "Local"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BackLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Press escape or B to go back"
+horizontal_alignment = 1
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HostLANButton" to="." method="_on_host_lan_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HostWANButton" to="." method="_on_host_wan_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="focus_exited" from="MarginContainer/VBoxContainer/AddressField" to="." method="_on_address_field_focus_exited"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/AddressField" to="." method="_on_address_field_gui_input"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/AddressField" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/LocalButton" to="." method="_on_local_button_pressed"]

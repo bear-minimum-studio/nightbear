@@ -3,8 +3,8 @@ extends Control
 class_name  PlayMenu
 
 @onready var exits_dict = {
-		$MarginContainer/VBoxContainer/LANButton.pressed: MenuNavigator.MENU.NETWORK,
-		$MarginContainer/VBoxContainer/WANButton.pressed: MenuNavigator.MENU.NETWORK,
+		$MarginContainer/VBoxContainer/LANButton.pressed: MenuNavigator.MENU.LAN,
+		$MarginContainer/VBoxContainer/WANButton.pressed: MenuNavigator.MENU.WAN,
 	}
 
 @onready var default_focus = $MarginContainer/VBoxContainer/LocalButton
