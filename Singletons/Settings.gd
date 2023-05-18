@@ -72,10 +72,10 @@ func load_settings() -> void:
 	if err != OK:
 		first_execution = true
 	else:
-		var value = config.get_value("Settings", "window_mode")
-		if value != null:
-			window_mode = value
+		first_execution = false
+		window_mode = config.get_value("Settings", "window_mode", window_mode)
 		_load_buses_settings()
+	
 	_set_buses_settings()
 	if not _initialized:
 		_initialized = true
