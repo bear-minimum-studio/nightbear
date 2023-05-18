@@ -7,6 +7,9 @@ class_name  PlayMenu
 		$MarginContainer/VBoxContainer/WANButton.pressed: MenuNavigator.MENU.NETWORK,
 	}
 
+@onready var default_focus = $MarginContainer/VBoxContainer/LocalButton
+
+
 func _on_local_button_pressed():
 	Events.localing.emit()
 

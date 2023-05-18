@@ -9,6 +9,7 @@ class_name  SettingsMenu
 
 @onready var exits_dict = {}
 
+@onready var default_focus = $MarginContainer/VBoxContainer/HBoxContainer4/CheckButton
 
 
 func initialize_buttons():

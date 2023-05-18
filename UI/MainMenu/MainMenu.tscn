@@ -47,21 +47,29 @@ theme_override_constants/separation = 10
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 34
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../TutorialButton")
+focus_previous = NodePath("../PlayButton")
 theme_override_font_sizes/font_size = 34
 text = "Settings"
 
 [node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 34
 text = "Tutorial"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../TutorialButton")
 theme_override_font_sizes/font_size = 34
 text = "Quit"
 

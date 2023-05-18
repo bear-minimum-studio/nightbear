@@ -101,16 +101,22 @@ editable = false
 
 [node name="HostLANButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../HostWANButton")
+focus_previous = NodePath("../LocalButton")
 theme_override_font_sizes/font_size = 34
 text = "Host Local Network Game"
 
 [node name="HostWANButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../JoinButton")
+focus_previous = NodePath("../HostLANButton")
 theme_override_font_sizes/font_size = 34
 text = "Host Online Network Game"
 
 [node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../LocalButton")
+focus_previous = NodePath("../HostWANButton")
 theme_override_font_sizes/font_size = 34
 text = "Join"
 
@@ -150,6 +156,8 @@ horizontal_alignment = 2
 
 [node name="LocalButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../HostLANButton")
+focus_previous = NodePath("../JoinButton")
 theme_override_font_sizes/font_size = 34
 text = "Local"
 

@@ -60,6 +60,8 @@ text = "Fullscreen"
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+focus_next = NodePath("../../HBoxContainer/MasterSlider")
+focus_previous = NodePath("../../HBoxContainer3/FXSlider")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -77,6 +79,8 @@ text = "Master volume"
 [node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../HBoxContainer2/MusicSlider")
+focus_previous = NodePath("../../HBoxContainer4/CheckButton")
 min_value = -30.0
 max_value = 0.0
 
@@ -96,6 +100,8 @@ text = "Music volume"
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../HBoxContainer3/FXSlider")
+focus_previous = NodePath("../../HBoxContainer/MasterSlider")
 min_value = -30.0
 max_value = 0.0
 
@@ -115,6 +121,8 @@ text = "FX volume"
 [node name="FXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../HBoxContainer4/CheckButton")
+focus_previous = NodePath("../../HBoxContainer2/MusicSlider")
 min_value = -30.0
 max_value = 0.0
 

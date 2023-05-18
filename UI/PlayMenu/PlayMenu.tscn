@@ -47,16 +47,22 @@ theme_override_constants/separation = 10
 
 [node name="LocalButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../LANButton")
+focus_previous = NodePath("../WANButton")
 theme_override_font_sizes/font_size = 34
 text = "Local"
 
 [node name="LANButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../WANButton")
+focus_previous = NodePath("../LocalButton")
 theme_override_font_sizes/font_size = 34
 text = "LAN"
 
 [node name="WANButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../LocalButton")
+focus_previous = NodePath("../LANButton")
 theme_override_font_sizes/font_size = 34
 text = "Online"
 

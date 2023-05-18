@@ -8,6 +8,7 @@ class_name PauseMenu
 		$MarginContainer/VBoxContainer/ResumeButton.pressed: MenuNavigator.MENU.NONE,
 	}
 
+@onready var default_focus = $MarginContainer/VBoxContainer/ResumeButton
 
 
 func _on_quit_button_pressed():

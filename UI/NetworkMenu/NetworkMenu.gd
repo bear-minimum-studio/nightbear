@@ -17,6 +17,9 @@ class_name NetworkMenu
 
 @onready var exits_dict = {}
 
+@onready var default_focus = $MarginContainer/VBoxContainer/HostLANButton
+
+
 var local_ip = null :
 	set(ip):
 		local_ip = ip

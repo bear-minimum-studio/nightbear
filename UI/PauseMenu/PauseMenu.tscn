@@ -58,16 +58,22 @@ vertical_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 34
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 34
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 34
 text = "Quit"
 

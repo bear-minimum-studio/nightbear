@@ -7,6 +7,9 @@ class_name MainMenu
 		$MarginContainer/VBoxContainer/SettingsButton.pressed: MenuNavigator.MENU.SETTINGS,
 	}
 
+@onready var default_focus = $MarginContainer/VBoxContainer/PlayButton
+
+
 func _on_tutorial_button_pressed():
 	Events.play_intro.emit()
 

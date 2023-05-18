@@ -72,6 +72,11 @@ func _show(menu: MENU):
 	if menu == MENU.NONE:
 		return
 	menu_dict[menu].show()
+	_grab_default_element(menu)
+
+func _grab_default_element(menu: MENU):
+	if 'default_focus' in menu_dict[menu]:
+		menu_dict[menu].default_focus.grab_focus()
 
 func _hide(menu: MENU):
 	if menu == MENU.NONE:
