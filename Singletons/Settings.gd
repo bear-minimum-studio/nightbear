@@ -86,7 +86,7 @@ func _load_buses_settings() -> void:
 		var bus = buses_dict[bus_idx]
 		for property in bus.properties.keys():
 			var property_label = _get_bus_property_label(bus_idx, property)
-			var value = config.get_value("Settings", property_label)
+			var value = config.get_value("Audio settings", property_label)
 			if value != null:
 				bus.properties[property] = value
 
@@ -101,7 +101,7 @@ func _set_buses_settings() -> void:
 func set_bus_gain(bus_idx: int, gain: float) -> void:
 	AudioServer.set_bus_volume_db(bus_idx,gain)
 	var property_label = _get_bus_property_label(bus_idx, "gain")
-	config.set_value("Settings", property_label, get_bus_gain(bus_idx))
+	config.set_value("Audio settings", property_label, get_bus_gain(bus_idx))
 	_save_settings()
 
 func get_bus_gain(bus_idx: int) -> float:
@@ -110,6 +110,6 @@ func get_bus_gain(bus_idx: int) -> float:
 func mute_bus(bus_idx: int, enable: bool) -> void:
 	AudioServer.set_bus_mute(bus_idx, enable)
 	var property_label = _get_bus_property_label(bus_idx, "muted")
-	config.set_value("Settings", property_label, enable)
+	config.set_value("Audio settings", property_label, enable)
 	_save_settings()
 
