@@ -80,7 +80,6 @@ func _on_line_edit_text_submitted(new_text):
 		print('joining ' + joining_address)
 	else:
 		error_label.visible = true
-		print("Incorrect address")
 
 func _on_address_field_focus_exited():
 	address_field.hide()
