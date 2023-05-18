@@ -22,11 +22,19 @@ class_name NetworkMenu
 
 var local_ip = null :
 	set(ip):
+		# make the label focusable when ip is set the first time
+		if local_ip == null:
+			local_ip_label.focus_mode = FOCUS_CLICK
+			local_ip_label.selecting_enabled = true
 		local_ip = ip
 		local_ip_label.text = ip
 
 var public_ip = null :
 	set(ip):
+		# make the label focusable when ip is set the first time
+		if public_ip == null:
+			public_ip_label.focus_mode = FOCUS_CLICK
+			public_ip_label.selecting_enabled = true
 		public_ip = ip
 		public_ip_label.text = ip
 

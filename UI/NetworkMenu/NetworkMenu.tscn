@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccufufec6au3v"]
+[gd_scene load_steps=4 format=3 uid="uid://ccufufec6au3v"]
 
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_faklu"]
 [ext_resource type="Script" path="res://UI/NetworkMenu/NetworkMenu.gd" id="2_sgilc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxji1"]
 
 [node name="NetworkMenu" type="Control"]
 layout_mode = 3
@@ -73,9 +75,13 @@ theme = ExtResource("1_faklu")
 theme_override_colors/font_color = Color(0.568627, 0.568627, 0.568627, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fxji1")
 text = "searching..."
 alignment = 2
 editable = false
+selecting_enabled = false
+flat = true
+select_all_on_focus = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -95,9 +101,13 @@ focus_mode = 0
 theme_override_colors/font_color = Color(0.568627, 0.568627, 0.568627, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fxji1")
 text = "searching..."
 alignment = 2
 editable = false
+selecting_enabled = false
+flat = true
+select_all_on_focus = true
 
 [node name="HostLANButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
