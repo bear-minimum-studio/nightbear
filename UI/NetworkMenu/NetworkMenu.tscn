@@ -139,6 +139,7 @@ theme_override_font_sizes/font_size = 34
 text = "localhost"
 placeholder_text = "Enter address to join here ...  "
 alignment = 1
+select_all_on_focus = true
 
 [node name="ErrorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
