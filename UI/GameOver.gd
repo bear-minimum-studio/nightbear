@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var wave_number_text = $WaveNumber
 var game_over_ready = false
 
@@ -25,9 +25,10 @@ func _input(event):
 		_on_ui_accept.rpc()
 
 
-@rpc("call_local", "any_peer")
+@rpc("call_local","any_peer")
 func _skip_animation():
-	animation_player.advance(animation_player.current_animation_length - animation_player.current_animation_position)
+	if animation_player.is_playing():
+		animation_player.advance(animation_player.current_animation_length - animation_player.current_animation_position)
 
 @rpc("call_local", "any_peer")
 func _on_ui_accept():
