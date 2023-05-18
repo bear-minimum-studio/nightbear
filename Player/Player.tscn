@@ -57,20 +57,23 @@ animation = &"Cast"
 animation = &"Run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjbem"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="6"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s4new"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="8"]
 states/Cast/node = SubResource("4")
 states/Cast/position = Vector2(268, 90)
+states/End/position = Vector2(900, 99.25)
 states/Run/node = SubResource("5")
-states/Run/position = Vector2(116, 99.25)
-states/Start/position = Vector2(-62.5, 163)
-transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_kjbem"), "Run", "Cast", SubResource("6"), "Cast", "Run", SubResource("7")]
-graph_offset = Vector2(-390.555, 62.28)
+states/Run/position = Vector2(114, 108.25)
+states/Start/position = Vector2(-62.5, 162)
+transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_kjbem"), "Run", "Cast", SubResource("6"), "Cast", "Run", SubResource("AnimationNodeStateMachineTransition_s4new")]
+graph_offset = Vector2(-409.555, 5.28)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="9"]
 
@@ -92,7 +95,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1")
 hframes = 11
 vframes = 2
-frame = 13
+frame = 12
 script = ExtResource("3")
 player_path = NodePath("..")
 
