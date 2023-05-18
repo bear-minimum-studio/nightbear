@@ -94,3 +94,4 @@ func _on_address_field_gui_input(event):
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			address_field.release_focus()
 			join_button.grab_focus()
+			get_viewport().set_input_as_handled()

@@ -33,7 +33,7 @@ func _ready():
 			var to_menu = menu_dict[from_menu].exits_dict[exit_signal]
 			exit_signal.connect(switch.bind(to_menu))
 
-func _input(event):
+func _unhandled_input(event):
 	if active and event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		go_back()
