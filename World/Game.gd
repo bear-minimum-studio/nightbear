@@ -5,7 +5,7 @@ extends Control
 var viewport_containers = []
 var worlds = []
 
-@onready var wave_number_text = $WaveNumber
+@onready var wave_number_text = $MarginContainer/WaveNumber
 @onready var dream_caught_text = $DreamCaughtText
 @onready var game_over = $GameOver
 @onready var game_end = $GameEnd

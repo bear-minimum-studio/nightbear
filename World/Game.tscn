@@ -49,20 +49,27 @@ grow_horizontal = 2
 theme = ExtResource("4_av0iw")
 text = "0 dream caught"
 
-[node name="WaveNumber" parent="." instance=ExtResource("8")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
-offset_top = 0.0
-offset_bottom = 26.0
+anchor_right = 1.0
+offset_bottom = 40.0
 grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="WaveNumber" parent="MarginContainer" instance=ExtResource("8")]
+layout_mode = 2
 theme = ExtResource("4_av0iw")
+theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOver" parent="." instance=ExtResource("2")]
+visible = false
 layout_mode = 1
 
 [node name="GameEnd" parent="." instance=ExtResource("7")]
+visible = false
 layout_mode = 1
 
 [node name="SequencePlayer" parent="." instance=ExtResource("4")]
