@@ -111,21 +111,23 @@ func _unhandled_input(event):
 	# if a menu is opened by MenuNavigator, ui_cancel is set as handled to call go_back()
 	# -> the event only propagates in unhandled_input if no menu is open
 	if event.is_action_pressed('ui_cancel'):
-		open_pause_menu()
+		open_pause_menu.rpc()
 
 
 func toggle_pause_menu():
 	if pause:
-		exit_pause_menu()
+		exit_pause_menu.rpc()
 	else:
-		open_pause_menu()
+		open_pause_menu.rpc()
 
+@rpc("call_local", "any_peer")
 func open_pause_menu():
 	if not game.is_running:
 		return
 	menu_navigator.open(MenuNavigator.MENU.PAUSE)
 	pause = true
 
+@rpc("call_local", "any_peer")
 func exit_pause_menu():
 	if not game.is_running:
 		return
@@ -134,4 +136,4 @@ func exit_pause_menu():
 
 func _on_exist_menu(menu):
 	if menu == MenuNavigator.MENU.PAUSE:
-		exit_pause_menu()
+		exit_pause_menu.rpc()
