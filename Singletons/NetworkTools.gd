@@ -50,8 +50,8 @@ func _on_upnp_completed():
 
 
 func is_valid_address(address_and_port: String) -> bool:
-	var address = NetworkTools.get_address(address_and_port)
-	var port = NetworkTools.get_port(address_and_port)
+	var address = get_address(address_and_port)
+	var port = get_port(address_and_port)
 	return (0 < port and port < 65536) and (is_valid_ip(address) or is_valid_hostname(address))
 
 ## Resolves hostname with a preference for ipv4
@@ -72,12 +72,18 @@ func is_valid_ip(address: String) -> bool:
 	return matched != null
 
 func get_address(address_and_port: String) -> String:
+	print('address: ', address_and_port.split(":")[0])
 	return address_and_port.split(":")[0]
 
 ## On localhost we don't want to have to precise the port for easier debuging.
+## Return 0 on Error
 func get_port(address_and_port: String) -> int:
 	if get_address(address_and_port) == "localhost": return LOCAL_PORT
-	return address_and_port.split(":")[1].to_int()
+	var splits = address_and_port.split(":")
+	if splits.size() != 2:
+		return 0
+	print('port: ', splits[1].to_int())
+	return splits[1].to_int()
 
 ## Return all the local ipv4 except 127.0.0.1
 func get_local_ipv4_addresses(return_localhost=false):
