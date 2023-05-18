@@ -5,10 +5,9 @@
 [ext_resource type="Script" path="res://World/View/ViewportContainer.gd" id="3"]
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
-offset_right = 480.0
-offset_bottom = 600.0
+offset_right = 640.0
+offset_bottom = 720.0
 size_flags_horizontal = 3
-stretch = true
 script = ExtResource("3")
 camera_path = NodePath("SubViewport/Camera3D")
 world_path = NodePath("SubViewport/World")
@@ -16,9 +15,10 @@ world_path = NodePath("SubViewport/World")
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(480, 600)
+size = Vector2i(640, 720)
 render_target_update_mode = 4
 
 [node name="Camera3D" parent="SubViewport" instance=ExtResource("2")]
+zoom = Vector2(1.25, 1.25)
 
 [node name="World" parent="SubViewport" instance=ExtResource("1")]
