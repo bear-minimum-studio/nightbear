@@ -105,13 +105,12 @@ func _process(_delta):
 	pass
 
 
+# if a menu is opened by MenuNavigator, 'ui_cancel' (escape key) is set as handled before calling go_back()
+# -> the escape key event only propagates in unhandled_input if no menu is open
+#    in other words, 'pause' doesn't happen here if a menu is open
 func _unhandled_input(event):
 	if event.is_action_pressed('pause'):
 		toggle_pause_menu()
-	# if a menu is opened by MenuNavigator, ui_cancel is set as handled to call go_back()
-	# -> the event only propagates in unhandled_input if no menu is open
-	if event.is_action_pressed('ui_cancel'):
-		open_pause_menu.rpc()
 
 
 func toggle_pause_menu():
