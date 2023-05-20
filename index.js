@@ -13022,8 +13022,6 @@ var stackRestore = Module["stackRestore"] = createExportWrapper("stackRestore");
 
 var stackAlloc = Module["stackAlloc"] = createExportWrapper("stackAlloc");
 
-var dynCall_vjiii = Module["dynCall_vjiii"] = createExportWrapper("dynCall_vjiii");
-
 var dynCall_vij = Module["dynCall_vij"] = createExportWrapper("dynCall_vij");
 
 var dynCall_ji = Module["dynCall_ji"] = createExportWrapper("dynCall_ji");
