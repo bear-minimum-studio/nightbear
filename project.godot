@@ -36,6 +36,10 @@ window/stretch/mode="viewport"
 window/size/width=1280
 window/size/height=720
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/coi_serviceworker/plugin.cfg")
+
 [global]
 
 icon=false
