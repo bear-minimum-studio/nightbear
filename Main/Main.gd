@@ -22,7 +22,7 @@ func _ready():
 	Events.play_intro.connect(play_intro)
 	Events.resume_game.connect(exit_pause_menu)
 	
-	menu_navigator.exit_menu.connect(_on_exist_menu)
+	menu_navigator.exit_menu.connect(_on_exit_menu)
 	
 	Events.hosting.connect(host_game)
 	Events.joining.connect(join_game)
@@ -133,6 +133,6 @@ func exit_pause_menu():
 	menu_navigator.close()
 	pause = false
 
-func _on_exist_menu(menu):
+func _on_exit_menu(menu):
 	if menu == MenuNavigator.MENU.PAUSE:
 		exit_pause_menu.rpc()
