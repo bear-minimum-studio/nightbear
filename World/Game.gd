@@ -70,6 +70,8 @@ func start_level():
 	is_running = true
 	MusicPlayer.next()
 	initialize()
+	# Sequence should be played on server side only
+	# Maybe only instanciate SequencePlayer on server side ?
 	sequence.start()
 
 func _build(world_id: int, pos:Transform2D):

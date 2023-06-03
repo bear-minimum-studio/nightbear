@@ -38,6 +38,7 @@ func _spawn_at_location(spawn_type: int, spawn_parameters: Dictionary, side: Sid
 	var spawned_instance = spawner.spawn(spawn_type, spawn_parameters, spawn_offset)
 	emit_signal("entity_spawned", spawned_instance)
 
+## Should be the same on server and client side but shouldn't be called on client side
 func spawn(spawn_type: int, spawn_parameters: Dictionary, sides: Array):
 	if multiplayer.is_server():
 		var location = _choose_spwan_location(sides)
