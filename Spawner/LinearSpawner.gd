@@ -40,9 +40,9 @@ func initialize(side, father_world_id: int) -> void:
 	world_id = father_world_id
 	spawn_direction = _get_spawn_direction(side)
 	
-func spawn(spawn_type: int, spawn_parameters: Dictionary) -> Node2D:
+func spawn(spawn_type: int, spawn_parameters: Dictionary, offset: float) -> Node2D:
 	
-	spawn_parameters.position = _get_spawn_location(randf())
+	spawn_parameters.position = _get_spawn_location(offset)
 	spawn_parameters.direction = spawn_direction
 	
 	var spawned_instance = spawned_entities[spawn_type].instantiate()

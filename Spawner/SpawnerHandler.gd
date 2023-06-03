@@ -24,8 +24,21 @@ func initialize(father_world_id: int) -> void:
 func _ready():
 	seed(Parameters.SEED)
 
-func spawn(spawn_type: int, spawn_parameters: Dictionary, sides: Array) -> void:
+func _choose_spwan_location(sides: Array):
 	var spawn_side = sides[randi() % sides.size()]
-	var spawner = spawners[spawn_side]
-	var spawned_instance = spawner.spawn(spawn_type, spawn_parameters)
+	var spawn_offset = randf()
+	return {
+		"side": spawn_side,
+		"offset": spawn_offset
+	}
+
+@rpc("call_local", "any_peer")
+func _spawn_at_location(spawn_type: int, spawn_parameters: Dictionary, side: Sides, spawn_offset: float) -> void:
+	var spawner = spawners[side]
+	var spawned_instance = spawner.spawn(spawn_type, spawn_parameters, spawn_offset)
 	emit_signal("entity_spawned", spawned_instance)
+
+func spawn(spawn_type: int, spawn_parameters: Dictionary, sides: Array):
+	if multiplayer.is_server():
+		var location = _choose_spwan_location(sides)
+		_spawn_at_location.rpc(spawn_type, spawn_parameters, location.side, location.offset)
