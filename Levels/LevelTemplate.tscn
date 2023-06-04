@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d27iklnprkcv7"]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="World0" type="Node2D" parent="."]
+
+[node name="World1" type="Node2D" parent="."]
