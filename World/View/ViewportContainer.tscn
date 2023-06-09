@@ -1,6 +1,5 @@
 [gd_scene load_steps=3 format=3 uid="uid://dajxuho4ju2gn"]
 
-[ext_resource type="PackedScene" uid="uid://bhgc1oi7qk0iv" path="res://World/AbstractWorld.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cmjnsj3gq6ihj" path="res://World/View/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://World/View/ViewportContainer.gd" id="3"]
 

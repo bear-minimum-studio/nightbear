@@ -26,7 +26,7 @@ class_name LevelResource
 		world_scene_path = value + 'world.tscn'
 		save_dir = value
 
-#@export var default_world = 'res://World/World.tscn'
+#@export var default_world = 'res://World/AbstractWorld.tscn'
 
 
 #@export var world_scene : PackedScene

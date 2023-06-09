@@ -13,8 +13,8 @@ signal play_intro
 signal intro_ended
 signal replay_game
 
-signal new_subsequence
-signal sequence_ended
+signal wave_ended(world_id: int, wave_index: int)
+signal level_ended(world_id: int)
 
 signal missed_ally_projectile
 signal dream_caught

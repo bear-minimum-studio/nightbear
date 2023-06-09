@@ -48,12 +48,11 @@ func open_lobby():
 @rpc("call_local")
 func lobby_ready():
 	lobby.hide()
-	game.initialize()
-	game.start_level()
+	game.start_level(0)
 
 func replay_game():
 	pause = false
-	game.start_level()
+	game.start_level(0)
 
 func local_game():
 	push_warning("LOCAL_GAME")
@@ -106,6 +105,8 @@ func end_intro():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if false:
+		print('blip')
 	pass
 
 

@@ -279,3 +279,5 @@ spawn_path = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Shapes" type="Node2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]

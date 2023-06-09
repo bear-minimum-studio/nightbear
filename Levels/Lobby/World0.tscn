@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://rm5x352cvmes"]
+
+[ext_resource type="PackedScene" uid="uid://bhgc1oi7qk0iv" path="res://World/AbstractWorld.tscn" id="1_ahdgm"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8cm0"]
+
+[node name="World0" instance=ExtResource("1_ahdgm")]
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_p8cm0")
+}

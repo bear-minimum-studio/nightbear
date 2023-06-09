@@ -2,7 +2,9 @@ extends Node2D
 
 class_name AbstractWorld
 
-var player_scene = preload("res://Player/Player.tscn")
+var wave_index := -1
+
+>>>>>>> a9656b1... wip level refacto
 var players : Array[Player] = [null, null]
 
 var player_shade_scene = preload("res://Player/PlayerShade.tscn")
@@ -11,6 +13,7 @@ var player_shades = [null, null]
 @onready var spawner_handlers = [$SpawnerHandler0, $SpawnerHandler1]
 @onready var spawn_positions : Array[Node] = [$SpawnPosition0, $SpawnPosition1]
 @onready var multiplayer_spawner = $MultiplayerSpawner
+@onready var animation_player = $AnimationPlayer
 
 @onready var region_0_to_1 : Vector2 :
 	get: return spawn_positions[1].position - spawn_positions[0].position
@@ -24,11 +27,6 @@ var dream_caught = 0
 func _ready():
 	Events.build.connect(_build)
 	Events.player_moved.connect(_move_player_shade)
-	
-	for spawner_handler in spawner_handlers:
-		for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
-			var spawner = spawner_handler.spawners[side]
-			var _unused = spawner.entity_spawned.connect(_on_entity_spawned)
 
 func set_player_spawns():
 	players[0].spawn_position = spawn_positions[0].position
@@ -80,3 +78,13 @@ func translate_to_other_region(current_region: int):
 
 func _on_entity_spawned(instance):
 	add_child(instance)
+
+func next_wave():
+	wave_index += 1
+	var wave_name = "wave%d" % wave_index
+	animation_player.stop()
+	if animation_player.get_animation_list().has(wave_name):
+		animation_player.play(wave_name)
+
+func _on_wave_ended():
+	Events.wave_ended.emit(world_id, wave_index)

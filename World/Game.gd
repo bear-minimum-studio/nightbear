@@ -1,15 +1,19 @@
 extends Control
 
 @onready var sub_viewport_containers = [$Viewports/SubViewportContainer0, $Viewports/SubViewportContainer1]
+@export var level_catalog : LevelCatalogResource
+
+var level_index := -1
+var wave_ended : bool = false
+var level_ended : bool = false
+
 @onready var wave_number_text = $MarginContainer/WaveNumber
 @onready var dream_caught_text = $DreamCaughtText
 @onready var game_over = $GameOver
 @onready var game_end = $GameEnd
 @onready var death_fx = $DeathFX
 @onready var lightning_fx = $LightningFX
-@onready var sequence_player = $SequencePlayer
-@onready var level_template = $LevelTemplate
-@export var level_catalog : LevelCatalogResource
+@onready var lobby : LevelResource = preload("res://Levels/Lobby.tres")
 
 var dreams_caught = 0
 
@@ -17,17 +21,23 @@ var is_running := false
 
 
 func _ready():
-	for spawner_handler in world.spawner_handlers:
-		spawner_handler.entity_spawned.connect(_connect_projectile)
+	_load_level(lobby)
 	
-	viewport_containers[0].world = level_template.world
-	var world = viewport_containers[0].world
-	worlds.push_back(world)
-	
-	Events.new_subsequence.connect(_new_subsequence)
-	Events.sequence_ended.connect(_sequence_ended)
+	Events.wave_ended.connect(_on_wave_ended)
+	Events.level_ended.connect(_on_level_ended)
 	
 	Events.player_dead.connect(_player_dead)
+
+
+func _load_level(level: LevelResource):
+	_clean_projectiles()
+	_clean_builds()
+	_center_players()
+
+	level_ended = false
+	
+	var world = level.world.instantiate()
+	sub_viewport_containers[0].world = world
 	
 	### WE NEED TO SET THE RENDERED WORLD FOR THE SECOND VIEWPORT AS THE WORLD CAN ONLY EXIST IN ONE VIEWPORT
 	### /!\ SETTING THIS TO world DOESN'T WORK WE NEED TO USE THE EXACT OBJECT USED IN THE FIRST VIEWPORT
@@ -35,15 +45,16 @@ func _ready():
 	
 	for region_id in [0,1]:
 		sub_viewport_containers[region_id].camera_2d.position = world.spawn_positions[region_id].position
-
-
-func initialize():
-	world.set_player_spawns() 
-	_center_players()
-	_clean_builds()
-	_clean_projectiles()
+	
 	_init_tentacles()
-	_init_sequence()
+	_next_wave(0)
+
+func _next_level():
+	level_index += 1
+	if level_index < level_catalog.levels.size():
+		_load_level(level_catalog.levels[level_index])
+	else:
+		_levels_ended()
 
 func _center_players():
 	if multiplayer.is_server():
@@ -65,19 +76,12 @@ func _init_tentacles():
 	for tentacle in tentacles:
 		tentacle.init()
 
-func _init_sequence():
-# TODO REMOVE IF UNEEDED
-#	sequence_player.init(worlds)
-	pass
-
-# TODO: MAKE LEVEL PARAMETRABLE
-func start_level():
+func start_level(new_level_index: int):
+	level_index = new_level_index
+	var level = level_catalog.levels[level_index]
+	_load_level(level)
 	is_running = true
 	MusicPlayer.next()
-	initialize()
-	# Sequence should be played on server side only
-	# Maybe only instanciate SequencePlayer on server side ?
-#	sequence_player.start()
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
@@ -93,19 +97,36 @@ func _player_dead(region_id):
 	# TO REFACTO
 	print("Player %d is dead !" % region_id)
 	death_fx.play()
-	var wave_index = sequence_player.current_index
+	var wave_index = worlds[0].wave_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
-func _sequence_ended():
+func _move_player_shade(world_id: int, new_position: Vector2):
+	var player_shades = get_tree().get_nodes_in_group("player_shade")
+	for player_shade in player_shades:
+		if player_shade.world_id != world_id:
+			player_shade.move_shade(new_position)
+
+func _levels_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
-func _new_subsequence(wave_index: int):
+func _on_level_ended(world_id: int):
+	if level_ended[1 - world_id]:
+		_next_level()
+
+func _on_wave_ended(world_id: int, wave_index: int):
+	if wave_ended[1 - world_id]:
+		_next_wave(wave_index)
+
+func _next_wave(wave_index: int):
 	wave_number_text.next_wave(wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
 		tentacle.grow()
+	for world_id in [0, 1]:
+		wave_ended[world_id] = false
+		worlds[world_id].next_wave()
 
 func _on_missed_ally_projectile(_region_id):
 	# TO REFACTO
