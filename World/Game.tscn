@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://xyjo08025xdi" path="res://UI/GameOver.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="2_h84r2"]
+[ext_resource type="Resource" uid="uid://b6dofhg1xf06q" path="res://Levels/LevelCatalog.tres" id="2_y7ay8"]
+[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dsejj61xaju71" path="res://World/LevelManagement/SequencePlayer.tscn" id="4"]
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="4_av0iw"]
 [ext_resource type="Script" path="res://World/Game.gd" id="5"]
@@ -11,7 +12,6 @@
 [ext_resource type="PackedScene" path="res://UI/WaveNumber.tscn" id="8"]
 [ext_resource type="AudioStream" uid="uid://dfyljd6u8tlwi" path="res://Audio/SFX/Lightning/lightning_1.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://dprgwe2yu1us4" path="res://Audio/SFX/Lightning/lightning_2.wav" id="10"]
-[ext_resource type="PackedScene" uid="uid://d27iklnprkcv7" path="res://Levels/LevelEditor.tscn" id="12_qim0v"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -21,6 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5")
+viewport_container_paths = Array[NodePath]([NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2")])
+level_catalog = ExtResource("2_y7ay8")
 
 [node name="Viewports" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -94,5 +96,3 @@ bus = &"SFX"
 stream = ExtResource("10")
 volume_db = -8.078
 bus = &"SFX"
-
-[node name="LevelTemplate" parent="." instance=ExtResource("12_qim0v")]

@@ -1,23 +1,24 @@
-@tool
+#@tool
 extends Resource
 class_name LevelResource
 
-@export_category("Level Creation")
-@export var level_name : String :
-	set(value):
-		level_name = value
-		save_dir = 'res://Levels/' + level_name + '/'
-		resource_name = value
-		resource_path = save_dir + level_name + '.res'
 
+#@export var level_name : String :
+#	set(value):
+#		level_name = value
+#		save_dir = 'res://Levels/' + level_name + '/'
+#		resource_name = value
+#		resource_path = save_dir + level_name + '.tres'
+@export var world_0 : PackedScene
+@export var world_1 : PackedScene
 
-@export var click_to_save: bool = false :
-	set(value):
-		if not click_to_save: # on first click/set create the resource
-			create()
-			click_to_save = true
-		else: # on later clicks/sets save the resource
-			save()
+#@export var click_to_save: bool = false :
+#	set(value):
+#		if not click_to_save: # on first click/set create the resource
+#			create()
+#			click_to_save = true
+#		else: # on later clicks/sets save the resource
+#			save()
 
 @export_category("Do not edit")
 @export_dir var save_dir: String :
@@ -25,7 +26,7 @@ class_name LevelResource
 		world_scene_path = value + 'world.tscn'
 		save_dir = value
 
-@export var default_world = 'res://World/World.tscn'
+#@export var default_world = 'res://World/World.tscn'
 
 
 #@export var world_scene : PackedScene

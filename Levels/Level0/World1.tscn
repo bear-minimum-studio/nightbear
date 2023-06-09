@@ -1,0 +1,407 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4wo5kc0xtnau"]
+
+[ext_resource type="PackedScene" uid="uid://bhgc1oi7qk0iv" path="res://World/AbstractWorld.tscn" id="1_cr2h1"]
+[ext_resource type="PackedScene" uid="uid://m6dir1yl2qj4" path="res://Shapes/Wall/Wall.tscn" id="2_7u8dy"]
+
+[sub_resource type="Animation" id="Animation_gkfbi"]
+resource_name = "wave"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shapes/Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-144, 0), Vector2(-144, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shapes/Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shapes/Wall2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-56, 0), Vector2(-56, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shapes/Wall2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shapes/Wall3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-96, -112), Vector2(-96, -112)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shapes/Wall3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shapes/Wall4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-96, 104), Vector2(-96, 104)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Shapes/Wall4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Shapes/Wall6:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(144, 0), Vector2(144, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shapes/Wall6:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Shapes/Wall7:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(101, -85), Vector2(101, -85)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Shapes/Wall7:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.517954, -0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_q8fw8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shapes/Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-144, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shapes/Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shapes/Wall2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shapes/Wall2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shapes/Wall3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, -112)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shapes/Wall3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shapes/Wall4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, 104)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Shapes/Wall4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Shapes/Wall6:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shapes/Wall6:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Shapes/Wall7:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(101, -85)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Shapes/Wall7:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.517954]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fwqpt"]
+_data = {
+"RESET": SubResource("Animation_q8fw8"),
+"wave": SubResource("Animation_gkfbi")
+}
+
+[node name="World1" instance=ExtResource("1_cr2h1")]
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_fwqpt")
+}
+
+[node name="Wall" parent="Shapes" index="0" instance=ExtResource("2_7u8dy")]
+position = Vector2(-144, 0)
+nb_lines = 8
+nb_columns = 1
+
+[node name="Wall2" parent="Shapes" index="1" instance=ExtResource("2_7u8dy")]
+position = Vector2(-56, 0)
+nb_lines = 8
+nb_columns = 1
+
+[node name="Wall3" parent="Shapes" index="2" instance=ExtResource("2_7u8dy")]
+position = Vector2(-96, -112)
+nb_lines = 1
+
+[node name="Wall4" parent="Shapes" index="3" instance=ExtResource("2_7u8dy")]
+position = Vector2(-96, 104)
+nb_lines = 1
+
+[node name="Wall6" parent="Shapes" index="4" instance=ExtResource("2_7u8dy")]
+position = Vector2(144, 0)
+nb_lines = 8
+nb_columns = 1
+
+[node name="Wall7" parent="Shapes" index="5" instance=ExtResource("2_7u8dy")]
+position = Vector2(101, -85)
+rotation = -0.517954
+nb_lines = 1
+
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99733" to="Shapes/Wall/@Projectile@99733" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99734" to="Shapes/Wall/@Projectile@99734" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99735" to="Shapes/Wall/@Projectile@99735" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99736" to="Shapes/Wall/@Projectile@99736" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99737" to="Shapes/Wall/@Projectile@99737" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99738" to="Shapes/Wall/@Projectile@99738" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99739" to="Shapes/Wall/@Projectile@99739" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99740" to="Shapes/Wall/@Projectile@99740" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99963" to="Shapes/Wall/@Projectile@99963" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99964" to="Shapes/Wall/@Projectile@99964" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99965" to="Shapes/Wall/@Projectile@99965" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99966" to="Shapes/Wall/@Projectile@99966" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99967" to="Shapes/Wall/@Projectile@99967" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99968" to="Shapes/Wall/@Projectile@99968" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99969" to="Shapes/Wall/@Projectile@99969" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Projectile@99970" to="Shapes/Wall/@Projectile@99970" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99794" to="Shapes/Wall2/@Projectile@99794" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99795" to="Shapes/Wall2/@Projectile@99795" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99796" to="Shapes/Wall2/@Projectile@99796" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99797" to="Shapes/Wall2/@Projectile@99797" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99798" to="Shapes/Wall2/@Projectile@99798" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99799" to="Shapes/Wall2/@Projectile@99799" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99800" to="Shapes/Wall2/@Projectile@99800" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99801" to="Shapes/Wall2/@Projectile@99801" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99971" to="Shapes/Wall2/@Projectile@99971" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99972" to="Shapes/Wall2/@Projectile@99972" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99973" to="Shapes/Wall2/@Projectile@99973" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99974" to="Shapes/Wall2/@Projectile@99974" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99975" to="Shapes/Wall2/@Projectile@99975" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99976" to="Shapes/Wall2/@Projectile@99976" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99977" to="Shapes/Wall2/@Projectile@99977" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@99978" to="Shapes/Wall2/@Projectile@99978" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99831" to="Shapes/Wall3/@Projectile@99831" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99832" to="Shapes/Wall3/@Projectile@99832" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99833" to="Shapes/Wall3/@Projectile@99833" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99979" to="Shapes/Wall3/@Projectile@99979" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99980" to="Shapes/Wall3/@Projectile@99980" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@99981" to="Shapes/Wall3/@Projectile@99981" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99863" to="Shapes/Wall4/@Projectile@99863" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99864" to="Shapes/Wall4/@Projectile@99864" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99865" to="Shapes/Wall4/@Projectile@99865" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99982" to="Shapes/Wall4/@Projectile@99982" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99983" to="Shapes/Wall4/@Projectile@99983" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall4/@Projectile@99984" to="Shapes/Wall4/@Projectile@99984" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99919" to="Shapes/Wall6/@Projectile@99919" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99920" to="Shapes/Wall6/@Projectile@99920" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99921" to="Shapes/Wall6/@Projectile@99921" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99922" to="Shapes/Wall6/@Projectile@99922" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99923" to="Shapes/Wall6/@Projectile@99923" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99924" to="Shapes/Wall6/@Projectile@99924" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99925" to="Shapes/Wall6/@Projectile@99925" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99926" to="Shapes/Wall6/@Projectile@99926" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99985" to="Shapes/Wall6/@Projectile@99985" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99986" to="Shapes/Wall6/@Projectile@99986" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99987" to="Shapes/Wall6/@Projectile@99987" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99988" to="Shapes/Wall6/@Projectile@99988" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99989" to="Shapes/Wall6/@Projectile@99989" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99990" to="Shapes/Wall6/@Projectile@99990" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99991" to="Shapes/Wall6/@Projectile@99991" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@99992" to="Shapes/Wall6/@Projectile@99992" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99956" to="Shapes/Wall7/@Projectile@99956" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99957" to="Shapes/Wall7/@Projectile@99957" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99958" to="Shapes/Wall7/@Projectile@99958" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99993" to="Shapes/Wall7/@Projectile@99993" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99994" to="Shapes/Wall7/@Projectile@99994" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@99995" to="Shapes/Wall7/@Projectile@99995" method="_on_Projectile_body_entered" flags=18]

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name AbstractWorld
+
 var player_scene = preload("res://Player/Player.tscn")
 var players : Array[Player] = [null, null]
 

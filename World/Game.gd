@@ -9,6 +9,7 @@ extends Control
 @onready var lightning_fx = $LightningFX
 @onready var sequence_player = $SequencePlayer
 @onready var level_template = $LevelTemplate
+@export var level_catalog : LevelCatalogResource
 
 var dreams_caught = 0
 
