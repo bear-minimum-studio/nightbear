@@ -5,12 +5,10 @@ extends Control
 @onready var dream_caught_text = $DreamCaughtText
 @onready var game_over = $GameOver
 @onready var game_end = $GameEnd
-@onready var sequence = $SequencePlayer
 @onready var death_fx = $DeathFX
 @onready var lightning_fx = $LightningFX
 @onready var sequence_player = $SequencePlayer
-@onready var world = $Viewports/SubViewportContainer0/SubViewport/World
-
+@onready var level_template = $LevelTemplate
 
 var dreams_caught = 0
 
@@ -20,6 +18,10 @@ var is_running := false
 func _ready():
 	for spawner_handler in world.spawner_handlers:
 		spawner_handler.entity_spawned.connect(_connect_projectile)
+	
+	viewport_containers[0].world = level_template.world
+	var world = viewport_containers[0].world
+	worlds.push_back(world)
 	
 	Events.new_subsequence.connect(_new_subsequence)
 	Events.sequence_ended.connect(_sequence_ended)
@@ -63,7 +65,9 @@ func _init_tentacles():
 		tentacle.init()
 
 func _init_sequence():
-	sequence.init(world)
+# TODO REMOVE IF UNEEDED
+#	sequence_player.init(worlds)
+	pass
 
 # TODO: MAKE LEVEL PARAMETRABLE
 func start_level():
@@ -72,7 +76,7 @@ func start_level():
 	initialize()
 	# Sequence should be played on server side only
 	# Maybe only instanciate SequencePlayer on server side ?
-	sequence.start()
+#	sequence_player.start()
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
@@ -88,7 +92,7 @@ func _player_dead(region_id):
 	# TO REFACTO
 	print("Player %d is dead !" % region_id)
 	death_fx.play()
-	var wave_index = sequence.current_index
+	var wave_index = sequence_player.current_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
 
