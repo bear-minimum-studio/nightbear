@@ -103,7 +103,7 @@ tracks/7/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_gg4mi"]
-resource_name = "wave"
+resource_name = "wave0"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -205,7 +205,7 @@ tracks/7/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjkod"]
 _data = {
 "RESET": SubResource("Animation_af8lh"),
-"wave": SubResource("Animation_gg4mi")
+"wave0": SubResource("Animation_gg4mi")
 }
 
 [node name="World1" instance=ExtResource("1_wvjuj")]
@@ -235,47 +235,25 @@ position = Vector2(101, -85)
 rotation = -0.517954
 nb_lines = 1
 
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19698" to="Shapes/Wall2/@Projectile@19698" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19699" to="Shapes/Wall2/@Projectile@19699" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19700" to="Shapes/Wall2/@Projectile@19700" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19701" to="Shapes/Wall2/@Projectile@19701" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19702" to="Shapes/Wall2/@Projectile@19702" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19703" to="Shapes/Wall2/@Projectile@19703" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19704" to="Shapes/Wall2/@Projectile@19704" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19705" to="Shapes/Wall2/@Projectile@19705" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19835" to="Shapes/Wall2/@Projectile@19835" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19836" to="Shapes/Wall2/@Projectile@19836" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19837" to="Shapes/Wall2/@Projectile@19837" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19838" to="Shapes/Wall2/@Projectile@19838" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19839" to="Shapes/Wall2/@Projectile@19839" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19840" to="Shapes/Wall2/@Projectile@19840" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19841" to="Shapes/Wall2/@Projectile@19841" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Projectile@19842" to="Shapes/Wall2/@Projectile@19842" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19735" to="Shapes/Wall3/@Projectile@19735" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19736" to="Shapes/Wall3/@Projectile@19736" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19737" to="Shapes/Wall3/@Projectile@19737" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19843" to="Shapes/Wall3/@Projectile@19843" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19844" to="Shapes/Wall3/@Projectile@19844" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Projectile@19845" to="Shapes/Wall3/@Projectile@19845" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19791" to="Shapes/Wall6/@Projectile@19791" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19792" to="Shapes/Wall6/@Projectile@19792" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19793" to="Shapes/Wall6/@Projectile@19793" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19794" to="Shapes/Wall6/@Projectile@19794" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19795" to="Shapes/Wall6/@Projectile@19795" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19796" to="Shapes/Wall6/@Projectile@19796" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19797" to="Shapes/Wall6/@Projectile@19797" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19798" to="Shapes/Wall6/@Projectile@19798" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19846" to="Shapes/Wall6/@Projectile@19846" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19847" to="Shapes/Wall6/@Projectile@19847" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19848" to="Shapes/Wall6/@Projectile@19848" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19849" to="Shapes/Wall6/@Projectile@19849" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19850" to="Shapes/Wall6/@Projectile@19850" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19851" to="Shapes/Wall6/@Projectile@19851" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19852" to="Shapes/Wall6/@Projectile@19852" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Projectile@19853" to="Shapes/Wall6/@Projectile@19853" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19828" to="Shapes/Wall7/@Projectile@19828" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19829" to="Shapes/Wall7/@Projectile@19829" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19830" to="Shapes/Wall7/@Projectile@19830" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19854" to="Shapes/Wall7/@Projectile@19854" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19855" to="Shapes/Wall7/@Projectile@19855" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall7/@Projectile@19856" to="Shapes/Wall7/@Projectile@19856" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/Projectile" to="Shapes/Wall2/Projectile" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37871" to="Shapes/Wall2/@Projectile@37871" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37872" to="Shapes/Wall2/@Projectile@37872" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37873" to="Shapes/Wall2/@Projectile@37873" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37874" to="Shapes/Wall2/@Projectile@37874" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37875" to="Shapes/Wall2/@Projectile@37875" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37876" to="Shapes/Wall2/@Projectile@37876" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Projectile@37877" to="Shapes/Wall2/@Projectile@37877" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/Projectile" to="Shapes/Wall3/Projectile" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@37878" to="Shapes/Wall3/@Projectile@37878" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall3/@Projectile@37879" to="Shapes/Wall3/@Projectile@37879" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/Projectile" to="Shapes/Wall6/Projectile" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37880" to="Shapes/Wall6/@Projectile@37880" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37881" to="Shapes/Wall6/@Projectile@37881" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37882" to="Shapes/Wall6/@Projectile@37882" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37883" to="Shapes/Wall6/@Projectile@37883" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37884" to="Shapes/Wall6/@Projectile@37884" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37885" to="Shapes/Wall6/@Projectile@37885" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall6/@Projectile@37886" to="Shapes/Wall6/@Projectile@37886" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/Projectile" to="Shapes/Wall7/Projectile" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@37887" to="Shapes/Wall7/@Projectile@37887" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall7/@Projectile@37888" to="Shapes/Wall7/@Projectile@37888" method="_on_Projectile_body_entered" flags=18]
