@@ -86,5 +86,5 @@ func next_wave():
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
 
-func _on_wave_ended():
+func _on_wave_ended(_anim_name: StringName):
 	Events.wave_ended.emit(world_id, wave_index)
