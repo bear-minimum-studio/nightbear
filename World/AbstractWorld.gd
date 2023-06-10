@@ -4,7 +4,11 @@ class_name AbstractWorld
 
 var wave_index := -1
 
->>>>>>> a9656b1... wip level refacto
+# TODO: make more reliable (maybe use animation tree)
+var number_of_waves : int :
+	get: return animation_player.get_animation_list().size() - 1 # not counting RESET
+
+var player_scene = preload("res://Player/Player.tscn")
 var players : Array[Player] = [null, null]
 
 var player_shade_scene = preload("res://Player/PlayerShade.tscn")
@@ -88,3 +92,5 @@ func next_wave():
 
 func _on_wave_ended(_anim_name: StringName):
 	Events.wave_ended.emit(world_id, wave_index)
+	if wave_index + 1 >= number_of_waves:
+		Events.level_ended.emit(world_id)

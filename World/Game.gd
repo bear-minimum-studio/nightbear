@@ -116,6 +116,7 @@ func _levels_ended():
 	get_tree().paused = true
 
 func _on_level_ended(world_id: int):
+	level_ended[world_id] = true
 	if level_ended[1 - world_id]:
 		_next_level()
 
