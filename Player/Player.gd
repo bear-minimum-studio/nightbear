@@ -16,7 +16,7 @@ var spawn_position := Vector2.ZERO
 var region_id : int
 var input_id : int
 var ready_to_build := false
-var is_alive := true
+
 
 ## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
 func _enter_tree():
@@ -84,9 +84,7 @@ func reset_build_timer():
 	build_timer.start()
 
 func hit():
-	if is_alive:
-		_player_death()
-		is_alive = false
+	_player_death()
 
 func _player_death():
 	if (!is_immortal):

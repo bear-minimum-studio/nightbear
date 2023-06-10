@@ -28,13 +28,17 @@ func _ready():
 	
 	Events.player_dead.connect(_player_dead)
 
-
 func _load_level(level: LevelResource):
 	_clean_projectiles()
 	_clean_builds()
 	_center_players()
 
 	level_ended = false
+	
+	# HACK: wait for cleaning to be over before reloading the level
+	# TODO: find a clean and reliable method
+	var timer = get_tree().create_timer(0.05)
+	await timer.timeout
 	
 	var world = level.world.instantiate()
 	sub_viewport_containers[0].world = world
