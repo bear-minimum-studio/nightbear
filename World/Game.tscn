@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://xyjo08025xdi" path="res://UI/GameOver.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://b6dofhg1xf06q" path="res://Levels/LevelCatalog.tres" id="2_y7ay8"]
-[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="2_h84r2"]
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="4_av0iw"]
 [ext_resource type="Script" path="res://World/Game.gd" id="5"]
 [ext_resource type="AudioStream" uid="uid://b64yscmb1ae6h" path="res://Audio/SFX/Death/death_2.wav" id="6"]
@@ -34,8 +34,6 @@ alignment = 1
 
 [node name="SubViewportContainer0" parent="Viewports" instance=ExtResource("2_h84r2")]
 layout_mode = 2
-
-[node name="World" parent="Viewports/SubViewportContainer0/SubViewport" index="0" instance=ExtResource("11_ohto8")]
 
 [node name="SubViewportContainer1" parent="Viewports" instance=ExtResource("2_h84r2")]
 layout_mode = 2

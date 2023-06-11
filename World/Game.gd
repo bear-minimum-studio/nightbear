@@ -137,13 +137,9 @@ func _next_wave(wave_index: int):
 		wave_ended[world_id] = false
 		worlds[world_id].next_wave()
 
-func _on_missed_ally_projectile(_region_id):
-	# TO REFACTO
-	#	var other_region_id = 1 - region_id
-	#	var world = worlds[other_region_id]
-	#	var spawner_handler = world.spawner_handler
-	#	viewport_containers[other_region_id].camera.start_flash(0.25, 0.3)
-	#	lightning_fx.play()
-	#	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
-	#	spawner_handler.spawn(Projectile.ProjectyleType.Doom, {"speed": 30.0, "target": world.player}, sides)
-	pass
+func _on_missed_ally_projectile(region_id):
+	var other_region_id = 1 - region_id
+	sub_viewport_containers[other_region_id].camera.start_flash(0.25, 0.3)
+	lightning_fx.play()
+	# TODO: spawn Doom projectile
+	# spawner_handler.spawn(Projectile.ProjectyleType.Doom, {"speed": 30.0, "target": world.player}, sides)

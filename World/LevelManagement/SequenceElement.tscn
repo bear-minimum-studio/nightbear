@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqdcydjr0set5"]
-
-[ext_resource type="Script" path="res://World/LevelManagement/SequenceElement.gd" id="1"]
-
-[node name="SequenceElement" type="Node"]
-script = ExtResource("1")

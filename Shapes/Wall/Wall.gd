@@ -49,9 +49,6 @@ func _ready():
 	spawn()
 
 func spawn():
-#	if !multiplayer.is_server():
-#		return
-	
 	var line_offset = (nb_lines - 1) / 2.0
 	var column_offset = (nb_columns - 1) / 2.0
 	for line_idx in range(nb_lines):

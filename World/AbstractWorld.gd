@@ -22,10 +22,9 @@ var players : Array[Player] = [null, null]
 var player_shade_scene = preload("res://Player/PlayerShade.tscn")
 var player_shades = [null, null]
 
-@onready var spawner_handlers = [$SpawnerHandler0, $SpawnerHandler1]
 @onready var spawn_positions : Array[Node] = [$SpawnPosition0, $SpawnPosition1]
-@onready var multiplayer_spawner = $MultiplayerSpawner
-@onready var animation_player = $AnimationPlayer
+@onready var multiplayer_spawner : MultiplayerSpawner = $MultiplayerSpawner
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 @onready var region_0_to_1 : Vector2 :
 	get: return spawn_positions[1].position - spawn_positions[0].position
