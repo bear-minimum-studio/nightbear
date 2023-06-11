@@ -4,9 +4,14 @@ class_name AbstractWorld
 
 var wave_index := 0
 
-# TODO: make more reliable (maybe use animation tree)
 var number_of_waves : int :
-	get: return animation_player.get_animation_list().size() - 1 # not counting RESET
+	get: 
+		var animations = animation_player.get_animation_list()
+		var waves_animations = 0
+		for i in range(animations.size()):
+			if animations.has('wave%d' % i): # not counting RESET
+				waves_animations += 1
+		return waves_animations
 
 var is_level_ended : bool :
 	get: return wave_index >= number_of_waves
