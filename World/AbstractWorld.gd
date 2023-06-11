@@ -2,11 +2,14 @@ extends Node2D
 
 class_name AbstractWorld
 
-var wave_index := -1
+var wave_index := 0
 
 # TODO: make more reliable (maybe use animation tree)
 var number_of_waves : int :
 	get: return animation_player.get_animation_list().size() - 1 # not counting RESET
+
+var is_level_ended : bool :
+	get: return wave_index >= number_of_waves
 
 var player_scene = preload("res://Player/Player.tscn")
 var players : Array[Player] = [null, null]
@@ -84,13 +87,16 @@ func _on_entity_spawned(instance):
 	add_child(instance)
 
 func next_wave():
-	wave_index += 1
+	if is_level_ended:
+		wave_index = -1
+	
 	var wave_name = "wave%d" % wave_index
-	animation_player.stop()
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
 
 func _on_wave_ended(_anim_name: StringName):
-	Events.wave_ended.emit(world_id, wave_index)
-	if wave_index + 1 >= number_of_waves:
+	wave_index += 1
+	if is_level_ended:
 		Events.level_ended.emit(world_id)
+	else:
+		Events.wave_ended.emit(world_id, wave_index)

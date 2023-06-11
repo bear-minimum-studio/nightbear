@@ -55,6 +55,8 @@ func _load_level(level: LevelResource):
 
 func _next_level():
 	level_index += 1
+	wave_ended = [false, false]
+	level_ended = [false, false]
 	if level_index < level_catalog.levels.size():
 		_load_level(level_catalog.levels[level_index])
 	else:
@@ -115,17 +117,19 @@ func _levels_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
-func _on_level_ended(world_id: int):
-	level_ended[world_id] = true
-	if level_ended[1 - world_id]:
+func _on_level_ended(_world_id: int):
+	if worlds[0].is_level_ended and worlds[1].is_level_ended:
 		_next_level()
 
 func _on_wave_ended(world_id: int, wave_index: int):
+	wave_ended[world_id] = true
+	if worlds[world_id].is_level_ended:
+		return
 	if wave_ended[1 - world_id]:
 		_next_wave(wave_index)
 
 func _next_wave(wave_index: int):
-	wave_number_text.next_wave(wave_index + 1)
+	wave_number_text.next_wave(level_index + 1, wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
 		tentacle.grow()
