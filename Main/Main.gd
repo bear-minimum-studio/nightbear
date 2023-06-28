@@ -55,6 +55,7 @@ func replay_game():
 	game.start_level()
 
 func local_game():
+	push_warning("LOCAL_GAME")
 	NetworkTools.local_multiplayer = true
 	host_peer_id = multiplayer.get_unique_id()
 	open_lobby()
@@ -63,6 +64,7 @@ func local_game():
 	lobby_ready()
 
 func host_game(wan: bool):
+	push_warning("SERVER")
 	NetworkTools.local_multiplayer = false
 	var server_port = NetworkTools.server_port if wan else NetworkTools.LOCAL_PORT
 	enet_peer.create_server(server_port, 1)
@@ -73,6 +75,7 @@ func host_game(wan: bool):
 	_spawn_player(0, host_peer_id)
 
 func join_game(host_address_and_port: String):
+	push_warning("CLIENT")
 	NetworkTools.local_multiplayer = false
 	var address = NetworkTools.get_address(host_address_and_port)
 	var port = NetworkTools.get_port(host_address_and_port)
