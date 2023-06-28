@@ -17,8 +17,8 @@ var nb_sides: int
 @onready var next_timer := $NextTimer
 @onready var burst_timer := $BurstTimer
 
-func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
-	super.initialize(squence_id, element_description, father_node, father_worlds)
+func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_world) -> void:
+	super.initialize(squence_id, element_description, father_node, father_world)
 
 	spawn_type = element_description.spawn_type
 	spawn_parameters = {
@@ -26,8 +26,8 @@ func initialize(squence_id: String, element_description: Resource, father_node: 
 	}
 
 	spawner_handlers = []
-	for world_index in element_description.world_indexes:
-		spawner_handlers.push_back(worlds[world_index].spawner_handler)
+	for region_index in element_description.world_indexes:
+		spawner_handlers.push_back(world.spawner_handlers[region_index])
 	spawn_delay = element_description.spawn_delay
 	next_delay = element_description.next_delay
 	duration = element_description.duration

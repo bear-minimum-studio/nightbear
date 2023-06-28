@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://y231bdkdnpu3"]
+[gd_scene load_steps=13 format=3 uid="uid://y231bdkdnpu3"]
 
 [ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://xyjo08025xdi" path="res://UI/GameOver.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dajxuho4ju2gn" path="res://World/View/ViewportContainer.tscn" id="2_h84r2"]
 [ext_resource type="PackedScene" uid="uid://dsejj61xaju71" path="res://World/LevelManagement/SequencePlayer.tscn" id="4"]
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="4_av0iw"]
 [ext_resource type="Script" path="res://World/Game.gd" id="5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://UI/WaveNumber.tscn" id="8"]
 [ext_resource type="AudioStream" uid="uid://dfyljd6u8tlwi" path="res://Audio/SFX/Lightning/lightning_1.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://dprgwe2yu1us4" path="res://Audio/SFX/Lightning/lightning_2.wav" id="10"]
+[ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/WorldMerged.tscn" id="11_ohto8"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -20,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5")
-viewport_container_paths = Array[NodePath]([NodePath("Viewports/ViewportContainer1"), NodePath("Viewports/ViewportContainer2")])
 
 [node name="Viewports" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -31,12 +31,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ViewportContainer1" parent="Viewports" instance=ExtResource("3")]
+[node name="SubViewportContainer0" parent="Viewports" instance=ExtResource("2_h84r2")]
 layout_mode = 2
 
-[node name="ViewportContainer2" parent="Viewports" instance=ExtResource("3")]
+[node name="World" parent="Viewports/SubViewportContainer0/SubViewport" index="0" instance=ExtResource("11_ohto8")]
+
+[node name="SubViewportContainer1" parent="Viewports" instance=ExtResource("2_h84r2")]
 layout_mode = 2
-world_id = 1
 
 [node name="DreamCaughtText" type="Label" parent="."]
 visible = false
@@ -93,3 +94,6 @@ bus = &"SFX"
 stream = ExtResource("10")
 volume_db = -8.078
 bus = &"SFX"
+
+[editable path="Viewports/SubViewportContainer0"]
+[editable path="Viewports/SubViewportContainer1"]

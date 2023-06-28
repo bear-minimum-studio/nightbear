@@ -88,9 +88,9 @@ func peer_connected(peer_id):
 	_spawn_player(1, client_peer_id)
 	lobby_ready.rpc()
 
-func _spawn_player(world_id: int, peer_id: int):
-	game.worlds[world_id].spawn_player(peer_id)
-	game.worlds[1 - world_id].spawn_player_shade()
+func _spawn_player(region_id: int, peer_id: int):
+	game.world.spawn_player(peer_id, region_id)
+	game.world.spawn_player_shade(region_id)
 
 func play_intro():
 	menu_navigator.close()

@@ -6,7 +6,7 @@ var sequence_element_entity = load("res://World/LevelManagement/SequenceElement.
 var burst_entity = load("res://World/LevelManagement/Burst.tscn")
 
 var id: String
-var worlds: Array
+var world
 var current_index: int
 var subsequence: Array
 var nb_elements: int
@@ -15,9 +15,9 @@ var father: SequenceElement
 var father_next_called: bool
 var element_started: bool
 
-func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_worlds: Array) -> void:
+func initialize(squence_id: String, element_description: Resource, father_node: SequenceElement, father_world) -> void:
 	id = squence_id
-	worlds = father_worlds
+	world = father_world
 	father = father_node
 	father_next_called = (father == null)
 	element_started = false
@@ -39,7 +39,7 @@ func _create_element(element_id: String, element_description: Resource) -> Seque
 	var element: SequenceElement
 	element = _get_entity_for_element(element_description).instantiate()
 	add_child(element)
-	element.initialize(element_id, element_description, self, worlds)
+	element.initialize(element_id, element_description, self, world)
 	return element
 
 func _set_subsequence(element_description: Resource) -> void:

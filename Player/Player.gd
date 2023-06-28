@@ -18,6 +18,8 @@ var ready_to_build := false
 ## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
 func _enter_tree():
 	set_multiplayer_authority(str(self.name).split('_')[0].to_int())
+	# DEBUG
+	var name = self.name
 	self.world_id = self.name.split('_')[1].to_int()
 
 func _ready():

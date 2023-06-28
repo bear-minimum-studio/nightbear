@@ -3,9 +3,9 @@ extends SequenceElement
 
 @export var level: Resource
 
-func init(father_worlds: Array) -> void:
+func init(father_world) -> void:
 	force_stop()
-	initialize("0", level, null, father_worlds)
+	initialize("0", level, null, father_world)
 
 func _queue_free():
 	pass
