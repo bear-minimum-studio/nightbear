@@ -95,7 +95,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1")
 hframes = 11
 vframes = 2
-frame = 11
+frame = 14
 script = ExtResource("3")
 player_path = NodePath("..")
 

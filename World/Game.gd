@@ -37,6 +37,7 @@ func _ready():
 
 
 func initialize():
+	world.set_player_spawns() 
 	_center_players()
 	_clean_builds()
 	_clean_projectiles()

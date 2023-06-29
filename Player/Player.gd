@@ -11,6 +11,8 @@ class_name Player
 @export var is_immortal := false
 
 var player_velocity := Vector2.ZERO
+var spawn_position := Vector2.ZERO
+
 var world_id : int
 var input_id : int
 var ready_to_build := false
@@ -59,7 +61,7 @@ func _physics_process(_delta):
 
 @rpc("call_local", "any_peer")
 func reset_position():
-	position = Vector2.ZERO
+	position = spawn_position
 
 @rpc("call_local", "authority")
 func _build():

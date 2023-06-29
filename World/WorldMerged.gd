@@ -7,7 +7,7 @@ var player_shade_scene = preload("res://Player/PlayerShade.tscn")
 var player_shades = [null, null]
 
 @onready var spawner_handlers = [$SpawnerHandler0, $SpawnerHandler1]
-@onready var spawn_positions = [$SpawnPosition0, $SpawnPosition1]
+@onready var spawn_positions : Array[Node] = [$SpawnPosition0, $SpawnPosition1]
 @onready var multiplayer_spawner = $MultiplayerSpawner
 
 var dream_caught = 0
@@ -17,6 +17,10 @@ func _ready():
 		for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
 			var spawner = spawner_handler.spawners[side]
 			var _unused = spawner.entity_spawned.connect(_on_entity_spawned)
+
+func set_player_spawns():
+	players[0].spawn_position = spawn_positions[0].position
+	players[1].spawn_position = spawn_positions[1].position
 
 ## /!\ set player.name because it is automatically synchronized by MultiplayerSpawner 
 ## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
