@@ -7,6 +7,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 @onready var intro = $Intro
 @onready var menu_navigator = $MenuNavigator
 
+
 var host_peer_id : int
 var client_peer_id : int
 
