@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://UI/WaveNumber.tscn" id="8"]
 [ext_resource type="AudioStream" uid="uid://dfyljd6u8tlwi" path="res://Audio/SFX/Lightning/lightning_1.wav" id="9"]
 [ext_resource type="AudioStream" uid="uid://dprgwe2yu1us4" path="res://Audio/SFX/Lightning/lightning_2.wav" id="10"]
-[ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/WorldMerged.tscn" id="11_ohto8"]
+[ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/World.tscn" id="11_ohto8"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
