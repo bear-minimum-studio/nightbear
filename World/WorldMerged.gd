@@ -10,6 +10,13 @@ var player_shades = [null, null]
 @onready var spawn_positions : Array[Node] = [$SpawnPosition0, $SpawnPosition1]
 @onready var multiplayer_spawner = $MultiplayerSpawner
 
+@onready var region_0_to_1 : Vector2 :
+	get: return spawn_positions[1].position - spawn_positions[0].position
+
+@onready var region_1_to_0 : Vector2 :
+	get: return - region_0_to_1
+
+
 var dream_caught = 0
 
 func _ready():
@@ -39,15 +46,21 @@ func spawn_player_shade(region_id: int):
 	player_shades[region_id] = new_player_shade
 	add_child(new_player_shade)
 
-func spawn_wall(pos: Transform2D):
+func spawn_wall(region_id: int, pos: Transform2D):
 	var new_wall = Parameters.GAME_WALL.instantiate()
-	new_wall.transform.origin = pos.origin
+	new_wall.transform.origin = pos.origin + translate_to_other_region(region_id)
 	add_child(new_wall)
 
 func spawn_dream_catcher(pos: Transform2D):
 	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instantiate()
 	new_dream_catcher.transform.origin = pos.origin
 	add_child(new_dream_catcher)
+
+func translate_to_other_region(current_region: int):
+	if current_region == 0:
+		return region_0_to_1
+	elif current_region == 1:
+		return region_1_to_0
 
 func _on_entity_spawned(instance):
 	add_child(instance)

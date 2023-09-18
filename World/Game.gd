@@ -76,9 +76,9 @@ func start_level():
 	# Maybe only instanciate SequencePlayer on server side ?
 	sequence.start()
 
-func _build(_world_id: int, pos:Transform2D):
+func _build(world_id: int, pos:Transform2D):
 	# TO REFACTO
-	world.spawn_wall(pos)
+	world.spawn_wall(world_id, pos)
 	world.spawn_dream_catcher(pos)
 
 func _connect_projectile(spawned_instance: Projectile):
