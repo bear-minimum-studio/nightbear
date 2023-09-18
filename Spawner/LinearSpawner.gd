@@ -7,7 +7,7 @@ signal entity_spawned
 @export var doom_projectile: PackedScene
 
 var spawn_direction: Vector2
-var world_id: int
+var region_id: int
 @onready var spawned_entities = {
 	Projectile.ProjectyleType.Ally: ally_projectile,
 	Projectile.ProjectyleType.Ennemy: ennemy_projectile,
@@ -36,8 +36,8 @@ func _get_spawn_direction(side) -> Vector2:
 		_:
 			return Vector2.ZERO
 
-func initialize(side, father_world_id: int) -> void:
-	world_id = father_world_id
+func initialize(side, father_region_id: int) -> void:
+	region_id = father_region_id
 	spawn_direction = _get_spawn_direction(side)
 	
 func spawn(spawn_type: int, spawn_parameters: Dictionary, offset: float) -> Node2D:
@@ -46,7 +46,7 @@ func spawn(spawn_type: int, spawn_parameters: Dictionary, offset: float) -> Node
 	spawn_parameters.direction = spawn_direction
 	
 	var spawned_instance = spawned_entities[spawn_type].instantiate()
-	spawned_instance.initialize(spawn_parameters, world_id)
+	spawned_instance.initialize(spawn_parameters, region_id)
 	emit_signal("entity_spawned", spawned_instance)
 
 	return spawned_instance

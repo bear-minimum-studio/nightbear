@@ -40,7 +40,7 @@ func spawn_player(peer_id: int, region_id: int):
 	players[region_id] = new_player
 	add_child(new_player)
 
-## /!\ /!\ player.name is used to pass world_id (dirty) /!\ /!\
+## /!\ /!\ player.name is used to pass region_id (dirty) /!\ /!\
 func spawn_player_shade(region_id: int):
 	var new_player_shade = player_shade_scene.instantiate()
 	new_player_shade.name = str(region_id)
@@ -61,7 +61,7 @@ func spawn_dream_catcher(pos: Transform2D):
 func _move_player_shade(region_id: int, new_position: Vector2):
 	var player_shades = get_tree().get_nodes_in_group("player_shade")
 	for player_shade in player_shades:
-		if player_shade.world_id != region_id:
+		if player_shade.region_id != region_id:
 			player_shade.move_shade(new_position + translate_to_other_region(region_id))
 
 func translate_to_other_region(current_region: int):

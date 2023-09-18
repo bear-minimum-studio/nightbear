@@ -6,7 +6,7 @@ signal entity_spawned
 
 enum Sides {Left, Top, Right, Bottom}
 
-var world_id := 0
+var region_id := 0
 
 @onready var spawners := {
 	Sides.Left: $SpawnerContainer/LinearSpawnerLeft,
@@ -15,10 +15,10 @@ var world_id := 0
 	Sides.Bottom: $SpawnerContainer/LinearSpawnerBottom
 }
 
-func initialize(father_world_id: int) -> void:
-	world_id = father_world_id
+func initialize(father_region_id: int) -> void:
+	region_id = father_region_id
 	for side in [Sides.Left, Sides.Top, Sides.Right, Sides.Bottom]:
-		spawners[side].initialize(side, world_id)
+		spawners[side].initialize(side, region_id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

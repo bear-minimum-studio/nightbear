@@ -75,9 +75,9 @@ func start_level():
 	# Maybe only instanciate SequencePlayer on server side ?
 	sequence.start()
 
-func _build(world_id: int, pos:Transform2D):
+func _build(region_id: int, pos:Transform2D):
 	# TO REFACTO IN WORLD
-	world.spawn_wall(world_id, pos)
+	world.spawn_wall(region_id, pos)
 	world.spawn_dream_catcher(pos)
 
 func _connect_projectile(spawned_instance: Projectile):
@@ -90,9 +90,9 @@ func _dream_caught(_position: Vector2):
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
 
-func _player_dead(world_id):
+func _player_dead(region_id):
 	# TO REFACTO
-	print("Player %d is dead !" % world_id)
+	print("Player %d is dead !" % region_id)
 	death_fx.play()
 	var wave_index = sequence.current_index
 	game_over.show_game_over(wave_index + 1)
@@ -108,12 +108,12 @@ func _new_subsequence(wave_index: int):
 	for tentacle in tentacles:
 		tentacle.grow()
 
-func _on_missed_ally_projectile(_world_id):
+func _on_missed_ally_projectile(_region_id):
 	# TO REFACTO
-	#	var other_world_id = 1 - world_id
-	#	var world = worlds[other_world_id]
+	#	var other_region_id = 1 - region_id
+	#	var world = worlds[other_region_id]
 	#	var spawner_handler = world.spawner_handler
-	#	viewport_containers[other_world_id].camera.start_flash(0.25, 0.3)
+	#	viewport_containers[other_region_id].camera.start_flash(0.25, 0.3)
 	#	lightning_fx.play()
 	#	var sides = [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]
 	#	spawner_handler.spawn(Projectile.ProjectyleType.Doom, {"speed": 30.0, "target": world.player}, sides)

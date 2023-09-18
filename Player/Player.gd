@@ -13,7 +13,7 @@ class_name Player
 var player_velocity := Vector2.ZERO
 var spawn_position := Vector2.ZERO
 
-var world_id : int
+var region_id : int
 var input_id : int
 var ready_to_build := false
 
@@ -22,15 +22,15 @@ func _enter_tree():
 	set_multiplayer_authority(str(self.name).split('_')[0].to_int())
 	# DEBUG
 #	var name = self.name
-	self.world_id = self.name.split('_')[1].to_int()
+	self.region_id = self.name.split('_')[1].to_int()
 
 func _ready():
-	sprite.initialize(world_id)
-	input_id = world_id if NetworkTools.local_multiplayer else 0
+	sprite.initialize(region_id)
+	input_id = region_id if NetworkTools.local_multiplayer else 0
 
 @rpc("call_local", "authority")
 func _on_player_moved():
-	Events.player_moved.emit(world_id, transform.origin)
+	Events.player_moved.emit(region_id, transform.origin)
 
 func _physics_process(_delta):
 	if not is_multiplayer_authority(): return
@@ -72,7 +72,7 @@ func _build():
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
-	Events.build.emit(world_id, self.transform)
+	Events.build.emit(region_id, self.transform)
 
 func _on_BuildTimer_timeout():
 	ready_to_build = true
@@ -89,7 +89,7 @@ func _player_death():
 		# vibrate controller of hit player
 		if is_multiplayer_authority():
 			_vibrate_controller()
-		Events.player_dead.emit(world_id)
+		Events.player_dead.emit(region_id)
 
 func _vibrate_controller():
 	Input.start_joy_vibration(input_id,0.5,0.5,0.1)

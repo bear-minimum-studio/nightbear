@@ -57,12 +57,12 @@ func _die_with_particles():
 # PUBLIC #
 ##########
 
-var world_id := 0
+var region_id := 0
 var direction := Vector2.ZERO
 var speed := 0.0
 
-func initialize(spawn_parameters: Dictionary, father_world_id: int) -> void:
-	world_id = father_world_id
+func initialize(spawn_parameters: Dictionary, father_region_id: int) -> void:
+	region_id = father_region_id
 	transform.origin = spawn_parameters.position
 	speed = spawn_parameters.speed
 	_update_direction(spawn_parameters.direction)
