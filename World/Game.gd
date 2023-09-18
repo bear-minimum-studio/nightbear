@@ -24,7 +24,6 @@ func _ready():
 	Events.new_subsequence.connect(_new_subsequence)
 	Events.sequence_ended.connect(_sequence_ended)
 	
-	Events.build.connect(_build)
 	Events.player_dead.connect(_player_dead)
 	
 	### WE NEED TO SET THE RENDERED WORLD FOR THE SECOND VIEWPORT AS THE WORLD CAN ONLY EXIST IN ONE VIEWPORT
@@ -74,11 +73,6 @@ func start_level():
 	# Sequence should be played on server side only
 	# Maybe only instanciate SequencePlayer on server side ?
 	sequence.start()
-
-func _build(region_id: int, pos:Transform2D):
-	# TO REFACTO IN WORLD
-	world.spawn_wall(region_id, pos)
-	world.spawn_dream_catcher(pos)
 
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
