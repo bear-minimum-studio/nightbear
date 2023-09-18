@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-class_name Wall
+class_name Shield
 
 @onready var lifebar = $ProgressBar
 @onready var timer = $Timer
@@ -9,7 +9,7 @@ class_name Wall
 @onready var destroyed_fx = $DestroyedFX
 
 func _ready():
-	timer.start(Parameters.WALL_MAX_LIFETIME)
+	timer.start(Parameters.SHIELD_MAX_LIFETIME)
 	cast_fx.play()
 	
 func _on_Timer_timeout():
@@ -24,7 +24,7 @@ func hit():
 	_set_timer()
 
 func _process_color():
-	var life_left = timer.time_left / Parameters.WALL_MAX_LIFETIME
+	var life_left = timer.time_left / Parameters.SHIELD_MAX_LIFETIME
 	lifebar.value = life_left * 100
 	self.modulate.g = life_left
 	self.modulate.b = life_left

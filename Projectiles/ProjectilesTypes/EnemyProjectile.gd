@@ -3,7 +3,7 @@ extends "res://Projectiles/Projectile.gd"
 class_name EnemyProjectile
 
 func _on_collision(body: Node2D)  -> void:
-	if (body is Wall):
+	if (body is Shield):
 		body.hit()
 		_die_with_particles()
 	elif (body is Player):

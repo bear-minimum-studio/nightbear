@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdmlaw5nmwv6h" path="res://Obstacles/shield.png" id="1"]
 [ext_resource type="AudioStream" uid="uid://c3jdj41j37vjb" path="res://Audio/SFX/ShieldDestroyed/shield_destroyed_3.wav" id="2"]
 [ext_resource type="AudioStream" uid="uid://ycbbk48b2mq2" path="res://Audio/SFX/ShieldCast/shield_cast_3.wav" id="3"]
-[ext_resource type="Script" path="res://Obstacles/Wall.gd" id="4"]
+[ext_resource type="Script" path="res://Obstacles/Shield.gd" id="4"]
 [ext_resource type="AudioStream" uid="uid://cx1q777rv2dml" path="res://Audio/SFX/ShieldCast/shield_cast_2.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://cqvn3shxrqd5a" path="res://Audio/SFX/ShieldCast/shield_cast_1.wav" id="6"]
 [ext_resource type="AudioStream" uid="uid://nlx3huil1h02" path="res://Audio/SFX/ShieldHit/shield_hit_1.wav" id="7"]

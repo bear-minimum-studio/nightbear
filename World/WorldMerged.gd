@@ -49,10 +49,10 @@ func spawn_player_shade(region_id: int):
 	player_shades[region_id] = new_player_shade
 	add_child(new_player_shade)
 
-func spawn_wall(region_id: int, pos: Transform2D):
-	var new_wall = Parameters.GAME_WALL.instantiate()
-	new_wall.transform.origin = pos.origin + translate_to_other_region(region_id)
-	add_child(new_wall)
+func spawn_shield(region_id: int, pos: Transform2D):
+	var new_shield = Parameters.GAME_SHIELD.instantiate()
+	new_shield.transform.origin = pos.origin + translate_to_other_region(region_id)
+	add_child(new_shield)
 
 func spawn_dream_catcher(pos: Transform2D):
 	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instantiate()
@@ -61,7 +61,7 @@ func spawn_dream_catcher(pos: Transform2D):
 
 
 func _build(region_id: int, pos:Transform2D):
-	spawn_wall(region_id, pos)
+	spawn_shield(region_id, pos)
 	spawn_dream_catcher(pos)
 
 func _move_player_shade(region_id: int, new_position: Vector2):

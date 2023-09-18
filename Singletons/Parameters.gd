@@ -3,7 +3,7 @@ extends Node
 const SEED = 0
 
 # Game parameters :
-var GAME_WALL = load("res://Obstacles/Wall.tscn")
+var GAME_SHIELD = load("res://Obstacles/Shield.tscn")
 var GAME_DREAM_CATCHER = load("res://Obstacles/DreamCatcher.tscn")
 
 # Player parameters :
@@ -22,8 +22,8 @@ const ENEMY_PROJECTILE_SPAWN_DELAY = 0.1
 const DOOM_PROJECTILE_SPEED = 8
 const DOOM_PROJECTILE_SPAWN_DELAY = 0.1
 
-# Wall parameters :
-const WALL_MAX_LIFETIME := 30.0
+# Shield parameters :
+const SHIELD_MAX_LIFETIME := 30.0
 
 # Dream catcher parameters :
 const DREAM_CATCHER_MAX_LIFETIME := 5.0

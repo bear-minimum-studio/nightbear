@@ -18,7 +18,7 @@ func _update_direction(default_direction: Vector2) -> void:
 		direction = default_direction
 
 func _on_collision(body: Node2D) -> void:
-	if (body is Wall):
+	if (body is Shield):
 		body.hit()
 		_die_with_particles()
 	elif (body is Player):
