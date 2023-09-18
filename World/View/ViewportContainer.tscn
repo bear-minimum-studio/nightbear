@@ -16,4 +16,3 @@ size = Vector2i(640, 720)
 render_target_update_mode = 4
 
 [node name="Camera2D" parent="SubViewport" instance=ExtResource("2")]
-zoom = Vector2(0.25, 0.25)

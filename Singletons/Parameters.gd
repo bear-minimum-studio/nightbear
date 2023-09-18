@@ -27,3 +27,5 @@ const WALL_MAX_LIFETIME := 30.0
 
 # Dream catcher parameters :
 const DREAM_CATCHER_MAX_LIFETIME := 5.0
+
+const DEBUG_CAMERA := false

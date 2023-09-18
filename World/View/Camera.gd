@@ -13,8 +13,12 @@ var flash_speed = 0.01
 @onready var flash_sprite = $Flash/FlashSprite
 @onready var flash_timer = $Flash/FlashTimer
 
+@export var debug_zoom := Vector2(0.25,0.25)
+
+
 func _ready():
-	pass
+	if Parameters.DEBUG_CAMERA:
+		zoom = debug_zoom
 
 func _on_ShakeLengthTimer_timeout():
 	doing_shake = false
