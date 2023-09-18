@@ -26,7 +26,6 @@ func _ready():
 	
 	Events.build.connect(_build)
 	Events.player_dead.connect(_player_dead)
-	Events.player_moved.connect(_move_player_shade)
 	
 	### WE NEED TO SET THE RENDERED WORLD FOR THE SECOND VIEWPORT AS THE WORLD CAN ONLY EXIST IN ONE VIEWPORT
 	### /!\ SETTING THIS TO world DOESN'T WORK WE NEED TO USE THE EXACT OBJECT USED IN THE FIRST VIEWPORT
@@ -77,7 +76,7 @@ func start_level():
 	sequence.start()
 
 func _build(world_id: int, pos:Transform2D):
-	# TO REFACTO
+	# TO REFACTO IN WORLD
 	world.spawn_wall(world_id, pos)
 	world.spawn_dream_catcher(pos)
 
@@ -98,13 +97,6 @@ func _player_dead(world_id):
 	var wave_index = sequence.current_index
 	game_over.show_game_over(wave_index + 1)
 	get_tree().paused = true
-
-func _move_player_shade(world_id: int, new_position: Vector2):
-	# TO REFACTO
-	var player_shades = get_tree().get_nodes_in_group("player_shade")
-	for player_shade in player_shades:
-		if player_shade.world_id != world_id:
-			player_shade.move_shade(new_position)
 
 func _sequence_ended():
 	game_end.show_scene()

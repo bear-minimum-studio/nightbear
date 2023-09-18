@@ -20,6 +20,8 @@ var player_shades = [null, null]
 var dream_caught = 0
 
 func _ready():
+	Events.player_moved.connect(_move_player_shade)
+	
 	for spawner_handler in spawner_handlers:
 		for side in [SpawnHandler.Sides.Left, SpawnHandler.Sides.Top, SpawnHandler.Sides.Right, SpawnHandler.Sides.Bottom]:
 			var spawner = spawner_handler.spawners[side]
@@ -55,6 +57,12 @@ func spawn_dream_catcher(pos: Transform2D):
 	var new_dream_catcher = Parameters.GAME_DREAM_CATCHER.instantiate()
 	new_dream_catcher.transform.origin = pos.origin
 	add_child(new_dream_catcher)
+
+func _move_player_shade(region_id: int, new_position: Vector2):
+	var player_shades = get_tree().get_nodes_in_group("player_shade")
+	for player_shade in player_shades:
+		if player_shade.world_id != region_id:
+			player_shade.move_shade(new_position + translate_to_other_region(region_id))
 
 func translate_to_other_region(current_region: int):
 	if current_region == 0:
