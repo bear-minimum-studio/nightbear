@@ -73,7 +73,6 @@ frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Wave01"
-playback_speed = 0.2
 libraries = {
 "": SubResource("AnimationLibrary_h6lem")
 }
