@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://vowm2vy7twcm"]
+
+[ext_resource type="Script" path="res://Levels/LevelResource.gd" id="1_sseq0"]
+[ext_resource type="PackedScene" uid="uid://dv7uwuwokcqbq" path="res://Levels/Level1/World.tscn" id="2_oky3b"]
+
+[resource]
+script = ExtResource("1_sseq0")
+save_dir = ""
+default_world = "res://World/AbstractWorld.tscn"
+world_scene = ExtResource("2_oky3b")
+world_scene_path = ""

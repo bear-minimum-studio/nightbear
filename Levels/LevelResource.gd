@@ -2,16 +2,6 @@
 extends Resource
 class_name LevelResource
 
-
-#@export var level_name : String :
-#	set(value):
-#		level_name = value
-#		save_dir = 'res://Levels/' + level_name + '/'
-#		resource_name = value
-#		resource_path = save_dir + level_name + '.tres'
-@export var world_0 : PackedScene
-@export var world_1 : PackedScene
-
 #@export var click_to_save: bool = false :
 #	set(value):
 #		if not click_to_save: # on first click/set create the resource
@@ -26,10 +16,10 @@ class_name LevelResource
 		world_scene_path = value + 'world.tscn'
 		save_dir = value
 
-#@export var default_world = 'res://World/AbstractWorld.tscn'
+@export var default_world = 'res://World/AbstractWorld.tscn'
 
 
-#@export var world_scene : PackedScene
+@export var world_scene : PackedScene
 
 @export var world_scene_path : String :
 	get: return save_dir + 'world.tscn'
@@ -43,7 +33,7 @@ func create():
 	
 	var world = load(default_world)
 	
-	var world_scene = PackedScene.new()
+	world_scene = PackedScene.new()
 	world_scene.pack(world.instantiate())
 	world_scene.resource_path = world_scene_path
 	ResourceSaver.save(world_scene, world_scene_path)
@@ -64,11 +54,11 @@ func _recursive_set_owner(node : Node, new_owner : Node, root : Node):
 		_recursive_set_owner(child, new_owner, root)
 
 
-func save_worlds(world: Node2D):
+func save_world(world: Node2D):
 	for child in world.get_children():
 		_recursive_set_owner(child, world, world)
 
-	var world_scene = PackedScene.new()
+	world_scene = PackedScene.new()
 	world_scene.pack(world)
 	ResourceSaver.save(world_scene, world_scene_path)
 

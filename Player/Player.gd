@@ -13,6 +13,7 @@ class_name Player
 var player_velocity := Vector2.ZERO
 var spawn_position := Vector2.ZERO
 
+var peer_id : int
 var region_id : int
 var input_id : int
 var ready_to_build := false
@@ -20,10 +21,10 @@ var ready_to_build := false
 
 ## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
 func _enter_tree():
-	set_multiplayer_authority(str(self.name).split('_')[0].to_int())
 	# DEBUG
 #	var name = self.name
-	self.region_id = self.name.split('_')[1].to_int()
+	self.peer_id = str(self.name).split('_')[0].to_int()
+	set_multiplayer_authority(self.peer_id)
 
 func _ready():
 	sprite.initialize(region_id)
@@ -31,7 +32,7 @@ func _ready():
 
 @rpc("call_local", "authority")
 func _on_player_moved():
-	Events.player_moved.emit(region_id, transform.origin)
+	Events.player_moved.emit()
 
 func _physics_process(_delta):
 	if not is_multiplayer_authority(): return

@@ -1,22 +1,9 @@
-[gd_resource type="Resource" script_class="LevelCatalogResource" load_steps=9 format=3 uid="uid://b6dofhg1xf06q"]
+[gd_resource type="Resource" script_class="LevelCatalogResource" load_steps=4 format=3 uid="uid://b6dofhg1xf06q"]
 
-[ext_resource type="Script" path="res://Levels/LevelResource.gd" id="1_7s8jy"]
+[ext_resource type="Resource" uid="uid://2tp7mbnl1jo5" path="res://Levels/Level0/Level0.tres" id="1_g60rf"]
 [ext_resource type="Script" path="res://Levels/LevelCatalogResource.gd" id="1_rsjbu"]
-[ext_resource type="PackedScene" uid="uid://bjx0n64th7x0o" path="res://Levels/Level0/World0.tscn" id="2_0igm8"]
-[ext_resource type="PackedScene" uid="uid://c4wo5kc0xtnau" path="res://Levels/Level0/World1.tscn" id="3_uwjmv"]
-[ext_resource type="PackedScene" uid="uid://dv7uwuwokcqbq" path="res://Levels/Level1/World0.tscn" id="4_ekb8q"]
-[ext_resource type="PackedScene" uid="uid://i3uy45l1it35" path="res://Levels/Level1/World1.tscn" id="5_idg51"]
-
-[sub_resource type="Resource" id="Resource_dlpwp"]
-script = ExtResource("1_7s8jy")
-world_0 = ExtResource("2_0igm8")
-world_1 = ExtResource("3_uwjmv")
-
-[sub_resource type="Resource" id="Resource_ydpnv"]
-script = ExtResource("1_7s8jy")
-world_0 = ExtResource("4_ekb8q")
-world_1 = ExtResource("5_idg51")
+[ext_resource type="Resource" uid="uid://vowm2vy7twcm" path="res://Levels/Level1/Level1.tres" id="2_hygpu"]
 
 [resource]
 script = ExtResource("1_rsjbu")
-levels = Array[ExtResource("1_7s8jy")]([SubResource("Resource_dlpwp"), SubResource("Resource_ydpnv")])
+levels = Array[Resource("res://Levels/LevelResource.gd")]([ExtResource("1_g60rf"), ExtResource("2_hygpu")])

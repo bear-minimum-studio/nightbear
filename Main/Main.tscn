@@ -14,12 +14,6 @@ script = ExtResource("1_tlwlh")
 process_mode = 1
 visible = false
 
-[node name="SubViewport" parent="Game/Viewports/SubViewportContainer0" index="0"]
-render_target_update_mode = 0
-
-[node name="SubViewport" parent="Game/Viewports/SubViewportContainer1" index="0"]
-render_target_update_mode = 0
-
 [node name="Lobby" parent="." instance=ExtResource("4_u1o5j")]
 visible = false
 
@@ -30,5 +24,4 @@ visible = false
 process_mode = 0
 
 [editable path="Game"]
-[editable path="Game/Viewports/SubViewportContainer0"]
-[editable path="Game/Viewports/SubViewportContainer1"]
+[editable path="Game/ViewportsContainer"]

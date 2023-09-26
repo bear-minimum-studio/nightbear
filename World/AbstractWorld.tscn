@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=7 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="2_xkeqr"]
@@ -269,12 +269,14 @@ tile_set = SubResource("TileSet_nxc75")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65542, 131072, 0, -6, 196608, 1, 65530, 0, 2, 131066, 0, 0, -65541, 131072, 3, -5, 262144, 3, 65531, 262144, 3, 131067, 65536, 1, -65540, 65536, 3, -4, 262144, 2, 65532, 262144, 2, 131068, 65536, 1, -65539, 196608, 0, -3, 131072, 2, 65533, 196608, 2, 131069, 65536, 0, -131070, 131072, 0, -65534, 196608, 1, 2, 0, 2, 65538, 0, 0, -131069, 131072, 3, -65533, 262144, 3, 3, 262144, 3, 65539, 65536, 1, -131068, 65536, 3, 4, 262144, 2, 65540, 65536, 1, -131067, 196608, 0, -65531, 131072, 2, 5, 196608, 2, 65541, 65536, 0, -65532, 262144, 2)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Player/PlayerShade.tscn")
-spawn_path = NodePath("..")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Shapes" type="Node2D" parent="."]
+
+[node name="SpawnPosition0" type="Node2D" parent="."]
+position = Vector2(-512, 0)
+
+[node name="SpawnPosition1" type="Node2D" parent="."]
+position = Vector2(512, 0)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]

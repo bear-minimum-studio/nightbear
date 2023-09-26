@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dajxuho4ju2gn"]
 
 [ext_resource type="PackedScene" uid="uid://cmjnsj3gq6ihj" path="res://World/View/Camera.tscn" id="2"]
-[ext_resource type="Script" path="res://World/View/ViewportContainer.gd" id="3"]
+[ext_resource type="Script" path="res://World/View/SubViewport.gd" id="3"]
 
-[node name="SubViewportContainer" type="SubViewportContainer"]
+[node name="SubViewport" type="SubViewportContainer"]
 offset_right = 640.0
 offset_bottom = 720.0
 size_flags_horizontal = 3
