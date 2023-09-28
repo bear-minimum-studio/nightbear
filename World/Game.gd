@@ -53,6 +53,7 @@ func _load_level(level: LevelResource):
 	world.add_players(old_players)
 	
 	_init_tentacles()
+	# TODO REFACTO: world should have control of _next_wave ?
 	_next_wave(0)
 
 func add_player(peer_id: int, region_id: int):
@@ -114,13 +115,14 @@ func _on_level_ended():
 
 func _on_wave_ended(wave_index: int):
 	wave_ended = true
-	# TODO REFACTO move is_level_ended to Game
+	# TODO REFACTO move is_level_ended to Game or move wave logic to world
 	if world.is_level_ended:
 		return
 	if wave_ended:
 		_next_wave(wave_index)
 
 func _next_wave(wave_index: int):
+	# TODO: REFACTO use signal from world when a new wave begins and move this code to camera
 	wave_number_text.next_wave(level_index + 1, wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:

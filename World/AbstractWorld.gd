@@ -2,6 +2,8 @@ extends Node2D
 
 class_name AbstractWorld
 
+@export var start_timer : float = 2.0
+
 var wave_index := 0
 
 var number_of_waves : int :
@@ -39,6 +41,7 @@ var dream_caught = 0
 func _ready():
 	Events.build.connect(_build)
 	Events.player_moved.connect(_move_player_shades)
+
 
 func remove_players() -> Array[Player]:
 	var old_players = players
@@ -112,13 +115,29 @@ func next_wave():
 	if is_level_ended:
 		wave_index = -1
 	
+	if start_timer > 0:
+		var t = get_tree().create_timer(start_timer)
+		await t.timeout
+	
+	_freeze_players(false)
+	
 	var wave_name = "wave%d" % wave_index
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
 
 func _on_wave_ended(_anim_name: StringName):
 	wave_index += 1
+	
+	_freeze_players()
+	
 	if is_level_ended:
 		Events.level_ended.emit()
 	else:
 		Events.wave_ended.emit(wave_index)
+
+func _freeze_players(freeze: bool = true):
+	for player in players:
+		# TODO: improve and factorize
+		# when loading lobby, the players do not exist yet but the level is started anyway
+		if player == null: return
+		player.frozen = freeze

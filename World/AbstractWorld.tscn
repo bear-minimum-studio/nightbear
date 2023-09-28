@@ -261,6 +261,7 @@ sources/0 = SubResource("TileSetAtlasSource_dloxr")
 y_sort_enabled = true
 material = SubResource("2")
 script = ExtResource("1_7ws86")
+start_timer = 0.1
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5

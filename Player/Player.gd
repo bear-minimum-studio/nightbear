@@ -7,11 +7,28 @@ class_name Player
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 @onready var spell_fx = $SpellFX
+@onready var collision_shape_2d = $CollisionShape2D
 
 @export var is_immortal := false
+@export var lives := 1
+
+var accept_input := false
+
+var frozen: bool = true:
+	set(value):
+		frozen = value
+		is_immortal = value
+		accept_input = not value
+		# Can't set physics while physics calculations are going on.
+		# set_deffered waits that all the physics of this frame have been computed.
+		# Documentation here :
+		# https://docs.godotengine.org/en/3.2/classes/class_object.html#class-object-method-set-deferred
+		collision_shape_2d.set_deferred("disabled", value)
 
 var player_velocity := Vector2.ZERO
 var spawn_position := Vector2.ZERO
+
+var current_health := lives
 
 var peer_id : int
 var region_id : int
@@ -25,6 +42,7 @@ func _enter_tree():
 #	var name = self.name
 	self.peer_id = str(self.name).split('_')[0].to_int()
 	set_multiplayer_authority(self.peer_id)
+	current_health = lives
 
 func _ready():
 	sprite.initialize(region_id)
@@ -36,6 +54,7 @@ func _on_player_moved():
 
 func _physics_process(_delta):
 	if not is_multiplayer_authority(): return
+	if not accept_input: return
 	
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("P%d_walk_right" % input_id) - Input.get_action_strength("P%d_walk_left" % input_id)
@@ -85,14 +104,19 @@ func reset_build_timer():
 	build_timer.start()
 
 func hit():
-	_player_death()
+	if is_immortal: return
+		
+	current_health -= 1
+	if current_health <= 0:
+		frozen = true
+		_player_death()
+
 
 func _player_death():
-	if (!is_immortal):
-		# vibrate controller of hit player
-		if is_multiplayer_authority():
-			_vibrate_controller()
-		Events.player_dead.emit(region_id)
+	# vibrate controller of hit player
+	if is_multiplayer_authority():
+		_vibrate_controller()
+	Events.player_dead.emit(region_id)
 
 func _vibrate_controller():
 	Input.start_joy_vibration(input_id,0.5,0.5,0.1)
