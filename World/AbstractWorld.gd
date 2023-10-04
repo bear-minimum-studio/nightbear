@@ -2,7 +2,8 @@ extends Node2D
 
 class_name AbstractWorld
 
-@export var start_timer : float = 2.0
+
+@export var start_timer : float = 0.1
 
 var wave_index := 0
 
@@ -124,6 +125,8 @@ func next_wave():
 	var wave_name = "wave%d" % wave_index
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
+
+
 
 func _on_wave_ended(_anim_name: StringName):
 	wave_index += 1

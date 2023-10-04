@@ -36,6 +36,7 @@ func _load_level(level: LevelResource):
 #	_clean_builds()
 	var old_players : Array[Player] = []
 	if world != null:
+		world._freeze_players()
 		old_players = world.remove_players()
 		world.queue_free()
 
