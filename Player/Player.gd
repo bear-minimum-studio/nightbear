@@ -11,8 +11,9 @@ class_name Player
 
 @export var is_immortal := false
 @export var lives := 1
+@export_range(0,1) var region_id : int
 
-var accept_input := false
+var accept_input := true
 
 var frozen: bool = true:
 	set(value):
@@ -31,18 +32,18 @@ var spawn_position := Vector2.ZERO
 var current_health := lives
 
 var peer_id : int
-var region_id : int
 var input_id : int
 var ready_to_build := false
 
 
 ## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
-func _enter_tree():
-	# DEBUG
+#func _enter_tree():
+	# DEBUG TODO REFACTO
 #	var name = self.name
-	self.peer_id = str(self.name).split('_')[0].to_int()
-	set_multiplayer_authority(self.peer_id)
-	current_health = lives
+# 	TODO REFACTO
+#	self.peer_id = str(self.name).split('_')[0].to_int()
+#	set_multiplayer_authority(self.peer_id)
+#	current_health = lives
 
 func _ready():
 	sprite.initialize(region_id)

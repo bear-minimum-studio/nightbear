@@ -138,7 +138,7 @@ _data = {
 
 [node name="World" instance=ExtResource("1_bldvu")]
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_tnvnl")
 }

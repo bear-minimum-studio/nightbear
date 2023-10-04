@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=8 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
+[ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="2_xkeqr"]
 
 [sub_resource type="Shader" id="1"]
@@ -261,7 +262,14 @@ sources/0 = SubResource("TileSetAtlasSource_dloxr")
 y_sort_enabled = true
 material = SubResource("2")
 script = ExtResource("1_7ws86")
-start_timer = 0.1
+start_timer = 0.0
+
+[node name="Player0" parent="." instance=ExtResource("2_7f6hn")]
+position = Vector2(-512, 0)
+
+[node name="Player1" parent="." instance=ExtResource("2_7f6hn")]
+position = Vector2(512, 0)
+region_id = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5
