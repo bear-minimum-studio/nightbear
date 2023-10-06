@@ -59,7 +59,6 @@ func local_game():
 	NetworkTools.local_multiplayer = true
 	host_peer_id = multiplayer.get_unique_id()
 	open_lobby()
-	# TODO REFACTO
 	game.set_player_authority(host_peer_id, 0)
 	game.set_player_authority(host_peer_id, 1)
 	lobby_ready()
@@ -73,7 +72,7 @@ func host_game(wan: bool):
 	host_peer_id = multiplayer.get_unique_id()
 	multiplayer.peer_connected.connect(peer_connected)
 	open_lobby()
-	game.add_player(host_peer_id, 0)
+	game.set_player_authority(host_peer_id, 0)
 
 func join_game(host_address_and_port: String):
 	push_warning("CLIENT")
@@ -86,7 +85,7 @@ func join_game(host_address_and_port: String):
 
 func peer_connected(peer_id):
 	client_peer_id = peer_id
-	game.add_player(client_peer_id, 1)
+	game.set_player_authority(client_peer_id, 1)
 	lobby_ready.rpc()
 
 func play_intro():

@@ -31,19 +31,12 @@ var spawn_position := Vector2.ZERO
 
 var current_health := lives
 
-var peer_id : int
+var peer_id : int:
+	set(value):
+		peer_id = value
+		set_multiplayer_authority(value)
 var input_id : int
 var ready_to_build := false
-
-
-## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
-#func _enter_tree():
-	# DEBUG TODO REFACTO
-#	var name = self.name
-# 	TODO REFACTO
-#	self.peer_id = str(self.name).split('_')[0].to_int()
-#	set_multiplayer_authority(self.peer_id)
-#	current_health = lives
 
 func _ready():
 	sprite.initialize(region_id)

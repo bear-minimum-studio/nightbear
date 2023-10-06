@@ -31,39 +31,18 @@ func _ready():
 	Events.player_dead.connect(_player_dead)
 
 func _load_level(level: LevelResource):
-	# TODO Clean if uneeded
-#	_clean_projectiles()
-#	_clean_builds()
-#	var old_players : Array[Player] = []
 	if world != null:
-		# TODO REFACTO
-#		world._freeze_players()
-#		old_players = world.remove_players()
 		world.queue_free()
 
 	level_ended = false
 	
-	# HACK: wait for cleaning to be over before reloading the level
-	# TODO: find a clean and reliable method
-#	var timer = get_tree().create_timer(0.05)
-#	await timer.timeout
-	
 	world = level.world_scene.instantiate()
 	viewports_containers.world = world
-	# Does nothing if no player has spawn yet
-	# First player spawn is handled by main
-# TODO REFACTO
-#	world.add_players(old_players)
 	
 	_init_tentacles()
 	# TODO REFACTO: world should have control of _next_wave ?
 	_next_wave(0)
 
-# TODO REFACTO
-#func add_player(peer_id: int, region_id: int):
-#	world.spawn_player(peer_id, region_id)
-
-# TODO REFACTO
 func set_player_authority(peer_id: int, region_id: int):
 	world.set_player_authority(peer_id, region_id)
 
@@ -107,7 +86,6 @@ func _dream_caught(_position: Vector2):
 	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
 
 func _player_dead(region_id):
-	# TODO TO REFACTO
 	print("Player %d is dead !" % region_id)
 	death_fx.play()
 	game_over.show_game_over(world.wave_index + 1)
@@ -130,7 +108,7 @@ func _on_wave_ended(wave_index: int):
 		_next_wave(wave_index)
 
 func _next_wave(wave_index: int):
-	# TODO: REFACTO use signal from world when a new wave begins and move this code to camera
+	# TODO REFACTO use signal from world when a new wave begins and move this code to camera
 	wave_number_text.next_wave(level_index + 1, wave_index + 1)
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:

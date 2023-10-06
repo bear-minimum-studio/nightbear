@@ -26,7 +26,7 @@ var player_shade_scene = preload("res://Player/PlayerShade.tscn")
 var player_shades : Array[PlayerShade] = [null, null]
 
 # TODO REFACTO
-@onready var players : Array[Player] = [$Player0,$Player1]
+@onready var players : Array[Player] = [$Player0, $Player1]
 @onready var spawn_positions : Array[Node2D] = [$SpawnPosition0, $SpawnPosition1]
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
@@ -46,49 +46,8 @@ func _ready():
 	_spawn_player_shade(players[0])
 	_spawn_player_shade(players[1])
 
-# TODO REFACTO
 func set_player_authority(peer_id: int, region_id: int):
 	players[region_id].peer_id = peer_id
-	players[region_id].set_multiplayer_authority(peer_id)
-
-# TODO REFACTO
-#func remove_players() -> Array[Player]:
-#	var old_players = players
-#	players = []
-#
-#	for player in old_players:
-#		remove_child(player)
-#	return old_players
-
-# TODO REFACTO
-#func add_players(new_players: Array[Player]):
-#	for new_player in new_players:
-#		_add_player(new_player)
-
-# TODO REFACTO
-#func _add_player(new_player: Player):
-#	players[new_player.region_id] = new_player
-#	_reset_player_position(new_player.region_id)
-#	add_child(new_player)
-#	_spawn_player_shade(new_player)
-
-# TODO REFACTO
-#func _reset_player_position(region_id):
-#	if players[region_id] != null:
-#		players[region_id].transform.origin = spawn_positions[region_id].position
-#	if player_shades[region_id] != null:
-#		player_shades[region_id].transform.origin = spawn_positions[region_id].position
-
-## /!\ set player.name because it is automatically synchronized by MultiplayerSpawner 
-## /!\ /!\ player.name is used to pass multiple variables (dirty) /!\ /!\
-# TODO REFACTO
-#func spawn_player(peer_id: int, region_id: int):
-#	var new_player = player_scene.instantiate()
-#	# TODO Remove if unneeded
-#	new_player.name = str(peer_id) + '_' + str(region_id)
-#	new_player.region_id = region_id
-#	players[region_id] = new_player
-#	_add_player(new_player)
 
 # TODO REFACTO
 func _spawn_player_shade(player: Player):
@@ -129,14 +88,6 @@ func next_wave():
 	if is_level_ended:
 		wave_index = -1
 	
-# TODO REFACTO
-#	if start_timer > 0:
-#		var t = get_tree().create_timer(start_timer)
-#		await t.timeout
-	
-# TODO REFACTO
-#	_freeze_players(false)
-	
 	var wave_name = "wave%d" % wave_index
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
@@ -146,18 +97,7 @@ func next_wave():
 func _on_wave_ended(_anim_name: StringName):
 	wave_index += 1
 	
-# TODO REFACTO
-#	_freeze_players()
-	
 	if is_level_ended:
 		Events.level_ended.emit()
 	else:
 		Events.wave_ended.emit(wave_index)
-
-# TODO REFACTO
-#func _freeze_players(freeze: bool = true):
-#	for player in players:
-#		# TODO: improve and factorize
-#		# when loading lobby, the players do not exist yet but the level is started anyway
-#		if player == null: return
-#		player.frozen = freeze
