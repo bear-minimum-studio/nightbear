@@ -43,8 +43,8 @@ func _load_level(level: LevelResource):
 	# TODO REFACTO: world should have control of _next_wave ?
 	_next_wave(0)
 
-func set_player_authority(peer_id: int, region_id: int):
-	world.set_player_authority(peer_id, region_id)
+func set_player_authority(peer_id: int, player_id: int):
+	world.set_player_authority(peer_id, player_id)
 
 func _next_level():
 	level_index += 1
@@ -85,8 +85,8 @@ func _dream_caught(_position: Vector2):
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
 
-func _player_dead(region_id):
-	print("Player %d is dead !" % region_id)
+func _player_dead(player_id):
+	print("Player %d is dead !" % player_id)
 	death_fx.play()
 	game_over.show_game_over(world.wave_index + 1)
 	get_tree().paused = true

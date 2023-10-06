@@ -1,17 +1,13 @@
+@tool
 extends Sprite2D
-
-@export var player_path: NodePath
-
-@onready var player = get_node(player_path)
 
 const body_sprites = [preload("res://Player/bear0.png"), preload("res://Player/bear1.png")]
 
-var region_id = 0
-
-func initialize(father_region_id: int):
-	region_id = father_region_id
-	self.texture = body_sprites[region_id]
+var player_id : int = 0:
+	set(value):
+		player_id = value
+		texture = body_sprites[value]
 
 func set_orientation(horizontal_speed: float):
-	var orientation = -sign(horizontal_speed) * abs(self.scale.x)
-	self.scale.x = orientation
+	var orientation = -sign(horizontal_speed) * abs(scale.x)
+	scale.x = orientation

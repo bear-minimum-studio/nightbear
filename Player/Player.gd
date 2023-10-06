@@ -1,9 +1,11 @@
+@tool
 extends CharacterBody2D
 
 class_name Player
 
 @onready var build_timer = $BuildTimer
 @onready var sprite = $Sprite2D
+@onready var player_shade = $PlayerShade
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 @onready var spell_fx = $SpellFX
@@ -11,7 +13,12 @@ class_name Player
 
 @export var is_immortal := false
 @export var lives := 1
-@export_range(0,1) var region_id : int
+@export_range(0,1) var player_id : int = 0:
+	set(value):
+		player_id = value
+		if Engine.is_editor_hint():
+			sprite.player_id = value
+			player_shade.player_id = value
 
 var accept_input := true
 
@@ -39,14 +46,13 @@ var input_id : int
 var ready_to_build := false
 
 func _ready():
-	sprite.initialize(region_id)
-	input_id = region_id if NetworkTools.local_multiplayer else 0
-
-@rpc("call_local", "authority")
-func _on_player_moved():
-	Events.player_moved.emit()
+	if Engine.is_editor_hint(): return
+	input_id = player_id if NetworkTools.local_multiplayer else 0
+	sprite.player_id = player_id
+	player_shade.player_id = player_id
 
 func _physics_process(_delta):
+	if Engine.is_editor_hint(): return
 	if not is_multiplayer_authority(): return
 	if not accept_input: return
 	
@@ -66,11 +72,6 @@ func _physics_process(_delta):
 	if abs(player_velocity.x) > 5:
 		sprite.set_orientation(player_velocity.x)
 	
-	# Might have a performance impact
-	# Make this a direct function call the day it becomes a problem
-	if player_velocity.length_squared() > 0:
-		_on_player_moved.rpc()
-	
 	if Input.is_action_just_pressed("P%d_build" % input_id):
 		_build.rpc()
 
@@ -88,7 +89,7 @@ func _build():
 	animation_tree_controller.travel("Cast")
 	ready_to_build = false
 	reset_build_timer()
-	Events.build.emit(region_id, self.transform)
+	Events.build.emit(self)
 
 func _on_BuildTimer_timeout():
 	ready_to_build = true
@@ -110,7 +111,7 @@ func _player_death():
 	# vibrate controller of hit player
 	if is_multiplayer_authority():
 		_vibrate_controller()
-	Events.player_dead.emit(region_id)
+	Events.player_dead.emit(player_id)
 
 func _vibrate_controller():
 	Input.start_joy_vibration(input_id,0.5,0.5,0.1)

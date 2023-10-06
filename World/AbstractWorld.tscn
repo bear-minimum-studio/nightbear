@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="2_xkeqr"]
-[ext_resource type="PackedScene" uid="uid://llb2a20jft0v" path="res://Player/PlayerShade.tscn" id="3_r1e3o"]
-[ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="4_q5na6"]
+[ext_resource type="Texture2D" uid="uid://ba8m7x374mq8q" path="res://Player/bear1.png" id="3_bqg1v"]
+[ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="4_ys18w"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -264,23 +264,27 @@ sources/0 = SubResource("TileSetAtlasSource_dloxr")
 y_sort_enabled = true
 material = SubResource("2")
 script = ExtResource("1_7ws86")
-start_timer = 0.0
 
 [node name="Player0" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(-512, 0)
 
-[node name="PlayerShade0" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_r1e3o")]
-position = Vector2(512, 0)
-player = NodePath("../Player0")
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 14
+
+[node name="PlayerShade" parent="Player0" index="1"]
+position = Vector2(1024, 0)
 
 [node name="Player1" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(512, 0)
-region_id = 1
+player_id = 1
 
-[node name="PlayerShade1" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_r1e3o")]
-position = Vector2(-512, 0)
-texture = ExtResource("4_q5na6")
-player = NodePath("../Player1")
+[node name="Sprite2D" parent="Player1" index="0"]
+texture = ExtResource("3_bqg1v")
+frame = 14
+
+[node name="PlayerShade" parent="Player1" index="1"]
+position = Vector2(-1024, 0)
+texture = ExtResource("4_ys18w")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5
@@ -293,10 +297,13 @@ layer_0/tile_data = PackedInt32Array(-65542, 131072, 0, -6, 196608, 1, 65530, 0,
 
 [node name="Shapes" type="Node2D" parent="."]
 
-[node name="SpawnPosition0" type="Node2D" parent="."]
+[node name="CameraPosition0" type="Node2D" parent="."]
 position = Vector2(-512, 0)
 
-[node name="SpawnPosition1" type="Node2D" parent="."]
+[node name="CameraPosition1" type="Node2D" parent="."]
 position = Vector2(512, 0)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]
+
+[editable path="Player0"]
+[editable path="Player1"]

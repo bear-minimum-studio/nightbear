@@ -13,5 +13,5 @@ var world: AbstractWorld:
 		sub_viewports[1].sub_viewport.world_2d = sub_viewports[0].sub_viewport.world_2d
 		
 		for region_id in [0,1]:
-			sub_viewports[region_id].camera_2d.position = value.spawn_positions[region_id].position
+			sub_viewports[region_id].camera_2d.position = value.camera_positions[region_id]
 
