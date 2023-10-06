@@ -8,7 +8,6 @@ var game_over_ready = false
 func show_game_over(wave_number: int):
 	wave_number_text.text = "%d" % wave_number
 	visible = true
-	game_over_ready = false
 	animation_player.play("Appear")
 
 
@@ -33,4 +32,5 @@ func _skip_animation():
 @rpc("call_local", "any_peer")
 func _on_ui_accept():
 	Events.replay_game.emit()
+	game_over_ready = false
 	visible = false
