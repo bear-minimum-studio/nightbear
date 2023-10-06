@@ -5,6 +5,7 @@ extends Control
 var game_end_ready = false
 
 func show_scene():
+	animation_player.play("RESET")
 	visible = true
 	game_end_ready = false
 	animation_player.play("Appear")

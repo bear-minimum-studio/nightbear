@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://djl03abvohd5o"]
+[gd_scene load_steps=7 format=3 uid="uid://djl03abvohd5o"]
 
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_t7iop"]
 [ext_resource type="Texture2D" uid="uid://2vkdj4ahqmbf" path="res://UI/bears_asleep.png" id="2"]
@@ -44,9 +44,49 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_edcr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Subtitle:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bears_asleep:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_axa7w"]
 _data = {
-"Appear": SubResource("1")
+"Appear": SubResource("1"),
+"RESET": SubResource("Animation_edcr7")
 }
 
 [node name="GameEnd" type="Control"]
