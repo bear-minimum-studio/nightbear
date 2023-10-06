@@ -27,8 +27,8 @@ func _ready():
 	
 	Events.wave_ended.connect(_on_wave_ended)
 	Events.level_ended.connect(_on_level_ended)
-	
 	Events.player_dead.connect(_player_dead)
+
 
 func _load_level(level: LevelResource):
 	if world != null:
@@ -43,8 +43,10 @@ func _load_level(level: LevelResource):
 	# TODO REFACTO: world should have control of _next_wave ?
 	_next_wave(0)
 
+
 func set_player_authority(peer_id: int, player_id: int):
 	world.set_player_authority(peer_id, player_id)
+
 
 func _next_level():
 	level_index += 1
@@ -55,18 +57,22 @@ func _next_level():
 	else:
 		_levels_ended()
 
+
 func _clean_builds():
 	for build in get_tree().get_nodes_in_group("builds"):
 		build.queue_free()
+
 
 func _clean_projectiles():
 	for projectile in get_tree().get_nodes_in_group("projectiles"):
 		projectile.queue_free()
 
+
 func _init_tentacles():
 	var tentacles = get_tree().get_nodes_in_group("tentacle")
 	for tentacle in tentacles:
 		tentacle.init()
+
 
 func start_level(new_level_index: int):
 	level_index = new_level_index
@@ -75,15 +81,18 @@ func start_level(new_level_index: int):
 	is_running = true
 	MusicPlayer.next()
 
+
 func _connect_projectile(spawned_instance: Projectile):
 	if spawned_instance is AllyProjectile:
 		Events.missed_ally_projectile.connect(_on_missed_ally_projectile)
 		Events.dream_caught.connect(_dream_caught)
 
+
 func _dream_caught(_position: Vector2):
 	dreams_caught += 1
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
+
 
 func _player_dead(player_id):
 	print("Player %d is dead !" % player_id)
@@ -91,13 +100,16 @@ func _player_dead(player_id):
 	game_over.show_game_over(world.wave_index + 1)
 	get_tree().paused = true
 
+
 func _levels_ended():
 	game_end.show_scene()
 	get_tree().paused = true
 
+
 func _on_level_ended():
 	if world.is_level_ended:
 		_next_level()
+
 
 func _on_wave_ended(wave_index: int):
 	wave_ended = true
@@ -106,6 +118,7 @@ func _on_wave_ended(wave_index: int):
 		return
 	if wave_ended:
 		_next_wave(wave_index)
+
 
 func _next_wave(wave_index: int):
 	# TODO REFACTO use signal from world when a new wave begins and move this code to camera
@@ -116,6 +129,8 @@ func _next_wave(wave_index: int):
 	wave_ended = false
 	world.next_wave()
 
+
+# TODO currently unused
 func _on_missed_ally_projectile(region_id):
 	var other_region_id = 1 - region_id
 	viewports_containers.sub_viewports[other_region_id].camera.start_flash(0.25, 0.3)
