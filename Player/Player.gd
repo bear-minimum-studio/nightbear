@@ -16,7 +16,7 @@ class_name Player
 @export_range(0,1) var player_id : int = 0:
 	set(value):
 		player_id = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and is_node_ready():
 			sprite.player_id = value
 			player_shade.player_id = value
 
