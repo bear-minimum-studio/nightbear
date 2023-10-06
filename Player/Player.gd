@@ -42,6 +42,7 @@ var peer_id : int:
 	set(value):
 		peer_id = value
 		set_multiplayer_authority(value)
+		push_warning(get_multiplayer_authority())
 var input_id : int
 var ready_to_build := false
 
