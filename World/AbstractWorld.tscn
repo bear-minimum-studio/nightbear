@@ -268,6 +268,9 @@ script = ExtResource("1_7ws86")
 [node name="Player0" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(-512, 0)
 
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 14
+
 [node name="PlayerShade" parent="Player0" index="1"]
 position = Vector2(1024, 0)
 
@@ -277,6 +280,7 @@ player_id = 1
 
 [node name="Sprite2D" parent="Player1" index="0"]
 texture = ExtResource("3_bqg1v")
+frame = 14
 
 [node name="PlayerShade" parent="Player1" index="1"]
 position = Vector2(-1024, 0)
