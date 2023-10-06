@@ -4,16 +4,14 @@ class_name AbstractWorld
 
 var dream_caught = 0
 var wave_index := 0
-var number_of_waves : int :
+var max_wave_index : int :
 	get: 
 		var animations = animation_player.get_animation_list()
 		var waves_animations = 0
 		for i in range(animations.size()):
 			if animations.has('wave%d' % i): # not counting RESET
 				waves_animations += 1
-		return waves_animations
-var is_level_ended : bool :
-	get: return wave_index >= number_of_waves
+		return max(waves_animations - 1, 0)
 
 
 @onready var players : Array[Player] = [$Player0, $Player1]
@@ -44,19 +42,19 @@ func _build(player: Player):
 func _on_entity_spawned(instance):
 	add_child(instance)
 
-func next_wave():
-	if is_level_ended:
-		wave_index = -1
-	
-	var wave_name = "wave%d" % wave_index
+func start():
+	_start_wave(0)
+
+func _start_wave(index: int):
+	wave_index = index
+	var wave_name = "wave%d" % index
 	if animation_player.get_animation_list().has(wave_name):
 		animation_player.play(wave_name)
+		Events.wave_started.emit(index, max_wave_index)
 
 
 func _on_wave_ended(_anim_name: StringName):
-	wave_index += 1
-	
-	if is_level_ended:
-		Events.level_ended.emit()
-	else:
-		Events.wave_ended.emit(wave_index)
+	Events.wave_ended.emit(wave_index, max_wave_index)
+	var next_wave_index = wave_index + 1
+	if next_wave_index <= max_wave_index:
+		_start_wave(next_wave_index)

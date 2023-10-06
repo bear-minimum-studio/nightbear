@@ -4,8 +4,9 @@ extends Control
 @export var level_catalog : LevelCatalogResource
 
 var level_index := -1
-var wave_ended : bool = false
-var level_ended : bool = false
+var max_level_index : int:
+	get:
+		return max(level_catalog.size() - 1, 0)
 
 @onready var wave_number_text = $MarginContainer/WaveNumber
 @onready var dream_caught_text = $DreamCaughtText
@@ -19,6 +20,7 @@ var world : AbstractWorld = null
 
 var dreams_caught = 0
 
+# TODO Check if it needs to be set back to false at some point
 var is_running := false
 
 
@@ -26,36 +28,33 @@ func _ready():
 	_load_level(lobby)
 	
 	Events.wave_ended.connect(_on_wave_ended)
-	Events.level_ended.connect(_on_level_ended)
 	Events.player_dead.connect(_player_dead)
 
 
 func _load_level(level: LevelResource):
 	if world != null:
 		world.queue_free()
-
-	level_ended = false
 	
 	world = level.world_scene.instantiate()
 	viewports_containers.world = world
 	
-	_init_tentacles()
-	# TODO REFACTO: world should have control of _next_wave ?
-	_next_wave(0)
+	world.start()
+	Events.level_started.emit(level_index, max_level_index)
 
 
 func set_player_authority(peer_id: int, player_id: int):
 	world.set_player_authority(peer_id, player_id)
 
 
-func _next_level():
-	level_index += 1
-	wave_ended = false
-	level_ended = false
-	if level_index < level_catalog.levels.size():
-		_load_level(level_catalog.levels[level_index])
-	else:
-		_levels_ended()
+func start_level(index: int):
+	level_index = index
+	_load_level(level_catalog.levels[level_index])
+
+
+func start():
+	start_level(0)
+	is_running = true
+	MusicPlayer.next()
 
 
 func _clean_builds():
@@ -66,20 +65,6 @@ func _clean_builds():
 func _clean_projectiles():
 	for projectile in get_tree().get_nodes_in_group("projectiles"):
 		projectile.queue_free()
-
-
-func _init_tentacles():
-	var tentacles = get_tree().get_nodes_in_group("tentacle")
-	for tentacle in tentacles:
-		tentacle.init()
-
-
-func start_level(new_level_index: int):
-	level_index = new_level_index
-	var level = level_catalog.levels[level_index]
-	_load_level(level)
-	is_running = true
-	MusicPlayer.next()
 
 
 func _connect_projectile(spawned_instance: Projectile):
@@ -101,33 +86,21 @@ func _player_dead(player_id):
 	get_tree().paused = true
 
 
-func _levels_ended():
+func _end():
 	game_end.show_scene()
 	get_tree().paused = true
 
-
 func _on_level_ended():
-	if world.is_level_ended:
-		_next_level()
+	Events.level_ended.emit()
+	var next_level_index = level_index + 1
+	if next_level_index <= max_level_index:
+		start_level(next_level_index)
+	else:
+		_end()
 
-
-func _on_wave_ended(wave_index: int):
-	wave_ended = true
-	# TODO REFACTO move is_level_ended to Game or move wave logic to world
-	if world.is_level_ended:
-		return
-	if wave_ended:
-		_next_wave(wave_index)
-
-
-func _next_wave(wave_index: int):
-	# TODO REFACTO use signal from world when a new wave begins and move this code to camera
-	wave_number_text.next_wave(level_index + 1, wave_index + 1)
-	var tentacles = get_tree().get_nodes_in_group("tentacle")
-	for tentacle in tentacles:
-		tentacle.grow()
-	wave_ended = false
-	world.next_wave()
+func _on_wave_ended(wave_index: int, max_wave_index: int):
+	if wave_index >= max_wave_index:
+		_on_level_ended()
 
 
 # TODO currently unused

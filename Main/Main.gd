@@ -48,11 +48,11 @@ func open_lobby():
 @rpc("call_local")
 func lobby_ready():
 	lobby.hide()
-	game.start_level(0)
+	game.start()
 
 func replay_game():
 	pause = false
-	game.start_level(0)
+	game.start()
 
 func local_game():
 	push_warning("LOCAL_GAME")

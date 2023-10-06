@@ -13,8 +13,10 @@ signal play_intro
 signal intro_ended
 signal replay_game
 
-signal wave_ended(wave_index: int)
-signal level_ended()
+signal level_started(level_index: int, max_level_index: int)
+signal level_ended(level_index: int, max_level_index: int)
+signal wave_started(wave_index: int, max_wave_index: int)
+signal wave_ended(wave_index: int, max_wave_index: int)
 
 signal missed_ally_projectile
 signal dream_caught
