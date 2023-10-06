@@ -18,8 +18,6 @@ var max_level_index : int:
 
 var world : AbstractWorld = null
 
-var client_peer_id := 1
-
 var dreams_caught = 0
 
 # TODO Check if it needs to be set back to false at some point
@@ -40,16 +38,11 @@ func _load_level(level: LevelResource):
 	world = level.world_scene.instantiate()
 	viewports_containers.world = world
 	
-	set_player_authority.rpc(client_peer_id, 1)
-	
 	world.start()
 	Events.level_started.emit(level_index, max_level_index)
 
 
-@rpc("authority", "call_local")
 func set_player_authority(peer_id: int, player_id: int):
-	if player_id == 1:
-		client_peer_id = peer_id
 	world.set_player_authority(peer_id, player_id)
 
 
