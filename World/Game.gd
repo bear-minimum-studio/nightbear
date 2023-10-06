@@ -38,6 +38,9 @@ func _load_level(level: LevelResource):
 	world = level.world_scene.instantiate()
 	viewports_containers.world = world
 	
+	if is_multiplayer_authority():
+		set_player_authority.rpc(client_peer_id, 1)
+	
 	world.start()
 	Events.level_started.emit(level_index, max_level_index)
 
