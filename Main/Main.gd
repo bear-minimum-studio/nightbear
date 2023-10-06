@@ -99,11 +99,6 @@ func end_intro():
 	intro.hide()
 	menu_navigator.open(MenuNavigator.MENU.MAIN)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if false:
-		print('blip')
-	pass
 
 
 # if a menu is opened by MenuNavigator, 'ui_cancel' (escape key) is set as handled before calling go_back()
