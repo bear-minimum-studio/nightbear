@@ -45,6 +45,7 @@ func _load_level(level: LevelResource):
 	Events.level_started.emit(level_index, max_level_index)
 
 
+@rpc("authority", "call_local", "reliable")
 func set_player_authority(peer_id: int, player_id: int):
 	world.set_player_authority(peer_id, player_id)
 
