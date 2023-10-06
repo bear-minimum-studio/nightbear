@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://v7d30trnnhbn"]
 
-[ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear1.png" id="1"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear0.png" id="2_ly555"]
 [ext_resource type="Script" path="res://Player/PlayerSprite.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://bguyk7nhviyo8" path="res://Audio/SFX/Spell/spell_2.wav" id="4"]
 [ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="5"]
@@ -92,7 +92,7 @@ script = ExtResource("2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15.9547)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1")
+texture = ExtResource("2_ly555")
 hframes = 11
 vframes = 2
 frame = 12

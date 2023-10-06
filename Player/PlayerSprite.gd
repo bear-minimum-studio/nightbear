@@ -4,7 +4,7 @@ extends Sprite2D
 
 @onready var player = get_node(player_path)
 
-const body_sprites = [preload("res://Player/bear1.png"), preload("res://Player/bear2.png")]
+const body_sprites = [preload("res://Player/bear0.png"), preload("res://Player/bear1.png")]
 
 var region_id = 0
 

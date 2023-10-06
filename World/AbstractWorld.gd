@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 class_name AbstractWorld
@@ -20,13 +21,12 @@ var is_level_ended : bool :
 	get: return wave_index >= number_of_waves
 
 
-var player_shade_scene = preload("res://Player/PlayerShade.tscn")
+@onready var players : Array[Player] = [$Player0, $Player1]
 # Same index ad players
 # => player_shades[0] is shade of players[0], same for player_shades[1]
-var player_shades : Array[PlayerShade] = [null, null]
+@onready var player_shades : Array[PlayerShade] = [$PlayerShade0, $PlayerShade1]
 
 # TODO REFACTO
-@onready var players : Array[Player] = [$Player0, $Player1]
 @onready var spawn_positions : Array[Node2D] = [$SpawnPosition0, $SpawnPosition1]
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
@@ -41,21 +41,11 @@ var player_shades : Array[PlayerShade] = [null, null]
 var dream_caught = 0
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	Events.build.connect(_build)
-	Events.player_moved.connect(_move_player_shades)
-	_spawn_player_shade(players[0])
-	_spawn_player_shade(players[1])
 
 func set_player_authority(peer_id: int, region_id: int):
 	players[region_id].peer_id = peer_id
-
-# TODO REFACTO
-func _spawn_player_shade(player: Player):
-	var new_player_shade = player_shade_scene.instantiate()
-	new_player_shade.player = player
-	new_player_shade.position_offset = translate_to_other_region(player.region_id)
-	player_shades[player.region_id] = new_player_shade
-	add_child(new_player_shade)
 
 func spawn_shield(region_id: int, pos: Transform2D):
 	var new_shield = Parameters.GAME_SHIELD.instantiate()
@@ -70,10 +60,6 @@ func spawn_dream_catcher(pos: Transform2D):
 func _build(region_id: int, pos:Transform2D):
 	spawn_shield(region_id, pos)
 	spawn_dream_catcher(pos)
-
-func _move_player_shades():
-	for player_shade in player_shades:
-		player_shade.move_shade()
 
 func translate_to_other_region(current_region: int):
 	if current_region == 0:
