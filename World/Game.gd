@@ -47,14 +47,14 @@ func _load_level(level: LevelResource):
 	
 	if is_multiplayer_authority():
 		if not is_client_level_instantiated:
-			push_warning('await level instantiated in client')
+			push_warning('await level instantiation in client')
 			await client_level_instantiated
 			push_warning('client level is instantiated')
 		is_client_level_instantiated = false
 		set_player_authority.rpc(client_peer_id, 1)
 	
 		world.start.rpc()
-		notify_level_started.rpc(level_index, max_level_index)
+		notify_level_started.rpc()
 
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -67,7 +67,7 @@ func set_player_authority(peer_id: int, player_id: int):
 	world.set_player_authority(peer_id, player_id)
 
 @rpc("authority", "call_local", "reliable")
-func notify_level_started(level_index, max_level_index):
+func notify_level_started():
 	Events.level_started.emit(level_index, max_level_index)
 
 
