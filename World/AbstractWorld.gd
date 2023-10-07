@@ -42,9 +42,11 @@ func _build(player: Player):
 func _on_entity_spawned(instance):
 	add_child(instance)
 
+@rpc("authority", "call_local", "reliable")
 func start():
 	_start_wave(0)
 
+@rpc("authority", "call_local", "reliable")
 func _start_wave(index: int):
 	wave_index = index
 	var wave_name = "wave%d" % index

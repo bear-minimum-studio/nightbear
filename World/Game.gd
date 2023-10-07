@@ -18,6 +18,10 @@ var max_level_index : int:
 
 var world : AbstractWorld = null
 
+var client_peer_id := 1
+var is_client_level_instantiated := false
+signal client_level_instantiated
+
 var dreams_caught = 0
 
 # TODO Check if it needs to be set back to false at some point
@@ -38,16 +42,33 @@ func _load_level(level: LevelResource):
 	world = level.world_scene.instantiate()
 	viewports_containers.world = world
 	
+	if multiplayer.get_unique_id() == client_peer_id:
+		notify_client_level_instantiated.rpc()
+	
 	if is_multiplayer_authority():
+		if not is_client_level_instantiated:
+			push_warning('await level instantiated in client')
+			await client_level_instantiated
+			push_warning('client level is instantiated')
+		is_client_level_instantiated = false
 		set_player_authority.rpc(client_peer_id, 1)
 	
-	world.start()
-	Events.level_started.emit(level_index, max_level_index)
+		world.start.rpc()
+		notify_level_started.rpc(level_index, max_level_index)
 
+
+@rpc("any_peer", "call_remote", "reliable")
+func notify_client_level_instantiated():
+	is_client_level_instantiated = true
+	client_level_instantiated.emit()
 
 @rpc("authority", "call_local", "reliable")
 func set_player_authority(peer_id: int, player_id: int):
 	world.set_player_authority(peer_id, player_id)
+
+@rpc("authority", "call_local", "reliable")
+func notify_level_started(level_index, max_level_index):
+	Events.level_started.emit(level_index, max_level_index)
 
 
 func start_level(index: int):
