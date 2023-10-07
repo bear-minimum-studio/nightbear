@@ -51,8 +51,9 @@ func _load_level(level: LevelResource):
 			await client_level_instantiated
 			push_warning('client level is instantiated')
 		is_client_level_instantiated = false
+		
 		set_player_authority.rpc(client_peer_id, 1)
-	
+		
 		world.start.rpc()
 		notify_level_started.rpc()
 
