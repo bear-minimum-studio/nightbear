@@ -65,6 +65,8 @@ func notify_client_level_instantiated():
 
 @rpc("authority", "call_local", "reliable")
 func set_player_authority(peer_id: int, player_id: int):
+	if player_id == 1:
+		client_peer_id = peer_id
 	world.set_player_authority(peer_id, player_id)
 
 @rpc("authority", "call_local", "reliable")
