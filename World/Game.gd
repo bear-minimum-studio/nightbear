@@ -46,11 +46,12 @@ func _load_level(level: LevelResource):
 		notify_client_level_instantiated.rpc()
 	
 	if is_multiplayer_authority():
-		if not is_client_level_instantiated:
-			push_warning('await level instantiation in client')
-			await client_level_instantiated
-			push_warning('client level is instantiated')
-		is_client_level_instantiated = false
+		if not NetworkTools.local_multiplayer:
+			if not is_client_level_instantiated:
+				push_warning('await level instantiation in client')
+				await client_level_instantiated
+				push_warning('client level is instantiated')
+			is_client_level_instantiated = false
 		
 		set_player_authority.rpc(client_peer_id, 1)
 		
