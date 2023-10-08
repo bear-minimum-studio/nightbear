@@ -20,3 +20,6 @@ dist
 *.apk.idsig
 
 android/build
+
+# custom editor theme
+Editor.tres
