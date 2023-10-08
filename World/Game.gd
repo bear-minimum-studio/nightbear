@@ -75,13 +75,13 @@ func notify_level_started():
 
 
 func start_level(index: int):
+	is_running = true
 	level_index = index
 	_load_level(level_catalog.levels[level_index])
 
 
 func start():
 	start_level(0)
-	is_running = true
 	MusicPlayer.next()
 
 
@@ -110,11 +110,13 @@ func _dream_caught(_position: Vector2):
 func _player_dead(player_id):
 	print("Player %d is dead !" % player_id)
 	death_fx.play()
+	is_running = false
 	game_over.show_game_over(world.wave_index + 1)
 	get_tree().paused = true
 
 
 func _end():
+	is_running = false
 	game_end.show_scene()
 	get_tree().paused = true
 
