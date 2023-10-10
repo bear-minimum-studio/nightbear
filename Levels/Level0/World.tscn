@@ -834,22 +834,6 @@ _data = {
 
 [node name="World" instance=ExtResource("1_5hydf")]
 
-[node name="Sprite2D" parent="Player0" index="0"]
-frame = 12
-
-[node name="AnimationTree" parent="Player0" index="5"]
-libraries = {
-"": SubResource("AnimationLibrary_5n143")
-}
-
-[node name="Sprite2D" parent="Player1" index="0"]
-frame = 12
-
-[node name="AnimationTree" parent="Player1" index="5"]
-libraries = {
-"": SubResource("AnimationLibrary_5n143")
-}
-
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_p8cm0")

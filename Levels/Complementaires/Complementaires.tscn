@@ -1,0 +1,173 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5uaqqpw3usvf"]
+
+[ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/AbstractWorld.tscn" id="1_q0kub"]
+[ext_resource type="PackedScene" uid="uid://m6dir1yl2qj4" path="res://Shapes/Wall/Wall.tscn" id="2_k4iwk"]
+
+[sub_resource type="Animation" id="Animation_l7ell"]
+resource_name = "wave0"
+length = 17.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shapes/Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(512, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shapes/Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shapes/Square:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.1, 3.1, 4, 5, 9.1, 13.1, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-384, -128), Vector2(-352, -80), Vector2(-336, -40), Vector2(-360, 7.99999), Vector2(-416, 32), Vector2(-472, 80), Vector2(-608, 96), Vector2(-688, -24), Vector2(-560, -64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shapes/Square:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.1, 3.1, 4, 5, 9.1, 13.1, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.527089, 0.527089, 1.05418, 1.75755, 2.3719, 3.77864, 6.28319, -0.39619]
+}
+
+[sub_resource type="Animation" id="Animation_d8rja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shapes/Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(512, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shapes/Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shapes/Square:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-384, -128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shapes/Square:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1v20s"]
+_data = {
+"RESET": SubResource("Animation_d8rja"),
+"wave0": SubResource("Animation_l7ell")
+}
+
+[node name="AbstractWorld" instance=ExtResource("1_q0kub")]
+
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 11
+
+[node name="Player1" parent="." index="1"]
+position = Vector2(336, 0)
+
+[node name="Sprite2D" parent="Player1" index="0"]
+frame = 11
+
+[node name="TileMap" parent="." index="2"]
+scale = Vector2(0.5, 0.5)
+layer_0/tile_data = PackedInt32Array(-65545, 65536, 3, -65544, 196608, 3, -65543, 196608, 0, -65546, 131072, 0, 131062, 0, 0, 131063, 0, 1, 131064, 65536, 1, 131065, 65536, 0, 65529, 131072, 2, -7, 131072, 2, -9, 262144, 2, -8, 262144, 2, 65528, 262144, 3, 65527, 262144, 2, -10, 196608, 1, 65526, 65536, 2, -196600, 0, 1, -196601, 0, 1, -196602, 131072, 1, -196603, 262144, 3, -131067, 262144, 3, -65531, 262144, 2, 5, 262144, 2, 65541, 262144, 2, -196599, 0, 1, -196598, 262144, 2, -131062, 262144, 3, -65526, 262144, 2, 10, 262144, 2, 65546, 262144, 2, 131082, 262144, 2, 131081, 65536, 3, 131080, 131072, 3, 131079, 196608, 3, 131078, 131072, 3, 131077, 262144, 3, 196619, 65536, 0, 131083, 131072, 2, 65547, 131072, 2, 11, 0, 3, -65525, 0, 3, -131061, 0, 3, -196597, 0, 3, -262133, 196608, 0, -262134, 65536, 3, -262135, 131072, 3, -262136, 131072, 3, -262137, 131072, 3, -262138, 65536, 3, -262139, 196608, 3, -262140, 131072, 0, -196604, 65536, 2, -131068, 65536, 2, -65532, 65536, 2, 4, 65536, 2, 65540, 196608, 1, 131076, 65536, 2, 196612, 0, 0, 196618, 0, 1, 196617, 65536, 1, 196616, 65536, 1, 196615, 65536, 1, 196614, 131072, 1, 196613, 65536, 1)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_1v20s")
+}
+
+[node name="Wall" parent="Shapes" index="0" instance=ExtResource("2_k4iwk")]
+position = Vector2(512, 0)
+nb_lines = 20
+nb_columns = 1
+
+[node name="Square" parent="Shapes" index="1" instance=ExtResource("2_k4iwk")]
+position = Vector2(-384, -128)
+nb_lines = 2
+nb_columns = 2
+line_spacing = 100.0
+column_spacing = 100.0
+
+[connection signal="body_entered" from="Shapes/Wall/Projectile" to="Shapes/Wall/Projectile" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30799" to="Shapes/Wall/@Area2D@30799" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30800" to="Shapes/Wall/@Area2D@30800" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30801" to="Shapes/Wall/@Area2D@30801" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30802" to="Shapes/Wall/@Area2D@30802" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30803" to="Shapes/Wall/@Area2D@30803" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30804" to="Shapes/Wall/@Area2D@30804" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30805" to="Shapes/Wall/@Area2D@30805" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30806" to="Shapes/Wall/@Area2D@30806" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30807" to="Shapes/Wall/@Area2D@30807" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30808" to="Shapes/Wall/@Area2D@30808" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30809" to="Shapes/Wall/@Area2D@30809" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30810" to="Shapes/Wall/@Area2D@30810" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30811" to="Shapes/Wall/@Area2D@30811" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30812" to="Shapes/Wall/@Area2D@30812" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30813" to="Shapes/Wall/@Area2D@30813" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30814" to="Shapes/Wall/@Area2D@30814" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30815" to="Shapes/Wall/@Area2D@30815" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30816" to="Shapes/Wall/@Area2D@30816" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall/@Area2D@30817" to="Shapes/Wall/@Area2D@30817" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Square/@Area2D@46749" to="Shapes/Square/@Area2D@46749" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Square/@Area2D@46750" to="Shapes/Square/@Area2D@46750" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Square/@Area2D@46751" to="Shapes/Square/@Area2D@46751" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Square/@Area2D@46752" to="Shapes/Square/@Area2D@46752" method="_on_Projectile_body_entered" flags=18]
+
+[editable path="Player0"]
+[editable path="Player1"]
