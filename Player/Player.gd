@@ -10,6 +10,8 @@ class_name Player
 @onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 @onready var spell_fx = $SpellFX
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var multiplayer_synchronizer = $MultiplayerSynchronizer
+
 
 @export var is_immortal := false
 @export var lives := 1
