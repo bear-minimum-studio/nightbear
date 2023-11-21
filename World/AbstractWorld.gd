@@ -22,6 +22,10 @@ var max_wave_index : int :
 func _ready():
 	Events.build.connect(_build)
 
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("next_wave"):
+		_on_wave_ended.rpc("")
+
 func set_player_authority(peer_id: int, player_id: int):
 	players[player_id].peer_id = peer_id
 
@@ -54,7 +58,7 @@ func _start_wave(index: int):
 		animation_player.play(wave_name)
 		Events.wave_started.emit(index, max_wave_index)
 
-
+@rpc("any_peer", "call_local", "reliable")
 func _on_wave_ended(_anim_name: StringName):
 	Events.wave_ended.emit(wave_index, max_wave_index)
 	var next_wave_index = wave_index + 1
