@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=13 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
@@ -29,6 +29,44 @@ shader_parameter/color = Color(0.305, 0.298, 0.341, 1)
 shader_parameter/MULTIPLIER = 0.56
 shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.45
+
+[sub_resource type="Animation" id="Animation_wr8wx"]
+resource_name = "Cast"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5n143"]
+_data = {
+"Cast": SubResource("Animation_wr8wx"),
+"Run": SubResource("3")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dloxr"]
 texture = ExtResource("2_xkeqr")
@@ -274,6 +312,11 @@ frame = 14
 [node name="PlayerShade" parent="Player0" index="1"]
 position = Vector2(1024, 0)
 
+[node name="AnimationTree" parent="Player0" index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
+
 [node name="Player1" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(512, 0)
 player_id = 1
@@ -285,6 +328,11 @@ frame = 14
 [node name="PlayerShade" parent="Player1" index="1"]
 position = Vector2(-1024, 0)
 texture = ExtResource("4_ys18w")
+
+[node name="AnimationTree" parent="Player1" index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5
