@@ -1,12 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://rm5x352cvmes"]
+[gd_scene load_steps=6 format=3 uid="uid://rm5x352cvmes"]
 
 [ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/AbstractWorld.tscn" id="1_ahdgm"]
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Cast"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5n143"]
+_data = {
+"Cast": SubResource("2"),
+"Run": SubResource("3")
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p8cm0"]
 
 [node name="World" instance=ExtResource("1_ahdgm")]
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 11
+
+[node name="AnimationTree" parent="Player0" index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
+
+[node name="Sprite2D" parent="Player1" index="0"]
+frame = 11
+
+[node name="AnimationTree" parent="Player1" index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
+
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_p8cm0")
 }
+
+[editable path="Player0"]
+[editable path="Player1"]
