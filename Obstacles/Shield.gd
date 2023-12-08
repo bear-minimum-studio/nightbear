@@ -32,4 +32,4 @@ func _process_color():
 func _set_timer():
 	var timeleft = timer.time_left
 	timer.stop()
-	timer.start(max(timeleft-3.0, 0.0001))
+	timer.start(max(timeleft - Parameters.SHIELD_HIT_DAMAGE, 0.0001))

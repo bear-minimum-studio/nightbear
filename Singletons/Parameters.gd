@@ -23,7 +23,8 @@ const DOOM_PROJECTILE_SPEED = 8
 const DOOM_PROJECTILE_SPAWN_DELAY = 0.1
 
 # Shield parameters :
-const SHIELD_MAX_LIFETIME := 30.0
+const SHIELD_MAX_LIFETIME := 10.0
+const SHIELD_HIT_DAMAGE := 1.0
 
 # Dream catcher parameters :
 const DREAM_CATCHER_MAX_LIFETIME := 5.0

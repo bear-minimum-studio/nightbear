@@ -79,12 +79,10 @@ graph_offset = Vector2(-409.555, 5.28)
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_48b6l"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
+properties/0/replication_mode = 1
 properties/1/path = NodePath("Sprite2D:scale")
 properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
+properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
@@ -96,7 +94,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ly555")
 hframes = 11
 vframes = 2
-frame = 11
+frame = 14
 script = ExtResource("3")
 
 [node name="PlayerShade" parent="." instance=ExtResource("4_vqo0i")]
@@ -115,9 +113,11 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5n143")
+}
 tree_root = SubResource("8")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 
 [node name="SpellFX" parent="." instance=ExtResource("5")]
 
