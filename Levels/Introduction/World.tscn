@@ -1023,7 +1023,7 @@ tracks/6/path = NodePath("Shapes/Wave1/LeftHorizontalPath/LeftVerticalWall:progr
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 8, 10),
+"times": PackedFloat32Array(0, 7, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.55, 1.0]
@@ -1038,7 +1038,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 7, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.55, 1.0]
+"values": [1.0, 0.45, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1110,7 +1110,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(4, 11, 14),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.55, 1.0]
+"values": [1.0, 0.45, 0.0]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -1242,7 +1242,7 @@ tracks/24/keys = {
 "times": PackedFloat32Array(8, 15, 18),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.55, 1.0]
+"values": [1.0, 0.45, 0.0]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
@@ -1254,7 +1254,7 @@ tracks/25/keys = {
 "times": PackedFloat32Array(8, 15, 18),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.55, 1.0]
+"values": [1.0, 0.45, 0.0]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
@@ -1487,16 +1487,10 @@ _data = {
 
 [node name="World" instance=ExtResource("1_5hydf")]
 
-[node name="Sprite2D" parent="Player0" index="0"]
-frame = 13
-
 [node name="AnimationTree" parent="Player0" index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_5n143")
 }
-
-[node name="Sprite2D" parent="Player1" index="0"]
-frame = 13
 
 [node name="AnimationTree" parent="Player1" index="5"]
 libraries = {
@@ -1516,7 +1510,7 @@ visible = false
 curve = ExtResource("5_t7mok")
 
 [node name="LeftVerticalWall" type="PathFollow2D" parent="Shapes/Wave0/LeftHorizontalPath" index="0"]
-position = Vector2(-1024, 0)
+progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/LeftHorizontalPath/LeftVerticalWall" index="0" instance=ExtResource("2_uixj2")]
@@ -1524,7 +1518,7 @@ nb_lines = 16
 nb_columns = 1
 
 [node name="LeftVerticalWall2" type="PathFollow2D" parent="Shapes/Wave0/LeftHorizontalPath" index="1"]
-position = Vector2(-1024, 0)
+progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/LeftHorizontalPath/LeftVerticalWall2" index="0" instance=ExtResource("2_uixj2")]
@@ -1535,8 +1529,7 @@ nb_columns = 1
 curve = ExtResource("6_0u11b")
 
 [node name="LeftHorizontalWall" type="PathFollow2D" parent="Shapes/Wave0/LeftVerticalPath" index="0"]
-position = Vector2(-512, 512)
-progress = 1024.0
+position = Vector2(-512, -512)
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/LeftVerticalPath/LeftHorizontalWall" index="0" instance=ExtResource("2_uixj2")]
@@ -1547,8 +1540,6 @@ nb_columns = 16
 curve = ExtResource("3_5mluy")
 
 [node name="RightVerticalWall" type="PathFollow2D" parent="Shapes/Wave0/RightHorizontalPath" index="0"]
-position = Vector2(1024, 0)
-progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/RightHorizontalPath/RightVerticalWall" index="0" instance=ExtResource("2_uixj2")]
@@ -1556,8 +1547,6 @@ nb_lines = 16
 nb_columns = 1
 
 [node name="RightVerticalWall2" type="PathFollow2D" parent="Shapes/Wave0/RightHorizontalPath" index="1"]
-position = Vector2(1024, 0)
-progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/RightHorizontalPath/RightVerticalWall2" index="0" instance=ExtResource("2_uixj2")]
@@ -1568,7 +1557,8 @@ nb_columns = 1
 curve = ExtResource("4_6l0nn")
 
 [node name="RightHorizontalWall" type="PathFollow2D" parent="Shapes/Wave0/RightVerticalPath" index="0"]
-position = Vector2(512, -512)
+position = Vector2(512, 512)
+progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave0/RightVerticalPath/RightHorizontalWall" index="0" instance=ExtResource("2_uixj2")]
@@ -1649,6 +1639,8 @@ nb_columns = 1
 curve = ExtResource("3_5mluy")
 
 [node name="RightVerticalWall" type="PathFollow2D" parent="Shapes/Wave1/RightHorizontalPath" index="0"]
+position = Vector2(1024, 0)
+progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave1/RightHorizontalPath/RightVerticalWall" index="0" instance=ExtResource("2_uixj2")]
@@ -1680,7 +1672,8 @@ nb_columns = 1
 curve = ExtResource("4_6l0nn")
 
 [node name="RightHorizontalWall" type="PathFollow2D" parent="Shapes/Wave1/RightVerticalPath" index="0"]
-position = Vector2(512, -512)
+position = Vector2(512, 512)
+progress = 1024.0
 rotates = false
 
 [node name="Wall" parent="Shapes/Wave1/RightVerticalPath/RightHorizontalWall" index="0" instance=ExtResource("2_uixj2")]
