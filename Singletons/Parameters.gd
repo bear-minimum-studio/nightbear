@@ -8,7 +8,9 @@ var GAME_DREAM_CATCHER = load("res://Obstacles/DreamCatcher.tscn")
 
 # Player parameters :
 const PLAYER_WALK_SPEED = 250
-const BUILD_RELOAD_TIME = 1
+### /!\ Setting this paramter lower than 0.501 creates
+### strange/ugly behavior with cast animation
+const BUILD_RELOAD_TIME = 0.505
 
 # Ally projectiles parameters :
 const ALLY_PROJECTILE_SPEED = 10
