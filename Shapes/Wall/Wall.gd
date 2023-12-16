@@ -43,6 +43,17 @@ extends Node2D
 		free_children()
 		spawn()
 
+@export var collisions := true :
+	set(value):
+		var has_child_with_collisions := false
+		for child in get_children():
+			if child.has_node('CollisionShape2D'):
+				child.get_node('CollisionShape2D').disabled = not value
+				has_child_with_collisions = true
+		if not has_child_with_collisions:
+			print('No child with collision in ', self)
+		collisions = value
+
 
 func _ready():
 	seed(Parameters.SEED)
