@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://4l2bnj6hp6s6"]
+
+[ext_resource type="Script" path="res://Shapes/Arc/Arc.gd" id="1_fauj3"]
+[ext_resource type="PackedScene" uid="uid://c8ei17161m44f" path="res://Projectiles/ProjectilesTypes/EnemyProjectile.tscn" id="2_jg1tn"]
+
+[node name="Arc" type="Node2D"]
+script = ExtResource("1_fauj3")
+projectile_scene = ExtResource("2_jg1tn")
+nb_items = 20
+
+[connection signal="body_entered" from="Projectile" to="Projectile" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28985" to="@Area2D@28985" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28986" to="@Area2D@28986" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28987" to="@Area2D@28987" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28988" to="@Area2D@28988" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28989" to="@Area2D@28989" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28990" to="@Area2D@28990" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28991" to="@Area2D@28991" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28992" to="@Area2D@28992" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28993" to="@Area2D@28993" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28994" to="@Area2D@28994" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28995" to="@Area2D@28995" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28996" to="@Area2D@28996" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28997" to="@Area2D@28997" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28998" to="@Area2D@28998" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@28999" to="@Area2D@28999" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@29000" to="@Area2D@29000" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@29001" to="@Area2D@29001" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@29002" to="@Area2D@29002" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@29003" to="@Area2D@29003" method="_on_Projectile_body_entered"]
