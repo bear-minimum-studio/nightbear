@@ -1,0 +1,17 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=4 format=3 uid="uid://bqqgl6hquh82r"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wa4f2"]
+animation = &"wave0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ysxmi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jet5m"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/wave0/node = SubResource("AnimationNodeAnimation_wa4f2")
+states/wave0/position = Vector2(377.143, 74)
+transitions = ["Start", "wave0", SubResource("AnimationNodeStateMachineTransition_ysxmi"), "wave0", "End", SubResource("AnimationNodeStateMachineTransition_jet5m")]

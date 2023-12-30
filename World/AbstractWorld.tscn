@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=12 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
 [ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="2_xkeqr"]
 [ext_resource type="Texture2D" uid="uid://ba8m7x374mq8q" path="res://Player/bear1.png" id="3_bqg1v"]
 [ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="4_ys18w"]
+[ext_resource type="Script" path="res://World/View/ProxyCamera.gd" id="6_v4jip"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -260,6 +261,8 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_dloxr")
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0s7f"]
+
 [node name="AbstractWorld" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("2")
@@ -269,7 +272,7 @@ script = ExtResource("1_7ws86")
 position = Vector2(-512, 0)
 
 [node name="Sprite2D" parent="Player0" index="0"]
-frame = 14
+frame = 13
 
 [node name="PlayerShade" parent="Player0" index="1"]
 position = Vector2(1024, 0)
@@ -280,7 +283,7 @@ player_id = 1
 
 [node name="Sprite2D" parent="Player1" index="0"]
 texture = ExtResource("3_bqg1v")
-frame = 14
+frame = 13
 
 [node name="PlayerShade" parent="Player1" index="1"]
 position = Vector2(-1024, 0)
@@ -293,16 +296,29 @@ tile_set = SubResource("TileSet_nxc75")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65542, 131072, 0, -6, 196608, 1, 65530, 0, 2, 131066, 0, 0, -65541, 131072, 3, -5, 262144, 3, 65531, 262144, 3, 131067, 65536, 1, -65540, 65536, 3, -4, 262144, 2, 65532, 262144, 2, 131068, 65536, 1, -65539, 196608, 0, -3, 131072, 2, 65533, 196608, 2, 131069, 65536, 0, -131070, 131072, 0, -65534, 196608, 1, 2, 0, 2, 65538, 0, 0, -131069, 131072, 3, -65533, 262144, 3, 3, 262144, 3, 65539, 65536, 1, -131068, 65536, 3, 4, 262144, 2, 65540, 65536, 1, -131067, 196608, 0, -65531, 131072, 2, 5, 196608, 2, 65541, 65536, 0, -65532, 262144, 2)
 
+[node name="StateMachine" type="AnimationTree" parent="."]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_o0s7f")
+}
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o0s7f")
+}
 
 [node name="Shapes" type="Node2D" parent="."]
 
-[node name="CameraPosition0" type="Node2D" parent="."]
+[node name="ProxyCamera0" type="Node2D" parent="."]
 position = Vector2(-512, 0)
+script = ExtResource("6_v4jip")
 
-[node name="CameraPosition1" type="Node2D" parent="."]
+[node name="ProxyCamera1" type="Node2D" parent="."]
 position = Vector2(512, 0)
+script = ExtResource("6_v4jip")
 
+[connection signal="animation_finished" from="StateMachine" to="." method="_on_state_machine_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]
 
 [editable path="Player0"]

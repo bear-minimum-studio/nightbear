@@ -6,7 +6,21 @@
 
 [node name="World" instance=ExtResource("1_ahdgm")]
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 14
+
+[node name="Sprite2D" parent="Player1" index="0"]
+frame = 14
+
+[node name="StateMachine" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_p8cm0")
 }
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_p8cm0")
+}
+
+[editable path="Player0"]
+[editable path="Player1"]

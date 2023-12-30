@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://gehgavkc0yvb"]
+[gd_scene load_steps=7 format=3 uid="uid://gehgavkc0yvb"]
 
 [ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/AbstractWorld.tscn" id="1_bldvu"]
 [ext_resource type="PackedScene" uid="uid://m6dir1yl2qj4" path="res://Shapes/Wall/Wall.tscn" id="2_ikgl4"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bqqgl6hquh82r" path="res://Levels/StateMachines/1_wave.tres" id="2_mgwt7"]
 
 [sub_resource type="Animation" id="Animation_rcwbe"]
 length = 0.001
@@ -138,7 +139,19 @@ _data = {
 
 [node name="World" instance=ExtResource("1_bldvu")]
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 11
+
+[node name="Sprite2D" parent="Player1" index="0"]
+frame = 11
+
+[node name="StateMachine" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_tnvnl")
+}
+tree_root = ExtResource("2_mgwt7")
+
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_tnvnl")
 }
@@ -158,22 +171,25 @@ position = Vector2(-383, 0)
 nb_lines = 8
 nb_columns = 1
 
-[connection signal="body_entered" from="Shapes/Wall2/Projectile" to="Shapes/Wall2/Projectile" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73237" to="Shapes/Wall2/@Area2D@73237" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73238" to="Shapes/Wall2/@Area2D@73238" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73239" to="Shapes/Wall2/@Area2D@73239" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73240" to="Shapes/Wall2/@Area2D@73240" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73241" to="Shapes/Wall2/@Area2D@73241" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73242" to="Shapes/Wall2/@Area2D@73242" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall2/@Area2D@73243" to="Shapes/Wall2/@Area2D@73243" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/Projectile" to="Shapes/Wall3/Projectile" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Area2D@73244" to="Shapes/Wall3/@Area2D@73244" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall3/@Area2D@73245" to="Shapes/Wall3/@Area2D@73245" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/Projectile" to="Shapes/Wall6/Projectile" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73253" to="Shapes/Wall6/@Area2D@73253" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73254" to="Shapes/Wall6/@Area2D@73254" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73255" to="Shapes/Wall6/@Area2D@73255" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73256" to="Shapes/Wall6/@Area2D@73256" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73257" to="Shapes/Wall6/@Area2D@73257" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73258" to="Shapes/Wall6/@Area2D@73258" method="_on_Projectile_body_entered" flags=18]
-[connection signal="body_entered" from="Shapes/Wall6/@Area2D@73259" to="Shapes/Wall6/@Area2D@73259" method="_on_Projectile_body_entered" flags=18]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142113" to="Shapes/Wall2/@Area2D@142113" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142114" to="Shapes/Wall2/@Area2D@142114" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142115" to="Shapes/Wall2/@Area2D@142115" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142116" to="Shapes/Wall2/@Area2D@142116" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142117" to="Shapes/Wall2/@Area2D@142117" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142118" to="Shapes/Wall2/@Area2D@142118" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142119" to="Shapes/Wall2/@Area2D@142119" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall2/@Area2D@142120" to="Shapes/Wall2/@Area2D@142120" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall3/@Area2D@142150" to="Shapes/Wall3/@Area2D@142150" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall3/@Area2D@142151" to="Shapes/Wall3/@Area2D@142151" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall3/@Area2D@142152" to="Shapes/Wall3/@Area2D@142152" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142206" to="Shapes/Wall6/@Area2D@142206" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142207" to="Shapes/Wall6/@Area2D@142207" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142208" to="Shapes/Wall6/@Area2D@142208" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142209" to="Shapes/Wall6/@Area2D@142209" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142210" to="Shapes/Wall6/@Area2D@142210" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142211" to="Shapes/Wall6/@Area2D@142211" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142212" to="Shapes/Wall6/@Area2D@142212" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="Shapes/Wall6/@Area2D@142213" to="Shapes/Wall6/@Area2D@142213" method="_on_Projectile_body_entered"]
+
+[editable path="Player0"]
+[editable path="Player1"]

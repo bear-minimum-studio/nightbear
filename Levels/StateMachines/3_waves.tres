@@ -1,0 +1,34 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=8 format=3 uid="uid://cdwnvgg53a1wc"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xs5wn"]
+animation = &"wave0"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ltcn"]
+animation = &"wave1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ailuk"]
+animation = &"wave2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6dgyl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bcu6g"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5avy1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4o5b"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/wave0/node = SubResource("AnimationNodeAnimation_xs5wn")
+states/wave0/position = Vector2(375.429, 99.7026)
+states/wave1/node = SubResource("AnimationNodeAnimation_7ltcn")
+states/wave1/position = Vector2(534.857, 99.1429)
+states/wave2/node = SubResource("AnimationNodeAnimation_ailuk")
+states/wave2/position = Vector2(703.429, 100.122)
+transitions = ["Start", "wave0", SubResource("AnimationNodeStateMachineTransition_6dgyl"), "wave0", "wave1", SubResource("AnimationNodeStateMachineTransition_bcu6g"), "wave1", "wave2", SubResource("AnimationNodeStateMachineTransition_5avy1"), "wave2", "End", SubResource("AnimationNodeStateMachineTransition_b4o5b")]

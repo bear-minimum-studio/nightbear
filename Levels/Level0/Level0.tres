@@ -1,11 +1,10 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://2tp7mbnl1jo5"]
 
 [ext_resource type="Script" path="res://Levels/LevelResource.gd" id="1_7mivn"]
-[ext_resource type="PackedScene" uid="uid://bjx0n64th7x0o" path="res://Levels/Level0/World.tscn" id="2_hv8xs"]
+[ext_resource type="PackedScene" uid="uid://cx80jxfm2358r" path="res://Levels/Level0/Level0.tscn" id="1_j44pc"]
 
 [resource]
 script = ExtResource("1_7mivn")
-save_dir = ""
-default_world = "res://World/AbstractWorld.tscn"
-world_scene = ExtResource("2_hv8xs")
-world_scene_path = ""
+level_scene = ExtResource("1_j44pc")
+difficulty = "unrated"
+description = ""

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx80jxfm2358r"]
+
+[ext_resource type="Script" path="res://Levels/BaseLevel.gd" id="1_dbemn"]
+[ext_resource type="PackedScene" uid="uid://bjx0n64th7x0o" path="res://Levels/Level0/World.tscn" id="2_vfrhn"]
+[ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="3_fknn8"]
+
+[node name="Level0" type="Control" node_paths=PackedStringArray("split_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbemn")
+world_scene = ExtResource("2_vfrhn")
+split_screen = NodePath("SplitScreen")
+
+[node name="SplitScreen" parent="." instance=ExtResource("3_fknn8")]
+layout_mode = 1

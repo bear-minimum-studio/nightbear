@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://World/View/Camera.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bfedw2kos4l5o" path="res://World/View/carreBlanc.png" id="3"]
 
-[node name="Camera3D" type="Camera2D"]
+[node name="Camera2D" type="Camera2D"]
 script = ExtResource("2")
 
 [node name="Control" type="Control" parent="."]

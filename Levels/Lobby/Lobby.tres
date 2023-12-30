@@ -1,11 +1,10 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://btbcppae72nyr"]
 
 [ext_resource type="Script" path="res://Levels/LevelResource.gd" id="1_8jqc8"]
-[ext_resource type="PackedScene" uid="uid://rm5x352cvmes" path="res://Levels/Lobby/World.tscn" id="2_ajt41"]
+[ext_resource type="PackedScene" uid="uid://if6xk3cib4tq" path="res://Levels/Lobby/Lobby.tscn" id="1_v37y3"]
 
 [resource]
 script = ExtResource("1_8jqc8")
-save_dir = ""
-default_world = "res://World/AbstractWorld.tscn"
-world_scene = ExtResource("2_ajt41")
-world_scene_path = ""
+level_scene = ExtResource("1_v37y3")
+difficulty = "unrated"
+description = "Empty level to wait for players to connect"

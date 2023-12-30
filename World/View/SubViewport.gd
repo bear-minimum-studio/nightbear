@@ -1,3 +1,4 @@
+@tool
 extends SubViewportContainer
 
 @onready var sub_viewport = $SubViewport

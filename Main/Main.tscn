@@ -24,4 +24,3 @@ visible = false
 process_mode = 0
 
 [editable path="Game"]
-[editable path="Game/ViewportsContainer"]
