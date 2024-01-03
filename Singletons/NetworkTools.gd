@@ -29,11 +29,13 @@ func _upnp_setup():
 	upnp = UPNP.new()
 	
 	var discover_result = upnp.discover()
-	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
-		"UPNP Discover Failed! Error %s" % discover_result)
+	if discover_result != UPNP.UPNP_RESULT_SUCCESS:
+		push_warning("UPNP Discover Failed! Error %s" % discover_result)
+		return
 
-	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \
-		"UPNP Invalid Gateway!")
+	if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
+		push_warning("UPNP Invalid Gateway!")
+		return
 
 	while upnp.add_port_mapping(server_port, 0, "NightbearMultiplayer") != UPNP.UPNP_RESULT_SUCCESS \
 		and server_port < 65535:
@@ -101,7 +103,11 @@ func concatenate_port_and_address(address: String, port: int) -> String:
 	return "%s:%d" % [address, port]
 
 func get_local_ipv4():
-	return concatenate_port_and_address(get_local_ipv4_addresses()[0], LOCAL_PORT)
+	var local_adresses = get_local_ipv4_addresses()
+	if local_adresses.size() != 0:
+		return concatenate_port_and_address(local_adresses[0], LOCAL_PORT)
+	else:
+		return 'not found'
 
 func get_public_ip():
 	if is_upnp_completed:
