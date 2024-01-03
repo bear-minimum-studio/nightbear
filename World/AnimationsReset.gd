@@ -1,0 +1,60 @@
+@tool
+extends AnimationTree
+
+
+@export var link_animations_to_subshapes := true
+
+@onready var shapes = $"../Shapes"
+
+
+
+func _on_animation_player_animation_list_changed():
+	if not Engine.is_editor_hint():
+		return
+	
+	if not link_animations_to_subshapes:
+		return
+	
+	var animations = get_animation_list() 
+	for name in animations:
+		if not sub_shape_exists(name):
+			print(name)
+			var sub_shape := Node2D.new()
+			sub_shape.name = name
+			shapes.add_child(sub_shape)
+			sub_shape.set_owner(get_tree().edited_scene_root)
+
+
+func sub_shape_exists(node_name: String) -> bool:
+	for c in shapes.get_children():
+		if c.name == node_name:
+			return true
+	return false
+
+
+func get_sub_shape(node_name: String) -> Node2D:
+	for c in shapes.get_children():
+		if c.name == node_name:
+			return c
+	return null
+
+
+func _on_animation_player_current_animation_changed(anim_name):
+	only_enable_sub_shape(anim_name)
+
+
+func _on_animation_started(anim_name):
+	only_enable_sub_shape(anim_name)
+
+
+func only_enable_sub_shape(node_name: String):
+	if not link_animations_to_subshapes:
+		return
+	
+	for c in shapes.get_children():
+		c.visible = false
+		if c.name == node_name:
+			c.visible = true
+			c.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			c.process_mode = Node.PROCESS_MODE_DISABLED
