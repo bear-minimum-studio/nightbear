@@ -9,7 +9,7 @@ extends AnimationTree
 
 
 func _on_animation_player_animation_list_changed():
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() or shapes == null:
 		return
 	
 	if not link_animations_to_subshapes:
@@ -18,7 +18,6 @@ func _on_animation_player_animation_list_changed():
 	var animations = get_animation_list() 
 	for name in animations:
 		if not sub_shape_exists(name):
-			print(name)
 			var sub_shape := Node2D.new()
 			sub_shape.name = name
 			shapes.add_child(sub_shape)
@@ -26,6 +25,9 @@ func _on_animation_player_animation_list_changed():
 
 
 func sub_shape_exists(node_name: String) -> bool:
+	if shapes == null:
+		return false
+	
 	for c in shapes.get_children():
 		if c.name == node_name:
 			return true
@@ -33,9 +35,13 @@ func sub_shape_exists(node_name: String) -> bool:
 
 
 func get_sub_shape(node_name: String) -> Node2D:
+	if shapes == null:
+		return null
+	
 	for c in shapes.get_children():
 		if c.name == node_name:
 			return c
+	
 	return null
 
 
@@ -48,7 +54,7 @@ func _on_animation_started(anim_name):
 
 
 func only_enable_sub_shape(node_name: String):
-	if not link_animations_to_subshapes:
+	if not link_animations_to_subshapes or shapes == null:
 		return
 	
 	for c in shapes.get_children():
