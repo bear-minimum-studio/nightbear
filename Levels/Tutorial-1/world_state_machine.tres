@@ -1,0 +1,54 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=12 format=3 uid="uid://denbxj36eo6om"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1tcv"]
+animation = &"nightmare_tuto_0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rusme"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xca6h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gd3vd"]
+state_machine_type = 2
+states/nightmare_tuto_0/node = SubResource("AnimationNodeAnimation_g1tcv")
+states/nightmare_tuto_0/position = Vector2(398.857, 100.682)
+transitions = ["Start", "nightmare_tuto_0", SubResource("AnimationNodeStateMachineTransition_rusme"), "nightmare_tuto_0", "End", SubResource("AnimationNodeStateMachineTransition_xca6h")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yrait"]
+animation = &"shield_tuto_0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7klc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glcjb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r6ttm"]
+state_machine_type = 2
+states/shield_tuto_0/node = SubResource("AnimationNodeAnimation_yrait")
+states/shield_tuto_0/position = Vector2(463.429, 102.571)
+transitions = ["Start", "shield_tuto_0", SubResource("AnimationNodeStateMachineTransition_u7klc"), "shield_tuto_0", "End", SubResource("AnimationNodeStateMachineTransition_glcjb")]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqgke"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ob02x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_popid"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/NightmareTuto/node = SubResource("AnimationNodeStateMachine_gd3vd")
+states/NightmareTuto/position = Vector2(405.714, 99.8689)
+states/ShieldTuto/node = SubResource("AnimationNodeStateMachine_r6ttm")
+states/ShieldTuto/position = Vector2(646.286, 100.145)
+transitions = ["NightmareTuto", "ShieldTuto", SubResource("AnimationNodeStateMachineTransition_cqgke"), "ShieldTuto", "End", SubResource("AnimationNodeStateMachineTransition_ob02x"), "Start", "NightmareTuto", SubResource("AnimationNodeStateMachineTransition_popid")]

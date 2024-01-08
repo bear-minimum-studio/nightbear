@@ -1,8 +1,189 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs5tga0wu7sbs"]
+[gd_scene load_steps=35 format=3 uid="uid://cs5tga0wu7sbs"]
 
-[ext_resource type="Script" path="res://Levels/BaseLevel.gd" id="1_qt243"]
+[ext_resource type="Script" path="res://Levels/Tutorial-1/Tutorial-1.gd" id="1_00gyl"]
 [ext_resource type="PackedScene" uid="uid://d1sy4i23ox6ha" path="res://Levels/Tutorial-1/World.tscn" id="2_0pmx7"]
 [ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="3_gd8f3"]
+[ext_resource type="Texture2D" uid="uid://8c73qhnhnn85" path="res://Projectiles/ProjectilesTypes/projectile_bad.png" id="4_f2r1g"]
+[ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear0.png" id="5_d0aqe"]
+[ext_resource type="Texture2D" uid="uid://ba8m7x374mq8q" path="res://Player/bear1.png" id="6_kfrvi"]
+[ext_resource type="Texture2D" uid="uid://ena704ofwry5" path="res://Player/paw0.png" id="7_0k3xh"]
+[ext_resource type="Texture2D" uid="uid://cdmlaw5nmwv6h" path="res://Obstacles/shield.png" id="8_0tto7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38fnd"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.929412)
+
+[sub_resource type="Animation" id="Animation_jh84t"]
+resource_name = "HideNightmareTuto"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/NightmareTuto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oo53x"]
+resource_name = "HideShieldTuto"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ShieldTuto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oa0jg"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/NightmareTuto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/ShieldTuto:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_35d7q"]
+resource_name = "ShowNightmareTuto"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/NightmareTuto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_go1is"]
+resource_name = "ShowShieldTuto"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ShieldTuto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2x6k"]
+_data = {
+"HideNightmareTuto": SubResource("Animation_jh84t"),
+"HideShieldTuto": SubResource("Animation_oo53x"),
+"RESET": SubResource("Animation_oa0jg"),
+"ShowNightmareTuto": SubResource("Animation_35d7q"),
+"ShowShieldTuto": SubResource("Animation_go1is")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4n03"]
+animation = &"HideNightmareTuto"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uw6rp"]
+animation = &"ShowNightmareTuto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wupgw"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ga3gi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oab3l"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lnq50"]
+state_machine_type = 2
+states/HideNightmareTuto/node = SubResource("AnimationNodeAnimation_t4n03")
+states/HideNightmareTuto/position = Vector2(669.143, 107.143)
+states/ShowNightmareTuto/node = SubResource("AnimationNodeAnimation_uw6rp")
+states/ShowNightmareTuto/position = Vector2(385.714, 105.429)
+transitions = ["ShowNightmareTuto", "HideNightmareTuto", SubResource("AnimationNodeStateMachineTransition_wupgw"), "Start", "ShowNightmareTuto", SubResource("AnimationNodeStateMachineTransition_ga3gi"), "HideNightmareTuto", "End", SubResource("AnimationNodeStateMachineTransition_oab3l")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpkuk"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3sjus"]
+animation = &"HideShieldTuto"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wu8la"]
+animation = &"ShowShieldTuto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pijgf"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v2fxr"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ux4go"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a2kk2"]
+state_machine_type = 2
+states/HideShieldTuto/node = SubResource("AnimationNodeAnimation_3sjus")
+states/HideShieldTuto/position = Vector2(627.429, 79.7143)
+states/ShowShieldTuto/node = SubResource("AnimationNodeAnimation_wu8la")
+states/ShowShieldTuto/position = Vector2(372, 96.8571)
+transitions = ["Start", "ShowShieldTuto", SubResource("AnimationNodeStateMachineTransition_pijgf"), "ShowShieldTuto", "HideShieldTuto", SubResource("AnimationNodeStateMachineTransition_v2fxr"), "HideShieldTuto", "End", SubResource("AnimationNodeStateMachineTransition_ux4go")]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_652yn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sw76k"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bsmqd"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_naiqe"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yskv0"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o1wry"]
+states/NightmareTuto/node = SubResource("AnimationNodeStateMachine_lnq50")
+states/NightmareTuto/position = Vector2(638.857, 52.2857)
+states/RESET/node = SubResource("AnimationNodeAnimation_tpkuk")
+states/RESET/position = Vector2(389.714, 99.2128)
+states/ShieldTuto/node = SubResource("AnimationNodeStateMachine_a2kk2")
+states/ShieldTuto/position = Vector2(639.662, 207.143)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_652yn"), "RESET", "NightmareTuto", SubResource("AnimationNodeStateMachineTransition_sw76k"), "NightmareTuto", "RESET", SubResource("AnimationNodeStateMachineTransition_bsmqd"), "RESET", "ShieldTuto", SubResource("AnimationNodeStateMachineTransition_naiqe"), "ShieldTuto", "RESET", SubResource("AnimationNodeStateMachineTransition_yskv0")]
 
 [node name="Tutorial-1" type="Control" node_paths=PackedStringArray("split_screen")]
 layout_mode = 3
@@ -11,9 +192,250 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qt243")
+script = ExtResource("1_00gyl")
 world_scene = ExtResource("2_0pmx7")
 split_screen = NodePath("SplitScreen")
 
 [node name="SplitScreen" parent="." instance=ExtResource("3_gd8f3")]
 layout_mode = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NightmareTuto" type="Control" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.941772
+offset_right = 0.941772
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/NightmareTuto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_38fnd")
+
+[node name="Label" type="Label" parent="UI/NightmareTuto"]
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 247.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 62
+text = "Beware of the nightmares..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Illustration1" type="Control" parent="UI/NightmareTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 634.721
+offset_top = 293.818
+offset_right = 674.721
+offset_bottom = 333.818
+
+[node name="projectile_bad" type="Sprite2D" parent="UI/NightmareTuto/Illustration1"]
+position = Vector2(-187.059, 16.1974)
+texture = ExtResource("4_f2r1g")
+hframes = 10
+
+[node name="Sprite2" type="Sprite2D" parent="UI/NightmareTuto/Illustration1"]
+position = Vector2(193.425, 10.5145)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+
+[node name="Illustration2" type="Control" parent="UI/NightmareTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 634.721
+offset_top = 458.619
+offset_right = 674.721
+offset_bottom = 498.619
+
+[node name="projectile_bad" type="Sprite2D" parent="UI/NightmareTuto/Illustration2"]
+position = Vector2(13.5284, 16.1974)
+texture = ExtResource("4_f2r1g")
+hframes = 10
+
+[node name="Sprite2" type="Sprite2D" parent="UI/NightmareTuto/Illustration2"]
+position = Vector2(313.024, 10.5145)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+
+[node name="Illustration3" type="Control" parent="UI/NightmareTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 634.721
+offset_top = 619.654
+offset_right = 674.721
+offset_bottom = 659.654
+
+[node name="projectile_bad" type="Sprite2D" parent="UI/NightmareTuto/Illustration3"]
+position = Vector2(280.978, 16.1974)
+texture = ExtResource("4_f2r1g")
+hframes = 10
+
+[node name="Sprite2" type="Sprite2D" parent="UI/NightmareTuto/Illustration3"]
+position = Vector2(448.632, 10.5145)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+
+[node name="ShieldTuto" type="Control" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.94177
+offset_right = 1.94177
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/ShieldTuto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/ShieldTuto"]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 48.9232
+offset_bottom = 135.923
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 62
+text = "Protect your friend!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ShieldTuto"]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 119.552
+offset_bottom = 206.552
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 44
+text = "Only you can..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Illustration1" type="Control" parent="UI/ShieldTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 784.455
+offset_top = 260.857
+offset_right = 824.455
+offset_bottom = 300.857
+
+[node name="projectile_bad2" type="Sprite2D" parent="UI/ShieldTuto/Illustration1"]
+position = Vector2(-658.92, 33.1485)
+texture = ExtResource("4_f2r1g")
+hframes = 10
+
+[node name="bear2" type="Sprite2D" parent="UI/ShieldTuto/Illustration1"]
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_kfrvi")
+hframes = 11
+vframes = 2
+
+[node name="Sprite2" type="Sprite2D" parent="UI/ShieldTuto/Illustration1"]
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+frame = 3
+
+[node name="paw1" type="Sprite2D" parent="UI/ShieldTuto/Illustration1"]
+position = Vector2(-415.956, 32.7718)
+scale = Vector2(1.43858, 1.43858)
+texture = ExtResource("7_0k3xh")
+
+[node name="Illustration2" type="Control" parent="UI/ShieldTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 784.455
+offset_top = 425.659
+offset_right = 824.455
+offset_bottom = 465.659
+
+[node name="projectile_bad2" type="Sprite2D" parent="UI/ShieldTuto/Illustration2"]
+position = Vector2(-506.361, 33.1485)
+texture = ExtResource("4_f2r1g")
+hframes = 10
+
+[node name="bear2" type="Sprite2D" parent="UI/ShieldTuto/Illustration2"]
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_kfrvi")
+hframes = 11
+vframes = 2
+
+[node name="Sprite2" type="Sprite2D" parent="UI/ShieldTuto/Illustration2"]
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+
+[node name="shield" type="Sprite2D" parent="UI/ShieldTuto/Illustration2"]
+position = Vector2(-415.014, 11.1121)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("8_0tto7")
+
+[node name="Illustration3" type="Control" parent="UI/ShieldTuto"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 784.455
+offset_top = 587.635
+offset_right = 824.455
+offset_bottom = 627.635
+
+[node name="bear2" type="Sprite2D" parent="UI/ShieldTuto/Illustration3"]
+position = Vector2(-223.844, 29.0049)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_kfrvi")
+hframes = 11
+vframes = 2
+
+[node name="Sprite2" type="Sprite2D" parent="UI/ShieldTuto/Illustration3"]
+position = Vector2(244.278, 31.2324)
+texture = ExtResource("5_d0aqe")
+hframes = 11
+vframes = 2
+
+[node name="shield" type="Sprite2D" parent="UI/ShieldTuto/Illustration3"]
+position = Vector2(-415.014, 11.1121)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("8_0tto7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c2x6k")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c2x6k")
+}
+tree_root = SubResource("AnimationNodeStateMachine_o1wry")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

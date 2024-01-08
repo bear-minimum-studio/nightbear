@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bbxmydfgv8ikb" path="res://theme.tres" id="1_f4gbq"]
 [ext_resource type="Script" path="res://UI/Intro/Intro.gd" id="2"]
-[ext_resource type="PackedScene" path="res://UI/DialogIterator.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://d4nnketl7chv6" path="res://UI/DialogIterator.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cdjgfcu5g53dl" path="res://Obstacles/dream_catcher.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear0.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://binip3hdnpppp" path="res://Projectiles/ProjectilesTypes/projectile_good_2.png" id="7"]
@@ -23,7 +23,6 @@ script = ExtResource("2")
 
 [node name="DialogIterator" parent="." instance=ExtResource("3")]
 layout_mode = 1
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -192,7 +191,6 @@ hframes = 11
 vframes = 2
 
 [node name="Tuto3" type="Control" parent="DialogIterator"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
