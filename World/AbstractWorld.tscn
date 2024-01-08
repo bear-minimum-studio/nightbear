@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=14 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
@@ -264,6 +264,8 @@ sources/0 = SubResource("TileSetAtlasSource_dloxr")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0s7f"]
 
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6v0li"]
+
 [node name="AbstractWorld" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("2")
@@ -271,6 +273,9 @@ script = ExtResource("1_7ws86")
 
 [node name="Player0" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(-512, 0)
+
+[node name="Sprite2D" parent="Player0" index="0"]
+frame = 13
 
 [node name="PlayerShade" parent="Player0" index="1"]
 position = Vector2(1024, 0)
@@ -281,6 +286,7 @@ player_id = 1
 
 [node name="Sprite2D" parent="Player1" index="0"]
 texture = ExtResource("3_bqg1v")
+frame = 13
 
 [node name="PlayerShade" parent="Player1" index="1"]
 position = Vector2(-1024, 0)
@@ -293,11 +299,12 @@ tile_set = SubResource("TileSet_nxc75")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65542, 131072, 0, -6, 196608, 1, 65530, 0, 2, 131066, 0, 0, -65541, 131072, 3, -5, 262144, 3, 65531, 262144, 3, 131067, 65536, 1, -65540, 65536, 3, -4, 262144, 2, 65532, 262144, 2, 131068, 65536, 1, -65539, 196608, 0, -3, 131072, 2, 65533, 196608, 2, 131069, 65536, 0, -131070, 131072, 0, -65534, 196608, 1, 2, 0, 2, 65538, 0, 0, -131069, 131072, 3, -65533, 262144, 3, 3, 262144, 3, 65539, 65536, 1, -131068, 65536, 3, 4, 262144, 2, 65540, 65536, 1, -131067, 196608, 0, -65531, 131072, 2, 5, 196608, 2, 65541, 65536, 0, -65532, 262144, 2)
 
-[node name="StateMachine" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
 libraries = {
 "": SubResource("AnimationLibrary_o0s7f")
 }
+tree_root = SubResource("AnimationNodeStateMachine_6v0li")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("6_djvqj")
 
@@ -316,11 +323,13 @@ script = ExtResource("6_v4jip")
 position = Vector2(512, 0)
 script = ExtResource("6_v4jip")
 
-[connection signal="animation_finished" from="StateMachine" to="." method="_on_state_machine_animation_finished"]
-[connection signal="animation_started" from="StateMachine" to="StateMachine" method="_on_animation_started"]
+[connection signal="dead" from="Player0" to="." method="_on_player_dead"]
+[connection signal="dead" from="Player1" to="." method="_on_player_dead"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="AnimationTree" method="_on_animation_started"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]
-[connection signal="animation_list_changed" from="AnimationPlayer" to="StateMachine" method="_on_animation_player_animation_list_changed"]
-[connection signal="current_animation_changed" from="AnimationPlayer" to="StateMachine" method="_on_animation_player_current_animation_changed"]
+[connection signal="animation_list_changed" from="AnimationPlayer" to="AnimationTree" method="_on_animation_player_animation_list_changed"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationTree" method="_on_animation_player_current_animation_changed"]
 
 [editable path="Player0"]
 [editable path="Player1"]

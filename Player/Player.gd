@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 class_name Player
 
+
+signal dead(player_id: int)
+
 @onready var build_timer = $BuildTimer
 @onready var sprite = $Sprite2D
 @onready var player_shade = $PlayerShade
@@ -113,7 +116,7 @@ func _player_death():
 	# vibrate controller of hit player
 	if is_multiplayer_authority():
 		_vibrate_controller()
-	Events.player_dead.emit(player_id)
+	dead.emit(player_id)
 
 func _vibrate_controller():
 	Input.start_joy_vibration(input_id,0.5,0.5,0.1)

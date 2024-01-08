@@ -24,6 +24,7 @@ func _ready():
 	if not Engine.is_editor_hint():
 		world = world_scene.instantiate()
 		split_screen.world = world # world is added as a child of splitscreen's viewport0
+		world.player_dead.connect(_on_player_dead)
 
 
 func _get_configuration_warnings():
@@ -38,6 +39,18 @@ func _get_configuration_warnings():
 @rpc("authority", "call_local", "reliable")
 func start():
 	world.start()
+
+
+@rpc("authority", "call_local", "reliable")
+func reload():
+	print('reload level')
+	world.queue_free()
+	_ready()
+	world.start()
+
+
+func _on_player_dead(player_id):
+	reload()
 
 
 func set_player_authority(peer_id: int, player_id: int):

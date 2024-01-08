@@ -2,6 +2,10 @@ extends Node2D
 
 class_name AbstractWorld
 
+
+signal player_dead(player_id: int)
+
+
 var dream_caught = 0
 var wave_index := 0
 #var max_wave_index : int :
@@ -19,8 +23,8 @@ var wave_index := 0
 @onready var proxy_camera0 : ProxyCamera = $ProxyCamera0
 @onready var proxy_camera1 : ProxyCamera = $ProxyCamera1
 
-@onready var state_machine : AnimationTree = $StateMachine
-@onready var state : AnimationNodeStateMachinePlayback = state_machine.get("parameters/playback")
+@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 
@@ -54,7 +58,7 @@ func _on_entity_spawned(instance):
 
 @rpc("authority", "call_local", "reliable")
 func start():
-	state_machine.active = true
+	animation_tree.active = true
 
 # TODO: clean up everything that listens to Events.wave_started
 #@rpc("authority", "call_local", "reliable")
@@ -66,6 +70,11 @@ func start():
 		#Events.wave_started.emit(index, max_wave_index)
 
 
-func _on_state_machine_animation_finished(anim_name):
-	if state.get_current_node() == 'End':
+func _on_animation_tree_animation_finished(anim_name):
+	if state_machine.get_current_node() == 'End':
 		Events.level_ended.emit()
+
+
+func _on_player_dead(player_id):
+	player_dead.emit(player_id)
+
