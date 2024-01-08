@@ -3,8 +3,8 @@ extends AnimationTree
 
 
 @export_category('Link Animations to Shapes ')
-@export var link_animations_to_subshapes := true
-@export var excluded_animations : Array[String] = ['RESET']
+@export var link := true
+@export var exclude : Array[String] = ['RESET']
 
 @onready var shapes = $"../Shapes"
 
@@ -14,12 +14,12 @@ func _on_animation_player_animation_list_changed():
 	if not Engine.is_editor_hint() or shapes == null:
 		return
 	
-	if not link_animations_to_subshapes:
+	if not link:
 		return
 	
 	var animations = get_animation_list() 
 	for name in animations:
-		if name in excluded_animations:
+		if name in exclude:
 			continue
 		
 		if not sub_shape_exists(name):
@@ -60,13 +60,13 @@ func _on_animation_started(anim_name):
 
 
 func only_enable_sub_shape(node_name: String):
-	if not link_animations_to_subshapes:
+	if not link:
 		return
 	
 	if shapes == null:
 		return
 	
-	if node_name in excluded_animations:
+	if node_name in exclude:
 		return
 	
 	for c in shapes.get_children():
