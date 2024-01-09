@@ -2,11 +2,12 @@
 extends AnimationTree
 
 
+@export var shapes : Node2D
+@export var animation_player : AnimationPlayer
+
 @export_category('Link Animations to Shapes ')
 @export var link := true
 @export var exclude : Array[String] = ['RESET']
-
-@onready var shapes = $"../Shapes"
 
 
 
@@ -17,17 +18,21 @@ func _on_animation_player_animation_list_changed():
 	if not link:
 		return
 	
-	var animations = get_animation_list() 
+	var animations = animation_player.get_animation_list()
 	for name in animations:
 		if name in exclude:
 			continue
 		
 		if not sub_shape_exists(name):
-			var sub_shape := Node2D.new()
-			sub_shape.name = name
-			shapes.add_child(sub_shape)
-			sub_shape.owner = get_tree().edited_scene_root
+			add_child_in_editor(name)
 
+
+func add_child_in_editor(name: String) -> Node2D:
+	var new_node := Node2D.new()
+	new_node.name = name
+	shapes.add_child(new_node)
+	new_node.owner = get_tree().edited_scene_root
+	return new_node
 
 
 func sub_shape_exists(node_name: String) -> bool:
