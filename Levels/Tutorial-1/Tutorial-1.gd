@@ -44,7 +44,7 @@ func _input(event):
 
 
 func _on_wave_started(anim_name):
-	var world_state = world.state_machine.get_current_node()
+	var world_state = world.level_playback.state_machine.get_current_node()
 	if world_state == 'NightmareTuto':
 		if states.NIGHTMARE_TUTO not in shown_tutos:
 			state = states.NIGHTMARE_TUTO
