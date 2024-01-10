@@ -10,7 +10,7 @@ class_name SplitScreen
 @onready var camera1 = $HBoxContainer/SubViewportContainer2/SubViewport/Camera2D
 
 
-var world : AbstractWorld:
+var world : BaseWorld:
 	set(value):
 		world = value
 		if world != null:
@@ -21,5 +21,5 @@ var world : AbstractWorld:
 			### /!\ SETTING THIS TO world DOESN'T WORK WE NEED TO USE THE EXACT OBJECT USED IN THE FIRST VIEWPORT
 			viewport1.world_2d = viewport0.world_2d
 			
-			camera0.proxy = world.proxy_camera0
-			camera1.proxy = world.proxy_camera1
+			camera0.proxy = world.proxy_camera_0
+			camera1.proxy = world.proxy_camera_1

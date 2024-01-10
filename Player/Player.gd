@@ -25,6 +25,11 @@ signal dead(player_id: int)
 			sprite.player_id = value
 			player_shade.player_id = value
 
+@export var player_shade_offset : Vector2i = Vector2i.ZERO :
+	set(value):
+		player_shade.global_transform = value
+		player_shade_offset = value
+
 var accept_input := true
 
 var frozen: bool = true:

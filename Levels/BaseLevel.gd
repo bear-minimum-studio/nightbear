@@ -4,19 +4,21 @@ extends Control
 class_name BaseLevel
 
 
-## Has to be an AbstractWorld
+## Has to be a BaseWorld
 @export var world_scene : PackedScene :
 	set(value):
 		world_scene = value
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 ## instantiated SplitScreen scene to render the world 
 @export var split_screen : SplitScreen :
 	set(value):
 		split_screen = value
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
-var world : AbstractWorld
+var world : BaseWorld
 
 
 func _ready():

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://if6xk3cib4tq"]
 
 [ext_resource type="Script" path="res://Levels/BaseLevel.gd" id="1_18t37"]
-[ext_resource type="PackedScene" uid="uid://rm5x352cvmes" path="res://Levels/Lobby/World.tscn" id="2_4lbkm"]
+[ext_resource type="PackedScene" uid="uid://bvkgwk6nxr1ld" path="res://Levels/Lobby/World.tscn" id="2_4lbkm"]
 [ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="2_g0rux"]
 
 [node name="Lobby" type="Control" node_paths=PackedStringArray("split_screen")]

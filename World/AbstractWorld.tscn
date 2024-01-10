@@ -1,12 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://1lwlway4fm2f"]
+[gd_scene load_steps=12 format=3 uid="uid://1lwlway4fm2f"]
 
 [ext_resource type="Script" path="res://World/AbstractWorld.gd" id="1_7ws86"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_7f6hn"]
-[ext_resource type="Texture2D" uid="uid://bqm0pehuo41sv" path="res://Terrain/brownie.png" id="2_xkeqr"]
 [ext_resource type="Texture2D" uid="uid://ba8m7x374mq8q" path="res://Player/bear1.png" id="3_bqg1v"]
 [ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="4_ys18w"]
-[ext_resource type="Script" path="res://World/AnimationsReset.gd" id="6_djvqj"]
 [ext_resource type="Script" path="res://World/View/ProxyCamera.gd" id="6_v4jip"]
+[ext_resource type="Script" path="res://Levels/LevelPlayback.gd" id="6_vmb0y"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -32,235 +31,12 @@ shader_parameter/MULTIPLIER = 0.56
 shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.45
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dloxr"]
-texture = ExtResource("2_xkeqr")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 64, -1, -64, 3, -1, 64, 1)
-0:0/0/terrains_peering_bit/right_side = 0
-0:0/0/terrains_peering_bit/top_side = 0
-0:0/0/terrains_peering_bit/top_right_corner = 0
-1:0/0 = 0
-1:0/0/terrain_set = 0
-1:0/0/terrain = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 64, -4, -64, -8, 3, -64, 2)
-1:0/0/terrains_peering_bit/left_side = 0
-1:0/0/terrains_peering_bit/top_left_corner = 0
-1:0/0/terrains_peering_bit/top_side = 0
-2:0/0 = 0
-2:0/0/terrain_set = 0
-2:0/0/terrain = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, 7, 4, 8, 1, 64)
-2:0/0/terrains_peering_bit/right_side = 0
-2:0/0/terrains_peering_bit/bottom_right_corner = 0
-2:0/0/terrains_peering_bit/bottom_side = 0
-3:0/0 = 0
-3:0/0/terrain_set = 0
-3:0/0/terrain = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, -64, 6, -4, 5, 0, 64)
-3:0/0/terrains_peering_bit/bottom_side = 0
-3:0/0/terrains_peering_bit/bottom_left_corner = 0
-3:0/0/terrains_peering_bit/left_side = 0
-4:0/0 = 0
-4:0/0/terrain_set = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
-5:1/0 = 0
-5:1/0/terrain_set = 0
-5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:1/0/physics_layer_0/angular_velocity = 0.0
-4:1/0 = 0
-4:1/0/terrain_set = 0
-4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0 = 0
-3:1/0/terrain_set = 0
-3:1/0/terrain = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.5, -64, 0.5, 64, -64, 64, -64, -64)
-3:1/0/terrains_peering_bit/right_side = 0
-3:1/0/terrains_peering_bit/bottom_right_corner = 0
-3:1/0/terrains_peering_bit/bottom_side = 0
-3:1/0/terrains_peering_bit/top_side = 0
-3:1/0/terrains_peering_bit/top_right_corner = 0
-5:0/0 = 0
-5:0/0/terrain_set = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
-2:2/0 = 0
-2:2/0/terrain_set = 0
-2:2/0/terrain = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 0, -64, -3.5, 64, 64, 64)
-2:2/0/terrains_peering_bit/bottom_side = 0
-2:2/0/terrains_peering_bit/bottom_left_corner = 0
-2:2/0/terrains_peering_bit/left_side = 0
-2:2/0/terrains_peering_bit/top_left_corner = 0
-2:2/0/terrains_peering_bit/top_side = 0
-1:2/0 = 0
-1:2/0/terrain_set = 0
-1:2/0/terrain = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.5, -64, 0.5, 64, -64, 64, -64, -64)
-1:2/0/terrains_peering_bit/right_side = 0
-1:2/0/terrains_peering_bit/bottom_right_corner = 0
-1:2/0/terrains_peering_bit/bottom_side = 0
-1:2/0/terrains_peering_bit/top_side = 0
-1:2/0/terrains_peering_bit/top_right_corner = 0
-1:1/0 = 0
-1:1/0/terrain_set = 0
-1:1/0/terrain = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 1, -64, 1.5, -64, 64, 64, 64)
-1:1/0/terrains_peering_bit/right_side = 0
-1:1/0/terrains_peering_bit/left_side = 0
-1:1/0/terrains_peering_bit/top_left_corner = 0
-1:1/0/terrains_peering_bit/top_side = 0
-1:1/0/terrains_peering_bit/top_right_corner = 0
-0:1/0 = 0
-0:1/0/terrain_set = 0
-0:1/0/terrain = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 1, -64, 1.5, -64, 64, 64, 64)
-0:1/0/terrains_peering_bit/right_side = 0
-0:1/0/terrains_peering_bit/left_side = 0
-0:1/0/terrains_peering_bit/top_left_corner = 0
-0:1/0/terrains_peering_bit/top_side = 0
-0:1/0/terrains_peering_bit/top_right_corner = 0
-0:2/0 = 0
-0:2/0/terrain_set = 0
-0:2/0/terrain = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.5, -64, 0.5, 64, -64, 64, -64, -64)
-0:2/0/terrains_peering_bit/right_side = 0
-0:2/0/terrains_peering_bit/bottom_right_corner = 0
-0:2/0/terrains_peering_bit/bottom_side = 0
-0:2/0/terrains_peering_bit/top_side = 0
-0:2/0/terrains_peering_bit/top_right_corner = 0
-0:3/0 = 0
-0:3/0/terrain_set = 0
-0:3/0/terrain = 0
-0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:3/0/physics_layer_0/angular_velocity = 0.0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 0, -64, -3.5, 64, 64, 64)
-0:3/0/terrains_peering_bit/bottom_side = 0
-0:3/0/terrains_peering_bit/bottom_left_corner = 0
-0:3/0/terrains_peering_bit/left_side = 0
-0:3/0/terrains_peering_bit/top_left_corner = 0
-0:3/0/terrains_peering_bit/top_side = 0
-1:3/0 = 0
-1:3/0/terrain_set = 0
-1:3/0/terrain = 0
-1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, -64, -64, -64, 8, 64, 6)
-1:3/0/terrains_peering_bit/right_side = 0
-1:3/0/terrains_peering_bit/bottom_right_corner = 0
-1:3/0/terrains_peering_bit/bottom_side = 0
-1:3/0/terrains_peering_bit/bottom_left_corner = 0
-1:3/0/terrains_peering_bit/left_side = 0
-2:3/0 = 0
-2:3/0/terrain_set = 0
-2:3/0/terrain = 0
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, -64, -64, -64, 8, 64, 6)
-2:3/0/terrains_peering_bit/right_side = 0
-2:3/0/terrains_peering_bit/bottom_right_corner = 0
-2:3/0/terrains_peering_bit/bottom_side = 0
-2:3/0/terrains_peering_bit/bottom_left_corner = 0
-2:3/0/terrains_peering_bit/left_side = 0
-2:1/0 = 0
-2:1/0/terrain_set = 0
-2:1/0/terrain = 0
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 1, -64, 1.5, -64, 64, 64, 64)
-2:1/0/terrains_peering_bit/right_side = 0
-2:1/0/terrains_peering_bit/left_side = 0
-2:1/0/terrains_peering_bit/top_left_corner = 0
-2:1/0/terrains_peering_bit/top_side = 0
-2:1/0/terrains_peering_bit/top_right_corner = 0
-3:2/0 = 0
-3:2/0/terrain_set = 0
-3:2/0/terrain = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 0, -64, -3.5, 64, 64, 64)
-3:2/0/terrains_peering_bit/bottom_side = 0
-3:2/0/terrains_peering_bit/bottom_left_corner = 0
-3:2/0/terrains_peering_bit/left_side = 0
-3:2/0/terrains_peering_bit/top_left_corner = 0
-3:2/0/terrains_peering_bit/top_side = 0
-4:2/0 = 0
-4:2/0/terrain_set = 0
-4:2/0/terrain = 0
-4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:2/0/physics_layer_0/angular_velocity = 0.0
-4:2/0/terrains_peering_bit/right_side = 0
-4:2/0/terrains_peering_bit/bottom_right_corner = 0
-4:2/0/terrains_peering_bit/bottom_side = 0
-4:2/0/terrains_peering_bit/bottom_left_corner = 0
-4:2/0/terrains_peering_bit/left_side = 0
-4:2/0/terrains_peering_bit/top_left_corner = 0
-4:2/0/terrains_peering_bit/top_side = 0
-4:2/0/terrains_peering_bit/top_right_corner = 0
-4:3/0 = 0
-4:3/0/terrain_set = 0
-4:3/0/terrain = 0
-4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:3/0/physics_layer_0/angular_velocity = 0.0
-4:3/0/terrains_peering_bit/right_side = 0
-4:3/0/terrains_peering_bit/bottom_right_corner = 0
-4:3/0/terrains_peering_bit/bottom_side = 0
-4:3/0/terrains_peering_bit/bottom_left_corner = 0
-4:3/0/terrains_peering_bit/left_side = 0
-4:3/0/terrains_peering_bit/top_left_corner = 0
-4:3/0/terrains_peering_bit/top_side = 0
-4:3/0/terrains_peering_bit/top_right_corner = 0
-3:3/0 = 0
-3:3/0/terrain_set = 0
-3:3/0/terrain = 0
-3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, -64, -64, -64, 8, 64, 6)
-3:3/0/terrains_peering_bit/right_side = 0
-3:3/0/terrains_peering_bit/bottom_right_corner = 0
-3:3/0/terrains_peering_bit/bottom_side = 0
-3:3/0/terrains_peering_bit/bottom_left_corner = 0
-3:3/0/terrains_peering_bit/left_side = 0
-5:3/0 = 0
-5:3/0/terrain_set = 0
-5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:3/0/physics_layer_0/angular_velocity = 0.0
-5:2/0 = 0
-5:2/0/terrain_set = 0
-5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:2/0/physics_layer_0/angular_velocity = 0.0
-
 [sub_resource type="TileSet" id="TileSet_nxc75"]
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 4
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_dloxr")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0s7f"]
 
@@ -273,9 +49,10 @@ script = ExtResource("1_7ws86")
 
 [node name="Player0" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(-512, 0)
+player_shade_offset = Vector2i(0, 0)
 
 [node name="Sprite2D" parent="Player0" index="0"]
-frame = 13
+frame = 14
 
 [node name="PlayerShade" parent="Player0" index="1"]
 position = Vector2(1024, 0)
@@ -283,10 +60,11 @@ position = Vector2(1024, 0)
 [node name="Player1" parent="." instance=ExtResource("2_7f6hn")]
 position = Vector2(512, 0)
 player_id = 1
+player_shade_offset = Vector2i(0, 0)
 
 [node name="Sprite2D" parent="Player1" index="0"]
 texture = ExtResource("3_bqg1v")
-frame = 13
+frame = 14
 
 [node name="PlayerShade" parent="Player1" index="1"]
 position = Vector2(-1024, 0)
@@ -299,21 +77,25 @@ tile_set = SubResource("TileSet_nxc75")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65542, 131072, 0, -6, 196608, 1, 65530, 0, 2, 131066, 0, 0, -65541, 131072, 3, -5, 262144, 3, 65531, 262144, 3, 131067, 65536, 1, -65540, 65536, 3, -4, 262144, 2, 65532, 262144, 2, 131068, 65536, 1, -65539, 196608, 0, -3, 131072, 2, 65533, 196608, 2, 131069, 65536, 0, -131070, 131072, 0, -65534, 196608, 1, 2, 0, 2, 65538, 0, 0, -131069, 131072, 3, -65533, 262144, 3, 3, 262144, 3, 65539, 65536, 1, -131068, 65536, 3, 4, 262144, 2, 65540, 65536, 1, -131067, 196608, 0, -65531, 131072, 2, 5, 196608, 2, 65541, 65536, 0, -65532, 262144, 2)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="LevelPlayback" type="Node2D" parent="."]
+script = ExtResource("6_vmb0y")
+
+[node name="AnimationTree" type="AnimationTree" parent="LevelPlayback"]
 active = false
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_o0s7f")
 }
 tree_root = SubResource("AnimationNodeStateMachine_6v0li")
 anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("6_djvqj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelPlayback"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_o0s7f")
 }
 
-[node name="Shapes" type="Node2D" parent="."]
+[node name="Shapes" type="Node2D" parent="LevelPlayback"]
 
 [node name="ProxyCamera0" type="Node2D" parent="."]
 position = Vector2(-512, 0)
@@ -325,11 +107,11 @@ script = ExtResource("6_v4jip")
 
 [connection signal="dead" from="Player0" to="." method="_on_player_dead"]
 [connection signal="dead" from="Player1" to="." method="_on_player_dead"]
-[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="animation_started" from="AnimationTree" to="AnimationTree" method="_on_animation_started"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_wave_ended"]
-[connection signal="animation_list_changed" from="AnimationPlayer" to="AnimationTree" method="_on_animation_player_animation_list_changed"]
-[connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationTree" method="_on_animation_player_current_animation_changed"]
+[connection signal="animation_finished" from="LevelPlayback/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="LevelPlayback/AnimationTree" to="LevelPlayback/AnimationTree" method="_on_animation_started"]
+[connection signal="animation_finished" from="LevelPlayback/AnimationPlayer" to="." method="_on_wave_ended"]
+[connection signal="animation_list_changed" from="LevelPlayback/AnimationPlayer" to="LevelPlayback/AnimationTree" method="_on_animation_player_animation_list_changed"]
+[connection signal="current_animation_changed" from="LevelPlayback/AnimationPlayer" to="LevelPlayback/AnimationTree" method="_on_animation_player_current_animation_changed"]
 
 [editable path="Player0"]
 [editable path="Player1"]

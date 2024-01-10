@@ -59,7 +59,7 @@ func stop():
 
 func _enter_tree():
 	child_entered_tree.connect(_on_child_entered_tree)
-	child_exiting_tree.connect(update_configuration_warnings)
+	child_exiting_tree.connect(update_configuration_warnings.bind()) # remove parameter passed by child_exiting_tree
 	child_order_changed.connect(update_configuration_warnings)
 
 

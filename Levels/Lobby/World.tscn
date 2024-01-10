@@ -1,26 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://rm5x352cvmes"]
+[gd_scene load_steps=7 format=3 uid="uid://bvkgwk6nxr1ld"]
 
-[ext_resource type="PackedScene" uid="uid://1lwlway4fm2f" path="res://World/AbstractWorld.tscn" id="1_ahdgm"]
+[ext_resource type="Script" path="res://Levels/BaseWorld.gd" id="1_wbou4"]
+[ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_1b440"]
+[ext_resource type="Script" path="res://World/View/ProxyCamera.gd" id="4_a50vj"]
+[ext_resource type="Script" path="res://Levels/LevelPlayback.gd" id="5_vs34l"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8cm0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0s7f"]
 
-[node name="World" instance=ExtResource("1_ahdgm")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3h4cl"]
 
-[node name="Sprite2D" parent="Player0" index="0"]
-frame = 14
+[node name="World" type="Node2D" node_paths=PackedStringArray("player_0", "player_1", "proxy_camera_0", "proxy_camera_1", "level_playback")]
+script = ExtResource("1_wbou4")
+player_0 = NodePath("Player0")
+player_1 = NodePath("Player1")
+proxy_camera_0 = NodePath("ProxyCamera0")
+proxy_camera_1 = NodePath("ProxyCamera1")
+level_playback = NodePath("LevelPlayback")
 
-[node name="Sprite2D" parent="Player1" index="0"]
-frame = 14
+[node name="Player0" parent="." instance=ExtResource("2_1b440")]
+position = Vector2(-512, 0)
+player_shade_offset = Vector2i(0, 0)
 
-[node name="StateMachine" parent="." index="3"]
+[node name="Player1" parent="." instance=ExtResource("2_1b440")]
+position = Vector2(512, 0)
+player_id = 1
+player_shade_offset = Vector2i(0, 0)
+
+[node name="ProxyCamera0" type="Node2D" parent="."]
+position = Vector2(-512, 0)
+script = ExtResource("4_a50vj")
+
+[node name="ProxyCamera1" type="Node2D" parent="."]
+position = Vector2(512, 0)
+script = ExtResource("4_a50vj")
+
+[node name="LevelPlayback" type="Node2D" parent="."]
+script = ExtResource("5_vs34l")
+
+[node name="AnimationTree" type="AnimationTree" parent="LevelPlayback"]
+active = false
+root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_p8cm0")
+"": SubResource("AnimationLibrary_o0s7f")
+}
+tree_root = SubResource("AnimationNodeStateMachine_3h4cl")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelPlayback"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_o0s7f")
 }
 
-[node name="AnimationPlayer" parent="." index="4"]
-libraries = {
-"": SubResource("AnimationLibrary_p8cm0")
-}
-
-[editable path="Player0"]
-[editable path="Player1"]
+[node name="Shapes" type="Node2D" parent="LevelPlayback"]

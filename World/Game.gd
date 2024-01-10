@@ -40,6 +40,7 @@ func _load_level(level_resource: LevelResource):
 		level.queue_free()
 	
 	level = level_resource.level_scene.instantiate()
+	print('Loading level: ', level.name)
 	level_container.add_child(level)
 	
 	if multiplayer.get_unique_id() == client_peer_id:
