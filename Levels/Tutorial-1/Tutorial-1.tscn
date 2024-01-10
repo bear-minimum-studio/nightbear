@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://cs5tga0wu7sbs"]
 
 [ext_resource type="Script" path="res://Levels/Tutorial-1/Tutorial-1.gd" id="1_00gyl"]
-[ext_resource type="PackedScene" uid="uid://d1sy4i23ox6ha" path="res://Levels/Tutorial-1/World.tscn" id="2_0pmx7"]
+[ext_resource type="PackedScene" uid="uid://btftrtkiucw47" path="res://Levels/Tutorial-1/World.tscn" id="2_0pmx7"]
 [ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="3_gd8f3"]
 [ext_resource type="Texture2D" uid="uid://8c73qhnhnn85" path="res://Projectiles/ProjectilesTypes/projectile_bad.png" id="4_f2r1g"]
 [ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear0.png" id="5_d0aqe"]

@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_hkqgd")
 level_scene = ExtResource("1_imh8v")
-difficulty = "tuto"
-description = ""
+difficulty = "unrated"
+description = "Lobby to wait for players to connect"
