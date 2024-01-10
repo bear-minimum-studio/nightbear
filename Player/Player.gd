@@ -8,13 +8,17 @@ signal dead(player_id: int)
 
 @onready var build_timer = $BuildTimer
 @onready var sprite = $Sprite2D
-@onready var player_shade = $PlayerShade
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree_controller = $AnimationTree.get("parameters/playback")
 @onready var spell_fx = $SpellFX
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var multiplayer_synchronizer = $MultiplayerSynchronizer
 
+var player_shade : PlayerShade :
+	set(node):
+		node.player_id = player_id
+		player_shade = node
+		update_configuration_warnings()
 
 @export var is_immortal := false
 @export var lives := 1
@@ -23,12 +27,8 @@ signal dead(player_id: int)
 		player_id = value
 		if Engine.is_editor_hint() and is_node_ready():
 			sprite.player_id = value
-			player_shade.player_id = value
-
-@export var player_shade_offset : Vector2i = Vector2i.ZERO :
-	set(value):
-		player_shade.global_transform = value
-		player_shade_offset = value
+			if player_shade != null:
+				player_shade.player_id = value
 
 var accept_input := true
 
@@ -54,6 +54,22 @@ var peer_id : int:
 		set_multiplayer_authority(value)
 var input_id : int
 var ready_to_build := false
+
+# WARNIGNS IMLEMENTATION #
+func _enter_tree():
+	child_entered_tree.connect(_on_child_entered_tree)
+	child_exiting_tree.connect(update_configuration_warnings.bind()) # remove parameter passed by child_exiting_tree
+	child_order_changed.connect(update_configuration_warnings)
+	
+func _on_child_entered_tree(node):
+	if player_shade == null and node is PlayerShade:
+		player_shade = node
+
+func _get_configuration_warnings():
+	var warning = []
+	if player_shade == null:
+		warning.append('This node has no PlayerShade, consider adding a PlayerShade as a child')
+	return warning
 
 func _ready():
 	if Engine.is_editor_hint(): return

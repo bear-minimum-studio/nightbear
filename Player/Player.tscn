@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://v7d30trnnhbn"]
+[gd_scene load_steps=19 format=3 uid="uid://v7d30trnnhbn"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bxd5bv2jtrx7" path="res://Player/bear0.png" id="2_ly555"]
 [ext_resource type="Script" path="res://Player/PlayerSprite.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://bguyk7nhviyo8" path="res://Audio/SFX/Spell/spell_2.wav" id="4"]
-[ext_resource type="PackedScene" uid="uid://llb2a20jft0v" path="res://Player/PlayerShade.tscn" id="4_vqo0i"]
 [ext_resource type="PackedScene" uid="uid://cgxoetvsqjw5m" path="res://Audio/SFX/FXPlayer.tscn" id="5"]
 [ext_resource type="AudioStream" uid="uid://df4cphf11r7me" path="res://Audio/SFX/Spell/spell_3.wav" id="6"]
 [ext_resource type="AudioStream" uid="uid://d21seei5xutcs" path="res://Audio/SFX/Spell/spell_1.wav" id="7"]
@@ -87,7 +86,6 @@ properties/1/replication_mode = 1
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 20
 script = ExtResource("2")
-player_shade_offset = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15.9547)
@@ -97,8 +95,6 @@ hframes = 11
 vframes = 2
 frame = 12
 script = ExtResource("3")
-
-[node name="PlayerShade" parent="." instance=ExtResource("4_vqo0i")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.64881, -1.76895)
