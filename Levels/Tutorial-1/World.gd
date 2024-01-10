@@ -1,3 +1,3 @@
-extends AbstractWorld
+extends BaseWorld
 
 

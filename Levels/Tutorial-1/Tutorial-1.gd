@@ -32,7 +32,7 @@ var state = states.PLAY :
 
 func _ready():
 	super._ready()
-	world.animation_tree.animation_started.connect(_on_wave_started)
+	world.level_playback.animation_tree.animation_started.connect(_on_wave_started)
 
 
 func _input(event):
