@@ -182,7 +182,7 @@ states/NightmareTuto/position = Vector2(638.857, 52.2857)
 states/RESET/node = SubResource("AnimationNodeAnimation_tpkuk")
 states/RESET/position = Vector2(389.714, 99.2128)
 states/ShieldTuto/node = SubResource("AnimationNodeStateMachine_a2kk2")
-states/ShieldTuto/position = Vector2(639.662, 207.143)
+states/ShieldTuto/position = Vector2(638.857, 206.143)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_652yn"), "RESET", "NightmareTuto", SubResource("AnimationNodeStateMachineTransition_sw76k"), "NightmareTuto", "RESET", SubResource("AnimationNodeStateMachineTransition_bsmqd"), "RESET", "ShieldTuto", SubResource("AnimationNodeStateMachineTransition_naiqe"), "ShieldTuto", "RESET", SubResource("AnimationNodeStateMachineTransition_yskv0")]
 
 [node name="Tutorial-1" type="Control" node_paths=PackedStringArray("split_screen")]
@@ -314,6 +314,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_38fnd")
 
 [node name="Label" type="Label" parent="UI/ShieldTuto"]
 layout_mode = 0
@@ -426,16 +427,16 @@ position = Vector2(-415.014, 11.1121)
 scale = Vector2(1.53125, 1.53125)
 texture = ExtResource("8_0tto7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_c2x6k")
-}
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c2x6k")
 }
 tree_root = SubResource("AnimationNodeStateMachine_o1wry")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c2x6k")
+}
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
