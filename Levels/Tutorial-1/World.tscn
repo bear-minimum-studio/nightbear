@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://btftrtkiucw47"]
+[gd_scene load_steps=25 format=3 uid="uid://btftrtkiucw47"]
 
 [ext_resource type="Script" path="res://Levels/BaseWorld.gd" id="1_qnjne"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_3r4j6"]
@@ -9,13 +9,40 @@
 [ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="4_6r74d"]
 [ext_resource type="Script" path="res://Levels/LevelPlayback.gd" id="4_nrim8"]
 
+[sub_resource type="Animation" id="Animation_o7m7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shapes/nightmare_tuto_0/Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, -53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shapes/shield_tuto_0/Wall2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_dnxi0"]
 resource_name = "NightmareTuto"
 length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shapes/NightmareTuto/Wall:position")
+tracks/0/path = NodePath("Shapes/nightmare_tuto_0/Wall:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +54,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shapes/NightmareTuto/Wall")
+tracks/1/path = NodePath("Shapes/nightmare_tuto_0/Wall")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,40 +69,13 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_o7m7d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Shapes/NightmareTuto/Wall:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-64, -53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shapes/ShieldTuto/Wall2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-64, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_pehfw"]
 resource_name = "ShieldTuto"
 length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shapes/ShieldTuto/Wall2:position")
+tracks/0/path = NodePath("Shapes/shield_tuto_0/Wall2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,43 +87,64 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y60ny"]
 _data = {
-"NightmareTuto": SubResource("Animation_dnxi0"),
 "RESET": SubResource("Animation_o7m7d"),
-"ShieldTuto": SubResource("Animation_pehfw")
+"nightmare_tuto_0": SubResource("Animation_dnxi0"),
+"shield_tuto_0": SubResource("Animation_pehfw")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4wym"]
-animation = &"NightmareTuto"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_knuc7"]
+animation = &"nightmare_tuto_0"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2dym"]
-animation = &"RESET"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2065q"]
-animation = &"ShieldTuto"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xuew6"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rvhil"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pab12"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0mqd"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q8b0l"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jj6bd"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v5t45"]
+state_machine_type = 2
+states/nightmare_tuto_0/node = SubResource("AnimationNodeAnimation_knuc7")
+states/nightmare_tuto_0/position = Vector2(456, 98)
+transitions = ["Start", "nightmare_tuto_0", SubResource("AnimationNodeStateMachineTransition_pab12"), "nightmare_tuto_0", "End", SubResource("AnimationNodeStateMachineTransition_q8b0l")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_budm8"]
+animation = &"shield_tuto_0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wr10m"]
 switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a3ct4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ln06r"]
+state_machine_type = 2
+states/shield_tuto_0/node = SubResource("AnimationNodeAnimation_budm8")
+states/shield_tuto_0/position = Vector2(523, 100)
+transitions = ["Start", "shield_tuto_0", SubResource("AnimationNodeStateMachineTransition_wr10m"), "shield_tuto_0", "End", SubResource("AnimationNodeStateMachineTransition_a3ct4")]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bpm5o"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mabch"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81t48"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i2f4r"]
 states/End/position = Vector2(965, 100)
-states/NightmareTuto/node = SubResource("AnimationNodeAnimation_o4wym")
-states/NightmareTuto/position = Vector2(555, 49)
-states/RESET/node = SubResource("AnimationNodeAnimation_u2dym")
-states/RESET/position = Vector2(362, 59)
-states/ShieldTuto/node = SubResource("AnimationNodeAnimation_2065q")
-states/ShieldTuto/position = Vector2(776, 59)
-transitions = ["NightmareTuto", "ShieldTuto", SubResource("AnimationNodeStateMachineTransition_xuew6"), "ShieldTuto", "End", SubResource("AnimationNodeStateMachineTransition_rvhil"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u0mqd"), "RESET", "NightmareTuto", SubResource("AnimationNodeStateMachineTransition_jj6bd")]
+states/NightmareTuto/node = SubResource("AnimationNodeStateMachine_v5t45")
+states/NightmareTuto/position = Vector2(496, 100)
+states/ShieldTuto/node = SubResource("AnimationNodeStateMachine_ln06r")
+states/ShieldTuto/position = Vector2(744, 100)
+transitions = ["NightmareTuto", "ShieldTuto", SubResource("AnimationNodeStateMachineTransition_bpm5o"), "ShieldTuto", "End", SubResource("AnimationNodeStateMachineTransition_mabch"), "Start", "NightmareTuto", SubResource("AnimationNodeStateMachineTransition_81t48")]
 graph_offset = Vector2(-265, 3)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player_0", "player_1", "proxy_camera_0", "proxy_camera_1", "level_playback")]
@@ -181,48 +202,48 @@ libraries = {
 
 [node name="Shapes" type="Node2D" parent="LevelPlayback"]
 
-[node name="NightmareTuto" type="Node2D" parent="LevelPlayback/Shapes"]
-process_mode = 4
-visible = false
+[node name="nightmare_tuto_0" type="Node2D" parent="LevelPlayback/Shapes"]
 
-[node name="Wall" parent="LevelPlayback/Shapes/NightmareTuto" instance=ExtResource("3_truev")]
+[node name="Wall" parent="LevelPlayback/Shapes/nightmare_tuto_0" instance=ExtResource("3_truev")]
 position = Vector2(-64, -53)
 nb_lines = 12
 nb_columns = 1
 
-[node name="ShieldTuto" type="Node2D" parent="LevelPlayback/Shapes"]
+[node name="shield_tuto_0" type="Node2D" parent="LevelPlayback/Shapes"]
+process_mode = 4
+visible = false
 
-[node name="Wall2" parent="LevelPlayback/Shapes/ShieldTuto" instance=ExtResource("3_truev")]
+[node name="Wall2" parent="LevelPlayback/Shapes/shield_tuto_0" instance=ExtResource("3_truev")]
 position = Vector2(-64, 0)
 nb_lines = 17
 nb_columns = 1
 
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36395" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36395" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36396" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36396" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36397" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36397" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36398" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36398" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36399" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36399" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36400" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36400" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36401" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36401" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36402" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36402" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36403" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36403" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36404" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36404" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36405" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36405" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36406" to="LevelPlayback/Shapes/NightmareTuto/Wall/@Area2D@36406" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36487" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36487" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36488" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36488" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36489" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36489" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36490" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36490" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36491" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36491" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36492" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36492" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36493" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36493" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36494" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36494" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36495" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36495" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36496" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36496" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36497" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36497" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36498" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36498" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36499" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36499" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36500" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36500" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36501" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36501" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36502" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36502" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36503" to="LevelPlayback/Shapes/ShieldTuto/Wall2/@Area2D@36503" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17737" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17737" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17738" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17738" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17739" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17739" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17740" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17740" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17741" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17741" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17742" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17742" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17743" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17743" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17744" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17744" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17745" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17745" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17746" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17746" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17747" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17747" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17748" to="LevelPlayback/Shapes/nightmare_tuto_0/Wall/@Area2D@17748" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17829" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17829" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17830" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17830" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17831" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17831" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17832" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17832" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17833" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17833" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17834" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17834" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17835" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17835" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17836" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17836" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17837" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17837" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17838" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17838" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17839" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17839" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17840" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17840" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17841" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17841" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17842" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17842" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17843" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17843" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17844" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17844" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17845" to="LevelPlayback/Shapes/shield_tuto_0/Wall2/@Area2D@17845" method="_on_Projectile_body_entered"]

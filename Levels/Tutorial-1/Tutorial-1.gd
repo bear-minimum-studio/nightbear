@@ -62,6 +62,6 @@ func _on_animation_tree_animation_finished(anim_name):
 
 
 func _on_player_dead(player_id):
-	var checkpoint = world.state_machine.get_current_node()
+	var checkpoint = world.level_playback.state_machine.get_current_node()
 	reload()
-	world.state_machine.start(checkpoint)
+	world.level_playback.state_machine.start(checkpoint)
