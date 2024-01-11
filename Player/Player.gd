@@ -124,7 +124,7 @@ func reset_position():
 
 @rpc("call_local", "authority")
 func _build():
-	if !ready_to_build:
+	if not ready_to_build:
 		return
 
 	spell_fx.play()
@@ -133,16 +133,20 @@ func _build():
 	reset_build_timer()
 	Events.build.emit(self)
 
+
 func _on_BuildTimer_timeout():
 	ready_to_build = true
+
 
 func reset_build_timer():
 	build_timer.set_wait_time(Parameters.BUILD_RELOAD_TIME)
 	build_timer.start()
 
+
 func hit():
-	if is_immortal: return
-		
+	if is_immortal:
+		return
+	
 	current_health -= 1
 	if current_health <= 0:
 		frozen = true
@@ -154,6 +158,7 @@ func _player_death():
 	if is_multiplayer_authority():
 		_vibrate_controller()
 	dead.emit(player_id)
+
 
 func _vibrate_controller():
 	Input.start_joy_vibration(input_id,0.5,0.5,0.1)
