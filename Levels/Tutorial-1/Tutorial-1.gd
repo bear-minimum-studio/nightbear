@@ -30,9 +30,6 @@ var state = states.PLAY :
 
 
 
-func _ready():
-	super._ready()
-	world.level_playback.animation_tree.animation_started.connect(_on_wave_started)
 
 
 func _input(event):
@@ -40,28 +37,44 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed('ui_accept') or event.is_action_pressed('ui_cancel'):
-		state = states.PLAY
+		set_state.rpc(states.PLAY)
+
+
+func load_world():
+	super.load_world()
+	world.level_playback.animation_tree.animation_started.connect(_on_wave_started)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func set_state(new_state: states):
+	state = new_state
 
 
 func _on_wave_started(anim_name):
+	if not is_multiplayer_authority():
+		return
+	
 	var world_state = world.level_playback.state_machine.get_current_node()
 	if world_state == 'NightmareTuto':
 		if states.NIGHTMARE_TUTO not in shown_tutos:
-			state = states.NIGHTMARE_TUTO
+			set_state.rpc(states.NIGHTMARE_TUTO)
 			shown_tutos.append(state)
 	if world_state == 'ShieldTuto':
 		if states.SHIELD_TUTO not in shown_tutos:
-			state = states.SHIELD_TUTO
+			set_state.rpc(states.SHIELD_TUTO)
 			shown_tutos.append(state)
 
 
-func _on_animation_tree_animation_finished(anim_name):
-	return
-	if anim_name == 'RESET':
-		world.process_mode = Node.PROCESS_MODE_INHERIT # HACK cracra boudin, implement in state machine
+func _on_player_dead(player_id: int):
+	if is_multiplayer_authority():
+		var checkpoint = world.level_playback.state_machine.get_current_node()
+		reload.rpc()
+		await world_reloaded
+		play_world_at_checkpoint.rpc(checkpoint)
 
 
-func _on_player_dead(player_id):
-	var checkpoint = world.level_playback.state_machine.get_current_node()
-	reload()
+@rpc("authority", "call_local", "reliable")
+func play_world_at_checkpoint(checkpoint):
+	world.start()
 	world.level_playback.state_machine.start(checkpoint)
+
