@@ -18,7 +18,8 @@ var player_shade : PlayerShade :
 	set(node):
 		node.player_id = player_id
 		player_shade = node
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 @export var is_immortal := false
 @export var lives := 1
@@ -52,18 +53,16 @@ var peer_id : int:
 	set(value):
 		peer_id = value
 		set_multiplayer_authority(value)
+
 var input_id : int
 var ready_to_build := false
 
-# WARNIGNS IMLEMENTATION #
-func _enter_tree():
-	child_entered_tree.connect(_on_child_entered_tree)
-	child_exiting_tree.connect(update_configuration_warnings.bind()) # remove parameter passed by child_exiting_tree
-	child_order_changed.connect(update_configuration_warnings)
-	
+
+
 func _on_child_entered_tree(node):
 	if player_shade == null and node is PlayerShade:
 		player_shade = node
+
 
 func _get_configuration_warnings():
 	var warning = []
@@ -71,11 +70,27 @@ func _get_configuration_warnings():
 		warning.append('This node has no PlayerShade, consider adding a PlayerShade as a child')
 	return warning
 
+
+func _enter_tree():
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree)
+		
+	if Engine.is_editor_hint():
+		if not child_exiting_tree.is_connected(update_configuration_warnings):
+			child_exiting_tree.connect(update_configuration_warnings.unbind(1)) # remove parameter passed by child_exiting_tree
+			
+		if not child_exiting_tree.is_connected(update_configuration_warnings):
+			child_order_changed.connect(update_configuration_warnings)
+
+
 func _ready():
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint():
+		return
+	
 	input_id = player_id if NetworkTools.local_multiplayer else 0
 	sprite.player_id = player_id
 	player_shade.player_id = player_id
+
 
 func _physics_process(_delta):
 	if Engine.is_editor_hint(): return
@@ -100,6 +115,7 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("P%d_build" % input_id):
 		_build.rpc()
+
 
 @rpc("call_local", "any_peer")
 func reset_position():

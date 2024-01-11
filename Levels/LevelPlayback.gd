@@ -12,7 +12,8 @@ signal playback_ended
 var shapes : Node2D :
 	set(node):
 		shapes = node
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 
 ## Define the sequence of animations to play in the level
@@ -23,7 +24,8 @@ var animation_tree : AnimationTree :
 		animation_tree.animation_started.connect(_on_animation_tree_animation_started)
 		animation_tree.animation_finished.connect(_on_animation_tree_animation_finished)
 		state_machine = animation_tree.get("parameters/playback")
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 
 ## Animate the level
@@ -32,7 +34,8 @@ var animation_player : AnimationPlayer :
 		animation_player = node
 		animation_player.animation_list_changed.connect(_on_animation_player_animation_list_changed)
 		animation_player.current_animation_changed.connect(_on_animation_player_current_animation_changed)
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 #endregion
 #----------------------------
@@ -58,9 +61,15 @@ func stop():
 
 
 func _enter_tree():
-	child_entered_tree.connect(_on_child_entered_tree)
-	child_exiting_tree.connect(update_configuration_warnings.bind()) # remove parameter passed by child_exiting_tree
-	child_order_changed.connect(update_configuration_warnings)
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree)
+	
+	if Engine.is_editor_hint():
+		if not child_exiting_tree.is_connected(update_configuration_warnings):
+			child_exiting_tree.connect(update_configuration_warnings.unbind(1)) # remove parameter passed by child_exiting_tree
+			
+		if not child_exiting_tree.is_connected(update_configuration_warnings):
+			child_order_changed.connect(update_configuration_warnings)
 
 
 func _get_configuration_warnings():
@@ -160,5 +169,3 @@ func _on_child_entered_tree(node):
 	
 	if animation_tree == null and node is AnimationTree:
 		animation_tree = node
-	
-	update_configuration_warnings()
