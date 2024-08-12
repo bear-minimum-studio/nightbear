@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqlo8pmoldm18"]
+
+[ext_resource type="Script" path="res://Levels/BaseLevel.gd" id="1_5ude3"]
+[ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="3_ws8so"]
+
+[node name="EmptyLevel" type="Control" node_paths=PackedStringArray("split_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ude3")
+split_screen = NodePath("SplitScreen")
+
+[node name="SplitScreen" parent="." instance=ExtResource("3_ws8so")]
+layout_mode = 1
