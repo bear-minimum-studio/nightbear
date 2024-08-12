@@ -51,6 +51,7 @@ player_id = 1
 texture = ExtResource("4_ttxky")
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -1
 tile_set = ExtResource("5_lt65w")
 format = 2
 
