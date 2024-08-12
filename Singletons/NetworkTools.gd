@@ -33,7 +33,7 @@ func _upnp_setup():
 		push_warning("UPNP Discover Failed! Error %s" % discover_result)
 		return
 
-	if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
+	if (not upnp.get_gateway()) or (not upnp.get_gateway().is_valid_gateway()):
 		push_warning("UPNP Invalid Gateway!")
 		return
 
