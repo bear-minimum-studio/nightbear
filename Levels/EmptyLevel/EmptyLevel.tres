@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_d6hka")
+name = "Empty Level"
 level_scene = ExtResource("1_dlsa3")
 difficulty = "unrated"
 description = "Empty level"
