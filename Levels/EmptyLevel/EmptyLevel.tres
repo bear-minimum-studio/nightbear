@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=2 format=3 uid="uid://bx54o5djekbsg"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://bx54o5djekbsg"]
 
+[ext_resource type="PackedScene" uid="uid://cqlo8pmoldm18" path="res://Levels/EmptyLevel/EmptyLevel.tscn" id="1_dlsa3"]
 [ext_resource type="Script" path="res://Levels/LevelResource.gd" id="2_d6hka"]
 
 [resource]
 script = ExtResource("2_d6hka")
-difficulty = "expert"
+level_scene = ExtResource("1_dlsa3")
+difficulty = "unrated"
 description = "Empty level"
