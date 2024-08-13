@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://d006qjf4psj3s"]
+
+[ext_resource type="Script" path="res://addons/newlevel/LevelSetupDialog.gd" id="1_81odh"]
+
+[node name="LevelSetupDialog" type="Window" node_paths=PackedStringArray("level_name_edit", "template_option_button", "create_button", "background")]
+disable_3d = true
+title = "Create a new level"
+initial_position = 4
+size = Vector2i(600, 300)
+script = ExtResource("1_81odh")
+level_name_edit = NodePath("Control/HBoxContainer/VBoxContainer/HBoxContainer/LevelNameEdit")
+template_option_button = NodePath("Control/HBoxContainer/VBoxContainer/HBoxContainer2/TemplateOptionButton")
+create_button = NodePath("Control/HBoxContainer/VBoxContainer/CreateButton")
+background = NodePath("Control/Background")
+
+[node name="Control" type="Panel" parent="."]
+offset_right = 600.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level name:"
+
+[node name="LevelNameEdit" type="LineEdit" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "My Level"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pick a template:"
+
+[node name="TemplateOptionButton" type="OptionButton" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateButton" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create"
+
+[node name="VScrollBar" type="VScrollBar" parent="Control/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+
+[connection signal="item_selected" from="Control/HBoxContainer/VBoxContainer/HBoxContainer2/TemplateOptionButton" to="." method="_on_template_option_button_item_selected"]
+[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]

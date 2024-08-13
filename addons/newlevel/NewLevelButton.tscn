@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj0v3qcii06x0"]
+
+[ext_resource type="Texture2D" uid="uid://ca70qb6v1p3gj" path="res://addons/newlevel/create.png" id="1_u1wyl"]
+
+[node name="NewLevelButton" type="Button"]
+offset_right = 88.0
+offset_bottom = 31.0
+theme_override_constants/icon_max_width = 29
+text = "New Level"
+icon = ExtResource("1_u1wyl")
