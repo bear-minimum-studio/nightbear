@@ -32,7 +32,6 @@ func _ready():
 	_load_level(lobby)
 	
 	Events.level_ended.connect(_on_level_ended)
-	Events.player_dead.connect(_player_dead)
 
 
 func _load_level(level_resource: LevelResource):
@@ -107,14 +106,6 @@ func _dream_caught(_position: Vector2):
 	dreams_caught += 1
 	var wording = " dream caught" if dreams_caught == 1 else " dreams caught"
 	dream_caught_text.text = "%d%s" % [dreams_caught, wording]
-
-
-func _player_dead(player_id):
-	print("Player %d is dead !" % player_id)
-	death_fx.play()
-	is_running = false
-	game_over.show_game_over(-1)
-	get_tree().paused = true
 
 
 func _end():

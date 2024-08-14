@@ -19,5 +19,4 @@ signal wave_started(wave_index: int, max_wave_index: int)
 
 signal missed_ally_projectile
 signal dream_caught
-signal player_dead
 signal build(player: Player)
