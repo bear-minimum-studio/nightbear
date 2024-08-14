@@ -1,11 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://56eofpacdunl"]
+[gd_scene load_steps=14 format=3 uid="uid://56eofpacdunl"]
 
 [ext_resource type="Script" path="res://Levels/BaseWorld.gd" id="1_h1qaa"]
 [ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_xk1ra"]
-[ext_resource type="Script" path="res://Player/Player.gd" id="3_q2284"]
 [ext_resource type="PackedScene" uid="uid://llb2a20jft0v" path="res://Player/PlayerShade.tscn" id="4_fvjtx"]
-[ext_resource type="Texture2D" uid="uid://ena704ofwry5" path="res://Player/paw0.png" id="5_mp5yg"]
-[ext_resource type="Script" path="res://Player/PlayerShade.gd" id="6_qqtum"]
 [ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="7_plt0v"]
 [ext_resource type="TileSet" uid="uid://bbjaejcq8ob24" path="res://new_tile_set.tres" id="8_xp73x"]
 [ext_resource type="Script" path="res://Levels/LevelPlayback.gd" id="9_wvoiq"]
@@ -43,30 +40,19 @@ proxy_camera_0 = NodePath("ProxyCamera0")
 proxy_camera_1 = NodePath("ProxyCamera1")
 level_playback = NodePath("LevelPlayback")
 
-[node name="Player0" type="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("2_xk1ra")]
+[node name="Player0" parent="." instance=ExtResource("2_xk1ra")]
 position = Vector2(-384, 0)
-collision_mask = 20
-script = ExtResource("3_q2284")
 
-[node name="PlayerShade" type="Sprite2D" parent="Player0" groups=["player_shade"] instance=ExtResource("4_fvjtx")]
-modulate = Color(1, 1, 1, 0.466667)
+[node name="PlayerShade" parent="Player0" instance=ExtResource("4_fvjtx")]
 position = Vector2(768, 0)
-scale = Vector2(0.645768, 0.645768)
-texture = ExtResource("5_mp5yg")
-script = ExtResource("6_qqtum")
 
-[node name="Player1" type="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("2_xk1ra")]
+[node name="Player1" parent="." instance=ExtResource("2_xk1ra")]
 position = Vector2(384, 0)
-collision_mask = 20
-script = ExtResource("3_q2284")
 player_id = 1
 
-[node name="PlayerShade" type="Sprite2D" parent="Player1" groups=["player_shade"] instance=ExtResource("4_fvjtx")]
-modulate = Color(1, 1, 1, 0.466667)
+[node name="PlayerShade" parent="Player1" instance=ExtResource("4_fvjtx")]
 position = Vector2(-768, 0)
-scale = Vector2(0.645768, 0.645768)
 texture = ExtResource("7_plt0v")
-script = ExtResource("6_qqtum")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
