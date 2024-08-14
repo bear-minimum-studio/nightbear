@@ -18,11 +18,15 @@ var selected_template
 # 	- check if level name is taken
 
 
+
 func _ready():
 	populate_template_menu()
+	level_name_edit.grab_focus()
+
 
 
 func populate_template_menu():
+	template_option_button.clear()
 	for template in templates:
 		template_option_button.add_item(template.name)
 	if templates.size() != 0:
@@ -30,13 +34,14 @@ func populate_template_menu():
 		template_option_button.item_selected.emit(0)
 
 
+
 func _on_create_button_pressed():
 	if not level_name_edit.text:
 		return
 	
 	create_level_from_template(level_name_edit.text, selected_template)
-	
 	close_requested.emit()
+
 
 
 func create_level_from_template(level_name: String, template: LevelResource):
@@ -73,7 +78,7 @@ func create_level_from_template(level_name: String, template: LevelResource):
 	
 	var new_resource_path = new_folder + '/' + pascal_name +'.tres'
 	ResourceSaver.save(new_resource, new_resource_path)
-	
+
 
 
 func save_scene_to_file(scene, path):
@@ -83,6 +88,15 @@ func save_scene_to_file(scene, path):
 
 
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		close_requested.emit()
+
+
 func _on_template_option_button_item_selected(index):
 	selected_template = templates[index]
 
+
+
+func _on_level_name_edit_text_submitted(new_text):
+	create_button.grab_focus()
