@@ -57,6 +57,11 @@ func _ready():
 		spawn()
 
 
+func appear(time: float) -> void :
+	$AnimationPlayer.speed_scale = 1 / time
+	$AnimationPlayer.play("appearance")
+
+
 func index(row: int, column: int) -> int:
 	return column + row * nb_columns
 
