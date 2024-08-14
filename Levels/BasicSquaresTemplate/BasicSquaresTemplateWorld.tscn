@@ -1,0 +1,103 @@
+[gd_scene load_steps=17 format=3 uid="uid://56eofpacdunl"]
+
+[ext_resource type="Script" path="res://Levels/BaseWorld.gd" id="1_h1qaa"]
+[ext_resource type="PackedScene" uid="uid://v7d30trnnhbn" path="res://Player/Player.tscn" id="2_xk1ra"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="3_q2284"]
+[ext_resource type="PackedScene" uid="uid://llb2a20jft0v" path="res://Player/PlayerShade.tscn" id="4_fvjtx"]
+[ext_resource type="Texture2D" uid="uid://ena704ofwry5" path="res://Player/paw0.png" id="5_mp5yg"]
+[ext_resource type="Script" path="res://Player/PlayerShade.gd" id="6_qqtum"]
+[ext_resource type="Texture2D" uid="uid://c1rsf8djmo2rw" path="res://Player/paw1.png" id="7_plt0v"]
+[ext_resource type="TileSet" uid="uid://bbjaejcq8ob24" path="res://new_tile_set.tres" id="8_xp73x"]
+[ext_resource type="Script" path="res://Levels/LevelPlayback.gd" id="9_wvoiq"]
+[ext_resource type="Script" path="res://World/View/ProxyCamera.gd" id="10_uw6ap"]
+
+[sub_resource type="Animation" id="Animation_48ecq"]
+resource_name = "EmptyWave"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ee0k3"]
+_data = {
+"EmptyWave": SubResource("Animation_48ecq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4j2m0"]
+animation = &"EmptyWave"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nengq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhxe0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kdxha"]
+states/EmptyWave/node = SubResource("AnimationNodeAnimation_4j2m0")
+states/EmptyWave/position = Vector2(469, 100)
+states/Start/position = Vector2(176, 100)
+transitions = ["Start", "EmptyWave", SubResource("AnimationNodeStateMachineTransition_nengq"), "EmptyWave", "End", SubResource("AnimationNodeStateMachineTransition_lhxe0")]
+
+[node name="BasicSquaresTemplateWorld" type="Node2D" node_paths=PackedStringArray("player_0", "player_1", "proxy_camera_0", "proxy_camera_1", "level_playback")]
+script = ExtResource("1_h1qaa")
+player_0 = NodePath("Player0")
+player_1 = NodePath("Player1")
+proxy_camera_0 = NodePath("ProxyCamera0")
+proxy_camera_1 = NodePath("ProxyCamera1")
+level_playback = NodePath("LevelPlayback")
+
+[node name="Player0" type="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("2_xk1ra")]
+position = Vector2(-384, 0)
+collision_mask = 20
+script = ExtResource("3_q2284")
+
+[node name="PlayerShade" type="Sprite2D" parent="Player0" groups=["player_shade"] instance=ExtResource("4_fvjtx")]
+modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(768, 0)
+scale = Vector2(0.645768, 0.645768)
+texture = ExtResource("5_mp5yg")
+script = ExtResource("6_qqtum")
+
+[node name="Player1" type="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("2_xk1ra")]
+position = Vector2(384, 0)
+collision_mask = 20
+script = ExtResource("3_q2284")
+player_id = 1
+
+[node name="PlayerShade" type="Sprite2D" parent="Player1" groups=["player_shade"] instance=ExtResource("4_fvjtx")]
+modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(-768, 0)
+scale = Vector2(0.645768, 0.645768)
+texture = ExtResource("7_plt0v")
+script = ExtResource("6_qqtum")
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource("8_xp73x")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65535, 65536, 2, -65534, 262144, 1, 2, 262144, 1, 1, 65536, 2, -3, 262144, 1, 65533, 262144, 1, 131069, 0, 1, 65537, 0, 0, 65538, 0, 1, -65539, 65536, 3, -131071, 131072, 0, -131070, 65536, 3, -4, 262144, 1, 65532, 262144, 1, -65533, 262144, 1, 3, 262144, 1, 131068, 0, 1, 65539, 0, 1, -131069, 65536, 3, -65540, 65536, 3, -65538, 196608, 0, -2, 196608, 2, 65534, 196608, 2, 131070, 65536, 0, -131068, 196608, 0, -65532, 196608, 2, 4, 196608, 2, 65540, 65536, 0, -65541, 131072, 0, -5, 65536, 2, 65531, 65536, 2, 131067, 0, 0)
+
+[node name="LevelPlayback" type="Node2D" parent="."]
+script = ExtResource("9_wvoiq")
+
+[node name="AnimationTree" type="AnimationTree" parent="LevelPlayback"]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_ee0k3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kdxha")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelPlayback"]
+libraries = {
+"": SubResource("AnimationLibrary_ee0k3")
+}
+
+[node name="Shapes" type="Node2D" parent="LevelPlayback"]
+
+[node name="EmptyWave" type="Node2D" parent="LevelPlayback/Shapes"]
+
+[node name="ProxyCamera0" type="Node2D" parent="."]
+position = Vector2(-384, 0)
+script = ExtResource("10_uw6ap")
+
+[node name="ProxyCamera1" type="Node2D" parent="."]
+position = Vector2(384, 0)
+script = ExtResource("10_uw6ap")

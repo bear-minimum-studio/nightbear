@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="LevelCatalogResource" load_steps=3 format=3 uid="uid://bu507m2inynoa"]
+[gd_resource type="Resource" script_class="LevelCatalogResource" load_steps=4 format=3 uid="uid://bu507m2inynoa"]
 
 [ext_resource type="Resource" uid="uid://bx54o5djekbsg" path="res://Levels/EmptyLevel/EmptyLevel.tres" id="1_h3stf"]
 [ext_resource type="Script" path="res://Levels/LevelCatalogResource.gd" id="1_mlt6u"]
+[ext_resource type="Resource" uid="uid://diej6vnappv4l" path="res://Levels/BasicSquaresTemplate/BasicSquaresTemplate.tres" id="2_5tiwf"]
 
 [resource]
 script = ExtResource("1_mlt6u")
-levels = Array[Resource("res://Levels/LevelResource.gd")]([ExtResource("1_h3stf")])
+levels = Array[Resource("res://Levels/LevelResource.gd")]([ExtResource("1_h3stf"), ExtResource("2_5tiwf")])

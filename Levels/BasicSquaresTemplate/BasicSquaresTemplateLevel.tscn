@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://2e382g0siiei"]
+
+[ext_resource type="Script" path="res://Levels/BaseLevel.gd" id="1_3bl7t"]
+[ext_resource type="PackedScene" uid="uid://56eofpacdunl" path="res://Levels/BasicSquaresTemplate/BasicSquaresTemplateWorld.tscn" id="2_of7rc"]
+[ext_resource type="PackedScene" uid="uid://ccx3x30co0vay" path="res://World/View/SplitScreen.tscn" id="3_eipt4"]
+[ext_resource type="Script" path="res://World/View/SplitScreen.gd" id="4_8hoc1"]
+
+[node name="BasicSquaresTemplateLevel" type="Control" node_paths=PackedStringArray("split_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3bl7t")
+world_scene = ExtResource("2_of7rc")
+split_screen = NodePath("SplitScreen")
+
+[node name="SplitScreen" type="Control" parent="." instance=ExtResource("3_eipt4")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_8hoc1")

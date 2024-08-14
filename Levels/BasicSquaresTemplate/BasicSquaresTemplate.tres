@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://diej6vnappv4l"]
+
+[ext_resource type="PackedScene" uid="uid://2e382g0siiei" path="res://Levels/BasicSquaresTemplate/BasicSquaresTemplateLevel.tscn" id="1_g1hr0"]
+[ext_resource type="Script" path="res://Levels/LevelResource.gd" id="2_den2k"]
+
+[resource]
+script = ExtResource("2_den2k")
+name = "Basic Squares Template"
+level_scene = ExtResource("1_g1hr0")
+difficulty = "unrated"
+description = "Empty level"
