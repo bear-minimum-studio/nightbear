@@ -1,30 +1,87 @@
-[gd_scene load_steps=3 format=3 uid="uid://4l2bnj6hp6s6"]
+[gd_scene load_steps=6 format=3 uid="uid://4l2bnj6hp6s6"]
 
 [ext_resource type="Script" path="res://Shapes/Arc/Arc.gd" id="1_fauj3"]
 [ext_resource type="PackedScene" uid="uid://c8ei17161m44f" path="res://Projectiles/ProjectilesTypes/EnemyProjectile.tscn" id="2_jg1tn"]
 
-[node name="Arc" type="Node2D"]
+[sub_resource type="Animation" id="Animation_7xtod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collisions")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ucpnv"]
+resource_name = "appearance"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collisions")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdh1f"]
+_data = {
+"RESET": SubResource("Animation_7xtod"),
+"appearance": SubResource("Animation_ucpnv")
+}
+
+[node name="Arc" type="Node2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_fauj3")
 projectile_scene = ExtResource("2_jg1tn")
-nb_items = 20
+animation_player = NodePath("AnimationPlayer")
+collisions = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tdh1f")
+}
+speed_scale = 1.41044
 
 [connection signal="body_entered" from="Projectile" to="Projectile" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28985" to="@Area2D@28985" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28986" to="@Area2D@28986" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28987" to="@Area2D@28987" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28988" to="@Area2D@28988" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28989" to="@Area2D@28989" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28990" to="@Area2D@28990" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28991" to="@Area2D@28991" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28992" to="@Area2D@28992" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28993" to="@Area2D@28993" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28994" to="@Area2D@28994" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28995" to="@Area2D@28995" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28996" to="@Area2D@28996" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28997" to="@Area2D@28997" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28998" to="@Area2D@28998" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@28999" to="@Area2D@28999" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@29000" to="@Area2D@29000" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@29001" to="@Area2D@29001" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@29002" to="@Area2D@29002" method="_on_Projectile_body_entered"]
-[connection signal="body_entered" from="@Area2D@29003" to="@Area2D@29003" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24442" to="@Area2D@24442" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24443" to="@Area2D@24443" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24444" to="@Area2D@24444" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24445" to="@Area2D@24445" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24446" to="@Area2D@24446" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24447" to="@Area2D@24447" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24448" to="@Area2D@24448" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24449" to="@Area2D@24449" method="_on_Projectile_body_entered"]
+[connection signal="body_entered" from="@Area2D@24450" to="@Area2D@24450" method="_on_Projectile_body_entered"]
