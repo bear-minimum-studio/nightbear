@@ -40,6 +40,7 @@ class Item:
 	func update_position(progress) -> void:
 		var distance = max(0, progress - shoot_interval * index)
 		projectile.position = distance * Vector2.from_angle(shoot_angle)
+		projectile.rotation = shoot_angle
 		
 	func queue_free() -> void:
 		if projectile != null:
