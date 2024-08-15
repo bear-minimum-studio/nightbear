@@ -3,26 +3,54 @@ extends Node2D
 class_name Generator
 
 
-
-@export var projectile : PackedScene :
+var projectile : Node2D = null :
 	set(value):
-		projectile = value
-		if Engine.is_editor_hint():
-			recreate_pool()
+		if value != projectile:
+			processing = false
+			projectile = value
+			if value == null:
+				if debug_mode: print('no projectile')
+				free_pool()
+			else:
+				if debug_mode: print('new projectile')
+				recreate_pool()
+				processing = true
+		else:
+			if debug_mode: print('projectile unchanged: ', value)
+
+
+
+var processing := false
+var generated : Node2D
+var generated_changed := false
+
+var items : Array = []
+var previous_frame_progress := progress
+
 
 @export var pool_size : int = 100 :
 	set(value):
-		pool_size = value
-		if Engine.is_editor_hint():
+		if pool_size != value:
+			processing = false
+			pool_size = value
 			recreate_pool()
+			processing = true
 
 #TODO: fix behavior when animating interval 
 @export_range(0.0, 1000.0, 5.0, "suffix:px") var interval : float = 100.0
 @export_range(0.0, 10000.0, 5.0, "suffix:px") var progress : float = 0.0
 @export_range(0.0, 360.0, 5.0,  "suffix:°") var shoot_angle : float = 0.0
 
-var items : Array = []
-var previous_frame_progress := progress
+## Reallocate the whole pool, useful after a modification of the generator's projectile
+@export var refresh_pool := false:
+	set(value):
+		processing = false
+		recreate_pool()
+		processing = true
+		refresh_pool = false
+
+@export var debug_mode := false
+
 
 class Item:
 	var index : int
@@ -30,9 +58,9 @@ class Item:
 	var shoot_interval : float = 0.0
 	var projectile : Node2D
 	
-	func _init(_index: int, _projectile: PackedScene) -> void:
+	func _init(_index: int, _projectile: Node2D) -> void:
 		index = _index
-		projectile = _projectile.instantiate()
+		projectile = _projectile.duplicate()
 	
 	func is_shooted() -> bool:
 		return projectile.position != Vector2.ZERO
@@ -41,41 +69,110 @@ class Item:
 		var distance = max(0, progress - shoot_interval * index)
 		projectile.position = distance * Vector2.from_angle(shoot_angle)
 		projectile.rotation = shoot_angle
-		
-	func queue_free() -> void:
-		if projectile != null:
-			projectile.queue_free()
 
 
 
 func _ready():
-	recreate_pool()
+	add_generated()
+	child_order_changed.connect(_on_child_changed)
+	update_projectile()
+
+
+
+func _on_child_changed() -> void:
+	if debug_mode: print('child changed')
+	update_projectile()
+	update_configuration_warnings()
+
+
+
+func find_projectile() -> Node2D:
+	for child in get_children():
+		if child != generated:
+			return child
+	return null
+
+
+
+func update_projectile() -> void:
+	# set projectile as first child that's not generated or null
+	if debug_mode: print('updating projectile')
+	projectile = find_projectile()
+
+
+
+func _get_configuration_warnings():
+	if debug_mode: print('updating configuration warning')
+	var warning = []
+	if not is_projectile_set():
+		warning.append('Generator requires a child node or scene (Node2D) as template projectile')
+	return warning
+
+
+
+func remove_generated_projectiles() -> void:
+	for child in generated.get_children():
+		child.queue_free()
+
+
+
+func add_generated() -> void:
+	if not generated:
+		generated = Node2D.new()
+		generated_changed = true
+		add_child(generated)
+
+
+
+func free_pool() -> void:
+	if debug_mode: print('freeing pool')
+	processing = false
+	if generated:
+		remove_generated_projectiles()
+	items = []
+
+
+
+func is_projectile_set() -> bool:
+	if debug_mode: print('is projectile set: ', (projectile != null) and projectile)
+	return (projectile != null) and projectile
 
 
 
 func recreate_pool() -> void:
-	for item in items:
-		#item == null
-		if item != null:
-			item.queue_free()
-		
+	if debug_mode: print('recreating pool?')
+	free_pool()
+	if is_projectile_set():
+		create_pool()
+	else:
+		push_warning("Generator: Cannot recreate pool, projectile is not set")
+
+
+
+func create_pool() -> void:
+	if debug_mode: print('creating pool')
 	items.resize(pool_size)
 	for i in range(items.size()):
 		items[i] = Item.new(i, projectile)
-		add_child(items[i].projectile)
+		generated.add_child(items[i].projectile)
+	update_positions() # initialize positions
 
 
 
-func _process(delta):
-	#if Engine.is_editor_hint(): return
-	if previous_frame_progress == progress: return
-	
-	previous_frame_progress = progress
-	if items[0] == null: return
+func update_positions():
 	for item in items:
 		# hold the parameters when the item was shooted 
 		if not item.is_shooted():
 			item.shoot_angle = deg_to_rad(shoot_angle)
 			item.shoot_interval = interval
 		item.update_position(progress)
-		
+
+
+
+func _process(_delta):
+	#if Engine.is_editor_hint(): return
+	if previous_frame_progress == progress: return
+	if not processing: return
+	
+	previous_frame_progress = progress
+	update_positions()
