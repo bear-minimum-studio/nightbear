@@ -12,6 +12,7 @@ var projectile : Node2D = null :
 				if debug_mode: print('no projectile')
 				free_pool()
 			else:
+				projectile.visible = false
 				if debug_mode: print('new projectile')
 				recreate_pool()
 				processing = true
@@ -69,6 +70,10 @@ class Item:
 		var distance = max(0, progress - shoot_interval * index)
 		projectile.position = distance * Vector2.from_angle(shoot_angle)
 		projectile.rotation = shoot_angle
+		if is_shooted() and not projectile.visible:
+			projectile.show()
+		elif not is_shooted() and projectile.visible:
+			projectile.hide()
 
 
 

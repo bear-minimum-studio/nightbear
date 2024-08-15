@@ -93,34 +93,37 @@ _data = {
 [node name="TestGenerator" type="Node2D"]
 
 [node name="Projectile" parent="." instance=ExtResource("2_m715n")]
+visible = false
+
+[node name="multiple" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="multiple"]
+position = Vector2(0, -150)
+texture = ExtResource("2_rqec5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="multiple"]
+position = Vector2(0, 50)
+texture = ExtResource("2_rqec5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="multiple"]
+position = Vector2(0, -50)
+texture = ExtResource("2_rqec5")
+
+[node name="Sprite2D4" type="Sprite2D" parent="multiple"]
+position = Vector2(0, 150)
+texture = ExtResource("2_rqec5")
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource("1_6ulgu")
 pool_size = 10
 debug_mode = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Generator"]
+[node name="Sprite2D5" type="Sprite2D" parent="Generator"]
+visible = false
 texture = ExtResource("2_rqec5")
-flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4o78n")
 }
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("2_rqec5")
-flip_v = true
-
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/Sprite2D" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32823" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32824" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32825" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32826" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32827" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32828" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32829" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32830" to="Generator" method="_on_sprite_2d_property_list_changed"]
-[connection signal="property_list_changed" from="Generator/@Node2D@17715/@Sprite2D@32831" to="Generator" method="_on_sprite_2d_property_list_changed"]
