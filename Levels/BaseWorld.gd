@@ -101,4 +101,3 @@ func _on_playback_ended():
 
 func _on_player_dead(player_id):
 	player_dead.emit(player_id)
-

@@ -38,4 +38,3 @@ func item_position(index: int) -> Vector2:
 				radius * cos(deg_to_rad(angle_offset)) + x_jitter,
 				radius * sin(deg_to_rad(angle_offset)) + y_jitter
 			)
-
