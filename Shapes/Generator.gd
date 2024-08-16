@@ -65,8 +65,7 @@ class Item:
 	func is_shooted() -> bool:
 		return projectile.position != Vector2.ZERO
 	
-	func update_position(progress) -> void:
-		var distance = max(0, progress - shoot_interval * index)
+	func set_distance(distance : float) -> void:
 		projectile.position = distance * Vector2.from_angle(shoot_angle)
 		projectile.rotation = shoot_angle
 		if is_shooted() and not projectile.visible:
@@ -164,12 +163,16 @@ func create_pool() -> void:
 
 
 func update_positions():
+	var intervals_cumsum : float = 0
 	for item in items:
 		# hold the parameters when the item was shooted 
 		if not item.is_shooted():
 			item.shoot_angle = deg_to_rad(shoot_angle)
 			item.shoot_interval = interval
-		item.update_position(progress)
+		
+		var distance = max(0, progress - intervals_cumsum)
+		item.set_distance(distance)
+		intervals_cumsum += item.shoot_interval
 
 
 
