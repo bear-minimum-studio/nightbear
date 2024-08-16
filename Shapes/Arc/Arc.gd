@@ -6,7 +6,7 @@ extends Shape
 	set(value):
 		nb_items = value
 		if !Engine.is_editor_hint(): return
-		free_children()
+		free_items()
 		spawn()
 
 

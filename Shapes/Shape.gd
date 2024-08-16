@@ -8,7 +8,7 @@ class_name Shape
 	set(value):
 		projectile_scene = value
 		if !Engine.is_editor_hint(): return
-		free_children()
+		free_items()
 		spawn()
 
 # TODO: get child and use warnings instead?
@@ -138,6 +138,7 @@ func _update_positions():
 
 
 
-func free_children():
-	for child in get_children():
-		child.queue_free()
+func free_items():
+	for item in items:
+		item.queue_free()
+	items = []

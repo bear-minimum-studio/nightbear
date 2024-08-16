@@ -5,14 +5,14 @@ extends Shape
 	set(value):
 		nb_lines = value
 		if !Engine.is_editor_hint(): return
-		free_children()
+		free_items()
 		spawn()
 
 @export var nb_columns := 3 :
 	set(value):
 		nb_columns = value
 		if !Engine.is_editor_hint(): return
-		free_children()
+		free_items()
 		spawn()
 
 @export_range(0.0,100.0,2.5,"or_greater") var line_spacing := 25.0 :
