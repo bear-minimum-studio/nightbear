@@ -6,7 +6,7 @@ class_name Generator
 var projectile : Node2D = null :
 	set(value):
 		if value != projectile:
-			processing = false
+			set_process(false)
 			projectile = value
 			if value == null:
 				if debug_mode: print('no projectile')
@@ -15,13 +15,12 @@ var projectile : Node2D = null :
 				projectile.visible = false
 				if debug_mode: print('new projectile')
 				recreate_pool()
-				processing = true
+				set_process(true)
 		else:
 			if debug_mode: print('projectile unchanged: ', value)
 
 
 
-var processing := false
 var generated : Node2D
 var generated_changed := false
 
@@ -32,10 +31,10 @@ var previous_frame_progress := progress
 @export var pool_size : int = 100 :
 	set(value):
 		if pool_size != value:
-			processing = false
+			set_process(false)
 			pool_size = value
 			recreate_pool()
-			processing = true
+			set_process(true)
 
 #TODO: fix behavior when animating interval 
 @export_range(0.0, 1000.0, 5.0, "suffix:px") var interval : float = 100.0
@@ -45,9 +44,9 @@ var previous_frame_progress := progress
 ## Reallocate the whole pool, useful after a modification of the generator's projectile
 @export var refresh_pool := false:
 	set(value):
-		processing = false
+		set_process(false)
 		recreate_pool()
-		processing = true
+		set_process(true)
 		refresh_pool = false
 
 @export var debug_mode := false
@@ -131,7 +130,7 @@ func add_generated() -> void:
 
 func free_pool() -> void:
 	if debug_mode: print('freeing pool')
-	processing = false
+	set_process(false)
 	if generated:
 		remove_generated_projectiles()
 	items = []
@@ -177,7 +176,6 @@ func update_positions():
 func _process(_delta):
 	#if Engine.is_editor_hint(): return
 	if previous_frame_progress == progress: return
-	if not processing: return
 	
 	previous_frame_progress = progress
 	update_positions()

@@ -116,7 +116,7 @@ texture = ExtResource("2_rqec5")
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource("1_6ulgu")
-pool_size = 10
+pool_size = 199
 debug_mode = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="Generator"]
