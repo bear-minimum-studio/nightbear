@@ -7,7 +7,7 @@ class_name LevelSetupDialog
 @export var level_name_edit : LineEdit
 @export var template_option_button : OptionButton
 @export var create_button : Button
-@export var background : ColorRect
+
 
 var templates = preload("res://Levels/Templates.tres").levels
 var levels_folder = "res://Levels/"
@@ -20,7 +20,6 @@ var selected_template
 
 
 func _ready():
-	populate_template_menu()
 	level_name_edit.grab_focus()
 
 
@@ -93,6 +92,7 @@ func _input(event):
 		close_requested.emit()
 
 
+
 func _on_template_option_button_item_selected(index):
 	selected_template = templates[index]
 
@@ -100,3 +100,9 @@ func _on_template_option_button_item_selected(index):
 
 func _on_level_name_edit_text_submitted(new_text):
 	create_button.grab_focus()
+
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		populate_template_menu()
