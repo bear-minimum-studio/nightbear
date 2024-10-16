@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsxqh878rgfgi"]
+
+[ext_resource type="Script" path="res://UI/LevelPicker/LevelPicker.gd" id="1_nf570"]
+[ext_resource type="Resource" uid="uid://b6dofhg1xf06q" path="res://Levels/LevelCatalog.tres" id="2_op77g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d66hi"]
+font_size = 24
+
+[node name="LevelPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nf570")
+level_catalog = ExtResource("2_op77g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11, 0.11, 0.11, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+max_columns = 4
+same_column_width = true
+icon_mode = 0
+
+[node name="LevelInspector" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/LevelInspector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LevelInspector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LevelInspector/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Level Name"
+label_settings = SubResource("LabelSettings_d66hi")
+autowrap_mode = 3
+
+[node name="BigSpace" type="MarginContainer" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Difficulty:"
+
+[node name="Difficulty" type="Label" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Medium"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Space" type="MarginContainer" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="Description" type="RichTextLabel" parent="HBoxContainer/LevelInspector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[i]description of the level, can span over multiple lines blab abla bfobrr vraj fds vfnds vfjdv svifd svis[/i]"
+
+[connection signal="item_activated" from="HBoxContainer/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="item_selected" from="HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
