@@ -68,9 +68,6 @@ class Item:
 		path_follow = PathFollow2D.new()
 		parent.add_child.call_deferred(path_follow) # wait for parent to be ready
 	
-	func queue_free():
-		path_follow.queue_free()
-	
 	func update():
 		node.position = path_follow.position - node.get_parent().position
 		node.rotation = path_follow.rotation - node.get_parent().rotation
@@ -96,8 +93,6 @@ func _on_child_order_changed() -> void:
 
 
 func clear_items() -> void:
-	for item in items:
-		item.queue_free()
 	items = []
 
 
