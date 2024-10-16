@@ -10,7 +10,7 @@ var projectile : Node2D = null :
 			projectile = value
 			if value == null:
 				if debug_mode: print('no projectile')
-				free_pool()
+				free_pool.call_deferred()
 			else:
 				projectile.visible = false
 				if debug_mode: print('new projectile')
@@ -93,6 +93,7 @@ func _on_child_changed() -> void:
 
 
 
+# assumes no other child to Generator than projectile and generated
 func find_projectile() -> Node2D:
 	for child in get_children():
 		if child != generated:
