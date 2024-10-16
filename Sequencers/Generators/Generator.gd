@@ -63,9 +63,13 @@ class Item:
 		projectile = _projectile.duplicate()
 	
 	func is_shooted() -> bool:
+		if not projectile:
+			return false
 		return projectile.position != Vector2.ZERO
 	
 	func set_distance(distance : float) -> void:
+		if not projectile: return
+		
 		projectile.position = distance * Vector2.from_angle(shoot_angle)
 		projectile.rotation = shoot_angle
 		if is_shooted() and not projectile.visible:
