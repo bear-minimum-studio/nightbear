@@ -7,9 +7,9 @@ class_name Shape
 @export var projectile_scene: PackedScene :
 	set(value):
 		projectile_scene = value
-		if !Engine.is_editor_hint(): return
-		free_items()
-		spawn()
+		if Engine.is_editor_hint():
+			free_items()
+			spawn()
 
 # TODO: get child and use warnings instead?
 ## Holds animation for "appearance"
@@ -20,6 +20,7 @@ class_name Shape
 # TODO: do nothing if already appeared / disappeared ?
 @export var appear: bool = false :
 	set(value):
+		if not spawned: return
 		animate_appearance(appearance_time)
 		appear = false
 
@@ -30,6 +31,7 @@ class_name Shape
 # TODO: do nothing if already appeared / disappeared ?
 @export var disappear: bool = false :
 	set(value):
+		if not spawned: return
 		animate_disappearance(disappearance_time)
 		disappear = false
 
@@ -39,6 +41,10 @@ class_name Shape
 
 @export var collisions := true :
 	set(value):
+		if not spawned:
+			collisions = value
+			return
+		
 		var has_child_with_collisions := false
 		for child in get_children():
 			if child.has_node('CollisionShape2D'):
@@ -58,7 +64,7 @@ class_name Shape
 
 
 var items: Array # stores all projectiles in spawn order (a freed projectile is null)
-
+var spawned = false
 
 
 func _ready():
@@ -70,6 +76,7 @@ func _ready():
 
 
 func _on_visibility_changed():
+	if not spawned: return
 	if is_visible_in_tree():
 		animate_appearance(appearance_time)
 	else:
@@ -107,6 +114,7 @@ func spawn():
 	items.resize(get_nb_items())
 	for i in range(items.size()):
 		items[i] = _spawn_item(i)
+	spawned = true
 
 
 
@@ -148,6 +156,7 @@ func _update_positions():
 
 
 func free_items():
+	spawned = false
 	for item in items:
 		item.queue_free()
 	items = []
