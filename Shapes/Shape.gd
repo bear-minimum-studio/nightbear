@@ -63,8 +63,17 @@ var items: Array # stores all projectiles in spawn order (a freed projectile is 
 
 func _ready():
 	seed(Parameters.SEED)
+	visibility_changed.connect(_on_visibility_changed)
 	if !Engine.is_editor_hint(): # wall already spawn by exported vars in editor
 		spawn()
+
+
+
+func _on_visibility_changed():
+	if is_visible_in_tree():
+		animate_appearance(appearance_time)
+	else:
+		animate_disappearance(disappearance_time)
 
 
 
