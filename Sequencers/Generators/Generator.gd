@@ -161,9 +161,11 @@ func _on_child_exiting_tree(child: Node) -> void:
 
 
 func _on_child_entered_tree(child: Node) -> void:
+	if behavior: return # a behavior already exists, it's probably one of the duplicates
 	if child is GeneratorBehavior:
 		if debug_mode: print('GeneratorBehavior entered tree')
 		behavior = child
+		behavior.visible = false
 		behavior.behavior_changed.connect(_on_behavior_template_changed)
 		recreate_pool.call_deferred()
 		update_configuration_warnings()
