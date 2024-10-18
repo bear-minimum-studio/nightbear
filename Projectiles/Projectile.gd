@@ -16,7 +16,7 @@ enum ProjectyleType {Ally, Ennemy, Doom}
 
 func _ready():
 	body_entered.connect(_on_Projectile_body_entered)
-	visible_on_screen_notifier_2d.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
+	#visible_on_screen_notifier_2d.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
 
 func _update_direction(default_direction: Vector2) -> void:
 	direction = default_direction
