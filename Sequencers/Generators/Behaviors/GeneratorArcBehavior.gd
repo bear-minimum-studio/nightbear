@@ -1,6 +1,6 @@
 @tool
-extends GeneratorAmmo
-class_name GeneratorAmmoArc
+extends GeneratorBehavior
+class_name GeneratorArcBehavior
 
 
 @export var spread : float = 30.0;

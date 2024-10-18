@@ -5,11 +5,11 @@ class_name Generator
 
 # TODO:
 #	- crashes when using a Shape as template in game (works in editor)
-var ammo : GeneratorAmmo = null
+var behavior : GeneratorBehavior = null
 
 var generated : Node2D
 
-var items : Array[GeneratorAmmo] = []
+var items : Array[GeneratorBehavior] = []
 var previous_frame_progress := progress
 
 
@@ -34,7 +34,7 @@ var is_pool_ready = false:
 @export_range(0.0, 360.0, 5.0,  "suffix:°") var shoot_angle : float = 0.0
 
 
-## Editor only: Reallocate the whole pool, useful after a modification of the generator's ammo
+## Editor only: Reallocate the whole pool, useful after a modification of the generator's behavior
 @export var refresh_pool := false:
 	set(value):
 		if value:
@@ -57,15 +57,15 @@ func _ready() -> void:
 	
 	if not Engine.is_editor_hint():
 		add_generated()
-		ammo = find_ammo()
+		behavior = find_behavior()
 		create_pool()
 
 
 
 # undefined behavior with more than one generation item
-func find_ammo() -> GeneratorAmmo:
+func find_behavior() -> GeneratorBehavior:
 	for child in get_children():
-		if child != generated and child is GeneratorAmmo:
+		if child != generated and child is GeneratorBehavior:
 			return child
 	return null
 
@@ -78,19 +78,19 @@ func add_generated() -> void:
 
 
 
-func is_ammo_set() -> bool:
-	if debug_mode: print('is ammo set: ', (ammo != null) and ammo)
-	return (ammo != null) and ammo
+func is_behavior_set() -> bool:
+	if debug_mode: print('is behavior set: ', (behavior != null) and behavior)
+	return (behavior != null) and behavior
 
 
 
 func create_pool() -> void:
 	if debug_mode: print('creating pool')
-	if not is_ammo_set(): return
+	if not is_behavior_set(): return
 	
 	items.resize(pool_size)
 	for i in range(items.size()):
-		items[i] = ammo.duplicate()
+		items[i] = behavior.duplicate()
 		items[i].index = i
 		generated.add_child(items[i])
 	is_pool_ready = true
@@ -141,35 +141,36 @@ func free_pool() -> void:
 func recreate_pool() -> void:
 	if debug_mode: print('recreating pool?')
 	await free_pool()
-	if is_ammo_set():
+	if is_behavior_set():
 		add_generated()
 		create_pool()
 	else:
-		push_warning("Generator: Cannot recreate pool, ammo is not set")
+		push_warning("Generator: Cannot recreate pool, behavior is not set")
+
 
 
 
 func _on_child_exiting_tree(child: Node) -> void:
-	if child == ammo:
-		if debug_mode: print('GeneratorAmmo exiting tree')
-		ammo = null
+	if child == behavior:
+		if debug_mode: print('GeneratorBehavior exiting tree')
+		behavior = null
 		free_pool.call_deferred() # wait for child to have exited the tree
 		update_configuration_warnings()
 
 
 
 func _on_child_entered_tree(child: Node) -> void:
-	if child is GeneratorAmmo:
-		if debug_mode: print('GeneratorAmmo entered tree')
-		ammo = child
-		ammo.ammo_changed.connect(_on_ammo_template_changed)
+	if child is GeneratorBehavior:
+		if debug_mode: print('GeneratorBehavior entered tree')
+		behavior = child
+		behavior.behavior_changed.connect(_on_behavior_template_changed)
 		recreate_pool.call_deferred()
 		update_configuration_warnings()
 
 
 
-func _on_ammo_template_changed() -> void:
-	if debug_mode: print('on_ammo_template_changed')
+func _on_behavior_template_changed() -> void:
+	if debug_mode: print('on_behavior_template_changed')
 	recreate_pool()
 
 
@@ -177,8 +178,8 @@ func _on_ammo_template_changed() -> void:
 func _get_configuration_warnings():
 	if debug_mode: print('updating configuration warning')
 	var warning = []
-	if not is_ammo_set():
-		warning.append('Generator requires a GeneratorAmmo child')
+	if not is_behavior_set():
+		warning.append('Generator requires a GeneratorBehavior child')
 	return warning
 
 

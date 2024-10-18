@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-class_name GeneratorAmmo
+class_name GeneratorBehavior
 
 
 
@@ -10,7 +10,7 @@ var shoot_interval : float = 0.0
 var progress : float = 0.0
 
 
-signal ammo_changed
+signal behavior_changed
 
 
 
@@ -22,7 +22,7 @@ func _ready():
 
 
 func _on_child_changed() -> void:
-	ammo_changed.emit()
+	behavior_changed.emit()
 	update_configuration_warnings()
 
 
