@@ -1,5 +1,6 @@
 @tool
 extends Shape
+class_name ArcShape
 
 
 @export var nb_items := 10 :

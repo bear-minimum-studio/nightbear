@@ -7,6 +7,7 @@ class_name GeneratorAmmo
 var index : int
 var shoot_angle : float = 0.0
 var shoot_interval : float = 0.0
+var progress : float = 0.0
 
 
 signal ammo_changed
@@ -35,12 +36,13 @@ func _get_configuration_warnings():
 
 
 func is_shooted() -> bool:
-	return position != Vector2.ZERO
+	return progress > 0
 
 
 
-func set_progress(progress : float) -> void:
-	_update_properties(progress)
+func set_progress(value : float) -> void:
+	progress = value
+	_update_properties()
 	
 	if is_shooted() and not visible:
 		show()
@@ -49,6 +51,6 @@ func set_progress(progress : float) -> void:
 
 
 
-func _update_properties(progress: float) -> void:
+func _update_properties() -> void:
 	position = progress * Vector2.from_angle(shoot_angle)
 	rotation = shoot_angle
