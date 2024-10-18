@@ -32,11 +32,11 @@ func _ready():
 		child_exiting_tree.connect(_on_child_exiting_tree)
 		update_configuration_warnings()
 	
-	if not Engine.is_editor_hint():
-		for child in get_children():
-			if child is AnimationPlayer:
-				animation_player = child
-				break
+	# get animation player child
+	for child in get_children():
+		if child is AnimationPlayer:
+			animation_player = child
+			break
 	
 	super._ready()
 
