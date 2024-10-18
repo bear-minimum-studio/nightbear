@@ -7,6 +7,7 @@ class_name Generator
 #	- crashes when using a Shape as template in game (works in editor)
 var behavior : GeneratorBehavior = null
 
+
 var generated : Node2D
 
 var items : Array[GeneratorBehavior] = []
