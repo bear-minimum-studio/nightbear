@@ -75,6 +75,7 @@ func find_behavior() -> GeneratorBehavior:
 func add_generated() -> void:
 	if not generated:
 		generated = Node2D.new()
+		generated.name = 'Generated'
 		add_child(generated)
 
 
