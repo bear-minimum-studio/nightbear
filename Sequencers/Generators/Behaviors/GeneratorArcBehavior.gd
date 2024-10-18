@@ -21,5 +21,5 @@ func _update_properties() -> void:
 func _get_configuration_warnings():
 	var warning = []
 	if get_child_count() == 0:
-		warning.append('Add a multiple projectiles that will spread along an arc')
+		warning.append('Add multiple projectiles that will spread along an arc')
 	return warning
