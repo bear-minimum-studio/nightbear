@@ -64,6 +64,7 @@ _data = {
 }
 
 [node name="Arc" type="Node2D" node_paths=PackedStringArray("animation_player")]
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_fauj3")
 projectile_scene = ExtResource("2_jg1tn")
 animation_player = NodePath("AnimationPlayer")

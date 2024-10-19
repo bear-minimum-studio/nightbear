@@ -64,6 +64,7 @@ _data = {
 }
 
 [node name="Wall" type="Node2D" node_paths=PackedStringArray("animation_player")]
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_tofqb")
 projectile_scene = ExtResource("2_q0wu6")
 animation_player = NodePath("AnimationPlayer")
