@@ -30,7 +30,7 @@ func get_nb_items():
 
 func item_position(index: int) -> Vector2:
 	 # make sure the arc is centered around 0°
-	var angle_separation = spread / (nb_items - 1)
+	var angle_separation = spread / nb_items
 	var angle_offset = (index - (items.size() - 1) / 2.0) * angle_separation
 	
 	var x_jitter = randf_range(-jitter, jitter)
