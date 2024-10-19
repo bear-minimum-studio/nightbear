@@ -73,4 +73,3 @@ collisions = false
 libraries = {
 "": SubResource("AnimationLibrary_tdh1f")
 }
-speed_scale = 1.41044

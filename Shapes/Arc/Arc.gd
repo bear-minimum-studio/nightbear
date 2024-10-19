@@ -6,15 +6,15 @@ class_name ArcShape
 @export var nb_items := 10 :
 	set(value):
 		nb_items = value
-		if !Engine.is_editor_hint(): return
-		free_items()
-		spawn()
+		if Engine.is_editor_hint() and is_node_ready():
+			respawn()
 
 
 @export_range(0.0,1000.0,2.5,"or_greater") var radius := 75.0 :
 	set(value):
 		radius = value
 		_update_positions()
+
 
 @export_range(0.0,360.0,5.0) var spread := 90.0 :
 	set(value):
@@ -25,6 +25,7 @@ class_name ArcShape
 
 func get_nb_items():
 	return nb_items
+
 
 
 func item_position(index: int) -> Vector2:
