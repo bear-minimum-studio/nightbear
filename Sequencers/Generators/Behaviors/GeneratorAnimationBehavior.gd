@@ -56,6 +56,7 @@ func _update_properties() -> void:
 	if progress_in_s() > animation_length: return
 	
 	var delta = progress - previous_progress
+	rotation = shoot_angle
 	
 	if animation_player:
 		animation_player.advance( delta / progress_per_second )
