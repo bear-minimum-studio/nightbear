@@ -23,6 +23,7 @@ var animation_player : AnimationPlayer:
 
 var previous_progress : float = 0.0
 
+var animation_length : float
 var animation_finished = false
 
 
@@ -41,13 +42,20 @@ func _ready():
 	super._ready()
 
 
+func progress_in_s() -> float:
+	return progress / progress_per_second
+
 
 func _update_properties() -> void:
-	if progress == previous_progress or animation_finished: return
-	var delta = progress - previous_progress
+	if progress == previous_progress: return
 	
-	if delta != 0 and animation_player:
+	if not animation_player.current_animation:
 		animation_player.play(animation_name)
+		animation_length = animation_player.current_animation_length
+	
+	if progress_in_s() > animation_length: return
+	
+	var delta = progress - previous_progress
 	
 	if animation_player:
 		animation_player.advance( delta / progress_per_second )
@@ -58,7 +66,6 @@ func _update_properties() -> void:
 
 func _on_animation_finished(_anim_name) -> void:
 	animation_finished = true
-
 
 
 

@@ -73,7 +73,6 @@ func _ready():
 	seed(Parameters.SEED)
 	visibility_changed.connect(_on_visibility_changed)
 	spawn()
-	print(get_children(true))
 
 
 

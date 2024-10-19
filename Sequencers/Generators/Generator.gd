@@ -54,7 +54,6 @@ func _ready() -> void:
 		child_entered_tree.connect(_on_child_entered_tree)
 		child_exiting_tree.connect(_on_child_exiting_tree)
 		update_configuration_warnings()
-		print('ready')
 	
 	if not Engine.is_editor_hint():
 		add_generated()
@@ -135,7 +134,7 @@ func free_pool() -> void:
 		generated.queue_free()
 		await generated.tree_exited
 		generated = null
-	print('freed generated: ', generated)
+	if debug_mode: print('freed generated: ', generated)
 	items = []
 
 

@@ -3,7 +3,7 @@ extends GeneratorBehavior
 class_name GeneratorArcBehavior
 
 
-@export var spread : float = 30.0;
+@export_range(0.0, 360.0, 5.0, "suffix:°") var spread : float = 30.0;
 
 
 func _update_properties() -> void:
