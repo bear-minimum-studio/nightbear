@@ -129,7 +129,8 @@ func get_sub_shape(node_name: String) -> Node2D:
 
 
 func _on_animation_player_current_animation_changed(anim_name):
-	only_enable_sub_shape(anim_name)
+	if anim_name != '':
+		only_enable_sub_shape(anim_name)
 
 
 func _on_animation_tree_animation_started(anim_name):
@@ -137,6 +138,7 @@ func _on_animation_tree_animation_started(anim_name):
 
 
 func only_enable_sub_shape(node_name: String):
+	print(node_name)
 	if not link:
 		return
 	
@@ -147,6 +149,7 @@ func only_enable_sub_shape(node_name: String):
 		return
 	
 	for c in shapes.get_children():
+		print(c)
 		c.visible = false
 		if c.name == node_name:
 			c.visible = true
