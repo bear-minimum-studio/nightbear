@@ -40,6 +40,16 @@ class_name PathSequencer
 		loop = value
 		broadcast()
 
+@export var hide_before_start := true :
+	set(value):
+		hide_before_start = value
+		broadcast()
+
+@export var hide_on_end := true :
+	set(value):
+		hide_on_end = value
+		broadcast()
+
 
 
 var sequence : Sequence :
@@ -137,6 +147,15 @@ func broadcast():
 		path.cubic_interp = cubic_interp
 		path.rotates = rotates
 		path.loop = loop
+		
+		if path.progress_ratio == 0:
+			if hide_before_start:
+				item.node.visible = false
+		elif path.progress_ratio >= 1:
+			if hide_on_end:
+				item.node.visible = false
+		else:
+			item.node.visible = true
 		
 		item.update()
 

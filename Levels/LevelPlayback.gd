@@ -149,7 +149,6 @@ func only_enable_sub_shape(node_name: String):
 		return
 	
 	for c in shapes.get_children():
-		print(c)
 		c.visible = false
 		if c.name == node_name:
 			c.visible = true
