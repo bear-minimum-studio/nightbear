@@ -35,4 +35,3 @@ func show_dialog():
 	
 func exit_dialog():
 	dialog.queue_free()
-

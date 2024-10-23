@@ -77,6 +77,17 @@ func create_level_from_template(level_name: String, template: LevelResource):
 	
 	var new_resource_path = new_folder + '/' + pascal_name +'.tres'
 	ResourceSaver.save(new_resource, new_resource_path)
+	
+	# open in file dock
+	var file_system = EditorInterface.get_resource_filesystem()
+	file_system.scan() # refresh file browser
+	var file_dock = EditorInterface.get_file_system_dock()
+	file_dock.navigate_to_path(new_world_path)
+	
+	# Open the level's world in Scene editor
+	EditorInterface.set_main_screen_editor("2D")
+	EditorInterface.open_scene_from_path(new_world_path)
+	EditorInterface.edit_node(EditorInterface.get_edited_scene_root())
 
 
 
