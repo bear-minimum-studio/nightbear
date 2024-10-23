@@ -65,6 +65,11 @@ text = "Pick a template:"
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Basic Squares Template"
+popup/item_1/text = "Empty Level"
+popup/item_1/id = 1
 
 [node name="Space2" type="Control" parent="VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
