@@ -30,9 +30,9 @@ var is_pool_ready = false:
 
 
 #TODO: fix behavior when animating interval 
-@export_range(0.0, 1000.0, 5.0, "suffix:px") var interval : float = 100.0
-@export_range(0.0, 10000.0, 5.0, "suffix:px") var progress : float = 0.0
-@export_range(0.0, 360.0, 5.0,  "suffix:°") var shoot_angle : float = 0.0
+@export_range(0.0, 1000.0, 1.0, "suffix:px", "or_greater") var interval : float = 100.0
+@export_range(0.0, 10000.0, 5.0, "suffix:px", "or_greater") var progress : float = 0.0
+@export_range(0.0, 360.0, 5.0	,  "suffix:°", "or_greater", "or_less") var shoot_angle : float = 0.0
 
 
 ## Editor only: Reallocate the whole pool, useful after a modification of the generator's behavior
